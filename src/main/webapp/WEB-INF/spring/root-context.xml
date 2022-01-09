@@ -8,11 +8,17 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+<!-- 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> -->
+<!-- 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" /> -->
+<!-- 		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.0.72:1521:xe" /> -->
+<!-- 		<property name="username" value="c##itbank4" /> -->
+<!-- 		<property name="password" value="1234" /> -->
+<!-- 	</bean> -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.0.72:1521:xe" />
-		<property name="username" value="c##itbank4" />
-		<property name="password" value="1234" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@221.164.9.200:1522:xe" />
+		<property name="username" value="c##itbank19" />
+		<property name="password" value="0106" />
 	</bean>
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -37,6 +43,6 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
-<!-- 	<context:component-scan base-package="com.wedog.service" /> -->
+	<context:component-scan base-package="com.teamproject.service" />
 <!-- 	<mybatis-spring:scan base-package="com.wedog.repository"/> -->
 </beans>
