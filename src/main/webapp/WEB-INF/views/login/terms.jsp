@@ -51,14 +51,7 @@
 	</div>
 </div>
 <script>
-function selectAll(selectAll)  {
-	  const checkboxes 
-	       = document.getElementsByName('agree');
-	  
-	  checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked;
-	  })
-	}
+
 </script>
 </body>
 </html>
