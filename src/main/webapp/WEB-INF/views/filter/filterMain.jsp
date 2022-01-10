@@ -241,7 +241,7 @@
 		
 		fetch(url, opt)
 		.then(resp => resp.json())
-		.then(json => console.log(json))
+// 		.then(json => console.log(json))
 		
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
