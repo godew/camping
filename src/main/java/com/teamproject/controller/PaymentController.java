@@ -31,7 +31,7 @@ public class PaymentController {
 	
 	@GetMapping("/approve")
 	public String approve(HttpSession session, String pg_token) throws IOException {
-		System.out.println(paymentService.approve(session.getAttribute("tid").toString(), pg_token));
+		paymentService.approve(session.getAttribute("tid").toString(), pg_token);
 		return "payment/pay";
 	}
 	
