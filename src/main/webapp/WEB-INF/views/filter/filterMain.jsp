@@ -6,13 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/filtercss/filterStyle.css">
 </head>
 <body>
 <div class="bodywrap">
 	<div class="filterwrap1">
 		<section>
 			<h3 class="calender">날짜</h3>
+			<table class="filterCalender">
+			
+			</table>
 		</section>
 		
 		<section>
@@ -35,7 +38,10 @@
 		</section>
 		
 		<section>
-			<strong class="filterTitle">가격</strong>
+			<div class="priceWrap">
+				<strong class="filterTitle">가격</strong>
+				<div class="filterPriceList">12만원</div>
+			</div>
 				<div class="middle">
 					<div class="multi-range-slider">
 						<input type="range" id="input-left" min="10000" max="300000" value="10000" step="10000">
@@ -126,11 +132,13 @@
 				<button><span>낮은 가격 순</span></button>
 				<button><span>높은 가격 순</span></button>
 			</div>
+			
 			<button class="filter_mapBtn">지도</button>
 		</div>
 	</div>
+	<div id="map" style="width:50%;height:350px;"></div>
 </div>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=081d224ac09a57b9fde6466317eda63c"></script>
 <script>
 	const filterMinus = document.querySelector('.filterMinus')
 	const filterPlus = document.querySelector('.filterPlus')
@@ -218,6 +226,87 @@
 	inputRight.addEventListener("mouseup", function() {
 		thumbRight.classList.remove("active");
 	});
+	
+</script>
+
+<script>
+	const btn = document.querySelector('.filter_mapBtn')
+	const cpath = '${cpath}'	
+	
+	btn.onclick = function() {
+		const url = cpath + '/map'
+		const opt = {
+				method: 'GET'
+		}
+		
+		fetch(url, opt)
+		.then(resp => resp.json())
+		.then(json => console.log(json))
+		
+		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+		mapOption = { 
+		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		    level: 3, // 지도의 확대 레벨
+		    clickable: true
+		};
+	
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+		//마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+		var positions = [
+			{
+			    content: '<div>카카오</div>', 
+			    latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+			},
+			{
+			    content: '<div>생태연못</div>', 
+			    latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+			},
+			{
+			    content: '<div>텃밭</div>', 
+			    latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+			},
+			{
+			    content: '<div>근린공원</div>',
+			    latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+			}
+		];
+	
+		for (var i = 0; i < positions.length; i ++) {
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+			    map: map, // 마커를 표시할 지도
+			    position: positions[i].latlng // 마커의 위치
+			});
+		
+			// 마커에 표시할 인포윈도우를 생성합니다 
+			var infowindow = new kakao.maps.InfoWindow({
+			    content: positions[i].content // 인포윈도우에 표시할 내용
+			});
+		
+			// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+			// 이벤트 리스너로는 클로저를 만들어 등록합니다 
+			// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+			kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		}
+	
+		//인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, marker, infowindow) {
+			return function() {
+			    infowindow.open(map, marker);
+			};
+		}
+	
+		//인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(infowindow) {
+			return function() {
+			    infowindow.close();
+			};
+		}
+	}
+	
 	
 </script>
 
