@@ -1,37 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath">${pageContext.request.contextPath }</c:set>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>내 정보</title>
-<style>
-	.hidden{
-	display: none;
-	}
-	#renameBTN{
-	width: 300px;
-	height: 42px;
-	background-color: #FFFFFF;
-	border-radius: 4px;
-	border: solid 1px #ccc;
-	}
-	.username{
-	
-	}
-	.username b{
-	margin: 0 0 15px;
-	font-size: 16px;
-	width: 28%;
-	float: left;
-	}
-	.username span{
-	color: #0000008F;
-	}
-</style>
-</head>
+<%@ include file="userinfoHeader.jsp" %>
 <body>
 <script>
 const cpath = '${cpath}'
@@ -47,23 +16,38 @@ function hideModify(event) {
 }
 
 </script>
+<div class="content">
+<div class="leftmenu">
+	<nav>
+		<ul>
+			<li><a>포인트</a></li>
+			<li><a>예약 내역</a></li>
+			<li><a>내 정보 관리</a></li>
+		</ul>
+		
+	</nav>
+</div>
+
 <div class="userInfo">
 	<strong>내 정보 수정</strong>
 	<!-- 닉네임 -->
 	<div>
 		<div class="username">
-			<b>닉네임</b><span>1234<!-- 닉네임 --></span>
+			<b>닉네임</b>
+			<span>1234<!-- 닉네임 --></span>
 		</div>
-		<button id="renameBTN">수정</button>
-		
-		<div class="modify hidden"><!-- 수정버튼 누르면 나타나는 태그 -->
-			<form>
-				<p><input type="text" placeholder="체크인시 필요한 정보입니다" required></p>
-				<p>
-				<button id="change" onsubmit="">수정 완료</button>
-				<button id="cancelBTN">수정 취소</button>
-				</p>
-			</form>
+		<div class="BTN">
+			<button id="renameBTN">수정</button>
+			
+			<div class="modify hidden"><!-- 수정버튼 누르면 나타나는 태그 -->
+				<form>
+					<p><input type="text" placeholder="체크인시 필요한 정보입니다" required></p>
+					<p>
+					<button id="change" onsubmit="">수정 완료</button>
+					<button id="cancelBTN">수정 취소</button>
+					</p>
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -111,9 +95,8 @@ function hideModify(event) {
 			</form>
 		</div>
 	</div>
-
 </div>
-
+</div>
 <script>
 	const renameBTN = document.getElementById('renameBTN')
 	const modify = document.querySelector('.modify')
