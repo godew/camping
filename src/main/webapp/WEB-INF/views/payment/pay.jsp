@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${cpath }/resources/css/payment/style.css" rel="stylesheet">
-</head>
-<body>
+<%@ include file="../header.jsp" %>
 <form method="POST">
 	<div>예약자 이름</div>
 	<div><input type="text" name="name" value="${login.name }" placeholder="체크인시 필요한 정보입니다." required></div>
@@ -50,7 +41,6 @@
 <button class="cancel">cancel</button>
 <script src="${cpath }/resources/js/payment/pay.js"></script>
 <script>
-	const cpath = '${cpath }'
 	const payBtn = document.querySelector('.pay')
 	const cancelBtn = document.querySelector('.cancel')
 	const form = document.forms[0]
