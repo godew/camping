@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: kgitbank06
+=======
+Built-By: kgitbank12
+>>>>>>> f68e401 (modify pay.jsp)
 Build-Jdk: 1.8.0_301
 Created-By: Maven Integration for Eclipse
 

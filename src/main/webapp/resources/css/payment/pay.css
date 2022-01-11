@@ -1,0 +1,16 @@
+.pay_main {
+	width: 55%;
+	min-width: 1045px;
+	box-sizing: border-box;
+	margin: 72px auto;
+	border: 1px solid black;
+	display: flex;
+}
+.pay_left {
+	width: 65%;
+	border: 1px solid red;
+}
+.pay_right {
+	width: 35%;
+	border: 1px solid yellow;
+}
