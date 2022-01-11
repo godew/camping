@@ -15,7 +15,7 @@
 		<div class="mainTopButton">
 			<ul>
 				<li><a href="${cpath }/login/login">로그인</a></li>
-				<li><a href="">회원가입</a></li>
+				<li><a href="${cpath }/join/terms">회원가입</a></li>
 			</ul>
 		</div>
 	</div>

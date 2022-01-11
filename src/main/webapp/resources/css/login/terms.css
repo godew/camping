@@ -6,15 +6,20 @@ body {
 	display: flex;
 	justify-content: center;
 }
-input {
-	width: 24px;
-	height: 24px;
-	box-sizing: border-box;
-}
 span {
 	display: flex;
 	align-items: center;
 	margin-right: 5px;
+}
+.agree {
+	width: 24px;
+	height: 24px;
+	box-sizing: border-box;
+}
+.allAgree > input {
+	width: 24px;
+	height: 24px;
+	box-sizing: border-box;
 }
 .agreeForm div {
 	display: flex;
@@ -24,6 +29,10 @@ span {
 	justify-content: center;
 	font-size: 24px;
 	font-weight: bold;
+}
+.title > img {
+	width: 24px;
+	height: auto;
 }
 .termsBody {
 	width: 336px;
@@ -42,4 +51,24 @@ span {
 }
 .necessary {
 	color: red;
+}
+.btn {
+	width: 336px;
+	height: 56px;
+	background-color: #FF3399;
+	font-size: 16px;
+	color: white;
+	box-sizing: border-box;
+	border: #FF3399;
+	border-radius: 4px;
+}
+.disabled {
+	width: 336px;
+	height: 56px;
+	background-color: white;
+	font-size: 16px;
+	color: white;
+	box-sizing: border-box;
+	border: #FF3399;
+	border-radius: 4px;
 }

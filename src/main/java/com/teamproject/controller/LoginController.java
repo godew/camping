@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-	@RequestMapping("/login/terms")
+	@RequestMapping("/join/terms")
 	public String terms() {
-		return "login/terms";
+		return "join/terms";
+	}
+	
+	@RequestMapping("/join/verification")
+	public String authentication() {
+		return "join/verification";
 	}
 }
