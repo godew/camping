@@ -16,17 +16,17 @@ header > .content {
 	margin: 0 auto;
 }
 
-header ul {
+header > .content > ul {
 	list-style: none;
 	display: flex;
 }
 
-header ul img {
+header > .content > ul img {
 	cursor: pointer;
 	padding-top: 4px;
 }
 
-header ul > li {	
+header > .content > ul > li {	
 	font-size: 18px;
 	color: rgba(255, 255, 255, 0.8);
 	letter-spacing: 0;
@@ -35,7 +35,7 @@ header ul > li {
 	height: 40px;
 }
 
-header ul > li:hover {	
+header > .content > ul > li:hover {	
 	color: #ffffff;
 	cursor: pointer;
 }
@@ -43,12 +43,14 @@ header ul > li:hover {
 .hidden {
 	display: none;
 }
-
+header .li_seemore {
+	position: relative;
+}
 .header_seemore {
 	width: 184px;
 	position: absolute;
-	right: 462px;
-	top: 55px;
+	right: -68px;
+	top: 38px;
 	border-radius: 5px;
     padding: 24px;
     background: #fff;
@@ -62,7 +64,6 @@ header ul > li:hover {
 	padding: 0;
 	list-style: none;
 	font-size: 16px;
-    color: rgba(0,0,0,0.87);
 }
 
 .header_seemore > ul > li {
@@ -70,17 +71,15 @@ header ul > li:hover {
 	cursor: pointer;
 }
 
-.header_seemore a,
 header a {
 	text-decoration: none;
 	color: rgba(255, 255, 255, 0.8);
 }
-
-header a:hover {
-	color: #ffffff;
+header .a_tag1:hover {
+	color: #ffffff;	
 }
 
-.header_seemore a {
+header .a_tag2 {
 	color: rgba(0,0,0,0.87);
 }
     

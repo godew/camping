@@ -23,33 +23,34 @@ function payCancel() {
 		})
 }
 
-function sendMailHandler(event) {
+function sendHandler(event) {
 	
-	const email = form.email
-	const url = cpath + '/mailto/' + email.value + '/'
+	const phone = form.phone
+	const url = cpath + '/sms?phone=' + phone.value;
 	const opt = {
-		method : 'GET'
+			method : 'GET'
 	}
+	
 	
 	fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
-			sendMailMsg.innerText = json.msg
-			sendMailMsg.style.color = json.status == 'OK' ? 'blue' : 'red'
+			sendMsg.innerText = json.msg
+			sendMsg.style.color = json.status == 'OK' ? 'blue' : 'red'
 			if(json.status == 'OK') {
-				authMailForm.classList.remove('hidden')
+				authForm.classList.remove('hidden')
 				form.auth.focus()
 				
 				second = 300
 				timer.style.color = 'blue'
-				authMailMsg.innerText = ''
+				authMsg.innerText = ''
 				timer.innerText = ''
 				interval = setInterval(detimer, 1000)
 			}
 		})
 }
 
-function authMailHandler(event) {
+function authHandler(event) {
 	
 	const auth = form.auth
 	const url = cpath + '/getAuthResult/' + auth.value + '/'
@@ -59,13 +60,13 @@ function authMailHandler(event) {
 	fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
-			authMailMsg.innerText = json.msg
+			authMsg.innerText = json.msg
 			if(json.status == 'OK') {
-				authMailMsg.style.color = 'blue'
+				authMsg.style.color = 'blue'
 				clearInterval(interval)
 				timer.innerText = ''
 			} else {
-				authMailMsg.style.color = 'red'
+				authMsg.style.color = 'red'
 				auth.select()
 			}
 		})
@@ -79,7 +80,6 @@ function detimer() {
     if(sec < 10) sec = '0' + sec
 
     const format = min + ' : ' + sec
-    console.log(format)
     timer.innerText = format
 
     if(second <= 0) {

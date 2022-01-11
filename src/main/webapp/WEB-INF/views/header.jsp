@@ -20,21 +20,23 @@
 		<a href="${cpath }">여기어때</a>
 		<ul>
 			<li><img src="${cpath }/resources/img/돋보기.png"></li>
-			<li><a href="">예약내역</a></li>
-			<li class="li_seemore">더보기</li>
-			<li><a href="">로그인</a></li>
+			<li><a href="" class="a_tag1">예약내역</a></li>
+			<li class="li_seemore">
+				더보기
+				<div class="hidden header_seemore">
+					<ul>
+						<li><a href="" class="a_tag2">공지사항</a></li>
+						<li><a href="" class="a_tag2">약관 및 정책</a></li>
+					</ul>
+				</div>
+			</li>
+			<li><a href="" class="a_tag1">로그인</a></li>
 		</ul>
 	</div>
 </header>
-<div class="hidden header_seemore">
-	<ul>
-		<li><a href="">공지사항</a></li>
-		<li><a href="">약관 및 정책</a></li>
-	</ul>
-</div>
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
-	headerSeemore = document.querySelector('.header_seemore')
+	const headerSeemore = document.querySelector('.header_seemore')
 	seeMore.onmouseover = function() {
 		headerSeemore.classList.remove('hidden')
 	}
