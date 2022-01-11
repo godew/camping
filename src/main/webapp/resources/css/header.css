@@ -70,7 +70,19 @@ header ul > li:hover {
 	cursor: pointer;
 }
 
+.header_seemore a,
+header a {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.8);
+}
 
+header a:hover {
+	color: #ffffff;
+}
+
+.header_seemore a {
+	color: rgba(0,0,0,0.87);
+}
     
     
     

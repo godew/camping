@@ -20,16 +20,16 @@
 		<a href="${cpath }">여기어때</a>
 		<ul>
 			<li><img src="${cpath }/resources/img/돋보기.png"></li>
-			<li>예약내역</li>
+			<li><a href="">예약내역</a></li>
 			<li class="li_seemore">더보기</li>
-			<li>로그인</li>
+			<li><a href="">로그인</a></li>
 		</ul>
 	</div>
 </header>
-<div class="header_seemore">
+<div class="hidden header_seemore">
 	<ul>
-		<li>공지사항</li>
-		<li>약관 및 정책</li>
+		<li><a href="">공지사항</a></li>
+		<li><a href="">약관 및 정책</a></li>
 	</ul>
 </div>
 <script>
