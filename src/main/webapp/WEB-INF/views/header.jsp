@@ -26,7 +26,7 @@
 		</ul>
 	</div>
 </header>
-<div class="header_seemore">
+<div class="hidden header_seemore">
 	<ul>
 		<li>공지사항</li>
 		<li>약관 및 정책</li>
