@@ -12,6 +12,7 @@
 	body{
 		margin: 0;
 	}
+	
 	.header{
 /* 		width: 1400px; */
 		height: 220px;
@@ -85,13 +86,30 @@
 		display: block;
 	}
 	
+	.headerArea {
+		display: inline-block;
+	    top: 0;
+	    left: 0;
+	    width: auto;
+	    height: 32px;
+	    padding: 0 36px 0 12px;
+	    border: 1px solid rgba(0,0,0,0.04);
+	    border-radius: 4px;
+	    background: rgba(0,0,0,0.04) url(//image.goodchoice.kr/images/web_v3/ico_arr_down_2.png) right 10px top 8px no-repeat !important;
+	    background-size: 18px auto !important;
+	    font-size: 18px;
+	    font-weight: bold;
+	    line-height: 32px;
+	    color: #fff;
+	}
+	
 </style>
 </head>
 <body>
 <div class="header">
 	<section>
 		<div class="headerList">
-			<div class="headerLogo"><a><img src="${cpath }/resources/img/logo.png"></a></div>
+			<div><a><img class="headerLogo"src="${cpath }/resources/img/logo.png"></a></div>
 			<div class="clickList">
 				<div><a href="">예약 내역</a></div>
 				<div><a href="">더보기</a></div>
@@ -99,8 +117,8 @@
 			</div>
 		</div>
 		<div class="headerName">	
-			<h2 class="headerCamping">캠핑</h2>
-			<div>dd</div>
+			<div class="headerCamping">캠핑</div>
+			<div class="headerArea">경기/인천권 전체</div>
 		</div>
 	</section>
 </div>

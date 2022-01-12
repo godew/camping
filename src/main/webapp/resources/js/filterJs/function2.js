@@ -38,9 +38,10 @@ const filterBtnOnClick2 = document.querySelector('.filterBtnOnClick2')
 const filterBtnOnClick3 = document.querySelector('.filterBtnOnClick3')
 const filterBtnOnClick4 = document.querySelector('.filterBtnOnClick4')
 
-window.onload = function(event) {
+window.addEventListener('load', function() {
+	console.log('window')
 	filterBtnOnClick1.classList.add('btnOnClick')
-}
+})
 
 filterBtnOnClick1.onclick = function(event){
 	filterBtnOnClick1.classList.add('btnOnClick')

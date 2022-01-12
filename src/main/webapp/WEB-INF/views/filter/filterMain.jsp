@@ -9,6 +9,9 @@
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
 </head>
 <body>
+<div class="mapModal mapModalHidden">
+	<div class="mapOverlay"></div>
+</div>
 <div class="bodywrap">
 	<div class="filterwrap1">
 		<section class="filterSection">
@@ -150,7 +153,9 @@
 			</div>
 		</div>
 		<div class="filterwrap3">
-			<div id="map" style="width:50%;height:350px;"></div>
+			<div>
+				<div id="map"></div>
+			</div>
 			<div class="inDisplay"></div>
 		</div>
 	</div>
@@ -159,10 +164,16 @@
 <script src="${cpath }/resources/js/filterJs/function.js"></script>
 
 <script>
+	
+	/* mapContainer = #map */
 	const mapBtn = document.querySelector('.filter_mapBtn')
 	const cpath = '${cpath}'
 	
 	mapBtn.onclick = clickBtn
+	mapBtn.addEventListener('click', function() {
+		
+		mapContainer.classListt.add('modalMap')
+	})
 </script>
 
 <script src="${cpath }/resources/js/filterJs/function2.js"></script>
@@ -177,9 +188,15 @@
 	
 	window.addEventListener('load', function() {
 		todayAndTomorrow.innerHTML = '<div>' + month + '.' + today + ' ~ ' + month + '.' + tomorrow + ' · ' + night + '박' + '</div>'
-		console.log(tomorrow - today)
 	})
 	
+</script>
+
+<script>
+	
+	
+
+
 </script>
 
 </body>

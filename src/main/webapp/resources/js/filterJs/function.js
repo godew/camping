@@ -105,7 +105,6 @@
 		.then(json => position(mapContainer, json))
 		
 		function position(mapCotainer, json) {
-			console.log(1)
 			json.forEach(dto =>{
 				
 				const marker = new kakao.maps.Marker({
