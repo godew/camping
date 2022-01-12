@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <style>
 	
-	.filterBody{
+	body{
 		margin: 0;
 	}
 	.header{
@@ -23,8 +23,23 @@
 	}
 	
 	.headerList{
- 		display: flex; 
+  		display: flex;  
 		justify-content: space-between;
+		
+	}
+	
+	.headerList {
+		width: 55%;
+		min-width: 930px; 
+		box-sizing: border-box;
+		margin: 0 auto;	
+	}
+	
+	.headerName {
+		width: 55%;
+		min-width: 930px; 
+		box-sizing: border-box;
+		margin: 0 auto;	
 	}
 	
 	.clickList {
@@ -62,20 +77,30 @@
 		display: flex;
 	}
 	
-/* 	.aa{ */
-/* 		position: fixed; */
-/* 	} */
+	.headerCamping {
+		color: white;
+	}
+	
+	.headerName {
+		display: block;
+	}
 	
 </style>
 </head>
-<body class="filterBody">
+<body>
 <div class="header">
-	<section class="headerList">
-		<div class="headerLogo"><a><img src="">logo</a></div>
-		<div class="clickList">
-			<div><a href="">예약 내역</a></div>
-			<div><a href="">더보기</a></div>
-			<div><a href="">로그인</a></div>
+	<section>
+		<div class="headerList">
+			<div class="headerLogo"><a><img src="${cpath }/resources/img/logo.png"></a></div>
+			<div class="clickList">
+				<div><a href="">예약 내역</a></div>
+				<div><a href="">더보기</a></div>
+				<div><a href="">로그인</a></div>
+			</div>
+		</div>
+		<div class="headerName">	
+			<h2 class="headerCamping">캠핑</h2>
+			<div>dd</div>
 		</div>
 	</section>
 </div>

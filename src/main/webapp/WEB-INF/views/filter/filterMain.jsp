@@ -6,19 +6,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${cpath }/resources/filtercss/filterStyle.css">
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
 </head>
 <body>
 <div class="bodywrap">
 	<div class="filterwrap1">
-		<section>
-			<h3 class="calender">날짜</h3>
-			<table class="filterCalender">
-			
+		<section class="filterSection">
+			<h3 class="calendar">날짜</h3>
+			<div class="todayCalendar">
+				<div class="todayAndTomorrow"></div>
+			</div>
+			<table class="filterCalendar">
+				<thead> 
+					<tr>
+						<!-- 요일 일~토 -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<!-- 일자 1~31 -->
+					</tr>
+				</tbody>
 			</table>
 		</section>
 		
-		<section>
+		<section class="filterSection">
 			<h3 class=" filterDetaile">상세조건</h3>
 			<div class="detailBtn">
 				<button type="button" class="filterReset">초기화</button>	
@@ -26,7 +38,7 @@
 			</div>
 		</section>
 		
-		<section>
+		<section class="filterSection">
 			<div class="titlePersonCnt">
 				<strong class="filterTitle">인원</strong>
 				<div class="filterPrice">
@@ -37,10 +49,10 @@
 			</div>
 		</section>
 		
-		<section>
+		<section class="filterSection">
 			<div class="priceWrap">
 				<strong class="filterTitle">가격</strong>
-				<div class="filterPriceList">12만원</div>
+				<div class="filterPriceList"></div>
 			</div>
 				<div class="middle">
 					<div class="multi-range-slider">
@@ -57,7 +69,7 @@
 				</div>
 		</section>
 		
-		<section>
+		<section class="filterSection">
 			<strong class="filterTitle">공용시설</strong>
 			<ul class="filterUL">
 				<li><input type="checkbox" class="label_chk">
@@ -85,7 +97,7 @@
 			</ul>
 		</section>
 		
-		<section>
+		<section class="filterSection"> 
 			<strong class="filterTitle">객실 내 시설</strong>
 			<ul class="filterUL">
 				<li><input type="checkbox" class="label_chk">객실샤워실</li>
@@ -107,7 +119,7 @@
 			</ul>
 		</section>
 		
-		<section>
+		<section class="filterSection"> 
 			<strong class="filterTitle">기타</strong>
 			<ul class="filterUL">
 				<li><input type="checkbox" class="label_chk">장비대여</li>
@@ -124,189 +136,49 @@
 			</ul>
 		</section>	
 	</div>
-	<div class="filterwrap2">
-		<div class="infilterwrap">
-			<div class="filterBtn">
-				<button><span>추천 순</span></button>
-				<button><span>거리 순</span></button>
-				<button><span>낮은 가격 순</span></button>
-				<button><span>높은 가격 순</span></button>
+	<div class="filterDisplay">
+		<div class="filterwrap2">
+			<div class="infilterwrap">
+				<div class="filterBtn">
+					<button class="filterBtnOnClick1"><span>추천 순</span></button>
+					<button class="filterBtnOnClick2"><span>거리 순</span></button>
+					<button class="filterBtnOnClick3"><span>낮은 가격 순</span></button>
+					<button class="filterBtnOnClick4"><span>높은 가격 순</span></button>
+				</div>
+				
+				<button class="filter_mapBtn">지도</button>
 			</div>
-			
-			<button class="filter_mapBtn">지도</button>
+		</div>
+		<div class="filterwrap3">
+			<div id="map" style="width:50%;height:350px;"></div>
+			<div class="inDisplay"></div>
 		</div>
 	</div>
-	<div id="map" style="width:50%;height:350px;"></div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=081d224ac09a57b9fde6466317eda63c"></script>
+<script src="${cpath }/resources/js/filterJs/function.js"></script>
+
 <script>
-	const filterMinus = document.querySelector('.filterMinus')
-	const filterPlus = document.querySelector('.filterPlus')
-	let filterResult = document.querySelector('.filterResult')
-	let personCnt = filterResult.innerText
+	const mapBtn = document.querySelector('.filter_mapBtn')
+	const cpath = '${cpath}'
 	
-	filterMinus.onclick = function(event){
-			if(personCnt > 2){
-				personCnt = parseInt(personCnt) - 1
-				return filterResult.innerText = personCnt
-			}
-	}
-	
-	filterPlus.onclick = function(event){
-			if(personCnt == '10'){
-				return filterResult = personCnt
-			}
-			personCnt = parseInt(personCnt) + 1
-			return filterResult.innerText = personCnt
-	}
+	mapBtn.onclick = clickBtn
 </script>
 
+<script src="${cpath }/resources/js/filterJs/function2.js"></script>
 
 <script>
-	const inputLeft = document.getElementById("input-left");
-	const inputRight = document.getElementById("input-right");
+	let date = new Date()
+	let month = date.getMonth()+1
+	let today = date.getDate()
+	let tomorrow = today + 1
+	let night = tomorrow - today
+	const todayAndTomorrow = document.querySelector('.todayAndTomorrow')
 	
-	const thumbLeft = document.querySelector(".slider > .thumb.left");
-	const thumbRight = document.querySelector(".slider > .thumb.right");
-	const range = document.querySelector(".slider > .range");
-	
-	function setLeftValue() {
-		let _this = inputLeft,
-			min = parseInt(_this.min),
-			max = parseInt(_this.max);
-			
-		_this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-	
-		let percent = ((_this.value - min) / (max - min)) * 100;
-	
-		thumbLeft.style.left = percent + "%";
-		range.style.left = percent + "%";
-	}
-	setLeftValue();
-	
-	function setRightValue() {
-		let _this = inputRight,
-			min = parseInt(_this.min),
-			max = parseInt(_this.max);
-	
-		_this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-	
-		let percent = ((_this.value - min) / (max - min)) * 100;
-	
-		thumbRight.style.right = (100 - percent) + "%";
-		range.style.right = (100 - percent) + "%";
-	}
-	setRightValue();
-	
-	inputLeft.addEventListener("input", setLeftValue);
-	inputRight.addEventListener("input", setRightValue);
-	
-	inputLeft.addEventListener("mouseover", function() {
-		thumbLeft.classList.add("hover");
-	});
-	inputLeft.addEventListener("mouseout", function() {
-		thumbLeft.classList.remove("hover");
-	});
-	inputLeft.addEventListener("mousedown", function() {
-		thumbLeft.classList.add("active");
-	});
-	inputLeft.addEventListener("mouseup", function() {
-		thumbLeft.classList.remove("active");
-	});
-	
-	inputRight.addEventListener("mouseover", function() {
-		thumbRight.classList.add("hover");
-	});
-	inputRight.addEventListener("mouseout", function() {
-		thumbRight.classList.remove("hover");
-	});
-	inputRight.addEventListener("mousedown", function() {
-		thumbRight.classList.add("active");
-	});
-	inputRight.addEventListener("mouseup", function() {
-		thumbRight.classList.remove("active");
-	});
-	
-</script>
-
-<script>
-	const btn = document.querySelector('.filter_mapBtn')
-	const cpath = '${cpath}'	
-	
-	btn.onclick = function() {
-		const url = cpath + '/map'
-		const opt = {
-				method: 'GET'
-		}
-		
-		fetch(url, opt)
-		.then(resp => resp.json())
-// 		.then(json => console.log(json))
-		
-		
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-		mapOption = { 
-		    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		    level: 3, // 지도의 확대 레벨
-		    clickable: true
-		};
-	
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	
-		//마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
-		var positions = [
-			{
-			    content: '<div>카카오</div>', 
-			    latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-			},
-			{
-			    content: '<div>생태연못</div>', 
-			    latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-			},
-			{
-			    content: '<div>텃밭</div>', 
-			    latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-			},
-			{
-			    content: '<div>근린공원</div>',
-			    latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-			}
-		];
-	
-		for (var i = 0; i < positions.length; i ++) {
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-			    map: map, // 마커를 표시할 지도
-			    position: positions[i].latlng // 마커의 위치
-			});
-		
-			// 마커에 표시할 인포윈도우를 생성합니다 
-			var infowindow = new kakao.maps.InfoWindow({
-			    content: positions[i].content // 인포윈도우에 표시할 내용
-			});
-		
-			// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-			// 이벤트 리스너로는 클로저를 만들어 등록합니다 
-			// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-			kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-			kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-		}
-	
-		//인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-		function makeOverListener(map, marker, infowindow) {
-			return function() {
-			    infowindow.open(map, marker);
-			};
-		}
-	
-		//인포윈도우를 닫는 클로저를 만드는 함수입니다 
-		function makeOutListener(infowindow) {
-			return function() {
-			    infowindow.close();
-			};
-		}
-	}
-	
+	window.addEventListener('load', function() {
+		todayAndTomorrow.innerHTML = '<div>' + month + '.' + today + ' ~ ' + month + '.' + tomorrow + ' · ' + night + '박' + '</div>'
+		console.log(tomorrow - today)
+	})
 	
 </script>
 
