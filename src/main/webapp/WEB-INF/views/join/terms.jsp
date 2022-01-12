@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>AfterCamp</title>
-<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/login/terms.css">
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/join/terms.css">
 </head>
 <body>
 <div class="termsBody">

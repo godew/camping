@@ -11,7 +11,7 @@ body {
 }
 
 .verificationBody > div {
-	margin-bottom: 20px;	
+	margin-bottom: 45px;	
 }
 
 .title {
@@ -21,7 +21,16 @@ body {
 	font-weight: bold;
 }
 
-.btn {
+.authNumBtn {
+	width: 100px;
+	height: 44px;
+	box-sizing: border-box;
+	border: 1px solid #dadada;
+	color: white;
+	border-radius: 4px;
+	background-color: #dadada;
+}
+.pnumBtn {
 	width: 100px;
 	height: 44px;
 	box-sizing: border-box;
@@ -35,10 +44,10 @@ body {
 	width: 100px;
 	height: 44px;
 	box-sizing: border-box;
-	border: 1px solid #dadada;
+	border: 1px solid #FF3399;
 	color: white;
 	border-radius: 4px;
-	background-color: black;
+	background-color: #FF3399;
 }
 
 .phonInput {
@@ -48,4 +57,30 @@ body {
 	box-sizing: border-box;
 	border: 1px solid #dadada;
 	padding-left: 10px;
+}
+
+.authNumInput {
+	width: 226px;
+	height: 48px;
+	border-radius: 4px;
+	box-sizing: border-box;
+	border: 1px solid #dadada;
+	padding-left: 10px;
+}
+
+.hidden {
+	display: none;
+}
+
+.pnumTitle {
+	margin-bottom: 20px;
+}
+.authNumTitle {
+	margin-bottom: 20px;
+}
+
+.pnumMsg {
+	margin-top: 15px;
+	font-size: 13px;
+	color: blue;
 }
