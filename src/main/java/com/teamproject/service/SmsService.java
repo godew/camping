@@ -16,6 +16,7 @@ public class SmsService {
 	 *        PHP
 	 */
 	public boolean sendMsg(String phone, String authNumber) {
+		System.out.println(authNumber);
 		return true;
 //		String api_key = "NCSDXVPTOI9APFUB";
 //		String api_secret = "DAXCJRFHGGSHZK56DB1MCUBZV4IQSPL7";
