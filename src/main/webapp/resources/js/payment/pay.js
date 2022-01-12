@@ -24,7 +24,7 @@ function payCancel() {
 }
 
 function sendHandler(event) {
-	
+	event.preventDefault()
 	const phone = form.phone
 	const url = cpath + '/sms?phone=' + phone.value;
 	const opt = {
@@ -51,7 +51,7 @@ function sendHandler(event) {
 }
 
 function authHandler(event) {
-	
+	event.preventDefault()
 	const auth = form.auth
 	const url = cpath + '/getAuthResult/' + auth.value + '/'
 	const opt = {
