@@ -95,6 +95,7 @@
 	</div>
 </div>
 <button class="pay">pay</button>
+<!-- test-->
 <!-- <button class="cancel">cancel</button> test-->
 <script src="${cpath }/resources/js/payment/pay.js"></script>
 <script>
