@@ -95,8 +95,8 @@
 	</div>
 </div>
 <button class="pay">pay</button>
-<!-- test-->
-<!-- <button class="cancel">cancel</button> test-->
+<!-- <button class="cancel">cancel</button>-->
+
 <script src="${cpath }/resources/js/payment/pay.js"></script>
 <script>
 	const payBtn = document.querySelector('.pay')
