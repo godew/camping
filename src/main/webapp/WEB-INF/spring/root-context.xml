@@ -41,4 +41,5 @@
 	<context:component-scan base-package="com.teamproject.hash" />
 	<mybatis-spring:scan base-package="com.teamproject.filter"/>
 <!-- 	<mybatis-spring:scan base-package="com.wedog.repository"/> -->
+	<mybatis-spring:scan base-package="com.teamproject.member" />
 </beans>

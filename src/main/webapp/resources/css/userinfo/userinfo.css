@@ -23,17 +23,21 @@ font-size: 36px;
 }
 
 .content{
+width: 55%; 
+min-width: 930px; 
+box-sizing: border-box;
 display: flex;
 padding: 54px 0 50px;
 margin: 0 67px;
-height: 1010px;
+left: 45%;
+right: 55%;
 }
 .hidden{
 display: none;
 }
 .userInfo{
 display: block;
-width: 724px;
+box-sizing: border-box;
 margin: 0 31px 0 0;
 padding: 137px 0 0;
 }
@@ -85,6 +89,13 @@ border-radius: 4px;
 .secession {
 display: flex;
 }
-
-
+.kind{
+	font-size: 15px;
+	padding-bottom: 42px;
+	color: rgba(0,0,0,0.32);
+	font-weight: bold;
+}
+.userInfo > strong:first-child {
+	padding-bottom: 43px;
+}
 

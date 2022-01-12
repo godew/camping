@@ -121,5 +121,8 @@ status      number          default 1 check(status in(0,1)),
 memberKind  varchar2(10)    check(memberKind in ('n', 'k', 'd'))
 );
 
+insert into member 
+    (EMAIL, MEMBERPW,NAME,PHONE,MEMBERKIND)
+        values ('km4852@naver.com','rudals56','조경민','010-9939-5612','n');
 
 commit;
