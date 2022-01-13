@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="userinfoHeader.jsp" %>
+<%@ include file="../filter/header.jsp" %>
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/userinfo.css">
 <script>
 const cpath = '${cpath}'
 
@@ -119,7 +120,7 @@ function hideModify(event) {
 	</div>
 	<hr>
 	<hr>
-	<div>
+	<div class="secession">
 	<p>이용하고 싶지 않으신가요?</p>
 	<button>로그아웃</button>
 	<button>회원탈퇴</button>

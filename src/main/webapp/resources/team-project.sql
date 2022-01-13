@@ -103,4 +103,23 @@ create table calendar(
     REFERENCES item_room(itemRoomId)
 );
 
+create sequence member_seq
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 99999
+NOCYCLE
+NOCACHE;
+
+create table member(
+memberId    number          default member_seq.nextval,
+email       varchar2(300)   not null,
+memberPW    varchar2(300)   not null,
+name        varchar2(200)   not null,
+phone       varchar2(300)   not null,
+point       number          default 0 check(0 <= point),
+status      number          default 1 check(status in(0,1)),
+memberKind  varchar2(10)    check(memberKind in ('n', 'k', 'd'))
+);
+
+
 commit;

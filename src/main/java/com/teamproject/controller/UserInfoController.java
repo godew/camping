@@ -11,5 +11,10 @@ public class UserInfoController {
 		
 		return "/userInfo/userinfo";
 	}
+	@GetMapping("/point")
+	public String point() {
+		return "/userInfo/point";
+	}
+	
 	
 }
