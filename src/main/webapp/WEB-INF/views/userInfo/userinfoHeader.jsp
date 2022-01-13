@@ -12,7 +12,13 @@
 /* border: 1px solid black; */
 /* } */
 
-
+	html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+	}
 	a{
 		color: inherit;
 		text-decoration: none;
@@ -34,10 +40,10 @@
 	box-sizing: border-box; 
 	height: 210px;
 	}
-	header > div{
+	headerdiv{
+	position: fixed;
 	display: flex;
 	justify-content: space-between;
-	position: sticky;
 	top: 0;
 	}
 	.topmenu{
@@ -62,6 +68,7 @@
 	display: block;
 	width: 724px;
 	margin: 0 31px 0 0;
+	padding: 137px 0 0;
 	}
 	.leftmenu > nav{
 	width: 238px;
@@ -76,7 +83,7 @@
 	.BTN{
 	
 	}
-	#renameBTN{
+	.renameBTN1, .renameBTN2, .renameBTN3{
 	width: 300px;
 	height: 42px;
 	background-color: #FFFFFF;
@@ -98,11 +105,25 @@
 	.username span{
 	color: #0000008F;
 	}
+	.modify > p:nth-child(1){
+	width: 374px;
+	}
+	.modify  p > input{
+	width: 350px;
+	height: 45px;
+	border: solid 1px #ccc;
+	border-radius: 4px;
+	
+	}
+	
+	
+	
 </style>
 </head>
 <body>
+<div>
 	<header>
-	<div>
+	<div class="headerdiv">
 		<a href="${cpath }/">logo</a>
 		<nav>
 			<ul class="topmenu">
@@ -113,7 +134,7 @@
 			</ul>
 		</nav>
 	</div>
-	<h2>내정보</h2>
 	</header>
+	<h2>내정보</h2>
 
 	
