@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<div class="pay_main">
-	<div class="pay_left">
-		<form method="POST">
+<c:set var="point" value="300000" />
+<form method="POST">
+	<div class="pay_main">
+		<div class="pay_left">
 			<div class="book_info">
 				<h3>예약자 정보</h3>
 				<div><strong>예약자 이름</strong></div>
@@ -38,12 +39,12 @@
 					<h3>할인 수단 선택</h3>
 					<div class="total">
 						<div><strong>구매총액</strong></div>
-						<div class="price">40,000원</div>
+						<div class="price"><fmt:formatNumber value="${itemRoomPrice }" pattern="#,###" />원</div>
 					</div>
 					<div class="point">
-						<button class="pointBtn">포인트 사용 0P</button>
+						<button class="pointBtn">포인트 사용 ${point }P</button>
 						<div>
-							<input type="text" name="point"><b>P</b>
+							<input type="text" name="point" placeholder="0"><b>P</b>
 						</div>
 					</div>
 				</div>
@@ -63,39 +64,38 @@
 				<div><label><input type="checkbox" name="agree">개인정보 제 3자 제공 동의</label><span>&nbsp(필수)</span></div>
 				<div><label><input type="checkbox" name="agree">만 14세 이상 확인</label><span>&nbsp(필수)</span></div>
 			</div>
-		</form>
-	</div>
-	<div class="pay_right">
-		<div class="room_info">
-			<div>
-				<div><strong>숙소이름</strong></div>
-				<div class="info_text">포천 파인트리글램핑&풀빌라</div>
-			</div>
-			<div>
-				<div><strong>객실타입/기간</strong></div>
-				<div class="info_text">프라이빗 카라반 / 1박</div>
-			</div>
-			<div>
-				<div><strong>체크인</strong></div>
-				<div class="info_text">01.12 수 15:00</div>
-			</div>
-			<div>
-				<div><strong>체크아웃</strong></div>
-				<div class="info_text">01.13 목 11:00</div>
-			</div>
 		</div>
-		<div class="total_price">
-			<div><b>총 결제 금액</b>(VAT포함)</div>
-			<div class="price">99,000원</div>
-			<ul>
-				<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
-				<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
-			</ul>
+		<div class="pay_right">
+			<div class="room_info">
+				<div>
+					<div><strong>숙소이름</strong></div>
+					<div class="info_text">${itemName }</div>
+				</div>
+				<div>
+					<div><strong>객실타입</strong></div>
+					<div class="info_text">${itemRoomName }</div>
+				</div>
+				<div>
+					<div><strong>체크인</strong></div>
+					<div class="info_text">01.12 수 15:00</div>
+				</div>
+				<div>
+					<div><strong>체크아웃</strong></div>
+					<div class="info_text">01.13 목 11:00</div>
+				</div>
+			</div>
+			<div class="total_price">
+				<div><b>총 결제 금액</b>(VAT포함)</div>
+				<div class="price"><fmt:formatNumber value="${itemRoomPrice }" pattern="#,###" />원</div>
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다</li>
+					<li>결제완료 후 <span>예약자 이름</span>으로 바로 <span>체크인</span> 하시면 됩니다</li>
+				</ul>
+			</div>
+			<button class="pay">결제하기</button>
 		</div>
 	</div>
-</div>
-<button class="pay">pay</button>
-<!-- <button class="cancel">cancel</button>-->
+</form>
 
 <script src="${cpath }/resources/js/payment/pay.js"></script>
 <script>
@@ -104,21 +104,43 @@
 	
 	const form = document.forms[0]
 	const sendBtn = document.querySelector('.sendBtn')
+	const pointBtn = document.querySelector('.pointBtn')
 	const sendMsg = document.querySelector('.sendMsg')
 	const authBtn = document.querySelector('.authBtn')
 	const authForm = document.querySelector('.authForm')
 	const authMsg = document.querySelector('.authMsg')
 	const timer = document.querySelector('.timer')
 	
+	const point = form.point
+	const pointVal = +'${point}'
+	const phone = form.phone
+	const price = document.querySelector('.total_price .price')
+	const priceVal = +'${itemRoomPrice }'
+	
 	let second
 	let interval
 	
 	payBtn.onclick = payReady
-	cancelBtn.onclick = payCancel
+// 	cancelBtn.onclick = payCancel
 	sendBtn.onclick = sendHandler
 	authBtn.onclick = authHandler
+	pointBtn.onclick = function(event) {
+		event.preventDefault()
+
+		point.value = pointVal > priceVal ? priceVal : pointVal
+		price.innerText = (priceVal - point.value).toLocaleString() + '원'
+	}
+	
+	point.oninput = checkNumber
+	phone.oninput = checkNumber
+	phone.onkeydown = function(event) {
+		if (event.key == 'Backspace') {
+			sendBtn.style.backgroundColor = '#cccccc'
+		}
+	}
 </script>
 <script>
+	// 전체동의 handler
 	const agrees = form.agree
 	agrees[0].onchange = function() {
 		if (this.checked) {

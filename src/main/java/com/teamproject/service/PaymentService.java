@@ -12,6 +12,8 @@ import java.net.URL;
 
 import org.springframework.stereotype.Service;
 
+import lombok.Getter;
+
 @Service
 public class PaymentService {
 
@@ -31,9 +33,9 @@ public class PaymentService {
 					 + "total_amount=110&"
 					 + "vat_amount=10&"
 					 + "tax_free_amount=0&"
-					 + "approval_url=http://localhost:8080/camping/approve&"
-					 + "fail_url=http://localhost:8080/camping/payment&"
-					 + "cancel_url=http://localhost:8080/camping/payment";
+					 + "approval_url=http://localhost:8080/camping/payment/approve&"
+					 + "fail_url=http://localhost:8080/camping&"
+					 + "cancel_url=http://localhost:8080/camping";
 				
 		OutputStream os = conn.getOutputStream();
 		DataOutputStream dos = new DataOutputStream(os);
@@ -124,5 +126,4 @@ public class PaymentService {
 		
 		return s;
 	}
-
 }

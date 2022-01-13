@@ -2,6 +2,8 @@ package com.teamproject.service;
 
 import org.springframework.stereotype.Service;
 import java.util.HashMap;
+import java.util.Random;
+
 import org.json.simple.JSONObject;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -9,6 +11,15 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 @Service
 public class SmsService {
 
+	public String getAuthNumber() {
+		Random r = new Random();
+		String authNumber = "";
+		for(int i = 0; i < 6; i++) {
+			authNumber += r.nextInt(10);
+		}
+		return authNumber;
+	}
+	
 	/**
 	 * @param authNumber 
 	 * @class ExampleSend

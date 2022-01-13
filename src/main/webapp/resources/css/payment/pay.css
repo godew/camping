@@ -55,6 +55,7 @@
 }
 .sendForm .sendBtn, .authBtn {
 	width: 18%;
+	min-width: 103.44px;
 	height: 48px;
 	border-radius: 5px;
 	background-color: #cccccc;
@@ -220,4 +221,17 @@
 }
 .pay_right > .total_price > ul span {
 	color: #e61c51;
+}
+.pay_right > .pay {
+	width: 100%;
+    height: 56px;
+    border: none;
+    font-size: 15px;
+    line-height: 56px;
+    color: #fff;
+    text-align: center;
+    border-radius: 0 0 4px 4px;
+    cursor: pointer;
+    background: linear-gradient( to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100% );
+    margin-top: 60px;
 }
