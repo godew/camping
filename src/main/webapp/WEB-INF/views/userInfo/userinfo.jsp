@@ -52,7 +52,7 @@ function hideModify(event) {
 }
 
 function getMember(event) {
-	const url = cpath + '/member'
+	const url = cpath + '/member/' + 1
 	const opt = {
 			method: 'GET'
 	}

@@ -42,4 +42,5 @@
 	<mybatis-spring:scan base-package="com.teamproject.filter"/>
 <!-- 	<mybatis-spring:scan base-package="com.wedog.repository"/> -->
 	<mybatis-spring:scan base-package="com.teamproject.member" />
+	<mybatis-spring:scan base-package="com.teamproject.point" />
 </beans>

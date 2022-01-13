@@ -13,8 +13,16 @@ public class UserinfoService {
 
 	@Autowired private MemberDAO dao;
 	
-	public List<MemberDTO> getMember() {
-		return dao.getMember();
+	public List<MemberDTO> getMember(int memberId) {
+		return dao.getMember(memberId);
 	}
+	
+	
+	
+
+//	public String nameUpdate(String username) {
+//		return dao.nameupdate(username);
+//		
+//	}
 
 }
