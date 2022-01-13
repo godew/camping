@@ -7,6 +7,7 @@
 		min-width: 930px; 
 		box-sizing: border-box;
 		margin: 0 auto;	
+		margin-top: 30px;
 	}
 	
 	.filterDisplay {
@@ -125,7 +126,8 @@
 	 	color: #000000;
 	 }
 	 
-	 ..filterPlus {
+	 
+	 .filterPlus {
 	 	margin-top: 1px;
 	 }
 	 
@@ -140,10 +142,22 @@
 	 .filterUL {
  	 	list-style: none;
  	 	flex-wrap: wrap;
+ 	 	width: 310px;
+ 	 	padding-left: 0;
+ 	 	display: flex;
+	 }
+	 
+	 .filterUL > li {
+	 	width: 143px;
+	 }
+	 
+	 .filterUl > li > input > label {
+	 	text-align: center;
+	 	display: table;
 	 }
 	 
 	 .filterSection {
-	 	width: 296px;
+	 	width: 310px;
 	 }
 	 
 	 .filterwrap1 {
@@ -157,9 +171,6 @@
 	 .label_chk {
 	 	width: 40px;
 	 	height: 21px;
-	 	margin-left: 15px;
-	 	margin-top: 7px;
-	 	margin-right: 0px;
 	 	list-style: none;
 	 	
 	 }
@@ -267,8 +278,6 @@
 		height: 30px;
 		background-color: #F2074C;
 		border-radius: 50%;
-/* 		box-shadow: 0 0 0 0 rgba(98,0,238,.1); */
-/* 		transition: box-shadow .3s ease-in-out; */
 	}
 	.slider > .thumb.left {
 		left: 25%;
@@ -311,25 +320,28 @@
 	
 	.displayText {
  		position: relative; 		
-		z-index: 1;
 		text-align: left;
 		color: white;
 		top: 50%;
 		left: 3%;
+		z-index: -1;
 	}
 	
 	.displayText > strong {
 		font-size: 28px;
+	
 	}
 	
 	.displayText > span {
 		color: #FFA726;
+	
 	}
 	
 	.displayImg {
 		position: absolute;
 		width: 635px;
 		height: 280px;
+		z-index: -2;
 	}
 	
 	.displayDetail {
@@ -344,17 +356,46 @@
 		justify-content: flex-end;
 	}
 	
-	/* 지도 모달 */
+	/* map modal */
 	
-	#map {
-		background-color: antiquewhite;
-        width: 400px;
-        border: 1px solid black;
+	.mapModalHidden {
+		display: none;
+	}
+	
+	.mapModalHidden > div {
+		display: none;
+	}
+	
+	.mapModalWrap {
+		margin-top: 150px;
+		display: block;
+        z-index: 2;
+	}
+	
+	.map {
+		margin: 0 atuo;
+		background-color: white;
+        width: 1250px;
+        height: 700px;
+        z-index: 2;
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        z-index: 3;
+        margin-left: 260px;
+        
+	}
+	
+	.mapClose {
+		color: white;
+		font-size: 30px;
+		font-weight: bold;
+		z-index: 3;
+		width: 100px;
+		margin-left: 1510px;
+		padding-bottom: 15px;
+		border: none;
+		background-color: transparent;
 	}
 	
 	.mapModal {
@@ -367,12 +408,17 @@
 	
 	.mapOverlay {
 		position: absolute;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.3);
         z-index: 1;
 	}
-
+	
+	.not_scroll{
+	  	position: fixed;
+	  	overflow: hidden;
+	  	width: 100%;
+	}
 	
 	
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -7,10 +8,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
+
 </head>
-<body>
+<body class="headerBody">
 <div class="mapModal mapModalHidden">
 	<div class="mapOverlay"></div>
+	<div class="mapModalWrap">
+		<p><button class="mapClose">X</button></p>
+		<div class="map"></div>	
+	</div>
 </div>
 <div class="bodywrap">
 	<div class="filterwrap1">
@@ -75,28 +81,26 @@
 		<section class="filterSection">
 			<strong class="filterTitle">공용시설</strong>
 			<ul class="filterUL">
-				<li><input type="checkbox" class="label_chk">
-					<label class="checkboxLabel">전기사용가능</label>
-				</li>
-				<li><input type="checkbox" class="label_chk">BBQ</li>
-				<li><input type="checkbox" class="label_chk">개수대</li>
-				<li><input type="checkbox" class="label_chk">공용샤워실</li>
-				<li><input type="checkbox" class="label_chk">인터넷</li>
-				<li><input type="checkbox" class="label_chk">매점</li>
-				<li><input type="checkbox" class="label_chk">공용화장실</li>
-				<li><input type="checkbox" class="label_chk">물놀이시설</li>
-				<li><input type="checkbox" class="label_chk">카페</li>
-				<li><input type="checkbox" class="label_chk">편의점</li>
-				<li><input type="checkbox" class="label_chk">노래방</li>
-				<li><input type="checkbox" class="label_chk">주방/식당</li>
-				<li><input type="checkbox" class="label_chk">세탁기</li>
-				<li><input type="checkbox" class="label_chk">건조기</li>
-				<li><input type="checkbox" class="label_chk">탈수기</li>
-				<li><input type="checkbox" class="label_chk">공용PC</li>
-				<li><input type="checkbox" class="label_chk">주차장</li>
-				<li><input type="checkbox" class="label_chk">라운지</li>
-				<li><input type="checkbox" class="label_chk">전자레인지</li>
-				<li><input type="checkbox" class="label_chk">취사가능</li>
+				<li><input type="checkbox" class="label_chk"><label>전기사용가능</label></li>
+				<li><input type="checkbox" class="label_chk"><label>BBQ</label></li>
+				<li><input type="checkbox" class="label_chk"><label>개수대</label></li>
+				<li><input type="checkbox" class="label_chk"><label>공용샤워실</label></li>
+				<li><input type="checkbox" class="label_chk"><label>인터넷</label></li>
+				<li><input type="checkbox" class="label_chk"><label>매점</label></li>
+				<li><input type="checkbox" class="label_chk"><label>공용화장실</label></li>
+				<li><input type="checkbox" class="label_chk"><label>물놀이시설</label></li>
+				<li><input type="checkbox" class="label_chk"><label>카페</label></li>
+				<li><input type="checkbox" class="label_chk"><label>편의점</label></li>
+				<li><input type="checkbox" class="label_chk"><label>노래방</label></li>
+				<li><input type="checkbox" class="label_chk"><label>주방/식당</label></li>
+				<li><input type="checkbox" class="label_chk"><label>세탁기</label></li>
+				<li><input type="checkbox" class="label_chk"><label>건조기</label></li>
+				<li><input type="checkbox" class="label_chk"><label>탈수기</label></li>
+				<li><input type="checkbox" class="label_chk"><label>공용PC</label></li>
+				<li><input type="checkbox" class="label_chk"><label>주차장</label></li>
+				<li><input type="checkbox" class="label_chk"><label>라운지</label></li>
+				<li><input type="checkbox" class="label_chk"><label>전자레인지</label></li>
+				<li><input type="checkbox" class="label_chk"><label>취사가능</label></li>
 			</ul>
 		</section>
 		
@@ -153,9 +157,6 @@
 			</div>
 		</div>
 		<div class="filterwrap3">
-			<div>
-				<div id="map"></div>
-			</div>
 			<div class="inDisplay"></div>
 		</div>
 	</div>
@@ -168,12 +169,33 @@
 	/* mapContainer = #map */
 	const mapBtn = document.querySelector('.filter_mapBtn')
 	const cpath = '${cpath}'
+	const bodywrap = document.querySelector('.bodywrap')
+	const mapClose = document.querySelector('.mapClose')
+	console.log(mapClose)
+	const overlay = document.querySelector('.mapOverlay')
 	
-	mapBtn.onclick = clickBtn
-	mapBtn.addEventListener('click', function() {
-		
-		mapContainer.classListt.add('modalMap')
-	})
+// 	mapBtn.onclick = clickBtn
+	mapBtn.addEventListener('click', clickBtn)
+	mapBtn.addEventListener('click', mapOpenHandler)
+	
+	function mapOpenHandler(event) {
+		let mapModal = document.querySelector('.mapModal')
+		mapModal.classList.remove('mapModalHidden')
+		bodywrap.classList.add('not_scroll')
+	}
+	
+	function mapCloseHandler(event) {
+		console.log('1')
+		let mapModal = document.querySelector('.mapModal')
+		mapModal.classList.add('mapModalHidden')
+		bodywrap.classList.remove('not_scroll')
+	}
+	
+	
+	mapBtn.onclick = mapOpenHandler
+	mapClose.onclick = mapCloseHandler
+	overlay.onclick = mapCloseHandler
+	
 </script>
 
 <script src="${cpath }/resources/js/filterJs/function2.js"></script>
