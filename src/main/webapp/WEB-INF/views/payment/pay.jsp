@@ -140,7 +140,7 @@
 	}
 </script>
 <script>
-	// 전체동의 handler
+	// 전체동의 Handler
 	const agrees = form.agree
 	agrees[0].onchange = function() {
 		if (this.checked) {
