@@ -10,11 +10,11 @@ const authForm = document.querySelector('.authForm')
 const authMsg = document.querySelector('.authMsg')
 const timer = document.querySelector('.timer')
 
+const payReadyBtn = document.querySelector('.payReadyBtn')
+
 const point = form.point
-const pointVal = +'${point}'
 const phone = form.phone
 const price = document.querySelector('.total_price .price')
-const priceVal = +'${itemRoomPrice }'
 
 let phoneFlag = false
 let authFlag = false
@@ -27,10 +27,13 @@ sendBtn.onclick = sendHandler
 authBtn.onclick = authHandler
 pointBtn.onclick = function(event) {
 	event.preventDefault()
-
+	console.log(priceVal)
+	console.log(point.value)
 	point.value = pointVal > priceVal ? priceVal : pointVal
 	price.innerText = (priceVal - point.value).toLocaleString() + '원'
 }
+payReadyBtn.onclick = payReady
+
 
 point.oninput = checkNumber
 phone.oninput = checkNumber

@@ -46,7 +46,7 @@ public class PaymentController {
 	@GetMapping("/payment/approve")
 	public String approve(HttpSession session, String pg_token) throws IOException {
 		paymentService.approve(session.getAttribute("tid").toString(), pg_token);
-		return "payment/pay";
+		return "payment/close";
 	}
 	
 	@GetMapping("/payment/cancel")
@@ -54,5 +54,10 @@ public class PaymentController {
 	public String cancel(HttpSession session) throws IOException {
 		// db의 tid가져와야 한다 지금은 test용으로 session에서 가져옴
 		return paymentService.cancel(session.getAttribute("tid").toString());
+	}
+	
+	@GetMapping("/payment/close")
+	public String close() {
+		return "payment/close";
 	}
 }

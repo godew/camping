@@ -34,8 +34,8 @@ public class PaymentService {
 					 + "vat_amount=10&"
 					 + "tax_free_amount=0&"
 					 + "approval_url=http://localhost:8080/camping/payment/approve&"
-					 + "fail_url=http://localhost:8080/camping&"
-					 + "cancel_url=http://localhost:8080/camping";
+					 + "fail_url=http://localhost:8080/camping/payment/close&"
+					 + "cancel_url=http://localhost:8080/camping/payment/close";
 				
 		OutputStream os = conn.getOutputStream();
 		DataOutputStream dos = new DataOutputStream(os);

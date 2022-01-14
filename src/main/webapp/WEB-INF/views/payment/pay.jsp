@@ -111,7 +111,7 @@
     </div>
 </div>
 
-<div class="pay-info-modal hidden">
+<div class="pay-info-modal">
     <div class="pay-info-modal-content">
 		<strong>예약내역 확인</strong>
 		<div class="info">
@@ -134,11 +134,15 @@
 		</div>
 		<div class="btn">
 			<button>취소</button>
-			<button>동의 후 결제</button>
+			<button class="payReadyBtn">동의 후 결제</button>
 		</div>
     </div>
 </div>
-
+<script>
+	const pointVal = +'${point}'
+	const priceVal = +'${itemRoomPrice }'
+	let kakaoWindow
+</script>
 <script src="${cpath }/resources/js/payment/function.js"></script>
 <script src="${cpath }/resources/js/payment/pay.js"></script>
 <script src="${cpath }/resources/js/payment/modal.js"></script>

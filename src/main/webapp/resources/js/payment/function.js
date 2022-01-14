@@ -6,8 +6,11 @@ function payReady() {
 	fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
-			console.log(json.tid)
-			window.open(json.next_redirect_pc_url)
+			const left = Math.ceil(( window.screen.width - 500 )/2);
+		    const top = Math.ceil(( window.screen.height - 600 )/2);
+			kakaoWindow = window.open(json.next_redirect_pc_url, 
+						'_blank', 
+						'width=500, height=600, left=' + left +', top=' + top)
 		})
 }
 
