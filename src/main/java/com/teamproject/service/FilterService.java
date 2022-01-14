@@ -32,4 +32,8 @@ public class FilterService {
 		return fd.selectUpPrice();
 	}
 
+	public List<MapDTO> selectArea(String areaCode) {
+		return fd.selectArea(areaCode);
+	}
+
 }

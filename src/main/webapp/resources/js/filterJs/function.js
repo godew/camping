@@ -116,7 +116,11 @@
 				})
 				 
 			 	 var infowindow = new kakao.maps.InfoWindow({
-			         content: dto.itemname, // 윈도우에 표시할 내용
+			         content: '<div class="infoContent"><img class="infoItemImage" src="' + dto.itemimage + '">' +
+			       
+			         '<div class="infoInContent"> <div class="infoItemName">' + dto.itemname + '</div>' + 
+			         '<div class="infoItemPrice">' + dto.itemprice + '원</div></div></div>'
+			         			, // 윈도우에 표시할 내용
 			         clickable: true
 			     })
 					
@@ -143,14 +147,14 @@
 		}
 
 		
-		var mapContainer = document.querySelector('.map'), // 지도를 표시할 div  
+		var mapContainer = document.querySelector('.map'),
 		mapOption = { 
-		    center: new kakao.maps.LatLng(35.257917038415, 129.23512589487), // 지도의 중심좌표
-		    level: 10, 
+		    center: new kakao.maps.LatLng(35.17990661408864, 129.07495686070138),
+		    level: 7, 
 		    clickable: true
 		};
 	
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
 		setTimeout(function(){ map.relayout(); }, 0);
 	}
 	

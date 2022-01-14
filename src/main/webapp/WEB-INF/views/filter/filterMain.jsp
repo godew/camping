@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="cpath" value="${pageContext.request.contextPath }"></c:set>
 <%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -9,15 +10,17 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
 
+
 </head>
 <body class="headerBody">
 <div class="mapModal mapModalHidden">
 	<div class="mapOverlay"></div>
 	<div class="mapModalWrap">
-		<p><button class="mapClose">X</button></p>
+<!-- 		<p><button class="mapClose">X</button></p> -->
 		<div class="map"></div>	
 	</div>
 </div>
+
 <div class="bodywrap">
 	<div class="filterwrap1">
 		<section class="filterSection">
@@ -163,62 +166,17 @@
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=081d224ac09a57b9fde6466317eda63c"></script>
 <script src="${cpath }/resources/js/filterJs/function.js"></script>
-
-<script>
-	
-	/* mapContainer = #map */
-	const mapBtn = document.querySelector('.filter_mapBtn')
-	const cpath = '${cpath}'
-	const bodywrap = document.querySelector('.bodywrap')
-	const mapClose = document.querySelector('.mapClose')
-	console.log(mapClose)
-	const overlay = document.querySelector('.mapOverlay')
-	
-// 	mapBtn.onclick = clickBtn
-	mapBtn.addEventListener('click', clickBtn)
-	mapBtn.addEventListener('click', mapOpenHandler)
-	
-	function mapOpenHandler(event) {
-		let mapModal = document.querySelector('.mapModal')
-		mapModal.classList.remove('mapModalHidden')
-		bodywrap.classList.add('not_scroll')
-	}
-	
-	function mapCloseHandler(event) {
-		console.log('1')
-		let mapModal = document.querySelector('.mapModal')
-		mapModal.classList.add('mapModalHidden')
-		bodywrap.classList.remove('not_scroll')
-	}
-	
-	
-	mapBtn.onclick = mapOpenHandler
-	mapClose.onclick = mapCloseHandler
-	overlay.onclick = mapCloseHandler
-	
-</script>
-
 <script src="${cpath }/resources/js/filterJs/function2.js"></script>
+<script src="${cpath }/resources/js/filterJs/function3.js"></script>
+<script src="${cpath }/resources/js/filterJs/function4.js"></script>
+
 
 <script>
-	let date = new Date()
-	let month = date.getMonth()+1
-	let today = date.getDate()
-	let tomorrow = today + 1
-	let night = tomorrow - today
-	const todayAndTomorrow = document.querySelector('.todayAndTomorrow')
+ 	headerBody.onclick = areaCloseHandler
 	
-	window.addEventListener('load', function() {
-		todayAndTomorrow.innerHTML = '<div>' + month + '.' + today + ' ~ ' + month + '.' + tomorrow + ' · ' + night + '박' + '</div>'
-	})
-	
-</script>
-
-<script>
-	
-	
-
-
+ 	function areaCloseHandler(event) {
+ 		filterAreaModal.classList.add('areaModalHidden')
+ 	}
 </script>
 
 </body>

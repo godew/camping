@@ -20,6 +20,9 @@ public interface FilterDAO {
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter from item order by itemprice desc")
 	List<MapDTO> selectUpPrice();
 	
+	@Select("select itemid, itemname, locale, itemprice, itemimage, filter from item where areacode = #{areaCode}")
+	List<MapDTO> selectArea(String areaCode);
+	
 	
 
 }

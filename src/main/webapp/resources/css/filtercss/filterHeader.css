@@ -1,16 +1,15 @@
 .headerBody {
 	margin: 0;
+	display: block;
 }
 
 .filterHeaderWrap {
 	display: block;
 	width: 100%;
-	margin: 0 auto;
-/* 	margin: 0; */
+	margin: 0;
     padding: 0;
     border: 0;
-    box-sizing: border-box;
-    margin-bottom: 20px;	
+    box-sizing: border-box;	
 }
 
 .filterHeader {
@@ -25,12 +24,12 @@
 }
 
 .filterHeader > .content {
-	width: 1024px;
-	height: 64px;
-	display: flex;
-	justify-content: space-between;
-	margin: 0 auto;
-	position: absolute;
+	width: 55%;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    min-width: 1024px;
 }
 
 .filterHeader > .content > ul {
@@ -56,7 +55,10 @@
 	color: #ffffff;
 	cursor: pointer;
 }
-
+.content > a {
+	margin-left: 45px;
+	
+}
 .hidden {
 	display: none;
 }
@@ -102,12 +104,11 @@ header .a_tag2 {
 
 /*underHeader*/
 .underHeader{
-	position: absolute;
+/* 	position: absolute; */
 	width: 100%;
 	height: 211px;
 	background-color: #F7323F;
-	margin-bottom: 20px;
-    
+    margin: 0 atuo;
 }
     
 .headerArea{
@@ -129,19 +130,53 @@ header .a_tag2 {
 }   
 
 .underHeaderDiv {
+	position: absolute;
 	display: block;	
 	margin: 0 auto;
-	margin-top: 150px;
+	margin-top: 49px;
 	width: 55%;
-	min-width: 930px; 
+	box-sizing: border-box;
+	left: 22.5%;
+    height: 150px;
+    min-width: 1024px;
 }
 
 .headerCamping {
-	margin-top: 100px;
-	height: 38px;
-		
+	margin-top: 50px;
+	height: 50px;
+	color: white;
+	font-size: 45px;
+	font-weight: normal;
+	margin-bottom: 19px;
+	
 }
-    
+
+
+.areaModalHidden {
+	display: none;
+}   
+
+.filterAreaModal {
+	border: 1px solid rgba(0,0,0,0.08);
+	background-color: white;
+	border-radius: 5px;
+	z-index: 2;
+	width: 250px;
+	height: 200px;
+	margin-top: 58px;
+}
+
+.filterAreaModal > a > button {
+	background-color: white;
+	color: black;
+	font-size: 18px;
+	border: none;
+	cursor: pointer;
+	display: block;
+	margin-top: 9px;
+    margin-bottom: 10px;
+}
+
     
     
     
