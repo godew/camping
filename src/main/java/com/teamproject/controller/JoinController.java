@@ -67,7 +67,7 @@ public class JoinController {
 		return resultHash;
 	}
 	
-	@GetMapping("/member")
+	@GetMapping("/join/member")
 	public String member() {
 		return "join/member";
 	}
