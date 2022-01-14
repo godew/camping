@@ -13,24 +13,25 @@ function getpoint(event) {
 	fetch(url, opt)
 	.then(resp => resp.json())
 	.then(json => {
-		console.log(json)
-		console.log(json.title)
-		json.forEach(p => {
-		console.log(p.title)
-		
-			let li = ``
-			li += `<li>`
-			li += p.title + `(` + p.rpoint + `)`
-			li += `<span>`
-			li += p.reviewDate
-			li += `</span>`
-			li += `<p>`
-			li += p.rpoint
-			li += `</p>`
-			li += `</li>`
-			pointList.innerHTML = li
+			let result = 0
+		json.forEach(point => {
+			let available_points = document.getElementById('available_points')
+			let li = document.createElement('li')
+			let span = document.createElement('span')
+			let p = document.createElement('p')
 			
+			result += point.rpoint
+			
+			li.innerText = point.title 
+			span.innerText = point.reviewDate
+			p.innerText = point.rpoint
+			
+			li.appendChild(span)
+			li.appendChild(p)
+			pointList.appendChild(li)
+			console.log(result)
 		})
+			available_points.innerText = result
 		
 	})
 	
@@ -39,16 +40,10 @@ function getpoint(event) {
 
 
 <div>
-	<h4>사용가능 포인트<span id="point"><!-- point --></span></h4>
+	<h4>사용가능 포인트<span id="available_points"><!-- point --></span></h4>
 	<hr>
 	<div>
-	<ul id="pointList">
-		<li>
-			reviewname
-			<span>date</span>
-			<p>point</p>
-		</li>
-	</ul>
+	<ul id="pointList"></ul>
 	</div>
 </div>
 
