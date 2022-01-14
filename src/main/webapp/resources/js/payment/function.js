@@ -14,6 +14,7 @@ function payReady() {
 		})
 }
 
+
 function payCancel() {
 	const url = cpath + '/payment/cancel';
 	const opt = {

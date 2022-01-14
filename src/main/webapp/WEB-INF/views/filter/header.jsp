@@ -164,7 +164,5 @@
 		headerArea.innerText = gangwon.dataset.area
 	}
 	
-	
-	
 </script>
 </body>

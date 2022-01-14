@@ -1,6 +1,7 @@
 package com.teamproject.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,7 +47,7 @@ public class PaymentController {
 	@GetMapping("/payment/approve")
 	public String approve(HttpSession session, String pg_token) throws IOException {
 		paymentService.approve(session.getAttribute("tid").toString(), pg_token);
-		return "payment/close";
+		return "payment/approve";
 	}
 	
 	@GetMapping("/payment/cancel")
