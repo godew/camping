@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.title > img {
+	width: 100px;
+	height: auto;
+}
+
+.titleText {
+	font-size: 25px;
+	font-weight: bold;
+}
