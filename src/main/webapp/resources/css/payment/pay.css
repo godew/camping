@@ -47,7 +47,6 @@
 	border-radius: 5px;
 	padding: 26px 20px 20px 20px;
 	font-size: 18px;
-	margin-bottom: 60px;
 }
 .empty_login_text::placeholder {
 	font-size: 18px;
@@ -234,4 +233,12 @@
     cursor: pointer;
     background: linear-gradient( to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100% );
     margin-top: 60px;
+}
+.book_info .phoneMsg {
+	padding-top: 5px;
+    font-size: 14px;
+    color: rgb(230,28,81);
+} 
+.book_info .sendMsg {
+	margin-top: 60px;
 }

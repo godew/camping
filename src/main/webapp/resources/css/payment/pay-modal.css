@@ -1,0 +1,154 @@
+.pay-modal, .pay-info-modal {
+	position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.56);
+} 
+.pay-info-modal {
+	background: rgba(0, 0, 0, 0.93);
+}
+.pay-modal-content {
+	width: 368px;
+	min-width: 368px;
+	height: 160px;
+	min-height: 160px;
+    border-radius: 4px;
+    position: absolute;
+    top: 42%;
+    left: 42%;
+    font-size: 14px;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    box-sizing: border-box;
+}
+.pay-modal-content > .text {
+	color: rgba(0, 0, 0, 0.87);
+    padding: 31px 32px 21px 32px;
+    font-size: 18px;
+    line-height: 18px;
+}
+.pay-modal-content > .text + div{
+	padding-left: 31px;
+}
+.pay-modal-content .modal-cancel-btn {
+	width: 304px;
+    height: 56px;
+    margin-bottom: 24px;
+    padding: 0;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 56px;
+    font-weight: bold;
+    background: linear-gradient( to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100% );
+    cursor: pointer;
+    border: 1px solid rgba(255, 0, 85, 1);
+    margin: 0;
+}
+.pay-info-modal-content {
+	width: 310px;
+	min-width: 310px;
+    border-radius: 4px;
+    position: absolute;
+    top: 30%;
+    left: 42%;
+    font-size: 14px;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 28%);
+}
+.pay-info-modal-content > strong {
+	display: block;
+    height: 58px;
+    padding: 0 0 0 24px;
+    font-size: 16px;
+    line-height: 58px;
+    border-bottom: 1px solid rgba(0,0,0,.08);	
+    box-sizing: border-box;
+}
+.pay-info-modal-content > .info {
+	box-sizing: border-box;
+	padding: 24px;
+}
+.pay-info-modal-content > .info > .top {
+	font-size: 16px;
+}
+.pay-info-modal-content > .info > .top > div {
+	margin-bottom: 10px;
+}
+.pay-info-modal-content > .info > .top .check {
+	display: flex;
+	justify-content: space-between;
+} 
+.pay-info-modal-content > .info > .top .color {
+	color: rgba(50,50,50,0.5);
+}
+.pay-info-modal-content > .info > ul {
+	margin-top: 20px;
+    padding-top: 21px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px dotted rgba(0,0,0,0.32);
+    box-sizing: border-box;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.pay-info-modal-content > .info > ul span {
+	font-weight: bold;
+	color: #ff0000;
+}
+.pay-info-modal-content > .info > ul > li {
+    margin-bottom: 2px;
+    padding-left: 15px;
+    background: url(//image.goodchoice.kr/images/web_v3/ico_bul.png) 0 0 no-repeat;
+    background-size: 13px auto;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(0,0,0,0.56);
+}
+.pay-info-modal-content > .btn {
+	height: 48px;
+    padding: 0 16px 0 0;
+    border-top: 1px solid rgba(0,0,0,.08);
+    text-align: right;
+    box-sizing: border-box;
+}
+.pay-info-modal-content > .btn > button:nth-child(1) {
+	height: 48px;
+    padding: 0 16px;
+    margin-right: 8px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(0,0,0,.56);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.pay-info-modal-content > .btn > button:nth-child(2) {
+	height: 48px;
+	margin-right: 0;
+    padding: 0 8px;
+    color: #00796b;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+

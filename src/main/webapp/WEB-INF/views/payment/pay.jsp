@@ -8,25 +8,27 @@
 			<div class="book_info">
 				<h3>예약자 정보</h3>
 				<div><strong>예약자 이름</strong></div>
-				<div><input class="input_text" type="text" name="name" value="${login.name }" placeholder="체크인시 필요한 정보입니다." required></div>
+				<div><input class="input_text" type="text" name="name" value="${login.name }" placeholder="체크인시 필요한 정보입니다."></div>
 				
 				<div><strong>휴대폰 번호</strong></div>
 				<c:if test="${not empty login }">
 					<div class="sendForm">
-						<input class="input_text" type="text" name="phone" value="${login.phone }" placeholder="체크인시 필요한 정보입니다." required autocomplete="off">
+						<input class="input_text" type="text" name="phone" value="${login.phone }" placeholder="체크인시 필요한 정보입니다." autocomplete="off">
 					</div>
 				</c:if>
 				<c:if test="${empty login }">
 					<div class="sendForm">
-						<input class="empty_login_text" type="text" name="phone" placeholder="체크인시 필요한 정보입니다." required autocomplete="off">
-						<button class="sendBtn">인증번호 전송</button>
+						<input class="empty_login_text" type="text" name="phone" placeholder="체크인시 필요한 정보입니다." autocomplete="off">
+						<button class="sendBtn" disabled>인증번호 전송</button>
 					</div>
+					<div class="phoneMsg"></div>
 					<div class="sendMsg"></div>
 				</c:if>
 				
 				<div class="authForm hidden">
 					<div class="authForm2">
 						<input class="empty_login_text" type="text" name="auth" placeholder="인증번호를 입력하세요">
+						<input type="hidden" name="authcheck" required>
 						<button class="authBtn">인증</button>
 					</div>
 					<div class="timer"></div>
@@ -97,71 +99,49 @@
 	</div>
 </form>
 
-<script src="${cpath }/resources/js/payment/pay.js"></script>
-<script>
-	const payBtn = document.querySelector('.pay')
-	const cancelBtn = document.querySelector('.cancel')
-	
-	const form = document.forms[0]
-	const sendBtn = document.querySelector('.sendBtn')
-	const pointBtn = document.querySelector('.pointBtn')
-	const sendMsg = document.querySelector('.sendMsg')
-	const authBtn = document.querySelector('.authBtn')
-	const authForm = document.querySelector('.authForm')
-	const authMsg = document.querySelector('.authMsg')
-	const timer = document.querySelector('.timer')
-	
-	const point = form.point
-	const pointVal = +'${point}'
-	const phone = form.phone
-	const price = document.querySelector('.total_price .price')
-	const priceVal = +'${itemRoomPrice }'
-	
-	let second
-	let interval
-	
-	payBtn.onclick = payReady
-// 	cancelBtn.onclick = payCancel
-	sendBtn.onclick = sendHandler
-	authBtn.onclick = authHandler
-	pointBtn.onclick = function(event) {
-		event.preventDefault()
+<!-- modal -->
+<div class="pay-modal hidden">
+    <div class="pay-modal-content">
+        <div class="text">
+        	
+        </div>
+        <div class="">
+        	<button class="modal-cancel-btn">확인</button>
+        </div>
+    </div>
+</div>
 
-		point.value = pointVal > priceVal ? priceVal : pointVal
-		price.innerText = (priceVal - point.value).toLocaleString() + '원'
-	}
-	
-	point.oninput = checkNumber
-	phone.oninput = checkNumber
-	phone.onkeydown = function(event) {
-		if (event.key == 'Backspace') {
-			sendBtn.style.backgroundColor = '#cccccc'
-		}
-	}
-</script>
-<script>
-	// 전체동의 Handler
-	const agrees = form.agree
-	agrees[0].onchange = function() {
-		if (this.checked) {
-			agrees.forEach(e => e.checked = true)			
-		} else {
-			agrees.forEach(e => e.checked = false)
-		}
-	}
-	for (let i = 1; i < agrees.length; i++) {
-		agrees[i].onchange = function() {
-			if (this.checked) {
-				if (agrees[1].checked && agrees[2].checked && agrees[3].checked && agrees[4].checked) {
-					agrees[0].checked = true
-				}
-			} else {
-				if (agrees[0].checked) {
-					agrees[0].checked = false
-				}
-			}
-		}
-	}
-</script>
+<div class="pay-info-modal hidden">
+    <div class="pay-info-modal-content">
+		<strong>예약내역 확인</strong>
+		<div class="info">
+			<div class="top">
+				<div>${itemName }</div>
+				<div style="margin-bottom: 20px">${itemRoomName }</div>
+				<div class="check">
+					<div class="color">체크인</div>
+					<b>01.14</b>
+				</div>
+				<div class="check">
+					<div class="color">체크 아웃</div>
+					<b>01.15</b>
+				</div>
+			</div>
+			<ul>
+				<li>미성년자는 보호자 동반 시 투숙이 가능합니다.</li>
+				<li><span>취소 및 환불 규정</span>에 따라 취소수수료 부과 및 취소불가 될 수 있습니다.</li>
+			</ul>
+		</div>
+		<div class="btn">
+			<button>취소</button>
+			<button>동의 후 결제</button>
+		</div>
+    </div>
+</div>
+
+<script src="${cpath }/resources/js/payment/function.js"></script>
+<script src="${cpath }/resources/js/payment/pay.js"></script>
+<script src="${cpath }/resources/js/payment/modal.js"></script>
+<script src="${cpath }/resources/js/payment/agree.js"></script>
 </body>
 </html>
