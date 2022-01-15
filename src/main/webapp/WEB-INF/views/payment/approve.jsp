@@ -8,9 +8,8 @@
 </head>
 <body>
 <script>
-	window.parent.location.href = '${pageContext.request.contextPath }'
-	window.parent.parent.alert("==============")
-// 	window.close();
+	window.opener.location.href = '${pageContext.request.contextPath}'
+    window.close()
 </script>
 </body>
 </html>
