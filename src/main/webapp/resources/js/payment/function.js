@@ -1,13 +1,19 @@
 function payReady() {
-	const url = cpath + '/payment/ready';
+	const orderPrice = priceVal - +point.value
+	const url = cpath + '/payment/ready?itemRoomId=' + itemRoomId + '&'
+									  +'memberId=' + memberId + '&'
+									  +'itemName=' + itemName + '&'
+									  +'checkIn=' + checkIn + '&'
+									  +'checkOut=' + checkOut + '&'
+									  +'orderPrice=' + orderPrice				 
 	const opt = {
 			method : 'GET'
 	}
 	fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
-			const left = Math.ceil(( window.screen.width - 500 )/2);
-		    const top = Math.ceil(( window.screen.height - 600 )/2);
+			const left = Math.ceil(( window.screen.width - 500 )/2)
+		    const top = Math.ceil(( window.screen.height - 600 )/2)
 			kakaoWindow = window.open(json.next_redirect_pc_url, 
 						'_blank', 
 						'width=500, height=600, left=' + left +', top=' + top)
@@ -33,7 +39,7 @@ function sendHandler(event) {
 		clearInterval(interval)
 	}
 	const phone = form.phone
-	const url = cpath + '/sms/send?phone=' + phone.value;
+	const url = cpath + '/sms/send?phone=' + phone.value
 	const opt = {
 			method : 'GET'
 	}

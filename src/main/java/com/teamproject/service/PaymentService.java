@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentService {
 
-	public String ready() throws IOException {
+	public String ready(String itemName, int orderPrice) throws IOException {
 		URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
@@ -25,9 +25,9 @@ public class PaymentService {
 		String param = "cid=TC0ONETIME&"
 					 + "partner_order_id=partner_order_id&"
 					 + "partner_user_id=partner_user_id&"
-					 + "item_name=test&"
+					 + "item_name=" + itemName + "&"
 					 + "quantity=1&"
-					 + "total_amount=110&"
+					 + "total_amount=" + orderPrice + "&"
 					 + "vat_amount=10&"
 					 + "tax_free_amount=0&"
 					 + "approval_url=http://localhost:8080/camping/payment/approve&"

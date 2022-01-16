@@ -125,4 +125,32 @@ insert into member
     (EMAIL, MEMBERPW,NAME,PHONE,MEMBERKIND)
         values ('km4852@naver.com','rudals56','조경민','010-9939-5612','n');
 
+        
+create sequence orders_seq
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 999999
+NOCYCLE
+NOCACHE;
+
+create table orders(
+    orderId number default orders_seq.nextval primary key,
+    memberId number,
+    itemRoomId number not null,
+    orderDate date default sysdate,
+    checkIn varchar2(50) not null,
+    checkOut varchar2(50) not null,
+    orderPrice number not null,
+    tid varchar2(100) not null,
+    cancel number default 1 check(cancel in(0, 1)),
+    
+    CONSTRAINT fk_orders_member
+    FOREIGN KEY(memberId)
+    REFERENCES member(memberId),
+    
+    CONSTRAINT fk_orders_item_room
+    FOREIGN KEY(itemRoomId)
+    REFERENCES item_room(itemRoomId)
+);
+
 commit;

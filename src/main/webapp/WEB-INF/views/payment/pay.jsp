@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <c:set var="point" value="300000" />
+<c:set var="checkIn" value="01.12 수 15:00" />
+<c:set var="checkOut" value="01.13 목 11:00" />
 <form method="POST">
 	<div class="pay_main">
 		<div class="pay_left">
@@ -79,11 +81,11 @@
 				</div>
 				<div>
 					<div><strong>체크인</strong></div>
-					<div class="info_text">01.12 수 15:00</div>
+					<div class="info_text">${checkIn }</div>
 				</div>
 				<div>
 					<div><strong>체크아웃</strong></div>
-					<div class="info_text">01.13 목 11:00</div>
+					<div class="info_text">${checkOut }</div>
 				</div>
 			</div>
 			<div class="total_price">
@@ -111,7 +113,7 @@
     </div>
 </div>
 
-<div class="pay-info-modal">
+<div class="pay-info-modal hidden">
     <div class="pay-info-modal-content">
 		<strong>예약내역 확인</strong>
 		<div class="info">
@@ -141,6 +143,14 @@
 <script>
 	const pointVal = +'${point}'
 	const priceVal = +'${itemRoomPrice }'
+	
+	// parameter
+	const memberId = 1
+	const itemRoomId = '${itemRoomId}'
+	const itemName = '${itemName }'
+	const checkIn = '${checkIn}'
+	const checkOut = '${checkOut}'
+	
 	let kakaoWindow
 </script>
 <script src="${cpath }/resources/js/payment/function.js"></script>

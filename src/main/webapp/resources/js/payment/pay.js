@@ -27,8 +27,6 @@ sendBtn.onclick = sendHandler
 authBtn.onclick = authHandler
 pointBtn.onclick = function(event) {
 	event.preventDefault()
-	console.log(priceVal)
-	console.log(point.value)
 	point.value = pointVal > priceVal ? priceVal : pointVal
 	price.innerText = (priceVal - point.value).toLocaleString() + '원'
 }

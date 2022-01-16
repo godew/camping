@@ -1,7 +1,6 @@
 package com.teamproject.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.item.ItemDTO;
 import com.teamproject.itemRoom.ItemRoomDTO;
+import com.teamproject.order.OrderDTO;
 import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.ItemService;
+import com.teamproject.service.OrderService;
 import com.teamproject.service.PaymentService;
 
 @Controller
@@ -24,6 +25,7 @@ public class PaymentController {
 	@Autowired private PaymentService paymentService;
 	@Autowired private ItemRoomService itemRoomService;
 	@Autowired private ItemService itemService;
+	@Autowired private OrderService orderService;
 	
 	@GetMapping("/payment/{itemRoomId}")
 	public String pay(Model model, HttpSession session, @PathVariable String itemRoomId) {
@@ -32,21 +34,28 @@ public class PaymentController {
 		model.addAttribute("itemName", itemDto.getItemName());
 		model.addAttribute("itemRoomName", itemRoomDto.getItemRoomName());
 		model.addAttribute("itemRoomPrice", itemRoomDto.getItemRoomPrice());
+		model.addAttribute("itemRoomId", itemRoomId);
 		
 		return "payment/pay";
 	}
 	
 	@GetMapping(value = "/payment/ready", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String ready(HttpSession session) throws IOException {
-		String res = paymentService.ready();
-		session.setAttribute("tid", res.split("\"")[3]);
+	public String ready(HttpSession session, String itemName, OrderDTO order) throws IOException {
+
+		String res = paymentService.ready(itemName, order.getOrderPrice());
+
+		order.setTid(res.split("\"")[3]);
+		session.setAttribute("order", order);
+		
 		return res;
 	}
 	
 	@GetMapping("/payment/approve")
 	public String approve(HttpSession session, String pg_token) throws IOException {
-		paymentService.approve(session.getAttribute("tid").toString(), pg_token);
+		paymentService.approve(((OrderDTO)session.getAttribute("order")).getTid(), pg_token);
+		int row = orderService.add((OrderDTO)session.getAttribute("order"));
+		session.removeAttribute("order");
 		return "payment/approve";
 	}
 	

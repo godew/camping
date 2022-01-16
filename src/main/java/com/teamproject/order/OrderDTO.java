@@ -81,4 +81,12 @@ public class OrderDTO {
 	public void setCancel(int cancel) {
 		this.cancel = cancel;
 	}
+	
+	@Override
+	public String toString() {
+		return "OrderDTO [orderId=" + orderId + ", memberId=" + memberId + ", itemRoomId=" + itemRoomId + ", orderDate="
+				+ orderDate + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", orderPrice=" + orderPrice
+				+ ", tid=" + tid + ", notPhone=" + notPhone + ", notName=" + notName + ", cancel=" + cancel + "]";
+	}
+	
 }
