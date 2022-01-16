@@ -1,0 +1,15 @@
+git add .
+git restore --staged target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+git restore --staged target/m2e-wtp/web-resources/META-INF/maven/com.teamproject/camping/pom.properties
+git commit -m "짧게 commit관련 설명"
+
+git fetch
+
+(로그 안뜨면)                   (로그 뜨면)			
+				git stash
+git push			git rebase origin/master
+				(충돌 나면 충돌 해결)
+				git push
+				git stash pop
+
+
