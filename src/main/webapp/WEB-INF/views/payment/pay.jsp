@@ -58,7 +58,6 @@
 				<h3>결제수단 선택</h3>
 				<select name="payMethod">
 					<option value="kakaopay">카카오페이</option>
-					<option value="toss">토스</option>
 				</select>
 			</div>
 			<div class="agree">
