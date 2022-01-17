@@ -8,3 +8,4 @@
 	window.addEventListener('load', function() {
 		todayAndTomorrow.innerHTML = '<div>' + month + '.' + today + ' ~ ' + month + '.' + tomorrow + ' · ' + night + '박' + '</div>'
 	})
+	

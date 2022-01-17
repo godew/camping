@@ -16,7 +16,6 @@
 <div class="mapModal mapModalHidden">
 	<div class="mapOverlay"></div>
 	<div class="mapModalWrap">
-<!-- 		<p><button class="mapClose">X</button></p> -->
 		<div class="map"></div>	
 	</div>
 </div>
@@ -28,10 +27,11 @@
 			<div class="todayCalendar">
 				<div class="todayAndTomorrow"></div>
 			</div>
-			<table class="filterCalendar">
+			<table class="filterCalendar calendarHidden">
 				<thead> 
 					<tr>
 						<!-- 요일 일~토 -->
+						<th>12</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -169,6 +169,7 @@
 <script src="${cpath }/resources/js/filterJs/function2.js"></script>
 <script src="${cpath }/resources/js/filterJs/function3.js"></script>
 <script src="${cpath }/resources/js/filterJs/function4.js"></script>
+<script src="${cpath }/resources/js/filterJs/function5.js"></script>
 
 
 <script>
@@ -177,6 +178,18 @@
  	function areaCloseHandler(event) {
  		filterAreaModal.classList.add('areaModalHidden')
  	}
+</script>
+
+<script>
+	const filterCalendar = document.querySelector('.filterCalendar')
+	const todayCalendar = document.querySelector('.todayCalendar')
+	todayCalendar.onclick = openCalendarHandler
+	
+	function openCalendarHandler(event){
+		console.log(1)
+		filterCalendar.classList.remove('calendarHidden')
+	}
+	
 </script>
 
 </body>
