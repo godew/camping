@@ -10,7 +10,7 @@
 		<setting name="mapUnderscoreToCamelCase" value="false"/>
 	</settings>
 	
-<!-- 	<typeAliases> -->
-<!-- 		<typeAlias type="com.wedog.model.UploadDTO" alias="upload"/> -->
-<!-- 	</typeAliases> -->
+<typeAliases>
+	<typeAlias type="com.teamproject.member.MemberDTO" alias="member"/>
+</typeAliases>
 </configuration>

@@ -4,13 +4,19 @@ import java.util.HashMap;
 import java.util.Random;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.teamproject.member.MemberDAO;
+import com.teamproject.member.MemberDTO;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 public class JoinService {
+	
+	@Autowired private MemberDAO dao;
 	
 	public String getAuthNumber() {
 		Random r = new Random();
@@ -44,6 +50,14 @@ public class JoinService {
 			System.out.println(e.getCode());
 		}
 		return false;
+	}
+
+	public int join(MemberDTO dto) {
+		return dao.insert(dto);
+	}
+
+	public String selectId(MemberDTO dto) {
+		return dao.selectID(dto);
 	}
 	
 	

@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.hash.Hash;
+import com.teamproject.member.MemberDTO;
 import com.teamproject.service.JoinService;
 
 @Controller
@@ -51,7 +53,7 @@ public class JoinController {
 	
 	@GetMapping("/vertification/auth/{auth}/")
 	@ResponseBody
-	public HashMap<String, String> auth(@PathVariable String auth, HttpSession session) {
+	public HashMap<String, String> auth(@PathVariable String auth, HttpSession session, MemberDTO dto) {
 		String hashNumber = (String)session.getAttribute("hashNumber");
 		String authHash = hash.getHash(auth);
 		boolean result = hashNumber.equals(authHash);
@@ -66,10 +68,35 @@ public class JoinController {
 		}
 		return resultHash;
 	}
+
+	@GetMapping("/member/email/{email}/")
+	@ResponseBody
+	public HashMap<String, String> email(String userId, HttpSession session, MemberDTO dto) {
+		String email = js.selectId(dto);
+		String userEmailCheck = (String)session.getAttribute("email");
+		boolean duplication = email.equals(userEmailCheck);
+		HashMap<String, String> emailResult = new HashMap<String, String>();
+		if(duplication) {
+			emailResult.put("duplication", "0");
+			emailResult.put("msg", "중복없음");
+		}
+		else {
+			emailResult.put("duplication", "1");
+			emailResult.put("msg", "중복됨");
+		}
+		return emailResult;
+	}
 	
 	@GetMapping("/join/member")
 	public String member() {
 		return "join/member";
+	}
+	
+	@PostMapping("/join/member")
+	public String join(MemberDTO dto) {
+		int row = js.join(dto);
+		System.out.println(row == 1 ? "가입 성공" : "가입 실패");
+		return "redirect:/login/login";
 	}
 	
 }

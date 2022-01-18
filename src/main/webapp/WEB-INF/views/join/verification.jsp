@@ -22,7 +22,7 @@
 			휴대폰 번호
 		</div>
 		<div>
-			<input class="phonInput" type="text" onkeyup='checkPnum()' name="pnum" placeholder="휴대폰번호를 입력하세요">
+			<input class="phonInput" type="text" onkeyup='checkPnum()' name="pnum" placeholder="휴대폰번호를 입력하세요" required autofocus>
 			<button class="pnumBtn">인증번호 전송</button>
 		</div>
 		<div class="pnumMsg"></div>
@@ -32,7 +32,7 @@
 			인증 번호
 		</div>
 		<div>
-			<input class="authNumInput" type="text" onkeyup='checkAuthNum()'  name="authNum" placeholder="인증번호를 입력하세요">
+			<input class="authNumInput" type="text" onkeyup='checkAuthNum()'  name="authNum" placeholder="인증번호를 입력하세요" required>
 			<button class="authNumBtn">인증하기</button>
 		</div>
 		<div class="pnumMsg"></div>
@@ -97,6 +97,9 @@
 			console.log(json)
 			if(json.status == 1) {
 				alert(json.msg)
+				var sessionData=pnum.value
+				sessionStorage.setItem("pnum",sessionData)
+				console.log(sessionData)
 				location.href='member'
 			}
 			else {
