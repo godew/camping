@@ -21,4 +21,9 @@ public class ItemRoomService {
 		return dao.selectByItemId(itemId);
 	}
 
+	// image db 접근하는 메서드
+	public List<String> findAllWithItemRoomId(String itemRoomId) {
+		return dao.selectAllWithItemRoomId(itemRoomId);
+	}
+
 }

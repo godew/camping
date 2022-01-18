@@ -17,6 +17,10 @@
     width: 490px;
     height: 348px;
 }
+#detail > .item > .right {
+	height: 11vh;
+	background-color: rgb(250,250,250);
+}
 #detail > .item > .right > h2 {
 	font-size: 28px;
 	margin: 0;
@@ -52,25 +56,139 @@
     color: rgb(230,28,81);
 }
 #detail > .rooms-reserve {
-	padding: 24px 24px 24px 24px;
+	padding: 24px 32px;
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 4px;
     box-sizing: border-box;
     margin: 0 0 24px 0;
-    display: flex;
 }
-#detail > .rooms-reserve > .left {
+#detail > .rooms-reserve > .top {
+	display: flex;
+}
+#detail > .rooms-reserve > .top > .left {
 	position: relative;
     cursor: pointer;
+    margin-right: 40px;
+    box-sizing: border-box;
 }
-#detail > .rooms-reserve > .left > img:nth-child(1) {
+#detail > .rooms-reserve > .top > .left > img:nth-child(1) {
     position: absolute;
     bottom: 20px;
     right: 15px;
     width: 24px;
     height: 24px;
 }
-#detail > .rooms-reserve > .left > img:nth-child(2) {
+#detail > .rooms-reserve > .top > .left > img:nth-child(2) {
     width: 376px;
     height: 226px;
+}
+#detail > .rooms-reserve > .top > .right {
+	box-sizing: border-box;
+	width: 600px;
+}
+#detail > .rooms-reserve > .top > .right > h2{
+	margin: 0;
+	font-size: 20px;
+}
+#detail > .rooms-reserve > .top > .right > .price {
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 41px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+#detail > .rooms-reserve > .top > .right > .price > div:nth-child(2){
+	font-size: 20px;
+}
+#detail .roomInfoBtn {
+	height: 48px;
+    margin: 12px 0;
+    font-size: 16px;
+    line-height: 48px;
+    padding: 0;
+    background: #fff url(//image.goodchoice.kr/images/web_v3/ico_arr_gt_2.png) 100% 50% no-repeat;
+    background-size: 12px auto;
+    font-size: 16px;
+    color: rgba(0,0,0,0.87);
+    text-align: left;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+}
+#detail .roomReserveBtn {
+	width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(to right, rgba(255,0,85,1) 1%,rgba(230,34,67,1) 100%);
+    padding: 0;
+    cursor: pointer;
+    margin-top: 8px;
+}
+#detail > .rooms-reserve > .bottom {
+	height: 528px;
+    background: #f9f9f9;
+    margin-top: 25px;
+    position: relative;
+}
+#detail > .rooms-reserve > .bottom > .cancel {
+	background: url(//image.goodchoice.kr/images/web_v3/ico_close.png) 50% 50% no-repeat;
+    border: none;
+    background-size: 24px auto;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    float: right;
+    padding: 0;
+}
+#detail > .rooms-reserve > .bottom > .image > img {
+	position: absolute;
+	transition: opacity 400ms ease;
+	width: 738px;
+	height: 420px;
+	top: 70px;
+	left: 110px;
+}
+#detail > .rooms-reserve > .bottom .prev {
+	position: absolute;
+	cursor: pointer;
+    width: 40px;
+    height: 62px;
+    top: 50%;
+    left: 110px;
+    border-radius: 0 4px 4px 0;
+    background: #FFF url(//image.goodchoice.kr/images/web_v3/ico_arr_lt_4.png) 50% 50% no-repeat;
+    background-size: 20px auto;
+}
+#detail > .rooms-reserve > .bottom .next {
+	position: absolute;
+	cursor: pointer;
+    width: 40px;
+    height: 62px;
+    top: 50%;
+    right: 123px;
+    border-radius: 4px 0 0 4px;
+    background: #FFF url(//image.goodchoice.kr/images/web_v3/ico_arr_gt_4.png) 50% 50% no-repeat;
+    background-size: 20px auto;
+}
+#detail > .rooms-reserve > .bottom .count {
+	position: absolute;
+	height: 40px;
+    padding: 0 25px;
+    font-size: 15px;
+    line-height: 40px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    text-align: center;
+    width: 100px;
+    box-sizing: border-box;
+    bottom: 50px;
+    left: 420px;
 }

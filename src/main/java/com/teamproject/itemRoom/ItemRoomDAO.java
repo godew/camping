@@ -11,4 +11,7 @@ public interface ItemRoomDAO {
 
 	@Select("select B.* from item A join item_room B on A.itemId = ${itemID} and A.itemId = B.itemId")
 	List<ItemRoomDTO> selectByItemId(String itemId);
+
+	@Select("select image from image where itemRoomId=${itemRoomId}")
+	List<String> selectAllWithItemRoomId(String itemRoomId);
 }
