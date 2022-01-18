@@ -1,8 +1,12 @@
 @charset "utf-8";
 
+
 .contentbox{
 	padding-top: 10%;
-	
+	width: 55%; 
+	min-width: 930px; 
+	box-sizing: border-box;
+	justify-content: center;
 }
 
  .star {
@@ -28,3 +32,7 @@
     overflow: hidden;
     pointer-events: none;
   }
+  
+  
+  
+  

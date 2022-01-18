@@ -3,7 +3,6 @@ package com.teamproject.member;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 public interface MemberDAO {
 	
