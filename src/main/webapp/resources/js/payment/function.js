@@ -60,6 +60,7 @@ function sendHandler(event) {
 				sendBtn.innerText = '재전송'
 				phone.disabled = 'disabled'
 				phoneFlag = true
+				detimer()
 				interval = setInterval(detimer, 1000)
 			}
 		})

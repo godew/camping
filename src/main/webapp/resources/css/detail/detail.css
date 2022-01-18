@@ -1,0 +1,76 @@
+#detail {	
+	width: 55%;
+	min-width: 930px;
+	box-sizing: border-box;
+	margin: 85px auto;
+}
+#detail > .item {
+	height: 400px;
+	box-sizing: border-box;
+	padding-top: 40px;
+	display: flex;
+}
+#detail > .item > .left {
+	margin-right: 60px;
+}
+#detail > .item > .left > img{
+    width: 490px;
+    height: 348px;
+}
+#detail > .item > .right > h2 {
+	font-size: 28px;
+	margin: 0;
+	line-height: 1;
+	color: rgba(0,0,0,0.87);
+    font-weight: bold;
+}
+#detail > .item > .right > div {
+	margin: 6px 0 8px 0;
+    font-size: 18px;
+    padding-top: 6px;
+    color: rgba(0,0,0,0.56);
+}
+#detail > .tab {
+	height: 72px;
+	margin: 30px 0;
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.tab > .reserve, .info, .review {
+	width: auto;
+    height: 72px;
+    margin-right: 24px;
+    padding: 0;
+    background: none;
+    font-size: 18px;
+    color: rgba(0,0,0,0.38);
+    border: none;
+    cursor: pointer;
+}
+.tab > .on {
+	border-bottom: 3px solid rgb(242,17,76);
+    font-weight: bold;
+    color: rgb(230,28,81);
+}
+#detail > .rooms-reserve {
+	padding: 24px 24px 24px 24px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 0 0 24px 0;
+    display: flex;
+}
+#detail > .rooms-reserve > .left {
+	position: relative;
+    cursor: pointer;
+}
+#detail > .rooms-reserve > .left > img:nth-child(1) {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+}
+#detail > .rooms-reserve > .left > img:nth-child(2) {
+    width: 376px;
+    height: 226px;
+}
