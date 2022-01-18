@@ -14,5 +14,4 @@ public class OrderService {
 	public int add(OrderDTO orderDto) {
 		return dao.insert(orderDto);
 	}
-
 }

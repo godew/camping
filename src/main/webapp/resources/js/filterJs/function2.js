@@ -1,3 +1,4 @@
+
 const inDisplay = document.querySelector('.inDisplay')
 
 const url = cpath + '/selectOriginal'
@@ -39,7 +40,6 @@ const filterBtnOnClick3 = document.querySelector('.filterBtnOnClick3')
 const filterBtnOnClick4 = document.querySelector('.filterBtnOnClick4')
 
 window.addEventListener('load', function() {
-	console.log('window')
 	filterBtnOnClick1.classList.add('btnOnClick')
 })
 

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle2.css">
 
 
 </head>
@@ -27,19 +28,37 @@
 			<div class="todayCalendar">
 				<div class="todayAndTomorrow"></div>
 			</div>
-			<table class="filterCalendar calendarHidden">
-				<thead> 
-					<tr>
-						<!-- 요일 일~토 -->
-						<th>12</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<!-- 일자 1~31 -->
-					</tr>
-				</tbody>
-			</table>
+			<div class="filterCalendar calendarHidden">
+			
+				<div class="calendarDay">
+					<button class="calendarPrev"></button>
+					<div class="calendarYear"></div>
+					<button class="calendarNext"></button>
+				</div>
+
+				<table id="calendarTable">
+					<thead>
+						<tr>
+							<td class="calendarYoil"><span>일</span></td>
+							<td class="calendarYoil"><span>월</span></td>
+							<td class="calendarYoil"><span>화</span></td>
+							<td class="calendarYoil"><span>수</span></td>
+							<td class="calendarYoil"><span>목</span></td>
+							<td class="calendarYoil"><span>금</span></td>
+							<td class="calendarYoil"><span>토</span></td>
+						</tr>
+					</thead>
+					<tbody class="calendarTbody">
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</tbody>
+				</table>
+				<div><button class="calendarSubmit">선택완료</button></div>
+			</div>
 		</section>
 		
 		<section class="filterSection">
@@ -174,21 +193,16 @@
 
 <script>
  	headerBody.onclick = areaCloseHandler
-	
+ 	
  	function areaCloseHandler(event) {
  		filterAreaModal.classList.add('areaModalHidden')
  	}
 </script>
 
+
 <script>
-	const filterCalendar = document.querySelector('.filterCalendar')
-	const todayCalendar = document.querySelector('.todayCalendar')
-	todayCalendar.onclick = openCalendarHandler
 	
-	function openCalendarHandler(event){
-		console.log(1)
-		filterCalendar.classList.remove('calendarHidden')
-	}
+	
 	
 </script>
 

@@ -164,7 +164,9 @@ header .a_tag2 {
 	width: 250px;
 	height: 200px;
 	margin-top: 58px;
-}.filterAreaModal > a > button {
+}
+
+.filterAreaModal > a > button {
 	background-color: white;
 	color: black;
 	font-size: 18px;
@@ -174,6 +176,7 @@ header .a_tag2 {
 	margin-top: 9px;
     margin-bottom: 10px;
 }
+
 
     
     

@@ -52,7 +52,6 @@
 	</div>
 </div>
 
-<%-- <script src="${cpath }/resources/js/filterJs/function2.js"></script> --%>
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
 	const headerSeemore = document.querySelector('.header_seemore')
@@ -81,6 +80,7 @@
 	const gangwon = document.querySelector('.gangwon')
 	
 	headerArea.onmouseover = areaOpenHandler
+	
 
 	
 	function areaOpenHandler(event) {
