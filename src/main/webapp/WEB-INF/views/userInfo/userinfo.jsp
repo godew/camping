@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../filter/header.jsp" %>
+<%@ include file="../header.jsp" %>
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/userinfo.css">
 <script>
-const cpath = '${cpath}'
 
 function showModify(event) {
 	switch (event.target.value) {
@@ -106,9 +105,9 @@ function getMember(event) {
 <div class="leftmenu">
 	<nav>
 		<ul>
-			<li><a>포인트</a></li>
-			<li><a>예약 내역</a></li>
-			<li><a>내 정보 관리</a></li>
+			<li><a href="${cpath }/point">포인트</a></li>
+			<li><a href="${cpath }/reservation">예약 내역</a></li>
+			<li><a href="${cpath }/userInfo">내 정보 관리</a></li>
 		</ul>
 		
 	</nav>
@@ -117,7 +116,7 @@ function getMember(event) {
 <div class="userInfo">
 	<strong>내 정보 수정</strong>
 	<div>
-	<img src="https://image.goodchoice.kr/profile/ico/ico_25.png" width="125px;">
+	<p><img src="https://image.goodchoice.kr/profile/ico/ico_25.png" width="125px;"></p>
 	<p class="kind"></p>
 	</div>
 <!-- 	닉네임 -->
@@ -143,7 +142,7 @@ function getMember(event) {
 	<div id="name">
 		<div>
 			<b>이름</b>
-			<span class="name_span">1234<!-- 예약자 이름(별로 가림) --></span>
+			<span class="name_span"><!-- 예약자 이름(별로 가림) --></span>
 		</div>
 		<button class="renameBTN2" value="2">수정</button>
 		
@@ -162,8 +161,8 @@ function getMember(event) {
 	<div id="phone">
 		<div>
 			<b>휴대폰 번호</b>
-			<span class="phone_span">1234<!-- 전화번호(가운데 4자리 별로 가림) --></span>
-			<div>개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</div>
+			<span class="phone_span"><!-- 전화번호(가운데 4자리 별로 가림) --></span>
+			<div class="warning">개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</div>
 		</div>
 		<button class="renameBTN3" value="3">수정</button>
 		
@@ -177,8 +176,6 @@ function getMember(event) {
 			</form>
 		</div>
 	</div>
-	<hr>
-	<hr>
 	<div class="secession">
 	<p>이용하고 싶지 않으신가요?</p>
 	<button>로그아웃</button>

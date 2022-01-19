@@ -47,4 +47,5 @@
 	<mybatis-spring:scan base-package="com.teamproject.order"/>
 	<mybatis-spring:scan base-package="com.teamproject.item"/>
 	<mybatis-spring:scan base-package="com.teamproject.review"/>
+	<mybatis-spring:scan base-package="com.teamproject.reservation"/>
 </beans>

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../filter/header.jsp" %>
-
+<%@ include file="../header.jsp" %>
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/userinfo.css">
 <script>
-const cpath = '${cpath}'
 function getpoint(event) {
 	console.log(event.target)
 	url = cpath + '/getRpoint/' + 1
@@ -38,15 +37,24 @@ function getpoint(event) {
 }
 </script>
 
-
-<div>
-	<h4>사용가능 포인트<span id="available_points"><!-- point --></span></h4>
-	<hr>
+<div class="content">
+<div class="leftmenu">
+	<nav>
+		<ul>
+			<li><a href="${cpath }/point">포인트</a></li>
+			<li><a href="${cpath }/reservation">예약 내역</a></li>
+			<li><a href="${cpath }/userInfo">내 정보 관리</a></li>
+		</ul>
+		
+	</nav>
+</div>
+<div class="point">
+	<h4 class="availablePoints">사용가능 포인트<span id="available_points"><!-- point --></span></h4>
 	<div>
 	<ul id="pointList"></ul>
 	</div>
 </div>
-
+</div>
 <script>
 
 const pointList = document.getElementById('pointList')

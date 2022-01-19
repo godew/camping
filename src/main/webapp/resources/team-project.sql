@@ -153,4 +153,22 @@ create table orders(
     REFERENCES item_room(itemRoomId)
 );
 
+create sequence review_seq
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 99999
+NOCYCLE
+NOCACHE;
+
+create table review(
+idx         number          default review_seq.nextval primary key,
+memberId    number          not null,
+title       varchar2(300)   not null,
+img         varchar2(300)   default null,
+starPoint   number          not null,
+itemid    	number   		not null,
+constraint member_review_fk foreign key(memberId) references member(memberId) on delete cascade,
+constraint item_review_fk foreign key(itemid) references item(itemid) on delete cascade
+);
+
 commit;

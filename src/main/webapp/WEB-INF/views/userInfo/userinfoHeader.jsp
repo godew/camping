@@ -121,7 +121,6 @@
 </style>
 </head>
 <body>
-<div>
 	<header>
 	<div class="headerdiv">
 		<a href="${cpath }/">logo</a>

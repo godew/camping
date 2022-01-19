@@ -23,7 +23,7 @@
 	<div class="content">
 		<a href="${cpath }">여기어때</a>
 		<ul>
-			<li><img src="${cpath }/resources/img/돋보기.png"></li>
+			<li><p><img src="${cpath }/resources/img/돋보기.png"></p></li>
 			<li><a href="" class="a_tag1">예약내역</a></li>
 			<li class="li_seemore">
 				더보기

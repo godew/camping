@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.teamproject.member.MemberDTO;
 import com.teamproject.point.OrderPointDTO;
 import com.teamproject.point.ReviewPointDTO;
+import com.teamproject.reservation.reservationDTO;
 import com.teamproject.service.PointService;
+import com.teamproject.service.ReservationeService;
 import com.teamproject.service.UserinfoService;
 
 @Controller
@@ -19,7 +21,9 @@ public class UserInfoController {
 	
 	@Autowired private UserinfoService us;
 	@Autowired private PointService ps;
-
+	@Autowired private ReservationeService rs;
+	
+	
 	@GetMapping("/userInfo")
 	public String userinfo() {
 		
@@ -56,6 +60,21 @@ public class UserInfoController {
 //		us.nameUpdate(username);
 //		return null;
 //	}
+	
+	@GetMapping("/reservation")
+	public String reservation() {
+		
+		return "/userInfo/reservation";
+	}
+	
+	@GetMapping(value = "/reservationHistory/{memberId}", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public List<reservationDTO> getReservation(@PathVariable int memberId){
+		List<reservationDTO> list = rs.getReservation(memberId);
+		return list;
+	}
+	
+	
 	
 	
 }
