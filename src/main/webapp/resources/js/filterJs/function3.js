@@ -1,6 +1,5 @@
 	const mapBtn = document.querySelector('.filter_mapBtn')
 	const bodywrap = document.querySelector('.bodywrap')
-//	const mapClose = document.querySelector('.mapClose')
 	const overlay = document.querySelector('.mapOverlay')
 	
 	mapBtn.addEventListener('click', clickBtn)
@@ -18,8 +17,6 @@
 		bodywrap.classList.remove('not_scroll')
 	}
 	
-	
-	mapBtn.onclick = mapOpenHandler
-//	mapClose.onclick = mapCloseHandler
-	overlay.onclick = mapCloseHandler
+	overlay.addEventListener('click', mapCloseHandler)
+
 	

@@ -1,3 +1,9 @@
+.calendarTable {
+	display: table;
+    width: 100%;
+	
+}
+
 .filterCalendar {
 	width: 375px;
 	height: 480px;
@@ -5,6 +11,7 @@
 	background-color: white;
 	box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 20%);
 	border-radius: 5px;
+	position: absolute;
 }
 
 .calendarHidden{
@@ -78,7 +85,7 @@
 }
 
 .calendarDate {
-	width: 50px;
+	width: 53px;
 	text-align: center;
 	
 }
@@ -86,7 +93,7 @@
 .calendarTbody > tr > td{
 	text-align: center;
 	padding: 11px 0;
-	
+	cursor: pointer;
 }
 
 .calendarSubmit {

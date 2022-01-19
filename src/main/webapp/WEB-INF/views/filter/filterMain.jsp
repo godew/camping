@@ -29,7 +29,6 @@
 				<div class="todayAndTomorrow"></div>
 			</div>
 			<div class="filterCalendar calendarHidden">
-			
 				<div class="calendarDay">
 					<button class="calendarPrev"></button>
 					<div class="calendarYear"></div>
@@ -192,7 +191,7 @@
 
 
 <script>
- 	headerBody.onclick = areaCloseHandler
+ 	headerBody.addEventListener('click', areaCloseHandler)
  	
  	function areaCloseHandler(event) {
  		filterAreaModal.classList.add('areaModalHidden')
