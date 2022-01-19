@@ -13,6 +13,7 @@
 <link href="${cpath }/resources/css/payment/pay-modal.css" rel="stylesheet">
 <link href="${cpath }/resources/css/header.css" rel="stylesheet">
 <link href="${cpath }/resources/css/detail/detail.css" rel="stylesheet">
+<link href="${cpath }/resources/css/detail/detail-modal.css" rel="stylesheet">
 </head>
 <body>
 <script>

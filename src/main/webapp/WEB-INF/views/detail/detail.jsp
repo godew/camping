@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
@@ -23,6 +24,7 @@
 			<span>리뷰</span>
 		</button>
 	</div>
+	
 	<c:forEach var="room" items="${rooms }">
 		<div class="rooms-reserve">
 			<div class="top">
@@ -36,7 +38,7 @@
 						<div>가격</div>
 						<div><fmt:formatNumber value="${room.itemRoomPrice }" pattern="#,###" />원</div>
 					</div>
-					<button class="roomInfoBtn">객실 이용 안내</button>
+					<button data-idx=${room.itemRoomId } class="roomInfoBtn">객실 이용 안내</button>
 					<button data-idx=${room.itemRoomId } class="roomReserveBtn">예약</button>
 				</div>
 			</div>
@@ -51,6 +53,26 @@
 	<div class="rooms-review hidden">
 	</div>
 </div>
+<div class="detail-modal hidden">
+	<div class="content">
+		<div class="title">
+			<div>객실 이용 안내</div>
+			<button class="cancel"></button>
+		</div>
+		<div class="info">
+			<strong>기본정보</strong>
+			<ul>
+				<li class="people"></li>
+			</ul>
+		</div>
+		<div class="facilities">
+			<strong>편의시설</strong>
+			<ul>
+				<li class="filter">${item.filter.substring(0, item.filter.length()-1).replace(" ", ", ") }</li>
+			</ul>
+		</div>
+	</div>
+</div>
 <script src="${cpath }/resources/js/detail/function.js"></script>
 <script>
 	const reserveBtn = document.querySelector('.reserve')
@@ -61,7 +83,7 @@
 	const bottoms = document.querySelectorAll('#detail > .rooms-reserve > .bottom')
 	const cancels = document.querySelectorAll('.cancel')
 	const images = document.querySelectorAll('.image')
-	
+
 	reserveBtn.onclick = function() {
 		reserveBtn.classList.add('on')
 		infoBtn.classList.remove('on')
@@ -111,8 +133,8 @@
 			}
 		}
 	}
+	
 </script>
-<%-- 		<td>${room.standardPeople }</td> --%>
-<%-- 		<td>${room.maxPeople }</td> --%>
+<script src="${cpath }/resources/js/detail/modal.js"></script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+.detail-modal {
+	position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+   	background: rgba(0,0,0,0.78);
+}
+.detail-modal > .content {
+	width: 600px;
+	min-width: 600px;
+    border-radius: 4px;
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    font-size: 14px;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    box-sizing: border-box;
+    cursor: default;
+}
+.detail-modal > .content > .title {
+	height: 64px;
+    padding-left: 32px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-size: 18px;
+    line-height: 64px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+.detail-modal > .content > .title > .cancel {
+	background: url(//image.goodchoice.kr/images/web_v3/ico_close.png) 50% 50% no-repeat;
+    border: none;
+    background-size: 24px auto;
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    margin-top: 8px;
+}
+.detail-modal > .content > .info {
+	margin-top: 37px;
+	padding: 0 30px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.detail-modal > .content > .facilities {
+	margin-top: 37px;
+	padding: 0 30px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.detail-modal > .content strong {
+	margin: 37px 0 10px 0;
+	font-size: 16px;
+    color: rgba(0,0,0,0.56);
+    text-align: left;
+}
+.detail-modal > .content ul {
+	list-style: none;
+	padding: 0;
+	color: rgba(0,0,0,0.56);
+}
+.detail-modal > .content li {
+	margin-bottom: 7px;
+    padding-left: 14px;
+    background: url(//image.goodchoice.kr/images/web_v3/ico_bul_3.png) 0 2px no-repeat;
+    background-size: 12px auto;
+    font-size: 16px;
+    line-height: 23px;
+}

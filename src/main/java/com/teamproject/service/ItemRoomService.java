@@ -25,5 +25,4 @@ public class ItemRoomService {
 	public List<String> findAllWithItemRoomId(String itemRoomId) {
 		return dao.selectAllWithItemRoomId(itemRoomId);
 	}
-
 }

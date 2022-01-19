@@ -39,7 +39,9 @@
 	margin: 30px 0;
 	border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-.tab > .reserve, .info, .review {
+.tab > .reserve,
+.tab > .info,
+.tab > .review {
 	width: auto;
     height: 72px;
     margin-right: 24px;

@@ -36,4 +36,11 @@ public class DetailController {
 		List<String> images = itemRoomService.findAllWithItemRoomId(itemRoomId);
 		return images;
 	}
+	
+	@GetMapping("/product/detail/people")
+	@ResponseBody
+	public ItemRoomDTO people(String itemRoomId) {
+		ItemRoomDTO people = itemRoomService.findById(itemRoomId);
+		return people;
+	}
 }
