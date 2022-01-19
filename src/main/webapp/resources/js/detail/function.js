@@ -46,3 +46,31 @@ function nextHandler() {
 		image.children[image.children.length - 3].style.opacity = '1'
 	}
 }
+
+function reserveBtnHandler() {
+	reserveBtn.classList.add('on')
+	infoBtn.classList.remove('on')
+	reviewBtn.classList.remove('on')
+	
+	document.querySelector('.rooms-reserves').classList.remove('hidden')
+	document.querySelector('.rooms-info').classList.add('hidden')
+	document.querySelector('.rooms-review').classList.add('hidden')
+}
+
+function infoBtnHandler() {
+	reserveBtn.classList.remove('on')
+	infoBtn.classList.add('on')
+	reviewBtn.classList.remove('on')
+	document.querySelector('.rooms-reserves').classList.add('hidden')
+	document.querySelector('.rooms-info').classList.remove('hidden')
+	document.querySelector('.rooms-review').classList.add('hidden')
+}
+
+function reviewBtnHandler() {
+	reserveBtn.classList.remove('on')
+	infoBtn.classList.remove('on')
+	reviewBtn.classList.add('on')
+	document.querySelector('.rooms-reserves').classList.add('hidden')
+	document.querySelector('.rooms-info').classList.add('hidden')
+	document.querySelector('.rooms-review').classList.remove('hidden')
+}

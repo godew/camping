@@ -42,7 +42,7 @@ header > .content > ul > li:hover {
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 header .li_seemore {
 	position: relative;

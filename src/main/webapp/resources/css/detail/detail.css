@@ -1,3 +1,6 @@
+html {
+	overflow-y: scroll;
+}
 #detail {	
 	width: 55%;
 	min-width: 930px;
@@ -36,7 +39,7 @@
 }
 #detail > .tab {
 	height: 72px;
-	margin: 30px 0;
+	margin-top: 30px;
 	border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 .tab > .reserve,
@@ -57,42 +60,42 @@
     font-weight: bold;
     color: rgb(230,28,81);
 }
-#detail > .rooms-reserve {
+#detail .rooms-reserve {
 	padding: 24px 32px;
     border: 1px solid rgba(0,0,0,0.08);
     border-radius: 4px;
     box-sizing: border-box;
-    margin: 0 0 24px 0;
+    margin: 30px 0 0 0;
 }
-#detail > .rooms-reserve > .top {
+#detail .rooms-reserve > .top {
 	display: flex;
 }
-#detail > .rooms-reserve > .top > .left {
+#detail .rooms-reserve > .top > .left {
 	position: relative;
     cursor: pointer;
     margin-right: 40px;
     box-sizing: border-box;
 }
-#detail > .rooms-reserve > .top > .left > img:nth-child(1) {
+#detail .rooms-reserve > .top > .left > img:nth-child(1) {
     position: absolute;
     bottom: 20px;
     right: 15px;
     width: 24px;
     height: 24px;
 }
-#detail > .rooms-reserve > .top > .left > img:nth-child(2) {
+#detail .rooms-reserve > .top > .left > img:nth-child(2) {
     width: 376px;
     height: 226px;
 }
-#detail > .rooms-reserve > .top > .right {
+#detail .rooms-reserve > .top > .right {
 	box-sizing: border-box;
 	width: 600px;
 }
-#detail > .rooms-reserve > .top > .right > h2{
+#detail .rooms-reserve > .top > .right > h2{
 	margin: 0;
 	font-size: 20px;
 }
-#detail > .rooms-reserve > .top > .right > .price {
+#detail .rooms-reserve > .top > .right > .price {
 	font-weight: bold;
 	display: flex;
 	justify-content: space-between;
@@ -100,7 +103,7 @@
 	padding-bottom: 10px;
 	border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-#detail > .rooms-reserve > .top > .right > .price > div:nth-child(2){
+#detail .rooms-reserve > .top > .right > .price > div:nth-child(2){
 	font-size: 20px;
 }
 #detail .roomInfoBtn {
@@ -133,13 +136,13 @@
     cursor: pointer;
     margin-top: 8px;
 }
-#detail > .rooms-reserve > .bottom {
+#detail .rooms-reserve > .bottom {
 	height: 528px;
     background: #f9f9f9;
     margin-top: 25px;
     position: relative;
 }
-#detail > .rooms-reserve > .bottom > .cancel {
+#detail .rooms-reserve > .bottom > .cancel {
 	background: url(//image.goodchoice.kr/images/web_v3/ico_close.png) 50% 50% no-repeat;
     border: none;
     background-size: 24px auto;
@@ -149,7 +152,7 @@
     float: right;
     padding: 0;
 }
-#detail > .rooms-reserve > .bottom > .image > img {
+#detail .rooms-reserve > .bottom > .image > img {
 	position: absolute;
 	transition: opacity 400ms ease;
 	width: 738px;
@@ -157,7 +160,7 @@
 	top: 70px;
 	left: 110px;
 }
-#detail > .rooms-reserve > .bottom .prev {
+#detail .rooms-reserve > .bottom .prev {
 	position: absolute;
 	cursor: pointer;
     width: 40px;
@@ -168,7 +171,7 @@
     background: #FFF url(//image.goodchoice.kr/images/web_v3/ico_arr_lt_4.png) 50% 50% no-repeat;
     background-size: 20px auto;
 }
-#detail > .rooms-reserve > .bottom .next {
+#detail .rooms-reserve > .bottom .next {
 	position: absolute;
 	cursor: pointer;
     width: 40px;
@@ -179,7 +182,7 @@
     background: #FFF url(//image.goodchoice.kr/images/web_v3/ico_arr_gt_4.png) 50% 50% no-repeat;
     background-size: 20px auto;
 }
-#detail > .rooms-reserve > .bottom .count {
+#detail .rooms-reserve > .bottom .count {
 	position: absolute;
 	height: 40px;
     padding: 0 25px;
@@ -193,4 +196,8 @@
     box-sizing: border-box;
     bottom: 50px;
     left: 420px;
+}
+
+#detail > .rooms-review {
+	/* review */
 }
