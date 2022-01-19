@@ -74,5 +74,9 @@
 		Copyrightⓒ 2022.AfterCamping.Allright reserved.
 	</div>
 </div>
+<script>
+	const session = sessionStorage.getItem("pnum")
+	console.log(session)
+</script>
 </body>
 </html>

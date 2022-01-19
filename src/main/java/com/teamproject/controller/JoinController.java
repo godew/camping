@@ -72,11 +72,11 @@ public class JoinController {
 	@GetMapping("/member/email/{email}/")
 	@ResponseBody
 	public HashMap<String, String> email(String userId, HttpSession session, MemberDTO dto) {
-		String email = js.selectId(dto);
+		int row = js.selectId(dto);
 		String userEmailCheck = (String)session.getAttribute("email");
-		boolean duplication = email.equals(userEmailCheck);
+		System.out.println(userEmailCheck);
 		HashMap<String, String> emailResult = new HashMap<String, String>();
-		if(duplication) {
+		if(row == 0) {
 			emailResult.put("duplication", "0");
 			emailResult.put("msg", "중복없음");
 		}

@@ -13,7 +13,7 @@
 <div class="loginBody">
 	<div class="logo">
 		<div>
-			<img src="${cpath }/resources/img/logo.png">
+			<a href="${cpath }/login/home"><img src="${cpath }/resources/img/logo.png"></a>
 		</div>
 	</div>
 	<div class="main">
@@ -29,27 +29,29 @@
 	<div class="or">
 		<div class="orLine">또는</div>
 	</div>
-	<div>
-		<div class="loginForm">
-			<div>
-				<input type="email" placeholder="아이디">
-			</div>
-			<div>
-				<input type="password" placeholder="패스워드">
+	<form method="POST">
+		<div>
+			<div class="loginForm">
+				<div>
+					<input type="email" name="email" placeholder="아이디">
+				</div>
+				<div>
+					<input type="password" name="password" placeholder="패스워드">
+				</div>
 			</div>
 		</div>
-	</div>
-	<div>
-		<div class="loginButton">
-			<input type="submit" value="로그인">
+		<div>
+			<div class="loginButton">
+				<input type="submit" value="로그인">
+			</div>
 		</div>
-	</div>
+	</form>
 	<div>
 		<div>
 			<ul class="join">
 				<li><a href="">아이디 찾기</a></li>
 				<li><a href="">비밀번호 찾기</a></li>
-				<li><a href="${cpath }/join/terms">회원가입</a></li>
+				<li><a href="${cpath }/login/terms">회원가입</a></li>
 			</ul>
 		</div>
 	</div>

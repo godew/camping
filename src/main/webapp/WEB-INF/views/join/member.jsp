@@ -51,9 +51,14 @@
 		</form>
 	</div>
 	<script>
-		const duplication = document.qureySelector('.duplicationBtn')
+		const cpath = '${pageContext.request.contextPath}'
+		const duplication = document.querySelector('.duplicationBtn')
 		
-		function emailDuplication() {
+		function emailDuplication(event) {
+			console.log('1')
+			const sessionData = emailCheck.value
+			console.log(sessionData)
+			sessionStorage.setItem("email",sessionData)
 			const url = cpath + '/member/email/' + emailCheck.value + '/'
 			const opt = {
 				method: 'GET'
@@ -63,6 +68,13 @@
 			.then(resp => resp.json())
 			.then(json => {
 				console.log(json)
+				if(json.duplication == 0) {
+					emailCheckResult.classList.add('textColorBlue')
+					emailCheckResult.innerText="중복체크완료."
+				}
+				else {
+					alert(json.msg)	
+				}
 			})
 		}
 		
@@ -84,8 +96,8 @@
 			
 			if(reg_email.test(emailCheck.value)) {
 				emailCheckResult.classList.remove('hidden')
-				emailCheckResult.classList.add('textColorBlue')
-				emailCheckResult.innerText="사용가능합니다."
+				emailCheckResult.classList.add('textColorRed')
+				emailCheckResult.innerText="중복체크를 해주세요."
 				duplication.classList.add('duplicationBtnOn')
 			}
 			else {
@@ -105,6 +117,7 @@
 		emailCheck.addEventListener('keyup', checkEmail)
 		passwordCheck.addEventListener('keyup', checkPassword)
 		confirmPasswordInput.addEventListener('keyup', confirmPassword)
+		duplication.addEventListener('click', emailDuplication)
 		
 		function valueCheck() {
 			let valueCheckResult = 0

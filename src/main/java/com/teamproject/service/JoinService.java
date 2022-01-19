@@ -56,9 +56,10 @@ public class JoinService {
 		return dao.insert(dto);
 	}
 
-	public String selectId(MemberDTO dto) {
+	public int selectId(MemberDTO dto) {
 		return dao.selectID(dto);
 	}
+
 	
 	
 
