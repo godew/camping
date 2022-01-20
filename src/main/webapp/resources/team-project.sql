@@ -142,6 +142,8 @@ create table orders(
     checkOut varchar2(50) not null,
     orderPrice number not null,
     tid varchar2(100) not null,
+    notPhone varchar2(50),
+    notName varchar2(100),
     cancel number default 1 check(cancel in(0, 1)),
     
     CONSTRAINT fk_orders_member

@@ -16,8 +16,11 @@ public class UserinfoService {
 	public List<MemberDTO> getMember(int memberId) {
 		return dao.getMember(memberId);
 	}
-	
-	
+
+	public void modifyPoint(int memberId, int point) {
+		dao.upatePoint(memberId, point);
+	}
+
 	
 
 //	public String nameUpdate(String username) {

@@ -121,6 +121,28 @@
 .point b {
 	font-size: 18px;
 }
+.pay_left .login-div {
+	padding: 22px 0;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+    background: #ff0055 url(//image.goodchoice.kr/images/web_v3/bg_login_m.png);
+    background-size: cover;
+    box-sizing: border-box;
+    color: rgba(0,0,0,0.87);
+    height: 110px;
+    margin-bottom: 50px;
+}
+.pay_left .login-div > a {
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+    padding: 0;
+}
+
 .pay_left .method > select {
 	font-size: 18px;
     color: rgba(0,0,0,.56);

@@ -1,11 +1,31 @@
 function payReady() {
-	const orderPrice = priceVal - +point.value
-	const url = cpath + '/payment/ready?itemRoomId=' + itemRoomId + '&'
-									  +'memberId=' + memberId + '&'
-									  +'itemName=' + itemName + '&'
-									  +'checkIn=' + checkIn + '&'
-									  +'checkOut=' + checkOut + '&'
-									  +'orderPrice=' + orderPrice				 
+	
+	let orderPrice
+	let changedPoint
+	let url
+	
+	if (login) {
+		orderPrice = priceVal - +point.value
+		changedPoint = pointVal - +point.value	
+		url = cpath + '/payment/ready?itemRoomId=' + itemRoomId + '&'
+							        +'memberId=' + memberId + '&'
+								    +'itemName=' + itemName + '&'
+								    +'checkIn=' + checkIn + '&'
+								    +'checkOut=' + checkOut + '&'
+								    +'orderPrice=' + orderPrice + '&'				 
+								    +'point=' + changedPoint	
+	} else {
+		orderPrice = priceVal
+		url = cpath + '/payment/notReady?itemRoomId=' + itemRoomId + '&'
+									   +'itemName=' + itemName + '&'
+									   +'checkIn=' + checkIn + '&'
+									   +'checkOut=' + checkOut + '&'
+									   +'orderPrice=' + orderPrice + '&'
+									   +'notPhone=' + form.phone.value + '&'
+									   +'notName=' + form.name.value
+	}
+				
+	
 	const opt = {
 			method : 'GET'
 	}

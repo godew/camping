@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.item.ItemDTO;
 import com.teamproject.itemRoom.ItemRoomDTO;
+import com.teamproject.member.MemberDTO;
 import com.teamproject.order.OrderDTO;
 import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.ItemService;
 import com.teamproject.service.OrderService;
 import com.teamproject.service.PaymentService;
+import com.teamproject.service.UserinfoService;
 
 @Controller
 public class PaymentController {
@@ -26,6 +28,7 @@ public class PaymentController {
 	@Autowired private ItemRoomService itemRoomService;
 	@Autowired private ItemService itemService;
 	@Autowired private OrderService orderService;
+	@Autowired private UserinfoService userinfoService;
 	
 	@GetMapping("/payment/{itemRoomId}")
 	public String pay(Model model, HttpSession session, @PathVariable String itemRoomId) {
@@ -41,7 +44,20 @@ public class PaymentController {
 	
 	@GetMapping(value = "/payment/ready", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String ready(HttpSession session, String itemName, OrderDTO order) throws IOException {
+	public String ready(HttpSession session, String point, String itemName, OrderDTO order) throws IOException {
+
+		String res = paymentService.ready(itemName, order.getOrderPrice());
+
+		order.setTid(res.split("\"")[3]);
+		session.setAttribute("order", order);
+		session.setAttribute("point", point);
+		
+		return res;
+	}
+	
+	@GetMapping(value = "/payment/notReady", produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String notReady(HttpSession session, String itemName, OrderDTO order) throws IOException {
 
 		String res = paymentService.ready(itemName, order.getOrderPrice());
 
@@ -53,10 +69,30 @@ public class PaymentController {
 	
 	@GetMapping("/payment/approve")
 	public String approve(HttpSession session, String pg_token) throws IOException {
-		paymentService.approve(((OrderDTO)session.getAttribute("order")).getTid(), pg_token);
-		int row = orderService.add((OrderDTO)session.getAttribute("order"));
+		OrderDTO order = (OrderDTO)session.getAttribute("order");
+		paymentService.approve(order.getTid(), pg_token);
+		
+		if (session.getAttribute("login") == null) {
+			orderService.addNot(order);
+			
+		} else {
+			orderService.add(order);
+			// 구매금액의 10%를 point로 전환
+			int point;
+			if (session.getAttribute("point") == null) {
+				point = order.getOrderPrice() / 10;
+			} else {
+				point = Integer.valueOf(session.getAttribute("point").toString()) + (order.getOrderPrice() / 10);			
+			}
+			
+			userinfoService.modifyPoint(order.getMemberId(), point);
+			((MemberDTO)session.getAttribute("login")).setPoint(point);
+			
+			session.removeAttribute("point");
+		}
+		
 		session.removeAttribute("order");
-		return "payment/approve";
+		return "payment/approve";			
 	}
 	
 	@GetMapping("/payment/cancel")

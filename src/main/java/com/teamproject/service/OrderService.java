@@ -14,4 +14,8 @@ public class OrderService {
 	public int add(OrderDTO orderDto) {
 		return dao.insert(orderDto);
 	}
+
+	public int addNot(OrderDTO orderDto) {
+		return dao.insertNot(orderDto);
+	}
 }

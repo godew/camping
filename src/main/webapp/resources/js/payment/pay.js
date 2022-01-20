@@ -23,17 +23,24 @@ let second
 let interval
 
 // 	cancelBtn.onclick = payCancel
-sendBtn.onclick = sendHandler
+if (!login) {
+	sendBtn.onclick = sendHandler
+}
 authBtn.onclick = authHandler
-pointBtn.onclick = function(event) {
-	event.preventDefault()
-	point.value = pointVal > priceVal ? priceVal : pointVal
-	price.innerText = (priceVal - point.value).toLocaleString() + '원'
+
+
+if (login) {
+	pointBtn.onclick = function(event) {
+		event.preventDefault()
+		point.value = pointVal > priceVal ? priceVal : pointVal
+		price.innerText = (priceVal - point.value).toLocaleString() + '원'
+	}
 }
 payReadyBtn.onclick = payReady
 
-
-point.oninput = checkNumber
+if (login) {
+	point.oninput = checkNumber
+}
 phone.oninput = checkNumber
 phone.onkeydown = function(event) {
 	if (event.key == 'Backspace') {

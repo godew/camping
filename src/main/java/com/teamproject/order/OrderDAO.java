@@ -18,4 +18,20 @@ public interface OrderDAO {
 							 		+ "#{tid})")
 	int insert(OrderDTO orderDto);
 
+	
+	@Insert("insert into orders(notPhone, "
+			 				 + "itemRoomId, "
+			 				 + "checkIn, "
+			 				 + "checkOut, "
+			 				 + "orderPrice, "
+			 				 + "notName, "
+			 				 + "tid) "
+			 				 + "values(#{notPhone}, "
+			 		  		 	    + "#{itemRoomId}, "
+			 		  		 	    + "#{checkIn}, "
+			 		  		 	    + "#{checkOut}, "
+			 		  		 	    + "#{orderPrice}, "
+			 		  		 	    + "#{notName}, "
+			 		  		 	    + "#{tid})")
+	int insertNot(OrderDTO orderDto);
 }

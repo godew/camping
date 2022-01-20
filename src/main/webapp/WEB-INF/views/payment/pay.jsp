@@ -56,7 +56,15 @@
 					</div>
 				</div>
 			</c:if>
-			
+			<c:if test="${empty login }">
+				<div class="login-div">
+					<a href="">
+						<div>로그인 후 예약하시면</div>
+						<div>추가 혜택을 받을수있어요</div>
+						<div>로그인</div>
+					</a>
+				</div>
+			</c:if>
 			<div class="method">
 				<h3>결제수단 선택</h3>
 				<select name="payMethod">
@@ -145,9 +153,9 @@
 <script>
 	const pointVal = +'${login.point}'
 	const priceVal = +'${itemRoomPrice }'
-	
+	const login = '${not empty login}' == 'true' ? true : false
 	// parameter
-	const memberId = 1
+	const memberId = '${login.memberID}'
 	const itemRoomId = '${itemRoomId}'
 	const itemName = '${itemName }'
 	const checkIn = '${checkIn}'
