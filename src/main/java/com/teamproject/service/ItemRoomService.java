@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.teamproject.itemRoom.ItemRoomDAO;
 import com.teamproject.itemRoom.ItemRoomDTO;
+import com.teamproject.review.ReviewDTO;
 
 @Service
 public class ItemRoomService {
@@ -24,5 +25,9 @@ public class ItemRoomService {
 	// image db 접근하는 메서드
 	public List<String> findAllWithItemRoomId(String itemRoomId) {
 		return dao.selectAllWithItemRoomId(itemRoomId);
+	}
+	
+	public List<ReviewDTO> selectReview(String itemId){
+		return dao.selectReview(itemId);
 	}
 }

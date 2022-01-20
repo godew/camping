@@ -108,9 +108,32 @@
 	
 	<!-- review -->
 	<div class="rooms-review hidden">
+		<div class="startext"></div>		
+		<div id="starRatingTotal">
+			<img class="total" src="https://image.goodchoice.kr/images/web_v3/bg_score.png">
+		
+		</div>
+		<c:forEach var="review" items="${review}">
+		<div class="reviewContent">
+			<strong class="title">${review.title }</strong>
+			<div id="star_rating">
+				<div class="starPoint">
+					<img class="starImg" src="https://image.goodchoice.kr/images/web_v3/bg_score.png">
+					${review.starPoint }
+				</div>
+			</div>
+			<span>
+				<div class="memberId">${review.memberId }</div>
+				<div class="itemRoomId">${review.itemRoomId }</div>
+			</span>
+				<div class="content">${review.content }</div>
+			<ul class="img">
+				<li><img src="${review.img }"></li>
+			</ul>
+		</div>
+		</c:forEach>
 	</div>
 </div>
-
 <!-- modal -->
 <div class="detail-modal hidden">
 	<div class="content">
@@ -135,6 +158,12 @@
 <script src="${cpath }/resources/js/detail/function.js"></script>
 <script src="${cpath }/resources/js/detail/rooms-info.js"></script>
 <script>
+	const starPoint = document.querySelectorAll('.starPoint')//별점
+	const starImg = document.querySelectorAll('.starImg')	
+	const starRatingTotal = document.getElementById('starRatingTotal')
+	const total = document.querySelector('.total')
+	const startext = document.querySelector('.startext')
+	
 	const reserveBtn = document.querySelector('.reserve')
 	const infoBtn = document.querySelector('.info')
 	const reviewBtn = document.querySelector('.review')
@@ -153,6 +182,95 @@
 			location.href = cpath + '/payment/' + btn.dataset.idx
 		}
 	})
+	let star = 1
+	let starTotal = 0
+	for(let i = 0; i < starPoint.length; i++){
+		star = parseInt(starPoint[i].innerText)
+		starTotal += star
+		
+		switch (star) {
+		case 1:
+			starImg[i].style.marginTop = '-22.2%'
+			break;
+		case 2:
+			starImg[i].style.marginTop = '-19.8%'
+			break;
+		case 3:
+			starImg[i].style.marginTop = '-17.3%'
+			break;
+		case 4:
+			starImg[i].style.marginTop = '-14.9%'
+			break;
+		case 5:
+			starImg[i].style.marginTop = '-12.4%'
+			break;
+		case 6:
+			starImg[i].style.marginTop = '-9.9%'
+			break;
+		case 7:
+			starImg[i].style.marginTop = '-7.3%'
+			break;
+		case 8:
+			starImg[i].style.marginTop = '-4.9%'
+			break;
+		case 9:
+			starImg[i].style.marginTop = '-2.4%'
+			break;
+		default:
+			break;
+		}
+	}
+	const starAVG =  parseInt(starTotal / starPoint.length)
+	switch (starAVG) {
+	case 1:
+		console.log(1)
+		total.style.marginTop = '-90%'
+		startext.innerText = '실망이야'
+		break;
+	case 2:
+		console.log(2)
+		total.style.marginTop ='-80%'
+			startext.innerText = '실망이야'
+		break;
+	case 3:
+		console.log(3)
+		total.style.marginTop ='-69%'
+			startext.innerText = '별로'
+		break;
+	case 4:
+		console.log(4)
+		total.style.marginTop ='-60%'
+			startext.innerText = '별로'
+		break;
+	case 5:
+		console.log(5)
+		total.style.marginTop ='-50%'
+			startext.innerText = '좋아?'
+		break;
+	case 6:
+		console.log(6)
+		total.style.marginTop ='-40%'
+			startext.innerText = '괜찮아요'
+		break;
+	case 7:
+		console.log(7)
+		total.style.marginTop ='-30%'
+			startext.innerText = '추천해요'
+		break;
+	case 8:
+		console.log(8)
+		total.style.marginTop ='-20%'
+			startext.innerText = '만족해요'
+		break;
+	case 9:
+		console.log(9)
+		total.style.marginTop ='-10%'
+			startext.innerText = '만족해요'
+		break;
+	default:
+		break;
+	}
+	console.log(text)
 	
 	for (let i = 0; i < lefts.length; i++) {
 		cancels[i].onclick = function() {

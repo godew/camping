@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.item.ItemDTO;
 import com.teamproject.itemRoom.ItemRoomDTO;
+import com.teamproject.review.ReviewDTO;
 import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.ItemService;
 
@@ -26,6 +27,9 @@ public class DetailController {
 		List<ItemRoomDTO> rooms = itemRoomService.findByItemId(itemId);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("item", item);
+		// review
+		List<ReviewDTO> review = itemRoomService.selectReview(itemId);
+		model.addAttribute("review", review);
 		
 		return "detail/detail";
 	}

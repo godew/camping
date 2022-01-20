@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
+import com.teamproject.review.ReviewDTO;
+
 public interface ItemRoomDAO {
 
 	@Select("select * from item_room where itemRoomId=#{itemRoomId}")
@@ -14,4 +16,7 @@ public interface ItemRoomDAO {
 
 	@Select("select image from image where itemRoomId=${itemRoomId}")
 	List<String> selectAllWithItemRoomId(String itemRoomId);
+	
+	@Select("select * from review where itemId=#{itemRoomId}")
+	List<ReviewDTO> selectReview(String itemId);
 }

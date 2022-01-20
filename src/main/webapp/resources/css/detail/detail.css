@@ -198,6 +198,61 @@ html {
     left: 420px;
 }
 
-#detail > .rooms-review {
 	/* review */
+#detail > .rooms-review {
+/* 	border: 1px solid black; */
+	list-style: none;
+	padding: 5vw 10vh;
+	
+}
+
+#detail > .rooms-review ul {
+	display: block;
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+#detail > .rooms-review li:nth-child(2) {
+	float: left;
+}
+
+#detail > .rooms-review li {
+	list-style: none;
+}
+
+#starRatingTotal{
+	max-height: 49px;
+	overflow: hidden;
+	padding-left: 35%;
+}
+
+.total{
+	max-height: initial;
+	margin-top: 0%;
+	width: 250px;
+}
+.reviewContent {
+	margin-top: 5vh;
+}
+
+.title{
+	padding-top: 5vh;
+	padding-bottom: 20px;
+	font-size: 18px;
+}
+
+.starPoint {
+	max-height: 15px;
+	overflow: hidden;
+}
+
+.starImg {
+	max-height: initial;
+	margin-top: 0%;
+	width: 95px;
+}
+
+.startext {
+	padding-left: 45%;
+    font-size: 25px;
+    font-weight: normal;
 }

@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReviewDTO {
 
 	private int idx, memberId, starPoint;
-	private String title, itemId;
+	private String title, itemId, itemRoomId, content;
 	private MultipartFile img;
 	public int getIdx() {
 		return idx;
@@ -42,5 +42,17 @@ public class ReviewDTO {
 	}
 	public void setItemId(String itemId) {
 		this.itemId = itemId;
+	}
+	public String getItemRoomId() {
+		return itemRoomId;
+	}
+	public void setItemRoomId(String itemRoomId) {
+		this.itemRoomId = itemRoomId;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 }
