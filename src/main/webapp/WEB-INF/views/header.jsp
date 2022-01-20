@@ -35,7 +35,7 @@
 					</ul>
 				</div>
 			</li>
-			<li><a href="" class="a_tag1">로그인</a></li>
+			<li><a href="${cpath }/login/login" class="a_tag1">로그인</a></li>
 		</ul>
 	</div>
 </header>

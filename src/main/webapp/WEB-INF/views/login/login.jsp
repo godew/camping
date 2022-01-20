@@ -51,7 +51,7 @@
 			<ul class="join">
 				<li><a href="">아이디 찾기</a></li>
 				<li><a href="">비밀번호 찾기</a></li>
-				<li><a href="${cpath }/login/terms">회원가입</a></li>
+				<li><a href="${cpath }/join/terms">회원가입</a></li>
 			</ul>
 		</div>
 	</div>
