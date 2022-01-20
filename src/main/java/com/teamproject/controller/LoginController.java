@@ -1,6 +1,5 @@
 package com.teamproject.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +23,12 @@ public class LoginController {
 	
 	@RequestMapping("/login/home")
 	public String home() {
+		return "home";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "home";
 	}
 	

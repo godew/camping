@@ -14,8 +14,14 @@
 	<div class="mainTop">
 		<div class="mainTopButton">
 			<ul>
-				<li><a href="${cpath }/login/login">로그인</a></li>
-				<li><a href="${cpath }/join/terms">회원가입</a></li>
+				<c:if test="${empty login }">
+					<li><a href="${cpath }/login/login">로그인</a></li>
+					<li><a href="${cpath }/join/terms">회원가입</a></li>
+				</c:if>
+				<c:if test="${not empty login }">
+					<li><a href="${cpath }/login/login">${login.name }</a></li>
+					<li><a href="${cpath }/logout">로그아웃</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
@@ -65,7 +71,7 @@
 				<li><a href="">조경민</a></li>
 				<li><a href="">윤다영</a></li>
 				<li><a href="">박진영</a></li>
-				<li><a href="">${login.email }</a></li>				
+				<li><a href="">${login.name }</a></li>				
 			</ul>
 		</div>
 	</div>
