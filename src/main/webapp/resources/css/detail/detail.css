@@ -197,7 +197,10 @@ html {
     bottom: 50px;
     left: 420px;
 }
-
+.soldOut {
+	background: rgb(239, 239, 239) !important;
+	cursor: default !important;
+}
 	/* review */
 #detail > .rooms-review {
 /* 	border: 1px solid black; */
@@ -225,7 +228,7 @@ html {
 	padding-left: 35%;
 }
 
-.total{
+.starRatingTotal > .total{
 	max-height: initial;
 	margin-top: 0%;
 	width: 250px;
@@ -234,7 +237,7 @@ html {
 	margin-top: 5vh;
 }
 
-.title{
+.reviewContent > .title{
 	padding-top: 5vh;
 	padding-bottom: 20px;
 	font-size: 18px;

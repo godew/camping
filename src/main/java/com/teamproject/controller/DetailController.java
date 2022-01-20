@@ -1,6 +1,6 @@
 package com.teamproject.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,23 @@ public class DetailController {
 		List<ItemRoomDTO> rooms = itemRoomService.findByItemId(itemId);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("item", item);
+		// calendar
+		List<String> calendar = new ArrayList<>();
+		int month = Integer.valueOf(checkIn.substring(0, 2));
+		int d1 = Integer.valueOf(checkIn.substring(2, 4));
+		int d2 = Integer.valueOf(checkOut.substring(2, 4));
+		for (ItemRoomDTO room : rooms) {
+			for (int i = d1; i < d2+1; i++) {
+				if (itemRoomService.findCalendar(room.getItemRoomId(), month, i) == 0) {
+					calendar.add("0");
+					break;
+				} else if (i == d2){
+					calendar.add("1");
+				}
+			}
+		}
+		model.addAttribute("calendar", calendar);
+
 		// review
 		List<ReviewDTO> review = itemRoomService.selectReview(itemId);
 		model.addAttribute("review", review);

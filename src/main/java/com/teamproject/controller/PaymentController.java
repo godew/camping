@@ -1,6 +1,8 @@
 package com.teamproject.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,13 +33,15 @@ public class PaymentController {
 	@Autowired private UserinfoService userinfoService;
 	
 	@GetMapping("/payment/{itemRoomId}")
-	public String pay(Model model, HttpSession session, @PathVariable String itemRoomId) {
+	public String pay(Model model, HttpSession session, @PathVariable String itemRoomId, String checkIn, String checkOut) {
 		ItemRoomDTO itemRoomDto = itemRoomService.findById(itemRoomId);
 		ItemDTO itemDto = itemService.findById(itemRoomDto.getItemId());
 		model.addAttribute("itemName", itemDto.getItemName());
 		model.addAttribute("itemRoomName", itemRoomDto.getItemRoomName());
 		model.addAttribute("itemRoomPrice", itemRoomDto.getItemRoomPrice());
 		model.addAttribute("itemRoomId", itemRoomId);
+		model.addAttribute("checkIn", checkIn);
+		model.addAttribute("checkOut", checkOut);
 		
 		return "payment/pay";
 	}
@@ -89,6 +93,13 @@ public class PaymentController {
 			((MemberDTO)session.getAttribute("login")).setPoint(point);
 			
 			session.removeAttribute("point");
+		}
+		
+		int month = Integer.valueOf(order.getCheckIn().substring(0, 2));
+		int d1 = Integer.valueOf(order.getCheckIn().substring(2, 4));
+		int d2 = Integer.valueOf(order.getCheckOut().substring(2, 4));
+		for (int i = d1; i < d2+1; i++) {
+			itemRoomService.modifyCalendar(order.getItemRoomId(), month, i);
 		}
 		
 		session.removeAttribute("order");

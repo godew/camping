@@ -26,7 +26,7 @@
 		</button>
 	</div>
 	<div class="rooms-reserves">
-	<c:forEach var="room" items="${rooms }">
+	<c:forEach var="room" items="${rooms }" varStatus="status">
 		<div class="rooms-reserve">
 			<div class="top">
 				<div data-idx=${room.itemRoomId } class="left">
@@ -40,7 +40,12 @@
 						<div><fmt:formatNumber value="${room.itemRoomPrice }" pattern="#,###" />원</div>
 					</div>
 					<button data-idx=${room.itemRoomId } class="roomInfoBtn">객실 이용 안내</button>
-					<button data-idx=${room.itemRoomId } class="roomReserveBtn">예약</button>
+					<c:if test="${calendar.get(status.index) eq 0}">
+						<button data-idx=${room.itemRoomId } class="roomReserveBtn soldOut" disabled="disabled">판매완료</button>
+					</c:if>
+					<c:if test="${calendar.get(status.index) eq 1}">
+						<button data-idx=${room.itemRoomId } class="roomReserveBtn">예약</button>
+					</c:if>
 				</div>
 			</div>
 			<div class="bottom hidden">
@@ -134,6 +139,7 @@
 		</c:forEach>
 	</div>
 </div>
+
 <!-- modal -->
 <div class="detail-modal hidden">
 	<div class="content">
@@ -179,7 +185,7 @@
 	
 	roomReserveBtns.forEach(btn => {
 		btn.onclick = function() {
-			location.href = cpath + '/payment/' + btn.dataset.idx
+			location.href = cpath + '/payment/' + btn.dataset.idx + '?checkIn=${param.checkIn}&checkOut=${param.checkOut}'
 		}
 	})
 	let star = 1
@@ -270,7 +276,7 @@
 	default:
 		break;
 	}
-	console.log(text)
+// 	console.log(text) 20220120 주석 걸었습니다.
 	
 	for (let i = 0; i < lefts.length; i++) {
 		cancels[i].onclick = function() {

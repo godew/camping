@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<c:set var="checkIn" value="01.12 수 15:00" />
-<c:set var="checkOut" value="01.13 목 11:00" />
+<%-- <c:set var="checkIn" value="01.12 수 15:00" /> --%>
+<%-- <c:set var="checkOut" value="01.13 목 11:00" /> --%>
 <form method="POST">
 	<div class="pay_main">
 		<div class="pay_left">
@@ -91,11 +91,11 @@
 				</div>
 				<div>
 					<div><strong>체크인</strong></div>
-					<div class="info_text">${checkIn }</div>
+					<div class="info_text">${checkIn.substring(0, 2) }.${checkIn.substring(2, 4) } 15:00</div>
 				</div>
 				<div>
 					<div><strong>체크아웃</strong></div>
-					<div class="info_text">${checkOut }</div>
+					<div class="info_text">${checkOut.substring(0, 2) }.${checkOut.substring(2, 4) } 11:00</div>
 				</div>
 			</div>
 			<div class="total_price">
@@ -132,11 +132,11 @@
 				<div style="margin-bottom: 20px">${itemRoomName }</div>
 				<div class="check">
 					<div class="color">체크인</div>
-					<b>01.14</b>
+					<b>${checkIn.substring(0, 2) }.${checkIn.substring(2, 4) }</b>
 				</div>
 				<div class="check">
 					<div class="color">체크 아웃</div>
-					<b>01.15</b>
+					<b>${checkOut.substring(0, 2) }.${checkOut.substring(2, 4) }</b>
 				</div>
 			</div>
 			<ul>

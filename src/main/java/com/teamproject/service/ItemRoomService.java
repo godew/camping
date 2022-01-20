@@ -30,4 +30,12 @@ public class ItemRoomService {
 	public List<ReviewDTO> selectReview(String itemId){
 		return dao.selectReview(itemId);
 	}
+
+	public int findCalendar(int itemRoomId, int month, int i) {
+		return dao.selectfindCalendar(itemRoomId, month, i);
+	}
+
+	public int modifyCalendar(int itemRoomId, int month, int i) {
+		return dao.updateCalendar(itemRoomId, month, i);
+	}
 }

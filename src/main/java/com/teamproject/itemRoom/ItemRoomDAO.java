@@ -2,7 +2,9 @@ package com.teamproject.itemRoom;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.teamproject.review.ReviewDTO;
 
@@ -19,4 +21,10 @@ public interface ItemRoomDAO {
 	
 	@Select("select * from review where itemId=#{itemRoomId}")
 	List<ReviewDTO> selectReview(String itemId);
+
+	@Select("select d${i} from calendar where itemRoomId=${itemRoomId} and month=${month}")
+	int selectfindCalendar(@Param("itemRoomId") int itemRoomId, @Param("month") int month, @Param("i") int i);
+
+	@Update("update calendar set d${i}=0 where itemRoomId=${itemRoomId} and month=${month}")
+	int updateCalendar(@Param("itemRoomId") int itemRoomId, @Param("month") int month, @Param("i") int i);
 }
