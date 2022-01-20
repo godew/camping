@@ -33,10 +33,10 @@
 		<div>
 			<div class="loginForm">
 				<div>
-					<input type="email" name="email" placeholder="아이디">
+					<input class="email" type="email" name="email" placeholder="아이디">
 				</div>
 				<div>
-					<input type="password" name="password" placeholder="패스워드">
+					<input type="password" name="memberPW" placeholder="패스워드">
 				</div>
 			</div>
 		</div>
@@ -56,5 +56,6 @@
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

@@ -1,11 +1,16 @@
 package com.teamproject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.member.MemberDTO;
 import com.teamproject.service.LoginService;
@@ -25,11 +30,12 @@ public class LoginController {
 		return "home";
 	}
 	
-	@PostMapping("/login")
-	public String loginHome(HttpSession session, MemberDTO dto) {
-		MemberDTO login = ls.login(dto);
-		session.setAttribute("login", login);
-		
-		return "redirect:/";
+	@PostMapping("/login/login")
+	public String login(MemberDTO dto, HttpSession session, String url) {
+		MemberDTO login = ls.login(dto);		// DB에서 받아온 계정을
+		session.setAttribute("login", login);	// 현재 세션에 저장
+		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
+		return url == null ? "redirect:/" : "redirect:" + url;
 	}
+
 }

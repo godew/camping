@@ -65,6 +65,7 @@
 				<li><a href="">조경민</a></li>
 				<li><a href="">윤다영</a></li>
 				<li><a href="">박진영</a></li>
+				<li><a href="">${login.email }</a></li>				
 			</ul>
 		</div>
 	</div>
@@ -74,9 +75,5 @@
 		Copyrightⓒ 2022.AfterCamping.Allright reserved.
 	</div>
 </div>
-<script>
-	const session = sessionStorage.getItem("pnum")
-	console.log(session)
-</script>
 </body>
 </html>

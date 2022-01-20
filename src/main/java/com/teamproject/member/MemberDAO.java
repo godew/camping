@@ -15,8 +15,11 @@ public interface MemberDAO {
 	@Select("select count(*) from member where email = #{email}")
 	int selectID(MemberDTO dto);
 
-	@Select("select * from member where email = #{email} and memberPW=#{memberPW}")
-	MemberDTO login(MemberDTO dto);
+	@Select("select * from member where email = #{email} and memberPW = #{memberPW}")
+	MemberDTO selectMember(MemberDTO dto);
+
+
+	
 
 
 	

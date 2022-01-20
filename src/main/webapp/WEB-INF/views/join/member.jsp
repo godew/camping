@@ -71,6 +71,7 @@
 				if(json.duplication == 0) {
 					emailCheckResult.classList.add('textColorBlue')
 					emailCheckResult.innerText="중복체크완료."
+					sessionStorage.clear()
 				}
 				else {
 					alert(json.msg)	
@@ -83,6 +84,7 @@
 		const pnum = document.querySelector('.pnum')
 		const memberKind = document.querySelector('.memberKind')
 		pnum.value = session
+		sessionStorage.clear()
 		memberKind.value = 'd'
 		console.log(memberKind.value)
 		const btn = document.querySelector('.btn')	
