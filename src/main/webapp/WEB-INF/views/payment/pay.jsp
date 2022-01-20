@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<c:set var="point" value="300000" />
 <c:set var="checkIn" value="01.12 수 15:00" />
 <c:set var="checkOut" value="01.13 목 11:00" />
 <form method="POST">
@@ -10,12 +9,16 @@
 			<div class="book_info">
 				<h3>예약자 정보</h3>
 				<div><strong>예약자 이름</strong></div>
-				<div><input class="input_text" type="text" name="name" value="${login.name }" placeholder="체크인시 필요한 정보입니다."></div>
-				
+				<c:if test="${not empty login }">
+					<div><input class="input_text" type="text" name="name" value="${login.name }" disabled="disabled"></div>					
+				</c:if>
+				<c:if test="${empty login }">
+					<div><input class="input_text" type="text" name="name" placeholder="체크인시 필요한 정보입니다."></div>
+				</c:if>
 				<div><strong>휴대폰 번호</strong></div>
 				<c:if test="${not empty login }">
 					<div class="sendForm">
-						<input class="input_text" type="text" name="phone" value="${login.phone }" placeholder="체크인시 필요한 정보입니다." autocomplete="off">
+						<input class="input_text" type="text" name="phone" value="${login.phone }" disabled="disabled">
 					</div>
 				</c:if>
 				<c:if test="${empty login }">
@@ -38,7 +41,7 @@
 				</div>
 			</div>
 			
-			<c:if test="${empty login }">
+			<c:if test="${not empty login }">
 				<div class="discount">
 					<h3>할인 수단 선택</h3>
 					<div class="total">
@@ -46,7 +49,7 @@
 						<div class="price"><fmt:formatNumber value="${itemRoomPrice }" pattern="#,###" />원</div>
 					</div>
 					<div class="point">
-						<button class="pointBtn">포인트 사용 ${point }P</button>
+						<button class="pointBtn">포인트 사용 ${login.point }P</button>
 						<div>
 							<input type="text" name="point" placeholder="0"><b>P</b>
 						</div>
@@ -140,7 +143,7 @@
     </div>
 </div>
 <script>
-	const pointVal = +'${point}'
+	const pointVal = +'${login.point}'
 	const priceVal = +'${itemRoomPrice }'
 	
 	// parameter

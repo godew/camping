@@ -1,7 +1,8 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
+<%@ include file="filterMap.jsp" %>
 <div id="detail">
 	<div class="item">
 		<div class="left">
@@ -97,7 +98,7 @@
 			<div class="service hidden">
 				<c:forEach var="tmp" items="${item.filter.split(' ')}">
 					<div class="list">
-						<img src="${cpath }/resources/img/filter/물놀이시설.png">
+						<img src="${filterMap.get(tmp)}">
 						<div class="text">${tmp }</div>
 					</div>
 				</c:forEach>
