@@ -38,13 +38,13 @@
 				<table id="calendarTable">
 					<thead>
 						<tr>
-							<td class="calendarYoil"><span>일</span></td>
-							<td class="calendarYoil"><span>월</span></td>
-							<td class="calendarYoil"><span>화</span></td>
-							<td class="calendarYoil"><span>수</span></td>
-							<td class="calendarYoil"><span>목</span></td>
-							<td class="calendarYoil"><span>금</span></td>
-							<td class="calendarYoil"><span>토</span></td>
+							<th class="calendarYoil"><span>일</span></th>
+							<th class="calendarYoil"><span>월</span></th>
+							<th class="calendarYoil"><span>화</span></th>
+							<th class="calendarYoil"><span>수</span></th>
+							<th class="calendarYoil"><span>목</span></th>
+							<th class="calendarYoil"><span>금</span></th>
+							<th class="calendarYoil"><span>토</span></th>
 						</tr>
 					</thead>
 					<tbody class="calendarTbody">
@@ -200,7 +200,19 @@
 
 
 <script>
+// 	let lt = ''
+// 	let rt = ''
 	
+// 	비어있으면 
+// 	first = event.target
+	
+// 	second = event.target		
+	
+	
+// 	const tds = document.querySelectorAll('td')
+// 	for(i = 0; i <= tds.length; i++){
+// 		console.log(tds[i])
+// 	}
 	
 	
 </script>

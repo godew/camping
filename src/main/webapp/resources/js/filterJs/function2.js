@@ -8,12 +8,24 @@ const opt = {
 
 fetch(url, opt)
 .then(resp => resp.json())
-.then(json => render(inDisplay, getDom(json)))
+.then(json => {
+	render(inDisplay, getDom(json))
+	
+	const images = document.querySelectorAll('.displayWrap')
+	images.forEach(image => {
+		image.onclick = function() {
+			const itemId = this.dataset.id
+			const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
+			const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
+			location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
+		}
+	})
+})
 
 function getDom(json) {
 	let dom = ''
 	json.forEach(dto => {
-		dom += '<div class="displayWrap">'
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
 		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
 		dom += 		'<div class="displayText">'
 		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
@@ -32,6 +44,8 @@ function render(inDisplay, dom){
 	inDisplay.innerHTML = ''
 	inDisplay.innerHTML += dom
 }
+
+
 
 
 const filterBtnOnClick1 = document.querySelector('.filterBtnOnClick1')

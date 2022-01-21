@@ -5,8 +5,7 @@ public class MapDTO {
 	private String latitude, longitude, itemname, itemimage, locale, filter;
 	private int itemid, itemprice;
 	
-	
-	
+
 	
 	public String getLocale() {
 		return locale;

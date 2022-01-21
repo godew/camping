@@ -20,69 +20,67 @@
 	let last_date = new Date(year,month,0).getDate(); // 달의 마지막 일수(달은 0부터 시작하기 때문에 표시하는게 아니면 +1 해주지 않음 )
 	let first_day = new Date(year,month,1).getDay() // 달의 첫번째 요일 
 	const mapModal = document.querySelector('.mapModal')
-	
-	// window onload가 되면 오늘 날짜 / 내일 날짜 / 박수(night) 계산하여 나타나게 함 
+
+	let first = ''
+	let second = ''
+	let lt = ''
+	let rt = ''
+		
 	window.addEventListener('load', function() {
 		todayAndTomorrow.innerHTML = '<div>' + thisMonth + '.' + today + ' ~ ' + thisMonth + '.' + tomorrow + ' · ' + night + '박' + '</div>'
 	})
-	
-	console.log((month+today) < (month+tomorrow))
-	
-	
-	// todayCalendar 클릭시 opCalendarHandler 실행 
+
 	todayCalendar.addEventListener('click', openCalendarHandler)
 	todayCalendar.addEventListener('click', calendarTodayHandler)
 	
 	
 	
-	// Calendar Modal Open function 
 	function openCalendarHandler(event){
 		filterCalendar.classList.remove('calendarHidden')
 		calendarYear.innerText = year+'년'+ '\u00A0' +  (month+1) +'월'
+//		makeCalendar
+		const tds = document.querySelectorAll('td')
+//		for(i = 0; i <= tds.length; i++){
+//			console.log(tds[i])
+//		}
+//		
 	}
 	
 	
-	// Calendar Modal Close function
 	function closeCalendarHandler(event) {
 		console.log(1)
 		filterCalendar.classList.add('calendarHidden')
 		
 	}
 	
-	// calendar make function 
 	function makeCalendar() {
 		row = calendarTable.insertRow()	
-		// calendarTable에 행을 추가 해 줌
-		// 변수면 row 지정해 주는 이유 : 후에 cell이 추가될 자리를 알려주기 위해
 		
 		for(i = 0; i < first_day; i++){
-			// first_day에 해당하는 요일까지 열을 만든다
-			// 요일은 0부터 시작하기 때문에 i값도 0에서 시작한다
 			cell = row.insertCell()
 		}
 		
-		
 		for(i=1; i <= last_date; i++) {
-		// 날짜는 1일부터 시작하므로 i는 1
-			if(first_day != 7){ // first_day(일~토 0~6) 일주일은 7일이니까 7 이상은 찍히지 않도록 함 
-				cell = row.insertCell() 		// 셀추가
+			if(first_day != 7){
+				cell = row.insertCell() 		
 				cell.setAttribute('class', 'calendarTd') 	
 				cell.setAttribute('id', 'D'+[i]) 	
 				cell.setAttribute('data-day', [i]) 	 
 				cell.setAttribute('data-month', month+1) 	
-				cell.addEventListener('click', dayOnclick)
-				cell.innerHTML = [i] 			// 추가된 셀에 i값 입력 
-				first_day += 1 					// 요일 값이 하루 추가된 걸 for문에서 알려 줌 
+				cell.addEventListener('click', dayOnclick1)
+				cell.addEventListener('click', calendarTodayHandler)
+				cell.innerHTML = [i] 			
+				first_day += 1 					
 			}
 			else{
-				// 첫 줄의 first_day 값이 7이되면 작동 
 				row = calendarTable.insertRow()
 				cell = row.insertCell()
 				cell.setAttribute('class', 'calendarTd')
 				cell.setAttribute('id', 'D'+[i])
 				cell.setAttribute('data-day', [i])
 				cell.setAttribute('data-month', month+1)
-				cell.addEventListener('click', dayOnclick)
+				cell.addEventListener('click', dayOnclick1)
+				cell.addEventListener('click', calendarTodayHandler)
 				cell.innerHTML = [i]
 				first_day = first_day -6;
 			}
@@ -90,66 +88,116 @@
 		
 		
 	}
-	
-	
-	
+
 	window.addEventListener('load',makeCalendar)
 	
-	
-
-	
-	// 오늘 날짜 style function 
 	function calendarTodayHandler(){
-		thisToday = 'D'+day
-		thisTomorrow = 'D'+ (day+1)
-
-		for(i = 1; i <= last_date; i++){
-			set_date = document.getElementById('D'+[i])
-			
-			
-			if(thisToday === set_date.getAttribute('id')){
-				set_date.style.backgroundColor = "#FF2B5C"
-				set_date.style.color = 'white'
+		let thisToday = 'D'+ today
+		let thisTomorrow = 'D' + (today+1)
+		for(i = 1; i <= last_date; i++) {
+			set_date = document.getElementById('D'+[i]) 
+			if(month < thisMonth && thisToday == set_date.getAttribute('id')){
+				set_date.style.color = "#FF2B5C"
+//				set_date.style.color = 'white'
 			}
 			
-			else if( thisTomorrow === set_date.getAttribute('id')){
-				set_date.style.backgroundColor = "#FF2B5C"
-				set_date.style.color = 'white'
+			else if (month < thisMonth && set_date.dataset.day < today) {
+				set_date.style.color = 'grey'
 			}
-			
-			else if(i < today){
-				set_date.style.color = '#00000061'
-			}
-			
 		}
 	}
 	
-	// 날짜를 클릭하면 배경색 바뀌는 함수
-	function dayOnclick(event){
-		let dayTd = event.target
-		console.log(dayTd)
-		thisToday = 'D'+day
-		thisTomorrow = 'D'+ (day+1)
-
-		for(i = 1; i <= last_date; i++){
-			set_date = document.getElementById('D'+[i])
-			
-			if(thisToday == set_date.getAttribute('id')){
-				set_date.style.backgroundColor = 'white'
-				set_date.style.color = 'black'
-			}
-			else if( thisTomorrow == set_date.getAttribute('id')){
-				set_date.style.backgroundColor = 'white'
-				set_date.style.color = 'black'
-			}
-		}
-		console.log(dayTd.dataset.month)
-		if(dayTd.dataset.month >= month && dayTd.dataset.day >= today){
-			dayTd.style.backgroundColor = '#FF2B5C'
-			dayTd.style.color = 'white'
-		}
+	
+	function dayOnclick1(event){
 		
+		if(first == ''){
+			// 전체 for문돌면서 background 흰색으로 변경
+			for(let i = 1; i <= last_date; i++){
+				set_date = document.getElementById('D'+[i])
+				set_date.style.backgroundColor = 'white'
+				set_date.style.color = 'black'
+			}
+			event.target.style.backgroundColor = 'pink'
+			event.target.style.color = 'white'
+				
+			first = event.target
+			lt = ''
+			rt = ''
+		} else {
+			// first, second 둘다누름
+			// first < second 이면 lt 에 first 아니면 rt에 first
+			// 여기서 lt와 rt를 가지고 for문 돌면서 backgound 변경
+			second = event.target
+			if (+first.dataset.month == +second.dataset.month) {
+				if(+first.dataset.day < +second.dataset.day){
+					lt = first
+					rt = second
+				}
+				else if(first >= second){
+					lt = second
+					rt = first
+				}
+				
+				for(i = +lt.dataset.day; i <= +rt.dataset.day; i++){
+					set_date = document.getElementById('D'+[i])
+					set_date.style.backgroundColor = 'pink'
+					set_date.style.color = 'white'
+				}
+			} else {
+				if(+first.dataset.month < +second.dataset.month){
+					lt = first
+					rt = second
+					
+					for(i = first_date; i <= +rt.dataset.day; i++){
+						set_date = document.getElementById('D'+[i])
+						set_date.style.backgroundColor = 'pink'
+						set_date.style.color = 'white'
+					}
+					
+					
+				} else {
+					lt = second
+					rt = first
+					for(i = +lt.dataset.day; i <= last_date; i++){
+						set_date = document.getElementById('D'+[i])
+						set_date.style.backgroundColor = 'pink'
+						set_date.style.color = 'white'
+					}
+				}
+			}
+			
+			first = ''
+			second = ''
+		}		
+//			else {
+//				if(first_month != second_month){
+//					lt = first
+//					rt = second
+//					console.log('넘어가는 달 first', first)
+//					console.log('넘어가는 달 second', second)
+//					
+//					for(i = lt; i = last_date; i++){
+//						set_date = document.getElementById('D'+[i])
+//						set_date.style.backgroundColor = 'pink'
+//						set_date.style.color = 'white'
+//					}
+//					
+//					for(i = rt; i = first_date; i++){
+//						set_date = document.getElementById('D'+[i])
+//						set_date.style.backgroundColor = 'pink'
+//						set_date.style.color = 'white'
+//					}
+//				}
+//			}
+
+			
+//		console.log('first', first)
+//		console.log('second', second)
+//		console.log('lt', lt)
+//		console.log('rt', rt)
 	}
+	
+
 	
 	
 	
@@ -185,9 +233,27 @@
 			
 			if(thisMonth == month+1){
 				calendarTodayHandler()
-				dayOnclick(event)
 			}
 		}
+		
+		
+		if (lt != '' && rt != '') {
+			if (+lt.dataset.month < (month+1) && (month+1) < +rt.dataset.month) {
+				for(i = 1; i <= last_date; i++) {
+					set_date = document.getElementById('D'+[i])
+					set_date.style.backgroundColor = 'pink'
+					set_date.style.color = 'white'
+				}
+			} else if (+lt.dataset.month == (month+1)) {
+				for(i = +lt.dataset.day; i <= last_date; i++){
+					set_date = document.getElementById('D'+[i])
+					set_date.style.backgroundColor = 'pink'
+					set_date.style.color = 'white'
+				}
+			}
+		}
+		
+
 	}
 	
 	
@@ -213,6 +279,22 @@
 		last_date = new Date(year,month+1,0).getDate()
 		first_day = new Date(year,month,1).getDay();
 		
-		
 		makeCalendar()
+		
+		
+		if (lt != '' && rt != '') {
+			if (+lt.dataset.month < (month+1) && (month+1) < +rt.dataset.month) {
+				for(i = 1; i <= last_date; i++) {
+					set_date = document.getElementById('D'+[i])
+					set_date.style.backgroundColor = 'pink'
+					set_date.style.color = 'white'
+				}
+			} else if (+rt.dataset.month == (month+1)) {
+				for(i = first_date; i <= +rt.dataset.day; i++){
+					set_date = document.getElementById('D'+[i])
+					set_date.style.backgroundColor = 'pink'
+					set_date.style.color = 'white'
+				}
+			}
+		}
 	}
