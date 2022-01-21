@@ -4,13 +4,14 @@
 
 <div id="manager">
 	<div class="piechart"></div>
+	<div class="linechart"></div>
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="${cpath }/resources/js/manager/function.js"></script>
 <script>
-  	google.charts.load('current', {'packages':['corechart']});
-  	google.charts.setOnLoadCallback(drawChart)
-
+  	google.charts.load('current', {'packages':['corechart', 'line']});
+  	google.charts.setOnLoadCallback(drawPieChart)
+//   	google.charts.setOnLoadCallback(drawLineChart)
 </script>
 </body>
 </html>

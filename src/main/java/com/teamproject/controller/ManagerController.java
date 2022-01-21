@@ -31,5 +31,18 @@ public class ManagerController {
 		
 		return map;
 	}
+	
+//	@GetMapping("/userTotal")
+//	@ResponseBody
+//	public HashMap<String, String> userNumber() {
+//		HashMap<String , String> map = new HashMap<String, String>();
+//		
+//		String user = managerService.countUser();
+//		String notuser = managerService.countNotUser();
+//		map.put("user", user);
+//		map.put("notuser", notuser);
+//		
+//		return map;
+//	} 
 }
 
