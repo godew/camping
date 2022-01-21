@@ -95,11 +95,28 @@ public class PaymentController {
 			session.removeAttribute("point");
 		}
 		
-		int month = Integer.valueOf(order.getCheckIn().substring(0, 2));
+		int month1 = Integer.valueOf(order.getCheckIn().substring(0, 2));
+		int month2 = Integer.valueOf(order.getCheckOut().substring(0, 2));
 		int d1 = Integer.valueOf(order.getCheckIn().substring(2, 4));
 		int d2 = Integer.valueOf(order.getCheckOut().substring(2, 4));
-		for (int i = d1; i < d2+1; i++) {
-			itemRoomService.modifyCalendar(order.getItemRoomId(), month, i);
+		if (month1 == month2) {
+			for (int i = d1; i < d2+1; i++) {
+				itemRoomService.modifyCalendar(order.getItemRoomId(), month1, i);
+			}
+		} else {
+			for (int i = d1; i < 32; i++) {
+				itemRoomService.modifyCalendar(order.getItemRoomId(), month1, i);
+			}
+			
+			for (int i = month1+1; i <= month2-1; i++) {
+				for (int j = 1; j < 32; j++) {
+					itemRoomService.modifyCalendar(order.getItemRoomId(), i, j);
+				}
+			}
+			
+			for (int i = 1; i < d2 + 1; i++) {
+				itemRoomService.modifyCalendar(order.getItemRoomId(), month2, i);
+			}
 		}
 		
 		session.removeAttribute("order");
