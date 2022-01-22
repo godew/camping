@@ -20,6 +20,7 @@
 	let last_date = new Date(year,month,0).getDate(); // 달의 마지막 일수(달은 0부터 시작하기 때문에 표시하는게 아니면 +1 해주지 않음 )
 	let first_day = new Date(year,month,1).getDay() // 달의 첫번째 요일 
 	const mapModal = document.querySelector('.mapModal')
+	const calendarSubmit = document.querySelector('.calendarSubmit')
 
 	let first = ''
 	let second = ''
@@ -27,7 +28,12 @@
 	let rt = ''
 		
 	window.addEventListener('load', function() {
-		todayAndTomorrow.innerHTML = '<div>' + thisMonth + '.' + today + ' ~ ' + thisMonth + '.' + tomorrow + ' · ' + night + '박' + '</div>'
+		if(lt == '' && rt == ''){
+			todayAndTomorrow.innerHTML = '<div>' + thisMonth + '.' + today + ' ~ ' + thisMonth + '.' + tomorrow + ' · ' + night + '박' + '</div>'			
+		}
+		else if(lt != '' && rt != ''){
+			todayAndTomorrow.innerHTML = '<div>' + lt.dataset.month + '.' + lt.dataset.day + ' ~ ' + rt.dataset.month + '.' + rt.dataset.day + ' · ' + (+rt.dataset.day - +lt.dataset.day) + '박' + '</div>'		
+		}
 	})
 
 	todayCalendar.addEventListener('click', openCalendarHandler)
@@ -46,6 +52,7 @@
 //		
 	}
 	
+	calendarSubmit.onclick = closeCalendarHandler
 	
 	function closeCalendarHandler(event) {
 		console.log(1)
