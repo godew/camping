@@ -24,7 +24,6 @@ function payReady() {
 									   +'notPhone=' + form.phone.value + '&'
 									   +'notName=' + form.name.value
 	}
-				
 	
 	const opt = {
 			method : 'GET'

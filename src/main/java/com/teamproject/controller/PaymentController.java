@@ -119,6 +119,7 @@ public class PaymentController {
 			}
 		}
 		
+		session.setAttribute("tid", order.getTid());
 		session.removeAttribute("order");
 		return "payment/approve";			
 	}
@@ -133,5 +134,12 @@ public class PaymentController {
 	@GetMapping("/payment/close")
 	public String close() {
 		return "payment/close";
+	}
+	
+	@GetMapping("/payment/notInfo")
+	public String notInfo(Model model, HttpSession session) {
+		model.addAttribute("tid", session.getAttribute("tid"));
+		
+		return "payment/notInfo";
 	}
 }

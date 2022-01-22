@@ -25,7 +25,7 @@ public class PaymentService {
 		String param = "cid=TC0ONETIME&"
 					 + "partner_order_id=partner_order_id&"
 					 + "partner_user_id=partner_user_id&"
-					 + "item_name=" + itemName + "&"
+					 + "item_name=" + "test" + "&"
 					 + "quantity=1&"
 					 + "total_amount=" + orderPrice + "&"
 					 + "vat_amount=10&"

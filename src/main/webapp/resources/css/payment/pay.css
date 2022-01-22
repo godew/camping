@@ -264,3 +264,19 @@
 .book_info .sendMsg {
 	margin-top: 60px;
 }
+.notInfo {
+	width: 55%;
+	min-width: 930px;
+	box-sizing: border-box;
+	margin: 140px auto;
+}
+.notInfo > * {
+	text-align: center;
+}
+.notInfo > h2 {
+	margin-top: 
+}
+.notInfo span:hover {
+	cursor: pointer;
+	color: #f7323f;
+}
