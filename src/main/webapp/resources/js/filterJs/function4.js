@@ -31,15 +31,15 @@
 		let checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
 		let checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
 		console.log(checkIn)
-		console.log(checkOuts)
-//		const url = cpath + '/product/search?checkIn=' + checkIn + '&checkOut=' + checkOut
-//		const opt = {
-//				method: 'GET'
-//		}
-//		
-//		fetch(url, opt)
-//		.then(resp => resp.json())
-//		.then(json => console.log(json))
+		console.log(checkOut)
+		const url = cpath + '/product/search?checkIn=' + checkIn + '&checkOut=' + checkOut
+		const opt = {
+				method: 'GET'
+		}
+		
+		fetch(url, opt)
+		.then(resp => resp.json())
+		.then(json => console.log(json))
 		
 	}
 		

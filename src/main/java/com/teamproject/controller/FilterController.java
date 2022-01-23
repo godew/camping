@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FilterController {
 	
-	@GetMapping("/product/search")
+	@GetMapping("/product/search/1")
 	public String filterMain() {
 		return "/filter/filterMain";
 	}

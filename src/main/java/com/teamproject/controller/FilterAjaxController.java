@@ -1,10 +1,13 @@
 package com.teamproject.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teamproject.filter.MapDTO;
@@ -44,5 +47,12 @@ public class FilterAjaxController {
 	public List<MapDTO> selectArea(@PathVariable String areaCode){
 		List<MapDTO> list = fs.selectArea(areaCode);
 		return list;
+	}
+	
+	@GetMapping(value="/product/search", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public HashMap<String, String> selectDay(@RequestParam HashMap<String, String> map){
+		System.out.println(map);
+		return map;
 	}
 }

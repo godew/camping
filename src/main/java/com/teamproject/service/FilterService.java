@@ -36,4 +36,5 @@ public class FilterService {
 		return fd.selectArea(areaCode);
 	}
 
+
 }
