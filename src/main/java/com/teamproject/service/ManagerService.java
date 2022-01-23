@@ -17,4 +17,12 @@ public class ManagerService {
 	public String countNotUser() {
 		return dao.countNotUser();
 	}
+
+	public String userTotal(String month, String day) {
+		return dao.selectUserOrderPrice(month, day);
+	}
+
+	public String notUserTotal(String month, String day) {
+		return dao.selectNotUserOrderPrice(month, day);
+	}
 }

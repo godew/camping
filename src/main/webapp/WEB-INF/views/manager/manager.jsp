@@ -11,7 +11,7 @@
 <script>
   	google.charts.load('current', {'packages':['corechart', 'line']});
   	google.charts.setOnLoadCallback(drawPieChart)
-//   	google.charts.setOnLoadCallback(drawLineChart)
+  	google.charts.setOnLoadCallback(drawLineChart)
 </script>
 </body>
 </html>
