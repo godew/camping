@@ -34,7 +34,6 @@
 					<div class="calendarYear"></div>
 					<button class="calendarNext"></button>
 				</div>
-				<form method="GET">
 				<table id="calendarTable">
 					<thead>
 						<tr>
@@ -57,7 +56,6 @@
 					</tbody>
 				</table>
 				<div><button class="calendarSubmit">선택완료</button></div>
-				</form>
 			</div>
 		</section>
 		
