@@ -228,7 +228,7 @@ html {
 	padding-left: 35%;
 }
 
-.starRatingTotal > .total{
+.starRatingTotal > .starTotalImg{
 	max-height: initial;
 	margin-top: 0%;
 	width: 250px;

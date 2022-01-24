@@ -19,7 +19,7 @@
 					<li><a href="${cpath }/join/terms">회원가입</a></li>
 				</c:if>
 				<c:if test="${not empty login }">
-					<li><a href="${cpath }/login/login">${login.name }</a></li>
+					<li><a href="${cpath }/userInfo/${login.memberID}">${login.name }</a></li>
 					<li><a href="${cpath }/logout">로그아웃</a></li>
 				</c:if>
 			</ul>

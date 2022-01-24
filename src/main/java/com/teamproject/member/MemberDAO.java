@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Update;
 public interface MemberDAO {
 	
 
-	@Select("select * from member where memberId = #{memberId}")
-	List<MemberDTO> getMember(int memberId);
+	@Select("select * from member where memberId = #{memberID}")
+	List<MemberDTO> getMember(String memberID);
 
 	int insert(MemberDTO dto);
 
@@ -22,9 +22,13 @@ public interface MemberDAO {
 
 	@Update("update member set point=${point} where memberId=${memberId}")
 	void upatePoint(@Param("memberId") int memberId, @Param("point") int point);
-
-
-//	@Update("update member set #{username}")
-//	String nameupdate(String username);
 	
+	@Update("update member set name=#{name} where memberId=#{memberId}")
+	int updateName(@Param("name") String name, @Param("memberId") String memberId);
+	
+	@Update("update member set phone=#{phone} where memberId=#{memberId}")
+	int updatePhone(@Param("phone") String phone,@Param("memberId") String memberId);
+	@Select("select name from member where memberId=#{memberId}")
+	String getName(int memberId);
+
 }

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<%@ include file="filterMap.jsp" %>
+<%-- <%@ include file="filterMap.jsp" %> --%>
 <div id="detail">
 	<div class="item">
 		<div class="left">
@@ -115,7 +115,7 @@
 	<div class="rooms-review hidden">
 		<div class="startext"></div>		
 		<div id="starRatingTotal">
-			<img class="total" src="https://image.goodchoice.kr/images/web_v3/bg_score.png">
+			<img class="starTotalImg" src="https://image.goodchoice.kr/images/web_v3/bg_score.png">
 		
 		</div>
 		<c:forEach var="review" items="${review}">
@@ -167,7 +167,7 @@
 	const starPoint = document.querySelectorAll('.starPoint')//별점
 	const starImg = document.querySelectorAll('.starImg')	
 	const starRatingTotal = document.getElementById('starRatingTotal')
-	const total = document.querySelector('.total')
+	const starTotalImg = document.querySelector('.starTotalImg')
 	const startext = document.querySelector('.startext')
 	
 	const reserveBtn = document.querySelector('.reserve')
@@ -230,47 +230,47 @@
 	switch (starAVG) {
 	case 1:
 		console.log(1)
-		total.style.marginTop = '-90%'
+		starTotalImg.style.marginTop = '-90%'
 		startext.innerText = '실망이야'
 		break;
 	case 2:
 		console.log(2)
-		total.style.marginTop ='-80%'
+		starTotalImg.style.marginTop ='-80%'
 			startext.innerText = '실망이야'
 		break;
 	case 3:
 		console.log(3)
-		total.style.marginTop ='-69%'
+		starTotalImg.style.marginTop ='-69%'
 			startext.innerText = '별로'
 		break;
 	case 4:
 		console.log(4)
-		total.style.marginTop ='-60%'
+		starTotalImg.style.marginTop ='-60%'
 			startext.innerText = '별로'
 		break;
 	case 5:
 		console.log(5)
-		total.style.marginTop ='-50%'
+		starTotalImg.style.marginTop ='-50%'
 			startext.innerText = '좋아?'
 		break;
 	case 6:
 		console.log(6)
-		total.style.marginTop ='-40%'
+		starTotalImg.style.marginTop ='-40%'
 			startext.innerText = '괜찮아요'
 		break;
 	case 7:
 		console.log(7)
-		total.style.marginTop ='-30%'
+		starTotalImg.style.marginTop ='-30%'
 			startext.innerText = '추천해요'
 		break;
 	case 8:
 		console.log(8)
-		total.style.marginTop ='-20%'
+		starTotalImg.style.marginTop ='-20%'
 			startext.innerText = '만족해요'
 		break;
 	case 9:
 		console.log(9)
-		total.style.marginTop ='-10%'
+		starTotalImg.style.marginTop ='-10%'
 			startext.innerText = '만족해요'
 		break;
 	default:

@@ -13,12 +13,25 @@ public class UserinfoService {
 
 	@Autowired private MemberDAO dao;
 	
-	public List<MemberDTO> getMember(int memberId) {
+	public List<MemberDTO> getMember(String memberId) {
 		return dao.getMember(memberId);
 	}
 
 	public void modifyPoint(int memberId, int point) {
 		dao.upatePoint(memberId, point);
+	}
+
+	public int updateName(String name, String memberId) {
+		return dao.updateName(name, memberId);
+	}
+	public int updatePhone(String phone, String memberId) {
+		System.out.println(phone);
+		return dao.updatePhone(phone, memberId);
+	}
+
+	public String getName(int memberId) {
+		
+		return dao.getName(memberId);
 	}
 
 	
