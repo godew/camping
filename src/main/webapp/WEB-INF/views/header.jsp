@@ -16,10 +16,18 @@
 <link href="${cpath }/resources/css/detail/detail-modal.css" rel="stylesheet">
 <link href="${cpath }/resources/css/detail/rooms-info.css" rel="stylesheet">
 <link href="${cpath }/resources/css/manager/manager.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/main/main.css">
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<script src="${cpath }/resources/js/manager/function.js"></script>
 <script>
 	const cpath = '${cpath }'
+	let ws
+	if ('${not empty login}' == 'true') {
+		ws = new SockJS(cpath + '/chat?username=${login.email}')
+	}
+	ws.onmessage = onMessage
 </script>
 <header>
 	<div class="content">
@@ -36,13 +44,25 @@
 					</ul>
 				</div>
 			</li>
-			<li><a href="${cpath }/login/login" class="a_tag1">로그인</a></li>
+			<c:if test="${empty login }">
+				<li><a href="${cpath }/login/login" class="a_tag1">로그인</a></li>
+			</c:if>
+			<c:if test="${not empty login }">
+				<li><a href="${cpath }/logout" id="socketclose" class="a_tag1">로그아웃</a></li>
+			</c:if>
 		</ul>
 	</div>
 </header>
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
 	const headerSeemore = document.querySelector('.header_seemore')
+	const socketclose = document.querySelector('#socketclose')
+	
+	if (socketclose != null) {
+		socketclose.onclick = function() {
+			ws.close()			
+		}
+	}
 	seeMore.onmouseover = function() {
 		headerSeemore.classList.remove('hidden')
 	}
@@ -56,4 +76,3 @@
 		headerSeemore.classList.add('hidden')
 	}
 </script>
-

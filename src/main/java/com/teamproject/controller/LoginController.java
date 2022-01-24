@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,7 +29,7 @@ public class LoginController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.invalidate();
+		session.removeAttribute("login");
 		return "home";
 	}
 	
@@ -39,5 +40,4 @@ public class LoginController {
 		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
 		return url == null ? "redirect:/" : "redirect:" + url;
 	}
-
 }

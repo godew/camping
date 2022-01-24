@@ -44,7 +44,6 @@
 	
 	btn.onclick = sendHandler
 	send.onkeydown = keyHandler
-	quit.onclick = quitHandler // 나가기 버튼을 클릭하면 웹소켓을 닫고 로그아웃
 	
 	list.onclick = showListHandler
 </script>

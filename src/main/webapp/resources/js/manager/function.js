@@ -63,3 +63,29 @@ async function drawLineChart() {
 
     chart.draw(data, google.charts.Line.convertOptions(options))
 }
+
+function chatRender(event) {
+	dom = ``
+	dom += `<div class="chat">`
+	dom += `<div class="content"></div>`
+	dom += `<input name="msg">`
+	dom += `<button data-name="${event.target.innerText}" onclick="sendchatMsg(event)">전송</button>`
+	dom += `</div>`
+	document.body.innerHTML += dom 
+}
+
+function sendchatMsg(event) {
+	const msg = document.querySelector('.chat > input').value
+	const payload = {
+		msg : msg,
+		target : event.target.dataset.name
+	}
+	ws.send(JSON.stringify(payload))
+}
+
+function onMessage(event) {
+	
+	console.log('받은 msg' + JSON.parse(event.data).msg)
+	// 메시지가 길어지면 자동으로 아래로 스크롤
+//	textarea.scroll({top: textarea.scrollHeight, behavior: 'smooth'})
+}

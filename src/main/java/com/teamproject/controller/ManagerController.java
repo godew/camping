@@ -3,16 +3,14 @@ package com.teamproject.controller;
 import java.util.HashMap;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.teamproject.service.ManagerService;
 import com.teamproject.chat.ChatComponent;
+import com.teamproject.service.ManagerService;
 
 @Controller
 public class ManagerController {
@@ -21,7 +19,10 @@ public class ManagerController {
 	@Autowired private ChatComponent chatComponent;
 	
 	@GetMapping("/manager")
-	public String manager() {
+	public String manager(Model model) {
+		Set<String> users = chatComponent.getSessionList().keySet();
+		users.remove("manager");
+		model.addAttribute("users", users);
 		return "manager/manager";
 	}
 	
@@ -49,18 +50,8 @@ public class ManagerController {
 		map.put("notuser", notuser);
 		
 		return map;
-	} 
-	
-	@PostMapping("/testchat")
-	public String testchat(String username, HttpSession session) {
-		session.setAttribute("username", username);
-		return "manager/testest";
 	}
 	
-	@GetMapping("/list")
-	@ResponseBody
-	public Set<String> list() {
-		return chatComponent.getSessionList().keySet();
-	}
+	
 }
 

@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>AfterCamp</title>
-<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/main/main.css">
-</head>
-<body>
+<%@ include file="header.jsp" %>
 <div class="logoBox">
 	<div class="mainTop">
 		<div class="mainTopButton">
@@ -81,5 +72,6 @@
 		Copyrightⓒ 2022.AfterCamping.Allright reserved.
 	</div>
 </div>
+<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 </body>
 </html>
