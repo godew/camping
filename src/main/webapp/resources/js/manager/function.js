@@ -53,7 +53,7 @@ async function drawLineChart() {
     var options = {
       chart: {
         title: '일주일 판매 현황(회원, 비회원, 전체)',
-        subtitle: '만원 단위'
+        subtitle: '백만원 단위'
       },
       width: 600,
       height: 400

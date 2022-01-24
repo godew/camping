@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import org.springframework.stereotype.Service;
 
@@ -22,10 +24,17 @@ public class PaymentService {
 		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		conn.setDoOutput(true);
 		
+        String tmp = null;
+        try {
+            tmp = URLEncoder.encode(itemName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
 		String param = "cid=TC0ONETIME&"
 					 + "partner_order_id=partner_order_id&"
 					 + "partner_user_id=partner_user_id&"
-					 + "item_name=" + "test" + "&"
+					 + "item_name=" + tmp + "&"
 					 + "quantity=1&"
 					 + "total_amount=" + orderPrice + "&"
 					 + "vat_amount=10&"

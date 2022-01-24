@@ -1,18 +1,24 @@
 package com.teamproject.controller;
 
 import java.util.HashMap;
+import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.service.ManagerService;
+import com.teamproject.chat.ChatComponent;
 
 @Controller
 public class ManagerController {
 	
 	@Autowired private ManagerService managerService;
+	@Autowired private ChatComponent chatComponent;
 	
 	@GetMapping("/manager")
 	public String manager() {
@@ -44,5 +50,17 @@ public class ManagerController {
 		
 		return map;
 	} 
+	
+	@PostMapping("/testchat")
+	public String testchat(String username, HttpSession session) {
+		session.setAttribute("username", username);
+		return "manager/testest";
+	}
+	
+	@GetMapping("/list")
+	@ResponseBody
+	public Set<String> list() {
+		return chatComponent.getSessionList().keySet();
+	}
 }
 
