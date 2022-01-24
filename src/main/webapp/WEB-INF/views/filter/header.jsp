@@ -42,11 +42,11 @@
 			<div class="headerCamping">캠핑</div>
 			<div class="headerArea"></div>
 			<div class="filterAreaModal areaModalHidden">
-				<a><button class="gyeonggi" data-areacode="5001" data-area="경기/인천권 전체">경기/인천권 전체</button></a>
-				<a><button class="chungcheong" data-areacode="5003" data-area="충천권 전체">충천권</button></a>
-				<a><button class="busan" data-areacode="5004" data-area="경상/부산권 전체">경상/부산권</button></a>
-				<a><button class="jeju" data-areacode="5005" data-area="전라/제주권 전체">전라/제주권</button></a>
-				<a><button class="gangwon" data-areacode="5002" data-area="강원권 전체">강원권</button></a>
+				<a><button id="area" class="gyeonggi area" data-areacode="5001" data-area="경기/인천권 전체">경기/인천권 전체</button></a>
+				<a><button id="area" class="chungcheong area" data-areacode="5003" data-area="충천권 전체">충천권</button></a>
+				<a><button id="area" class="busan area" data-areacode="5004" data-area="경상/부산권 전체">경상/부산권</button></a>
+				<a><button id="area" class="jeju area" data-areacode="5005" data-area="전라/제주권 전체">전라/제주권</button></a>
+				<a><button id="area" class="gangwon area" data-areacode="5002" data-area="강원권 전체">강원권</button></a>
 			</div>
 		</div>
 	</div>
@@ -81,7 +81,7 @@
 	
 	headerArea.onmouseover = areaOpenHandler
 	
-
+	
 	
 	function areaOpenHandler(event) {
 		filterAreaModal.classList.remove('areaModalHidden')
@@ -93,8 +93,7 @@
 	})
 	
 	busan.onclick = function(event) {
-
-		const url = cpath + '/selectArea/' + busan.dataset.areacode
+		const url = cpath + '/searchArea/' + busan.dataset.areacode
 		const opt = {
 				method: 'GET'
 		}
@@ -109,7 +108,7 @@
 	
 	gyeonggi.onclick = function(event) {
 
-		const url = cpath + '/selectArea/' + gyeonggi.dataset.areacode
+		const url = cpath + '/searchArea/' + gyeonggi.dataset.areacode
 		const opt = {
 				method: 'GET'
 		}
@@ -123,7 +122,7 @@
 	}
 	
 	chungcheong.onclick = function(event) {
-		const url = cpath + '/selectArea/' + chungcheong.dataset.areacode
+		const url = cpath + '/searchArea/' + chungcheong.dataset.areacode
 		const opt = {
 				method: 'GET'
 		}
@@ -137,7 +136,7 @@
 	}
 	
 	jeju.onclick = function(event) {
-		const url = cpath + '/selectArea/' + jeju.dataset.areacode
+		const url = cpath + '/searchArea/' + jeju.dataset.areacode
 		const opt = {
 				method: 'GET'
 		}
@@ -151,7 +150,7 @@
 	}
 	
 	gangwon.onclick = function(event) {
-		const url = cpath + '/selectArea/' + gangwon.dataset.areacode
+		const url = cpath + '/searchArea/' + gangwon.dataset.areacode
 		const opt = {
 				method: 'GET'
 		}

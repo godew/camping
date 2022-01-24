@@ -24,16 +24,20 @@ public class FilterService {
 		return fd.selectOriginal();
 	}
 
-	public List<MapDTO> selectUnderPrice() {
-		return fd.selectUnderPrice();
+	public List<MapDTO> selectUnderPrice(String areacode) {
+		return fd.selectUnderPrice(areacode);
 	}
-
-	public List<MapDTO> selectUpPrice() {
-		return fd.selectUpPrice();
+	
+	public List<MapDTO> selectUpPrice(String areacode) {
+		return fd.selectUpPrice(areacode);
 	}
 
 	public List<MapDTO> selectArea(String areaCode) {
 		return fd.selectArea(areaCode);
+	}
+
+	public List<MapDTO> selectPlace(String areacode) {
+		return fd.selectPlace(areacode);
 	}
 
 

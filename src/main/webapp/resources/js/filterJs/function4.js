@@ -27,30 +27,39 @@
 	let lt = ''
 	let rt = ''
 
-	calendarSubmit.onclick = function(event) {
+	if(lt == '' && rt == ''){
+		todayAndTomorrow.innerHTML = '<div>' + thisMonth + '.' + today + ' ~ ' + thisMonth + '.' + tomorrow + ' · ' + night + '박' + '</div>'			
+	}
+	
+	calendarSubmit.addEventListener('click', checkIO)
+	calendarSubmit.addEventListener('click', closeCalendarHandler)
+	
+	function checkIO(event) {
 		let checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
 		let checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+		todayAndTomorrow.innerHTML = ''
+		console.log(lt)
+		console.log(rt)
+		
+		if(lt.dataset.month < rt.dataset.month){
+			let ltday = new Date(year, lt.dataset.month, 0).getDate()
+			let nightday = ((ltday - +lt.dataset.day +1) + +rt.dataset.day) 
+			todayAndTomorrow.innerHTML = '<div>' + lt.dataset.month + '.' + lt.dataset.day + ' ~ ' + rt.dataset.month + '.' + rt.dataset.day + ' · ' + nightday + '박' + '</div>'
+			
+		} 
+		else if(lt.dataset.month == rt.dataset.month){			
+			console.log(last_date)
+			todayAndTomorrow.innerHTML = '<div>' + lt.dataset.month + '.' + lt.dataset.day + ' ~ ' + rt.dataset.month + '.' + rt.dataset.day + ' · ' + (+rt.dataset.day - +lt.dataset.day) + '박' + '</div>'		
+		}
 		console.log(checkIn)
 		console.log(checkOut)
-		const url = cpath + '/product/search?checkIn=' + checkIn + '&checkOut=' + checkOut
-		const opt = {
-				method: 'GET'
-		}
-		
-		fetch(url, opt)
-		.then(resp => resp.json())
-		.then(json => console.log(json))
+//		location.href = cpath + '/product/search?checkIn=' + checkIn + '&checkOut=' + checkOut
 		
 	}
 		
-	window.addEventListener('load', function() {
-		if(lt == '' && rt == ''){
-			todayAndTomorrow.innerHTML = '<div>' + thisMonth + '.' + today + ' ~ ' + thisMonth + '.' + tomorrow + ' · ' + night + '박' + '</div>'			
-		}
-		else if(lt != '' && rt != ''){
-			todayAndTomorrow.innerHTML = '<div>' + lt.dataset.month + '.' + lt.dataset.day + ' ~ ' + rt.dataset.month + '.' + rt.dataset.day + ' · ' + (+rt.dataset.day - +lt.dataset.day) + '박' + '</div>'		
-		}
-	})
+
+		
+	
 
 	todayCalendar.addEventListener('click', openCalendarHandler)
 	todayCalendar.addEventListener('click', calendarTodayHandler)
@@ -69,6 +78,8 @@
 	}
 	
 //	calendarSubmit.onclick = closeCalendarHandler
+	
+	
 	
 	function closeCalendarHandler(event) {
 		console.log(1)

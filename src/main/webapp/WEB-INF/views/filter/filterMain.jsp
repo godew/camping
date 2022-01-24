@@ -55,7 +55,7 @@
 						<tr></tr>
 					</tbody>
 				</table>
-				<div><button class="calendarSubmit">선택완료</button></div>
+				<div><button class="calendarSubmit" value="선택완료">선택완료</button></div>
 			</div>
 		</section>
 		
@@ -177,7 +177,12 @@
 			</div>
 		</div>
 		<div class="filterwrap3">
-			<div class="inDisplay"></div>
+			<div class="inDisplay">
+				<div class="sort"></div>
+				<div class="sort2"></div>
+				<div class="sort3"></div>
+				<div class="sort4"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -187,6 +192,7 @@
 <script src="${cpath }/resources/js/filterJs/function3.js"></script>
 <script src="${cpath }/resources/js/filterJs/function4.js"></script>
 <script src="${cpath }/resources/js/filterJs/function5.js"></script>
+<script src="${cpath }/resources/js/filterJs/function6.js"></script>
 
 
 <script>
@@ -198,23 +204,7 @@
 </script>
 
 
-<script>
-// 	let lt = ''
-// 	let rt = ''
-	
-// 	비어있으면 
-// 	first = event.target
-	
-// 	second = event.target		
-	
-	
-// 	const tds = document.querySelectorAll('td')
-// 	for(i = 0; i <= tds.length; i++){
-// 		console.log(tds[i])
-// 	}
-	
-	
-</script>
+
 
 </body>
 </html>

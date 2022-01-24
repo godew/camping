@@ -3,10 +3,18 @@ package com.teamproject.filter;
 public class MapDTO {
 	
 	private String latitude, longitude, itemname, itemimage, locale, filter;
-	private int itemid, itemprice;
+	private int itemid, itemprice, distance;
 	
 
 	
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
 	public String getLocale() {
 		return locale;
 	}

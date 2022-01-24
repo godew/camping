@@ -30,6 +30,7 @@ function getDom(json) {
 		dom += 		'<div class="displayText">'
 		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
 		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
 		dom += 			'<div class="displayDetail">'
 		dom += 				'<span>' + dto.locale + '</span>'
 		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
@@ -40,6 +41,210 @@ function getDom(json) {
 	return dom
 }
 
+
+function getUnderPriceDom(json) {
+	let dom = ''
+	dom += '<div><h3>5만원 미만<h3></div>' 
+	json.forEach(dto => {  
+		if(+dto.itemprice < 50000){
+			dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+			dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+			dom += 		'<div class="displayText">'
+			dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+			dom += 				'<span> 별 점 </span>'
+			dom += 				'<span>' + dto.distance + '</span>'
+			dom += 			'<div class="displayDetail">'
+			dom += 				'<span>' + dto.locale + '</span>'
+			dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+			dom += 			'</div>'
+			dom += 		'</div>'
+			dom += '</div>'
+		}
+		
+	})
+	
+	dom += '<div><h3>5~10만원<h3></div>' 
+	json.forEach(dto => {
+		if(50000 <= +dto.itemprice && +dto.itemprice < 100000) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	
+	dom += '<div><h3>10~20만원<h3></div>'
+	json.forEach(dto => {
+		if(100000 <= +dto.itemprice && +dto.itemprice < 200000) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	
+	dom += '<div><h3>20~30만원<h3></div>'
+	json.forEach(dto => {
+		if(200000 <= +dto.itemprice && +dto.itemprice < 300000) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	
+	dom += '<div><h3>30만원 이상<h3></div>'
+	json.forEach(dto => {
+		if(300000 <= +dto.itemprice) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	return dom 
+	
+}
+
+function getUpPriceDom(json) {
+	let dom = ''
+	dom += '<div><h3>30만원 이상<h3></div>' 
+	json.forEach(dto => {
+		if(300000 <= dto.itemprice) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	
+	dom += '<div><h3>20~30만원<h3></div>'
+	json.forEach(dto => {
+		if(200000 <= +dto.itemprice && +dto.itemprice < 300000) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	
+		
+	dom += '<div><h3>10~20만원<h3></div>'
+	json.forEach(dto => {
+		if(100000 <= +dto.itemprice && +dto.itemprice < 200000) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+	
+	dom += '<div><h3>5~10만원<h3></div>' 
+	json.forEach(dto => {
+		if(50000 <= +dto.itemprice && +dto.itemprice < 100000) {
+		dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+		dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+		dom += 		'<div class="displayText">'
+		dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+		dom += 				'<span> 별 점 </span>'
+		dom += 				'<span>' + dto.distance + '</span>'
+		dom += 			'<div class="displayDetail">'
+		dom += 				'<span>' + dto.locale + '</span>'
+		dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+		dom += 			'</div>'
+		dom += 		'</div>'
+		dom += '</div>'
+		}
+	})
+
+	
+	
+	
+	dom += '<div><h3>5만원 미만<h3></div>'
+	json.forEach(dto => {  
+		if(+dto.itemprice < 50000){
+			dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+			dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+			dom += 		'<div class="displayText">'
+			dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+			dom += 				'<span> 별 점 </span>'
+			dom += 				'<span>' + dto.distance + '</span>'
+			dom += 			'<div class="displayDetail">'
+			dom += 				'<span>' + dto.locale + '</span>'
+			dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+			dom += 			'</div>'
+			dom += 		'</div>'
+			dom += '</div>'
+		}
+		
+	})
+	return dom 
+	
+}
+
+
+
+
+
+	
+	
+
 function render(inDisplay, dom){
 	inDisplay.innerHTML = ''
 	inDisplay.innerHTML += dom
@@ -48,58 +253,144 @@ function render(inDisplay, dom){
 
 
 
-const filterBtnOnClick1 = document.querySelector('.filterBtnOnClick1')
-const filterBtnOnClick2 = document.querySelector('.filterBtnOnClick2')
-const filterBtnOnClick3 = document.querySelector('.filterBtnOnClick3')
-const filterBtnOnClick4 = document.querySelector('.filterBtnOnClick4')
+
+
+const filterBtnOnClick1 = document.querySelector('.filterBtnOnClick1') // 추천 순
+const filterBtnOnClick2 = document.querySelector('.filterBtnOnClick2') // 거리 순
+const filterBtnOnClick3 = document.querySelector('.filterBtnOnClick3') // 낮은 가격 순 
+const filterBtnOnClick4 = document.querySelector('.filterBtnOnClick4') // 높은 가격 순
+//
+//	const gyeonggi = document.querySelector('.gyeonggi')
+//	const chungcheong = document.querySelector('.chungcheong')
+//	const busan = document.querySelector('.busan')
+//	const jeju = document.querySelector('.jeju')
+//	const gangwon = document.querySelector('.gangwon')
+
 
 window.addEventListener('load', function() {
 	filterBtnOnClick1.classList.add('btnOnClick')
 })
 
-filterBtnOnClick1.onclick = function(event){
+filterBtnOnClick1.addEventListener('click', btn1OC)
+busan.addEventListener('click', btn1OC)
+gyeonggi.addEventListener('click', btn1OC)
+chungcheong.addEventListener('click', btn1OC)
+jeju.addEventListener('click', btn1OC)
+gangwon.addEventListener('click', btn1OC)
+
+
+// 추천 순
+function btn1OC(event) {
+//	console.log(1)
 	filterBtnOnClick1.classList.add('btnOnClick')
 	filterBtnOnClick2.classList.remove('btnOnClick')
 	filterBtnOnClick3.classList.remove('btnOnClick')
 	filterBtnOnClick4.classList.remove('btnOnClick')
 }
 
+
+// 거리 순
 filterBtnOnClick2.onclick = function(event){
 	filterBtnOnClick2.classList.add('btnOnClick')
 	filterBtnOnClick1.classList.remove('btnOnClick')
 	filterBtnOnClick3.classList.remove('btnOnClick')
 	filterBtnOnClick4.classList.remove('btnOnClick')
+	
+	const area = document.querySelectorAll('.area')
+	
+	area.forEach(areas => {
+		if(headerArea.innerHTML == areas.dataset.area){
+//			console.log(headerArea.innerHTML == areas.dataset.area)
+			const url = cpath + '/place/' + areas.dataset.areacode
+			const opt = {
+				method: 'GET'
+			}
+			
+			fetch(url, opt)
+			.then(resp => resp.json())
+			.then(json => {
+				console.log(json)
+			} )
+		}
+	})
 }
 
-filterBtnOnClick3.onclick = function(event){
+//render(inDisplay, getDom(json))
+
+
+
+filterBtnOnClick3.addEventListener('click', btn3OC)
+
+// 낮은 가격 순
+function btn3OC(event){
 	filterBtnOnClick3.classList.add('btnOnClick')
 	filterBtnOnClick1.classList.remove('btnOnClick')
 	filterBtnOnClick2.classList.remove('btnOnClick')
 	filterBtnOnClick4.classList.remove('btnOnClick')
 	
-	const url = cpath + '/underPrice'
-	const opt = {
-			method: 'GET'
-	}
+	const area = document.querySelectorAll('.area')
 	
-	fetch(url, opt)
-	.then(resp => resp.json())
-	.then(json => render(inDisplay, getDom(json)))
+	area.forEach(areas => {
+		if(headerArea.innerHTML == areas.dataset.area){
+//			console.log(headerArea.innerHTML == areas.dataset.area)
+			const url = cpath + '/underPrice/' + areas.dataset.areacode
+			const opt = {
+				method: 'GET'
+			}
+			
+			fetch(url, opt)
+			.then(resp => resp.json())
+			.then(json => {
+				render(inDisplay, getUnderPriceDom(json))
+				
+				const images = document.querySelectorAll('.displayWrap')
+				images.forEach(image => {
+					image.onclick = function() {
+						const itemId = this.dataset.id
+						const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
+						const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
+						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
+					}
+				})
+			})	
+		} // if end
+	})
 }
 
 
+
+
+// 높은 가격 순
 filterBtnOnClick4.onclick = function(event){
 	filterBtnOnClick4.classList.add('btnOnClick')
 	filterBtnOnClick1.classList.remove('btnOnClick')
 	filterBtnOnClick2.classList.remove('btnOnClick')
 	filterBtnOnClick3.classList.remove('btnOnClick')
 	
-	const url = cpath + '/upPrice'
-	const opt = {
-		method: 'GET'
-	}
-	
-	fetch(url, opt)
-	.then(resp => resp.json())
-	.then(json => render(inDisplay, getDom(json)))
+	const area = document.querySelectorAll('.area')
+	area.forEach(areas => {
+		if(headerArea.innerHTML == areas.dataset.area){
+//			console.log(headerArea.innerHTML == areas.dataset.area)
+			const url = cpath + '/upPrice/' + areas.dataset.areacode
+			const opt = {
+				method: 'GET'
+			}
+			
+			fetch(url, opt)
+			.then(resp => resp.json())
+			.then(json => {
+				render(inDisplay, getUpPriceDom(json))
+				
+				const images = document.querySelectorAll('.displayWrap')
+				images.forEach(image => {
+					image.onclick = function() {
+						const itemId = this.dataset.id
+						const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
+						const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
+						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
+					}
+				})
+			})
+		}
+	})
 }
