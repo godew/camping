@@ -23,9 +23,15 @@ public class FilterAjaxController {
 		return list;
 	}
 	
-	@GetMapping("/selectOriginal")
+	@GetMapping("/select")
 	public List<MapDTO> selectOriginal(){
-		List<MapDTO> list = fs.selectOriginal();
+		List<MapDTO> list = fs.select();
+		return list;
+	}
+	
+	@GetMapping("/selectOriginal/{areacode}")
+	public List<MapDTO> selectOriginal(@PathVariable String areacode){
+		List<MapDTO> list = fs.selectOriginal(areacode);
 		return list;
 	}
 	
@@ -52,5 +58,10 @@ public class FilterAjaxController {
 		List<MapDTO> list = fs.selectArea(areaCode);
 		return list;
 	}
+	
+
+
+	
+
 	
 }

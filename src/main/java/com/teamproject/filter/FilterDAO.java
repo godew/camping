@@ -11,8 +11,11 @@ public interface FilterDAO {
 	@Select("select itemid, latitude, longitude, itemname, itemimage, itemprice from item")
 	List<MapDTO> selectMap();
 	
-	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where locale like '%가평%'")
-	List<MapDTO> selectOriginal();
+	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=5001")
+	List<MapDTO> select();
+	
+	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode}")
+	List<MapDTO> selectOriginal(String areacode);
 	
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode} order by itemprice asc")
 	List<MapDTO> selectUnderPrice(String areacode);
@@ -25,6 +28,8 @@ public interface FilterDAO {
 	
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode} order by distance asc")
 	List<MapDTO> selectPlace(String areacode);
+	
+
 	
 	
 
