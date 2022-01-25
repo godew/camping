@@ -86,6 +86,10 @@ public class UserInfoController {
 //		us.nameUpdate(username);
 //		return null;
 //	}
+	@GetMapping("/reservation/")
+	public String reservation(Model model) {
+		return reservation(-1, model);
+	}
 	
 	@GetMapping("/reservation/{memberId}")
 	public String reservation(@PathVariable int memberId, Model model, HttpSession session) {

@@ -19,12 +19,12 @@
 	<div class="title">비회원 예약 내역 조회</div>
 	<form method="POST">
 		<div>
-			<div class="loginForm">
+			<div class="lookupForm">
 				<div>
-					<input class="pnum" type="email" name="phone" placeholder="휴대폰번호">
+					<input class="pnum" type="email" name="phone" placeholder="휴대폰번호" autofocus required>
 				</div>
 				<div>
-					<input type="password" name="memberPW" placeholder="에약번호">
+					<input type="text" name="tid" placeholder="에약번호" required>
 				</div>
 			</div>
 		</div>

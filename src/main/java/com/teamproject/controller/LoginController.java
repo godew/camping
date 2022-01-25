@@ -34,10 +34,24 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login/login")
-	public String login(MemberDTO dto, HttpSession session, String url) {
-		MemberDTO login = ls.login(dto);		// DB에서 받아온 계정을
-		session.setAttribute("login", login);	// 현재 세션에 저장
+	public String login(MemberDTO dto, HttpSession session, String returnURI) {
+		MemberDTO login = ls.login(dto);	
+		session.setAttribute("login", login);
+		System.out.println(returnURI);
+		System.out.println(login);
 		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
-		return url == null ? "redirect:/" : "redirect:" + url;
+		return returnURI == null ? "redirect:/" : "redirect:" + returnURI + "/" + login.getMemberID();
 	}
+	
+	@RequestMapping("/login/nonReservation")
+	public String nonReservation() {
+		return "login/nonReservation";
+	}
+	
+	@RequestMapping("/findID")
+	public String findID() {
+		return "login/findID";
+	}
+	
+	
 }

@@ -23,14 +23,16 @@
 	</beans:bean>
 	
 	
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/**"/> -->
-<!-- 			<exclude-mapping path="/login"/> -->
-<!-- 			<exclude-mapping path="/"/> -->
-<!-- 			<beans:bean id="loginInterceptor" class="com.wedog.interceptor.LoginInterceptor"/> -->
-<!-- 		</interceptor> -->
-<!-- 	</interceptors> -->
+<interceptors>
+		<interceptor>
+			<mapping path="/userInfo/reservation" />	 
+			<mapping path="/reservation/" />	 
+
+			
+			<!--  아래에 있는 인터셉터가 작동합니다 -->
+			<beans:bean id="loginIntercepter" class="com.teamproject.intercepter.LoginIntercepter" />			
+		</interceptor>
+	</interceptors>
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
