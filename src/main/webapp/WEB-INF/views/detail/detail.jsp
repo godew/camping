@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<%-- <%@ include file="filterMap.jsp" %> --%>
+<%@ include file="filterMap.jsp" %>
 <div id="detail">
 	<div class="item">
 		<div class="left">
@@ -276,7 +276,6 @@
 	default:
 		break;
 	}
-// 	console.log(text) 20220120 주석 걸었습니다.
 	
 	for (let i = 0; i < lefts.length; i++) {
 		cancels[i].onclick = function() {

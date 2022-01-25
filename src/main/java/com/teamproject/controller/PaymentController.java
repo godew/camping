@@ -87,8 +87,8 @@ public class PaymentController {
 				point = order.getOrderPrice() / 10;
 			} else {
 				point = Integer.valueOf(session.getAttribute("point").toString()) + (order.getOrderPrice() / 10);			
+				point = (int)Math.round((double)point / 10) * 10;
 			}
-			
 			userinfoService.modifyPoint(order.getMemberId(), point);
 			((MemberDTO)session.getAttribute("login")).setPoint(point);
 			
