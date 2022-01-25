@@ -46,15 +46,27 @@
 			</div>
 		</div>
 	</form>
-	<div>
+	<c:if test="${empty param.returnUrl }">
 		<div>
-			<ul class="join">
-				<li><a href="">아이디 찾기</a></li>
-				<li><a href="">비밀번호 찾기</a></li>
-				<li><a href="${cpath }/join/terms">회원가입</a></li>
-			</ul>
+			<div>
+				<ul class="join">
+					<li><a href="">아이디 찾기</a></li>
+					<li><a href="">비밀번호 찾기</a></li>
+					<li><a href="${cpath }/join/terms">회원가입</a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
+	</c:if>
+	<c:if test="${not empty param.returnUrl }">
+		<div>
+			<div>
+				<ul class="join">
+					<li>비회원으로 예약하셨나요?</a></li>
+					<li><a href="${cpath }/login/nonReservation">비회원 예약 내역 조회</a></li>
+				</ul>
+			</div>
+		</div>
+	</c:if>
 </div>
 
 </body>

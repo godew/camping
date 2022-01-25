@@ -34,7 +34,7 @@
 		<a href="${cpath }">여기어때</a>
 		<ul>
 			<li><p style="margin: 0"><img src="${cpath }/resources/img/돋보기.png"></p></li>
-			<li><a href="" class="a_tag1">예약내역</a></li>
+			<li><a href="${cpath }/login/{nonReservation}" class="a_tag1">예약내역</a></li>
 			<li class="li_seemore">
 				더보기
 				<div class="hidden header_seemore">
@@ -47,7 +47,7 @@
 			<c:if test="${empty login }">
 				<li><a href="${cpath }/login/login" class="a_tag1">로그인</a></li>
 			</c:if>
-			<c:if test="${not empty login }">
+			<c:if test="${not empty login }">SSS
 				<li><a href="${cpath }/logout" id="socketclose" class="a_tag1">로그아웃</a></li>
 			</c:if>
 		</ul>
