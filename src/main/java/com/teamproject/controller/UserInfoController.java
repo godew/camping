@@ -87,10 +87,10 @@ public class UserInfoController {
 //		return null;
 //	}
 	@GetMapping("/reservation/")
-	public String reservation(Model model) {
-		return reservation(-1, model);
+	public String reservation(Model model, HttpSession session) {
+		return reservation(-1, model, session);
 	}
-	
+
 	@GetMapping("/reservation/{memberId}")
 	public String reservation(@PathVariable int memberId, Model model, HttpSession session) {
 		List<reservationDTO> list = rs.getReservation(memberId);
@@ -117,5 +117,4 @@ public class UserInfoController {
 		
 		return "redirect:/";
 	}
-	
 }
