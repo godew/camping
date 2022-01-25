@@ -54,9 +54,14 @@
 	</div>
 </header>
 <div id="bottom-msg">
-	<div>
+	<div class="content-wrap hidden">
+		<div class="content"></div>
+		<div>
+			<input type="text" name="msg" autocomplete="off">
+			<button class="ws-send-msg-btn">전송</button>
+		</div>
 	</div>
-	<button class="bottom-msg-btn">1대1 대화</button>
+	<button class="bottom-msg-btn">관리자 1대1 대화</button>
 </div>
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
@@ -80,5 +85,29 @@
 	headerSeemore.onmouseout = function() {
 		headerSeemore.classList.add('hidden')
 	}
+</script>
+<script>
+	const bottomMsgBtn = document.querySelector('.bottom-msg-btn')
+	const contentWrap = document.querySelector('.content-wrap')
+	const wsContent = document.querySelector('.content-wrap > .content')
+	const contentWrapInput = document.querySelector('.content-wrap input')
+	const wsSendMsgBtn = document.querySelector('.ws-send-msg-btn')
 	
+	bottomMsgBtn.onclick = function() {
+		if (contentWrap.classList.contains('hidden')) {
+			contentWrap.classList.remove('hidden')
+			contentWrapInput.focus()
+		} else {
+			contentWrap.classList.add('hidden')
+		}
+	}
+	
+	wsSendMsgBtn.onclick = function() {
+		if (contentWrapInput.value != '') {
+			wsContent.innerHTML += renderWsMsg(contentWrapInput.value)
+			wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+			contentWrapInput.value = ''
+			contentWrapInput.focus()
+		}
+	}
 </script>

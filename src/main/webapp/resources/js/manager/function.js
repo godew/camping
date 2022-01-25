@@ -87,5 +87,14 @@ function onMessage(event) {
 	
 	console.log('받은 msg' + JSON.parse(event.data).msg)
 	// 메시지가 길어지면 자동으로 아래로 스크롤
-//	textarea.scroll({top: textarea.scrollHeight, behavior: 'smooth'})
+//	wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+}
+
+function renderWsMsg(msg) {
+	dom = ``
+	dom += `<div class="msgline">`
+	dom += `<span class="wsSend">${msg}</span>`
+	dom += `</div>`
+	wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+	return dom
 }
