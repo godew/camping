@@ -1,0 +1,69 @@
+#detail > .rooms-info {
+    box-sizing: border-box;
+}
+#detail > .rooms-info > .standardDiv, .serviceDiv {
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+#detail > .rooms-info .flex {
+	cursor: pointer;
+	color: rgba(0,0,0,0.87);
+	font-size: 18px;
+	height: 80px;
+	line-height: 80px;
+	display: flex;
+	justify-content: space-between;
+}
+#detail > .rooms-info button {
+    width: 12px;
+    height: 8px;
+    margin-top: -4px;
+    background: #fff url(//image.goodchoice.kr/images/web_v3/ico_arr_3.png) 0 0 no-repeat;
+    background-size: 12px auto;
+    border: none;
+    margin-top: 35px;
+}
+#detail > .rooms-info .standard {
+	border-radius: 5px;
+    background: rgb(250,250,250);
+    padding: 12px 57px 48px 57px;
+    font-size: 15px;
+    color: rgba(0,0,0,0.56);
+}
+#detail > .rooms-info .standard h3 {
+	font-size: 15px;
+	color: rgba(0,0,0,0.56);
+	margin-top: 35px;
+	margin-bottom: 15px;
+}
+#detail > .rooms-info .standard > ul {
+	list-style: none;
+	padding: 0;
+}
+#detail > .rooms-info .standard li {
+	padding-left: 14px;
+    background: url(//image.goodchoice.kr/images/web_v3/ico_bul_3.png) -1px 0 no-repeat;
+    background-size: 12px auto;
+    margin-bottom: 3px;
+}
+#detail > .rooms-info .service {
+	border-radius: 5px;
+    background: rgb(250,250,250);
+    padding: 50px 56px 30px 56px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: rgba(0,0,0,0.56);
+}
+#detail > .rooms-info .service img {
+	width: 40px;
+	height: 40px;
+	margin-left: 25px;
+}
+#detail > .rooms-info .service .text {
+	text-align: center;
+}
+#detail > .rooms-info .service > .list {
+	width: 90px;
+	height: 60px;
+	margin-bottom: 20px;
+}

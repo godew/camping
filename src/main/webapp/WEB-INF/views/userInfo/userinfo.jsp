@@ -57,27 +57,26 @@ function hideModify(event) {
 <div class="leftmenu">
 	<nav>
 		<ul>
-			<li><a href="${cpath }/point">포인트</a></li>
-			<li><a href="${cpath }/reservation">예약 내역</a></li>
-			<li><a href="${cpath }/userInfo">내 정보 관리</a></li>
+			<li><a href="${cpath }/point/${dto.memberID}">포인트</a></li>
+			<li><a href="${cpath }/reservation/${dto.memberID}">예약 내역</a></li>
+			<li><a href="${cpath }/userInfo/${dto.memberID}">내 정보 관리</a></li>
 		</ul>
 		
 	</nav>
 </div>
-<c:forEach var="list" items="${list }">
 <div class="userInfo">
 	<strong>내 정보 수정</strong>
 	<div>
 	<p><img src="https://image.goodchoice.kr/profile/ico/ico_25.png" width="125px;"></p>
 	<p class="kind">
 	<c:choose>
-	<c:when test="${list.memberKind == 'n' }">
+	<c:when test="${dto.memberKind == 'n' }">
 		naver계정으로 로그인
 	</c:when>
-	<c:when test="${list.memberKind == 'k' }">
-		KtgakaoTalk계정으로 로그인
+	<c:when test="${dto.memberKind == 'k' }">
+		KakaoTalk계정으로 로그인
 	</c:when>
-<%-- 	<c:when test="${list.memberKind == 'n' }"> --%>
+<%-- 	<c:when test="${dto.memberKind == 'n' }"> --%>
 		
 <%-- 	</c:when> --%>
 	</c:choose>
@@ -89,13 +88,13 @@ function hideModify(event) {
 	<div id="name">
 		<div>
 			<b>이름</b>
-			<span class="name_span">${list.name }</span>
+			<span class="name_span">${dto.name }</span>
 		</div>
 		<button class="renameBTN2" value="2">수정</button>
 		
 		<div id="modify2" class="modify hidden"><!-- 수정버튼 누르면 나타나는 태그 -->
 			<form method="POST">
-				<p><input type="text" value="${list.name }" name="name" placeholder="체크인시 필요한 정보입니다" required></p>
+				<p><input type="text" value="${dto.name }" name="name" placeholder="체크인시 필요한 정보입니다" required></p>
 				<p>
 				<button id="change2" type="submit">수정 완료</button>
 				<button id="cancelBTN2" type="button" value="2">수정 취소</button>
@@ -108,14 +107,14 @@ function hideModify(event) {
 	<div id="phone">
 		<div>
 			<b>휴대폰 번호</b>
-			<span id="phoneSpan">${list.phone }</span>
+			<span id="phoneSpan">${dto.phone }</span>
 			<div class="warning">개인 정보 보호를 위해 내 정보는 모두 안전하게 암호화됩니다.</div>
 		</div>
 		<button class="renameBTN3" value="3">수정</button>
 		
 		<div id="modify3" class="modify hidden"><!-- 수정버튼 누르면 나타나는 태그 -->
 			<form method="POST">
-				<p><input type="text" value="${list.phone }" name="phone" placeholder="체크인시 필요한 정보입니다" required></p>
+				<p><input type="text" value="${dto.phone }" name="phone" placeholder="체크인시 필요한 정보입니다" required></p>
 				<p>
 				<button id="change3" type="submit">수정 완료</button>
 				<button id="cancelBTN3" type="button" value="3">수정 취소</button>
@@ -129,7 +128,6 @@ function hideModify(event) {
 	<button>회원탈퇴</button>
 	</div>
 </div>
-</c:forEach>
 </div>
 <script>
 	const phoneSpan = document.getElementById('phoneSpan')

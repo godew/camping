@@ -57,4 +57,5 @@
 	<mybatis-spring:scan base-package="com.teamproject.review"/>
 	<mybatis-spring:scan base-package="com.teamproject.reservation"/>
 	<mybatis-spring:scan base-package="com.teamproject.manager"/>
+	<mybatis-spring:scan base-package="com.teamproject.nonMember"/>
 </beans>

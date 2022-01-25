@@ -12,9 +12,9 @@
 <div class="leftmenu">
 	<nav>
 		<ul>
-			<li><a href="${cpath }/point">포인트</a></li>
-			<li><a href="${cpath }/reservation">예약 내역</a></li>
-			<li><a href="${cpath }/userInfo">내 정보 관리</a></li>
+			<li><a href="${cpath }/point/${dto.memberID}">포인트</a></li>
+			<li><a href="${cpath }/reservation/${dto.memberID}">예약 내역</a></li>
+			<li><a href="${cpath }/userInfo/${dto.memberID}">내 정보 관리</a></li>
 		</ul>
 		
 	</nav>

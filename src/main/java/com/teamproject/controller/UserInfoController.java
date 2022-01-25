@@ -1,8 +1,8 @@
 package com.teamproject.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.teamproject.member.MemberDTO;
 import com.teamproject.order.OrderDTO;
 import com.teamproject.point.OrderPointDTO;
 import com.teamproject.point.ReviewPointDTO;
@@ -32,15 +31,17 @@ public class UserInfoController {
 	@Autowired private OrderService os;
 	
 	@GetMapping("/userInfo/{memberID}")
-	public String userinfo(@PathVariable String memberID, Model model) {
+	public String userinfo(@PathVariable String memberID, Model model, HttpSession session) {
 		
-		List<MemberDTO> list = us.getMember(memberID);		
-		model.addAttribute("list", list);
+		Object dto = session.getAttribute("login");
+		
+		model.addAttribute("dto", dto);
 		return "/userInfo/userinfo";
 	}
 	
 	@PostMapping("/userInfo/{memberId}")
-	public int userNameUpdate(@RequestParam("name") String name,@PathVariable String memberId) {
+	@ResponseBody
+	public String userNameUpdate(@RequestParam("name") String name,@PathVariable String memberId) {
 		System.out.println(name);
 		int row = 0;
 		if(name != null) {
@@ -50,7 +51,7 @@ public class UserInfoController {
 //		row = us.updatePhone(phone, memberId);
 		}
 		System.out.println(row);
-		return row;
+		return "/userInfo/userinfo" + memberId;
 	}
 //	@PostMapping("/userInfo/{memberId}")
 //	public int phoneUpdate(@PathVariable String phone, @PathVariable String memberId) {
@@ -59,8 +60,12 @@ public class UserInfoController {
 //	}
 	
 
-	@GetMapping("/point")
-	public String point() {
+	@GetMapping("/point/{memberID}")
+	public String point(@PathVariable int memberID, Model model, HttpSession session) {
+		Object dto = session.getAttribute("login");
+		System.out.println("dto :" + dto);
+		System.out.println("session :" + session);
+		model.addAttribute("dto", dto);
 		return "/userInfo/point";
 	}
 	@GetMapping(value = "/getOpoint/{memberId}", produces = "application/json; charset=utf-8")
@@ -83,11 +88,14 @@ public class UserInfoController {
 //	}
 	
 	@GetMapping("/reservation/{memberId}")
-	public String reservation(@PathVariable int memberId, Model model) {
+	public String reservation(@PathVariable int memberId, Model model, HttpSession session) {
 		List<reservationDTO> list = rs.getReservation(memberId);
+		Object dto = session.getAttribute("login");
 		String name = us.getName(memberId);
 		model.addAttribute("name", name);
 		model.addAttribute("list", list);
+		model.addAttribute("dto", dto);
+		
 		return "/userInfo/reservation";
 	}
 
