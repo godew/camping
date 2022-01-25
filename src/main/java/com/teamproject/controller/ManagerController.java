@@ -21,7 +21,7 @@ public class ManagerController {
 	@GetMapping("/manager")
 	public String manager(Model model) {
 		Set<String> users = chatComponent.getSessionList().keySet();
-		users.remove("manager");
+		users.remove("manager@naver.com");
 		model.addAttribute("users", users);
 		return "manager/manager";
 	}

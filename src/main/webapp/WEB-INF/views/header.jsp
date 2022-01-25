@@ -26,8 +26,8 @@
 	let ws
 	if ('${not empty login}' == 'true') {
 		ws = new SockJS(cpath + '/chat?username=${login.email}')
+		ws.onmessage = onMessage
 	}
-	ws.onmessage = onMessage
 </script>
 <header>
 	<div class="content">
@@ -53,6 +53,11 @@
 		</ul>
 	</div>
 </header>
+<div id="bottom-msg">
+	<div>
+	</div>
+	<button class="bottom-msg-btn">1대1 대화</button>
+</div>
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
 	const headerSeemore = document.querySelector('.header_seemore')
