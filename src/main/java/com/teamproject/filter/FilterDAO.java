@@ -29,6 +29,13 @@ public interface FilterDAO {
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode} order by distance asc")
 	List<MapDTO> selectPlace(String areacode);
 	
+	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B\r\n" + 
+			"on A.itemId = B.itemId and A.itemId = #{itemID}" + 
+			"join calendar C\r\n" + 
+			"on B.itemRoomId = C.itemroomId\r\n" + 
+			"where month = 1")
+	List<FilterDTO> submitSearch(int itemId);
+	
 
 	
 	

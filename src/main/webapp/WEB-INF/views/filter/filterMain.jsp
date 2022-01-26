@@ -175,12 +175,7 @@
 			</div>
 		</div>
 		<div class="filterwrap3">
-			<div class="inDisplay">
-				<div class="sort"></div>
-				<div class="sort2"></div>
-				<div class="sort3"></div>
-				<div class="sort4"></div>
-			</div>
+			<div class="inDisplay"></div>
 		</div>
 	</div>
 </div>

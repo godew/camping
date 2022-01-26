@@ -33,22 +33,24 @@ function filterSearch(event){
 	let minPrice = +inputLeft.value + '0000'
 	let maxPrice = +inputRight.value + '0000'
 	
-	
-	
+	let checkInDay = ''
+	let checkOutDay = ''
+	let checkInMonth = ''
+	let checkOutMonth = ''
+		
 	if(lt == '' && rt == ''){
-		let checkInDay = today
-		let checkOutDay = tomorrow
-		let checkInMonth = thisMonth
-		let checkOutMonth = thisMonth
+		checkInDay = thisMonth+today
+		checkOutDay = thisMonth+tomorrow
+	} else {
+		checkInDay = lt.dataset.day + lt.dataset.month
+		checkOutDay = rt.dataset.day + rt.dataset.month
 	}
-	let checkInDay = lt.dataset.day
-	let checkOutDay = rt.dataset.day
-	let checkInMonth = lt.dataset.month
-	let checkOutMonth = rt.dataset.month
+	
 	
 	console.log(areacode)
 	
-	const url = cpath + '/submitSearch'
+	const url = cpath + '/submitSearch?areacode='+areacode+'&people='+people+'&checkInDay='+ checkInDay + '&checkOutDay='+checkOutDay 
+	+ '&minPrice='+minPrice+'&maxPrice='+ maxPrice +'&checkLabel='+checkLabel
 	const opt = {
 		method: 'GET'
 	}

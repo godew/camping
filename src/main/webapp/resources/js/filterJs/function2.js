@@ -280,9 +280,12 @@ function originalSelect(){
 		images.forEach(image => {
 			image.onclick = function() {
 				const itemId = this.dataset.id
+				let checkIn = ''
+				let checkOut = ''
+					
 				if(lt != '' && rt != ''){
-					const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-					const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
+					checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
+					checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
 				}
 				else if(lt == '' && rt == ''){
 					checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)

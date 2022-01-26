@@ -136,7 +136,8 @@
 			}
 			
 			else if (month < thisMonth && set_date.dataset.day < today) {
-				set_date.style.color = 'grey'
+				set_date.style.color = '#DEE2E6'
+				set_date.style.pointerEvents = 'none'
 			}
 		}
 	}
