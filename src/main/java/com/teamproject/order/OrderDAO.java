@@ -46,6 +46,9 @@ public interface OrderDAO {
 	@Delete("delete from orders where orderId=${orderId}")
 	int orderDelete(int orderId);
 
-	@Update("update orders set cancel='0' where orderId=#{orderId}")
+	@Update("update orders set cancel=0 where orderId=${orderId}")
 	int orderCancle(int orderId);
+
+	@Select("select * from orders where tid=#{tid}")
+	OrderDTO selectByTid(String tid);
 }

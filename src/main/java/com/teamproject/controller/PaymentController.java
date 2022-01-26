@@ -92,14 +92,16 @@ public class PaymentController {
 				point = Integer.valueOf(session.getAttribute("point").toString()) + (order.getOrderPrice() / 10);			
 				point = (int)Math.round((double)point / 10) * 10;
 			}
-//			int tmpPoint = point - Integer.valueOf(session.getAttribute("point").toString());
-//			OrderDTO order1 = orderService.getOrder(order.getOrderId()).get(0);
-//			pointService.add(tmpPoint, order.getMemberId(), order.);
 			userinfoService.modifyPoint(order.getMemberId(), point);
 			((MemberDTO)session.getAttribute("login")).setPoint(point);
 			
-			session.removeAttribute("point");
+			// point table에 row추가
+			int tmpPoint = point - Integer.valueOf(session.getAttribute("point").toString());
+			String title = itemRoomService.findById(String.valueOf(order.getItemRoomId())).getItemRoomName();
+			OrderDTO orderTmp = orderService.getOrderByTid(order.getTid());
+			pointService.add(tmpPoint, order.getMemberId(), title, orderTmp.getOrderId());
 			
+			session.removeAttribute("point");
 		}
 		
 		

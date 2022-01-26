@@ -173,4 +173,28 @@ constraint member_review_fk foreign key(memberId) references member(memberId) on
 constraint item_review_fk foreign key(itemid) references item(itemid) on delete cascade
 );
 
-commit;
+create sequence point_seq
+INCREMENT BY 1
+START WITH 1
+MAXVALUE 99999
+NOCYCLE
+NOCACHE;
+
+create table point(
+    pointId     number  DEFAULT point_seq.nextval PRIMARY key,
+    orderId     number  ,
+    title       varchar2(300) not null,
+    memberId    number  not null,
+    point      number  not null,
+    pointDate  date    default sysdate,
+    status      varchar2(10) check(status in ('r' ,'p')),
+    
+    constraint point_member_fk  
+    foreign key(memberId)     
+    references member(memberId)
+    on delete cascade,           
+    
+    CONSTRAINT order_point_fk
+    FOREIGN key(orderId)
+    REFERENCES orders(orderId)
+);

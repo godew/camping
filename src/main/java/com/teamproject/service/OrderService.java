@@ -32,6 +32,8 @@ public class OrderService {
 	public int orderCancle(int orderId) {
 		return dao.orderCancle(orderId);
 	}
-	
-	
+
+	public OrderDTO getOrderByTid(String tid) {
+		return dao.selectByTid(tid);
+	}
 }

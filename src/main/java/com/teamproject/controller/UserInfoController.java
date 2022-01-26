@@ -102,11 +102,11 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/reservation/{memberId}")
-	public String orderCancle(@RequestParam("orderId") int orderId) {
-		int row = os.orderCancle(orderId);
-		System.out.println(row);
+	public String orderCancle(@RequestParam("orderId") int orderId, @PathVariable int memberId) {
+		os.orderCancle(orderId);
+//		ps.delete()
+//		us.modifyPoint(memberId, point);
+		
 		return "redirect:/";
 	}
-	
-	
 }
