@@ -105,6 +105,7 @@ function authHandler(event) {
 				sendBtn.style.cursor = 'default'
 				authBtn.disabled = 'disabled'
 				authBtn.style.cursor = 'default'
+				authBtn.style.pointerEvents = 'none'
 				authFlag = true
 			} else {
 				authMsg.style.color = 'red'
