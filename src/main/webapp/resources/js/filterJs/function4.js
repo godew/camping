@@ -38,8 +38,8 @@
 		let checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
 		let checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
 		todayAndTomorrow.innerHTML = ''
-		console.log(lt)
-		console.log(rt)
+//		console.log(lt)
+//		console.log(rt)
 		
 		if(lt.dataset.month < rt.dataset.month){
 			let ltday = new Date(year, lt.dataset.month, 0).getDate()
@@ -48,7 +48,7 @@
 			
 		} 
 		else if(lt.dataset.month == rt.dataset.month){			
-			console.log(last_date)
+//			console.log(last_date)
 			todayAndTomorrow.innerHTML = '<div>' + lt.dataset.month + '.' + lt.dataset.day + ' ~ ' + rt.dataset.month + '.' + rt.dataset.day + ' · ' + (+rt.dataset.day - +lt.dataset.day) + '박' + '</div>'		
 		}
 		console.log(checkIn)
@@ -82,7 +82,7 @@
 	
 	
 	function closeCalendarHandler(event) {
-		console.log(1)
+//		console.log(1)
 		filterCalendar.classList.add('calendarHidden')
 		
 	}

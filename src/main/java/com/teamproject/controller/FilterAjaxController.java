@@ -70,9 +70,9 @@ public class FilterAjaxController {
 		int itemId = 0;
 		
 		for(int i = 1; i <= 188; i++) {
-			itemId += i;
+			itemId = i;
 			list = fs.submitSearch(itemId);
-			return list;
+			System.out.println(list);
 		}
 		
 		System.out.println(map);

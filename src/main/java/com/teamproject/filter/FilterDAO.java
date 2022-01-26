@@ -30,7 +30,7 @@ public interface FilterDAO {
 	List<MapDTO> selectPlace(String areacode);
 	
 	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B\r\n" + 
-			"on A.itemId = B.itemId and A.itemId = #{itemID}" + 
+			"on A.itemId = B.itemId and A.itemId = #{itemId}" + 
 			"join calendar C\r\n" + 
 			"on B.itemRoomId = C.itemroomId\r\n" + 
 			"where month = 1")
