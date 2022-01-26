@@ -63,19 +63,52 @@ public class FilterAjaxController {
 		return list;
 	}
 	
+	@SuppressWarnings("unused")
 	@GetMapping("/submitSearch")
-	public List<FilterDTO> submitSearch(@RequestParam HashMap<String, String> map){
+	public ArrayList<FilterDTO> submitSearch(@RequestParam HashMap<String, String> map){
 		
-		List<FilterDTO> list = null;
+		ArrayList<FilterDTO> list = new ArrayList<FilterDTO>();
 		int itemId = 0;
 		
-		for(int i = 1; i <= 188; i++) {
-			itemId = i;
-			list = fs.submitSearch(itemId);
-			System.out.println(list);
-		}
+		String areacode = map.get("areacode");
+		String firstMonth = map.get("checkInDay").substring(0, 2);
+		String secondMonth = map.get("checkOutDay").substring(0, 2);
+		String firstDay = map.get("checkInDay").substring(2, 4);
+		String secondDay = map.get("checkInDay").substring(2, 4);
+		String people = map.get("people");
+		String minPrice = map.get("minPrice");
+		String maxPrice = map.get("maxPrice");
+		String checkLabel = map.get("checkLabel");
+		String fd = "D"+firstDay;
+//		
+//		System.out.println(firstMonth);
+//		System.out.println(secondMonth);
+//		System.out.println(firstDay);
+//		System.out.println(secondDay);
 		
-		System.out.println(map);
+		HashMap<String, String> hmap = new HashMap<String, String>();
+		hmap.put("areacode", areacode);
+		hmap.put("fd", fd);
+		hmap.put("secondDay", secondDay);
+		hmap.put("firstDay", firstDay);
+		hmap.put("people", people);
+		hmap.put("minPrice", minPrice);
+		hmap.put("maxPrice", maxPrice);
+		hmap.put("checkLabel", checkLabel);
+		hmap.put("firstMonth", firstMonth);
+		hmap.put("secondMonth", secondMonth);
+		hmap.put("checkLabel", checkLabel);
+		
+		System.out.println(hmap);
+		
+//		if(firstMonth == secondMonth) {
+//			for(int i = 1; i <= 188; i++) {
+//				itemId = i;
+//				list.addAll(fs.submitSearch(itemId));
+//			}
+//		}
+		list.addAll(fs.submitFilter(hmap));
+			
 		System.out.println(list);
 		
 		return list;

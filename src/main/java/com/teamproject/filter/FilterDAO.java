@@ -1,5 +1,7 @@
 package com.teamproject.filter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
@@ -29,12 +31,22 @@ public interface FilterDAO {
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode} order by distance asc")
 	List<MapDTO> selectPlace(String areacode);
 	
-	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B\r\n" + 
-			"on A.itemId = B.itemId and A.itemId = #{itemId}" + 
-			"join calendar C\r\n" + 
-			"on B.itemRoomId = C.itemroomId\r\n" + 
+	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
+			"on A.itemId = B.itemId and A.itemId = #{itemId} " + 
+			"join calendar C " + 
+			"on B.itemRoomId = C.itemroomId " + 
 			"where month = 1")
-	List<FilterDTO> submitSearch(int itemId);
+	ArrayList<FilterDTO> submitSearch(int itemId);
+	
+	
+	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
+			"on A.itemId = B.itemId " + 
+			"join calendar C " + 
+			"on B.itemRoomId = C.itemroomId " + 
+			"where areacode = #{areacode} and #{minPrice} <= itemprice and itemprice < #{maxPrice} or itemprice = #{maxPrice}"
+			+ "and #{people} <= maxpeople and filter like '%${checkLabel}%'"
+			+ "and ${fd} = 1")
+	ArrayList<FilterDTO> submitFilter(HashMap<String, String> hmap);
 	
 
 	

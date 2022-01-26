@@ -1,5 +1,7 @@
 package com.teamproject.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +47,12 @@ public class FilterService {
 		return fd.select();
 	}
 
-	public List<FilterDTO> submitSearch(int itemId) {
+	public ArrayList<FilterDTO> submitSearch(int itemId) {
 		return fd.submitSearch(itemId);
+	}
+
+	public ArrayList<FilterDTO> submitFilter(HashMap<String, String> hmap) {
+		return fd.submitFilter(hmap);
 	}
 
 

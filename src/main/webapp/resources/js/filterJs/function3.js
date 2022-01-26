@@ -39,20 +39,17 @@ function filterSearch(event){
 	let checkOutMonth = ''
 		
 	if(lt == '' && rt == ''){
-		checkInDay = String(thisMonth)+today
-		checkOutDay = String(thisMonth)+tomorrow
+		checkInDay = ('0' + thisMonth).slice(-2) + today
+		checkOutDay = ('0' + thisMonth).slice(-2) + tomorrow
 	} else {
-		checkInDay = lt.dataset.month + lt.dataset.day
-		checkOutDay = rt.dataset.month + rt.dataset.day 
+		checkInDay = ('0'+lt.dataset.month).slice(-2) + lt.dataset.day
+		checkOutDay = ('0'+rt.dataset.month).slice(-2) + rt.dataset.day 
 	}
 	
 	console.log(checkInDay)
 	console.log(checkOutDay)
-	console.log(thisMonth+today)
-	console.log(typeof(checkInDay))
-	console.log(typeof(checkOutDay))
-	console.log(today)
-	
+
+
 	
 	console.log(areacode)
 	
