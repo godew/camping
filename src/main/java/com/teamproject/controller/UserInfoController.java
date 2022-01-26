@@ -106,13 +106,9 @@ public class UserInfoController {
 	
 	@PostMapping("/reservation/{memberId}")
 	public String orderCancle(@RequestParam("orderId") int orderId, @PathVariable int memberId) {
+		System.out.println("orderid : " + orderId);
+		System.out.println("memberId : " + memberId);
 		os.orderCancle(orderId);
-//		int point = us.getPointByMemberId(memberId) - ps.getPointByOrderId(orderId); 
-//		if (point < 0) {
-//			point = 0;
-//		}
-//		ps.delete(orderId);
-//		us.modifyPoint(memberId, point);
 		
 		OrderDTO order = os.getOrder(orderId).get(0);
 		int month1 = Integer.valueOf(order.getCheckIn().substring(0, 2));
