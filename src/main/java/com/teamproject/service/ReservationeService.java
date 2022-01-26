@@ -14,12 +14,6 @@ public class ReservationeService {
 	@Autowired private ReservationDAO dao;
 
 	public List<reservationDTO> getReservation(int memberId) {
-//		reservationDTO dto = new reservationDTO();
-//		SimpleDateFormat sdf = dto.getCheckIn("yyyy-MM-dd E요일 HH:mm");
-		
-//		reservationDTO dto = new reservationDTO();
-//		System.out.println(dto.getCancel());
-		
 		return dao.getReservation(memberId);
 	}
 

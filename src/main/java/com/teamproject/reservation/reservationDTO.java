@@ -2,11 +2,14 @@ package com.teamproject.reservation;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class reservationDTO {
 
-	private int orderId, memberId, itemRoomId, orderprice, cancel;
-	private String tid,checkIn, checkOut;
+	private int orderId, memberId, itemRoomId, orderPrice, cancel, itemId, satandardPeople, maxPeople;
+	private String tid,checkIn, checkOut, notPhone, notName, itemRoomName;
 	private Date orderDate;
+	private MultipartFile itemRoomImg;
 	
 	public int getOrderId() {
 		return orderId;
@@ -26,29 +29,41 @@ public class reservationDTO {
 	public void setItemRoomId(int itemRoomId) {
 		this.itemRoomId = itemRoomId;
 	}
-	public int getOrderprice() {
-		return orderprice;
+	public int getOrderPrice() {
+		return orderPrice;
 	}
-	public void setOrderprice(int orderprice) {
-		this.orderprice = orderprice;
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
 	}
 	public int getCancel() {
 		return cancel;
 	}
-	public void setCanel(int cancle) {
-		this.cancel = cancle;
+	public void setCancel(int cancel) {
+		this.cancel = cancel;
+	}
+	public int getItemId() {
+		return itemId;
+	}
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+	public int getSatandardPeople() {
+		return satandardPeople;
+	}
+	public void setSatandardPeople(int satandardPeople) {
+		this.satandardPeople = satandardPeople;
+	}
+	public int getMaxPeople() {
+		return maxPeople;
+	}
+	public void setMaxPeople(int maxPeople) {
+		this.maxPeople = maxPeople;
 	}
 	public String getTid() {
 		return tid;
 	}
 	public void setTid(String tid) {
 		this.tid = tid;
-	}
-	public Date getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
 	}
 	public String getCheckIn() {
 		return checkIn;
@@ -61,5 +76,35 @@ public class reservationDTO {
 	}
 	public void setCheckOut(String checkOut) {
 		this.checkOut = checkOut;
+	}
+	public String getNotPhone() {
+		return notPhone;
+	}
+	public void setNotPhone(String notPhone) {
+		this.notPhone = notPhone;
+	}
+	public String getNotName() {
+		return notName;
+	}
+	public void setNotName(String notName) {
+		this.notName = notName;
+	}
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+	public MultipartFile getItemRoomImg() {
+		return itemRoomImg;
+	}
+	public void setItemRoomImg(MultipartFile itemRoomImg) {
+		this.itemRoomImg = itemRoomImg;
+	}
+	public String getItemRoomName() {
+		return itemRoomName;
+	}
+	public void setItemRoomName(String itemRoomName) {
+		this.itemRoomName = itemRoomName;
 	}
 }

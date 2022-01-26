@@ -19,9 +19,9 @@
 	<div>itemRoomId : ${list.itemRoomId }</div>
 	<div>checkIn	: ${list.checkIn }</div>
 	<div>checkOut 	: ${list.checkOut }</div>
-	<div>tid 		: ${list.tid }</div>
+	<div>${list.tid }</div>
 	<div>orderPrice	: ${list.orderPrice }</div>
-	
+
 	<button id="review">리뷰작성</button>
 	<button id="deleteBTN">삭제</button>
 </c:forEach>
@@ -31,8 +31,7 @@
 
 
 <script>
-	const memberId = '${list.memberId}'
-	const review = document.getElementById('review')
+// 	const review = document.getElementById('review')
 	const deleteBTN = document.getElementById('deleteBTN')
 
 
@@ -42,9 +41,9 @@
 		location.href = cpath + '/reservationDelete/' + orderId
 	}
 		
-	review.onclick = function(event){
-		location.href = cpath + '/review/' + memberId 
-	}
+// 	review.onclick = function(event){
+// 		location.href = cpath + '/review/'
+// 	}
 	
 		
 </script>

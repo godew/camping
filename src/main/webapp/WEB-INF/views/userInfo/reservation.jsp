@@ -6,7 +6,9 @@
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/reservation.css">
 
 <script>
-
+function point(event) {
+	location.href = cpath + '/getPoint/' + orderId
+}
 </script>
 <c:forEach var="list" items="${list }">
 <fmt:parseDate var="checkIn" value="${list.checkIn }" pattern="MMdd"/>
@@ -23,25 +25,41 @@
 		
 	</nav>
 </div>
-<%-- <div>${today }</div> --%>
 <div class="mainContent">
+
 		<h3>예약 내역</h3>
 	<div id="reservation">
 	<c:forEach var="list" items="${list }" >
+	<div class="orderId hidden">${list.orderId }</div>
 		<c:if test="${checkIn > today }">
 		<c:if test="${list.cancel != 0}">
 		<ul>
+		<li><img src="${list.itemRoomImg }" width="100px;"></li>
 			<li>예약자 ${name }</li>
 			<li>방번호${list.itemRoomId }</li>
-			<li>가격${list.orderprice }원</li>
+			<li>가격${list.orderPrice }원</li>
 			<li>체크인${list.checkIn }</li>
 			<li>체크아웃${list.checkOut }</li>
 			<li>예약날짜${list.orderDate }</li>
+			<li>${list.orderId }</li>
+			<li>${list.itemRoomImg }</li>
 			<li>
+			<c:if test="${list.cancel == 1 }">
+			<form method="POST">
+				<input type="number" name="orderId" value="${list.orderId }" hidden="">
+				<input type="submit" value="예약취소">
+				<button id="getPoint" type="button">
+					포인트 받기
+				</button>
+			</form>
+			</c:if>
+			<c:if test="${list.cancel == 2 }">
 			<form method="POST">
 				<input type="number" name="orderId" value="${list.orderId }" hidden="">
 				<input type="submit" value="예약취소">
 			</form>
+			
+			</c:if>
 			</li>
 		</ul>
 		</c:if>
@@ -56,7 +74,7 @@
 		<a href="${cpath }/reservationDetail/${list.orderId}/${list.memberId}">
 		<ul>
 			<li>방번호${list.itemRoomId }</li>
-			<li>가격${list.orderprice }원</li>
+			<li>가격${list.orderPrice }원</li>
 			<li>${list.checkIn } ~ ${list.checkOut }</li>
 			<li>cancel${list.cancel }</li>
 <%-- 			<li><a href="${cpath }/product/detail?itemId=${list.itemRoomId}&checkIn=${today}&checkOut=${today+1}">다시예약</a></li><!-- 예약페이지 --> --%>
@@ -74,7 +92,7 @@
 		<ul>
 			<li>예약자 ${name }</li>
 			<li>방번호${list.itemRoomId }</li>
-			<li>가격${list.orderprice }원</li>
+			<li>가격${list.orderPrice }원</li>
 			<li>체크인${list.checkIn }</li>
 			<li>체크아웃${list.checkOut }</li>
 			<li>예약날짜${list.orderDate }</li>
@@ -87,11 +105,11 @@
 
 </div>
 <script>
-	const reservation = document.getElementById('reservation')
-	const usageHistory = document.getElementById('usageHistory')
-	const cancellationHistory = document.getElementById('cancellationHistory')
-	
-	
+	const orderId = document.querySelectorAll('.orderId').innerText
+	const getPoint = document.getElementById('getPoint')
+
+	getPoint.onclick = point
+
 </script>
 
 

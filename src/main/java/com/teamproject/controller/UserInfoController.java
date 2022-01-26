@@ -3,6 +3,7 @@ package com.teamproject.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.teamproject.member.MemberDTO;
 import com.teamproject.order.OrderDTO;
 import com.teamproject.point.PointDTO;
 import com.teamproject.reservation.reservationDTO;
@@ -35,7 +37,6 @@ public class UserInfoController {
 	public String userinfo(@PathVariable String memberID, Model model, HttpSession session) {
 		
 		Object dto = session.getAttribute("login");
-		
 		model.addAttribute("dto", dto);
 		return "/userInfo/userinfo";
 	}
@@ -100,7 +101,7 @@ public class UserInfoController {
 	public String reservationDelete(@PathVariable int orderId) {
 		int row = os.reservationDelete(orderId);
 		
-		return "redirect:/";
+		return "redirect:/reservationDelete/" + orderId;
 	}
 	
 	@PostMapping("/reservation/{memberId}")
@@ -137,7 +138,15 @@ public class UserInfoController {
 				itemRoomService.modifyCalendar1(order.getItemRoomId(), month2, i);
 			}
 		}
-		
-		return "redirect:/";
+
+		return "redirect:/reservation/" + memberId;
+	}
+	
+	@GetMapping("/getPoint/{orderId}")
+	public String getPoint(@PathVariable int orderId, HttpSession session) {
+		int row = ps.takePoint(orderId); 
+		int memberId = ((MemberDTO)session.getAttribute("login")).getMemberID();
+		System.out.println(memberId);
+		return "redirect:/reservation/" + memberId;
 	}
 }

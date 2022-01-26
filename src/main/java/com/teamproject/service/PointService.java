@@ -28,4 +28,10 @@ public class PointService {
 	public int getPointByOrderId(int orderId) {
 		return dao.selectPointByOrderId(orderId);
 	}
+
+	public int takePoint(int orderId) {
+		System.out.println(orderId);
+		
+		return dao.takePoint(orderId);
+	}
 }
