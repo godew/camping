@@ -1,13 +1,17 @@
 package com.teamproject.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teamproject.filter.FilterDTO;
 import com.teamproject.filter.MapDTO;
 import com.teamproject.service.FilterService;
 
@@ -23,9 +27,15 @@ public class FilterAjaxController {
 		return list;
 	}
 	
-	@GetMapping("/selectOriginal")
+	@GetMapping("/select")
 	public List<MapDTO> selectOriginal(){
-		List<MapDTO> list = fs.selectOriginal();
+		List<MapDTO> list = fs.select();
+		return list;
+	}
+	
+	@GetMapping("/selectOriginal/{areacode}")
+	public List<MapDTO> selectOriginal(@PathVariable String areacode){
+		List<MapDTO> list = fs.selectOriginal(areacode);
 		return list;
 	}
 	
@@ -52,5 +62,26 @@ public class FilterAjaxController {
 		List<MapDTO> list = fs.selectArea(areaCode);
 		return list;
 	}
+	
+	@GetMapping("/submitSearch")
+	public List<FilterDTO> submitSearch(@RequestParam HashMap<String, String> map){
+		
+		List<FilterDTO> list = null;
+		int itemId = 0;
+		
+		for(int i = 1; i <= 188; i++) {
+			itemId += i;
+			list = fs.submitSearch(itemId);
+			return list;
+		}
+		
+		System.out.println(map);
+		System.out.println(list);
+		
+		return list;
+	}
+
+	
+
 	
 }

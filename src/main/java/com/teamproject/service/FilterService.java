@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamproject.filter.FilterDAO;
+import com.teamproject.filter.FilterDTO;
 import com.teamproject.filter.MapDTO;
 
 
@@ -20,8 +21,8 @@ public class FilterService {
 		return fd.selectMap();
 	}
 
-	public List<MapDTO> selectOriginal() {
-		return fd.selectOriginal();
+	public List<MapDTO> selectOriginal(String areacode) {
+		return fd.selectOriginal(areacode);
 	}
 
 	public List<MapDTO> selectUnderPrice(String areacode) {
@@ -39,6 +40,18 @@ public class FilterService {
 	public List<MapDTO> selectPlace(String areacode) {
 		return fd.selectPlace(areacode);
 	}
+
+	public List<MapDTO> select() {
+		return fd.select();
+	}
+
+	public List<FilterDTO> submitSearch(int itemId) {
+		return fd.submitSearch(itemId);
+	}
+
+
+
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.teamproject.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.ItemService;
 import com.teamproject.service.OrderService;
 import com.teamproject.service.PaymentService;
+import com.teamproject.service.PointService;
 import com.teamproject.service.UserinfoService;
 
 @Controller
@@ -31,6 +33,7 @@ public class PaymentController {
 	@Autowired private ItemService itemService;
 	@Autowired private OrderService orderService;
 	@Autowired private UserinfoService userinfoService;
+	@Autowired private PointService pointService;
 	
 	@GetMapping("/payment/{itemRoomId}")
 	public String pay(Model model, HttpSession session, @PathVariable String itemRoomId, String checkIn, String checkOut) {
@@ -89,11 +92,16 @@ public class PaymentController {
 				point = Integer.valueOf(session.getAttribute("point").toString()) + (order.getOrderPrice() / 10);			
 				point = (int)Math.round((double)point / 10) * 10;
 			}
+//			int tmpPoint = point - Integer.valueOf(session.getAttribute("point").toString());
+//			OrderDTO order1 = orderService.getOrder(order.getOrderId()).get(0);
+//			pointService.add(tmpPoint, order.getMemberId(), order.);
 			userinfoService.modifyPoint(order.getMemberId(), point);
 			((MemberDTO)session.getAttribute("login")).setPoint(point);
 			
 			session.removeAttribute("point");
+			
 		}
+		
 		
 		int month1 = Integer.valueOf(order.getCheckIn().substring(0, 2));
 		int month2 = Integer.valueOf(order.getCheckOut().substring(0, 2));

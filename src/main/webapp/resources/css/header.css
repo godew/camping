@@ -86,7 +86,6 @@ header .a_tag2 {
 
 #bottom-msg {
 	width: 250px;
-	height: 35px;
     position: fixed;
     right: 100px;
 	bottom : 0;
@@ -109,9 +108,30 @@ header .a_tag2 {
 #bottom-msg > .bottom-msg-btn:hover {
 	background: linear-gradient( to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100% );
 }
-    
-    
-    
+#bottom-msg > .content-wrap {
+	height: 350px;
+	background: rgb(239, 239, 239);
+}
+#bottom-msg > .content-wrap > .content {
+	height: 93%;
+	border-radius: 5px;
+	overflow-y: scroll; 
+}
+#bottom-msg > .content-wrap input {
+	width: 77%;
+}
+#bottom-msg .msgline {
+	height: 35px;	
+	display: flex;
+	justify-content: flex-end;
+	padding: 13px;
+}
+#bottom-msg .msgline > .wsSend {
+	background-color: skyblue;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 13px;
+}
     
     
     

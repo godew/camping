@@ -23,7 +23,7 @@
 	</beans:bean>
 	
 	
-<interceptors>
+	<interceptors>
 		<interceptor>
 			<mapping path="/userInfo/reservation" />	 
 			<mapping path="/reservation/" />	 

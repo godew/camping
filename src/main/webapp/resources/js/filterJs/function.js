@@ -26,10 +26,6 @@ filterPlus.onclick = function(event){
 
 
 
-
-
-
-
 // price 
 const inputLeft = document.getElementById("input-left");
 const inputRight = document.getElementById("input-right");
@@ -51,6 +47,7 @@ function setLeftValue() {
 }
 setLeftValue();
 
+
 function setRightValue() {
 	let _this = inputRight,
 		min = parseInt(_this.min),
@@ -67,28 +64,31 @@ setRightValue();
 
 
 
+inputLeft.addEventListener('click', leftPrice)
+inputRight.addEventListener('click', leftPrice)
+
 window.addEventListener('load', filterPrice)
 
 function filterPrice(){
 	filterPriceList.innerHTML = '1만원 이상'
-//			console.log(inputLeft.value)
-//			console.log(inputRight.value)
 }
 
-inputLeft.addEventListener("mousedown", function() {
-	console.log(thumbLeft.value)
-});
+function leftPrice(event){
+	filterPriceList.innerHTML = ''
+	let rP = filterPriceList.innerHTML = inputLeft.value + '만원 ~ ' + inputRight.value + '만원 이하'
+	
+	if(inputLeft.value == '1' && inputRight.value == '30'){
+		filterPriceList.innerHTML = ''
+		filterPriceList.innerHTML = '1만원 이상'
+	}
+	
+}
+
 
 
 inputLeft.addEventListener("input", setLeftValue);
 inputRight.addEventListener("input", setRightValue);
 
-//	inputLeft.addEventListener("mouseover", function() {
-//		thumbLeft.classList.add("hover");
-//	});
-//	inputLeft.addEventListener("mouseout", function() {
-//		thumbLeft.classList.remove("hover");
-//	});
 inputLeft.addEventListener("mousedown", function() {
 	thumbLeft.classList.add("active");
 });
@@ -97,12 +97,6 @@ inputLeft.addEventListener("mouseup", function() {
 	thumbLeft.classList.remove("active");
 });
 
-//	inputRight.addEventListener("mouseover", function() {
-//		thumbRight.classList.add("hover");
-//	});
-//	inputRight.addEventListener("mouseout", function() {
-//		thumbRight.classList.remove("hover");
-//	});
 inputRight.addEventListener("mousedown", function() {
 	thumbRight.classList.add("active");
 });

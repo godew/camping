@@ -64,6 +64,9 @@
 	margin-left: 10px;
 	cursor: pointer;
 }
+.authForm .authBtn:hover {
+	background-color: rgb(255, 0, 85);
+}
 .book_info .sendForm, .authForm2 {
 	display: flex;
 }

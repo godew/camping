@@ -87,10 +87,10 @@ public class UserInfoController {
 //		return null;
 //	}
 	@GetMapping("/reservation/")
-	public String reservation(Model model) {
-		return reservation(-1, model);
+	public String reservation(Model model, HttpSession session) {
+		return reservation(-1, model, session);
 	}
-	
+
 	@GetMapping("/reservation/{memberId}")
 	public String reservation(@PathVariable int memberId, Model model, HttpSession session) {
 		List<reservationDTO> list = rs.getReservation(memberId);
@@ -99,7 +99,7 @@ public class UserInfoController {
 		model.addAttribute("name", name);
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
-		
+		System.out.println(list);
 		return "/userInfo/reservation";
 	}
 
@@ -117,5 +117,13 @@ public class UserInfoController {
 		
 		return "redirect:/";
 	}
+	
+	@PostMapping("/reservation/{memberId}")
+	public String orderCancle(@RequestParam("orderId") int orderId) {
+		int row = os.orderCancle(orderId);
+		System.out.println(row);
+		return "redirect:/";
+	}
+	
 	
 }

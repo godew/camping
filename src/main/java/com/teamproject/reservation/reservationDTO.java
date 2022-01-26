@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class reservationDTO {
 
-	private int orderId, memberId, itemRoomId, orderprice, cancle;
+	private int orderId, memberId, itemRoomId, orderprice, cancel;
 	private String tid,checkIn, checkOut;
 	private Date orderDate;
 	
@@ -32,11 +32,11 @@ public class reservationDTO {
 	public void setOrderprice(int orderprice) {
 		this.orderprice = orderprice;
 	}
-	public int getCancle() {
-		return cancle;
+	public int getCancel() {
+		return cancel;
 	}
-	public void setCancle(int cancle) {
-		this.cancle = cancle;
+	public void setCanel(int cancle) {
+		this.cancel = cancle;
 	}
 	public String getTid() {
 		return tid;

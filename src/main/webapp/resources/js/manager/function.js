@@ -84,8 +84,19 @@ function sendchatMsg(event) {
 }
 
 function onMessage(event) {
-	
-	console.log('받은 msg' + JSON.parse(event.data).msg)
-	// 메시지가 길어지면 자동으로 아래로 스크롤
-//	textarea.scroll({top: textarea.scrollHeight, behavior: 'smooth'})
+	dom = ``
+	dom += `<div class="msgline">`
+	dom += `<span class="wsSend">${JSON.parse(event.data).msg}</span>`
+	dom += `</div>`
+		
+	wsContent.innerHTML += dom
+	wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+}
+
+function renderWsMsg(msg) {
+	dom = ``
+	dom += `<div class="msgline">`
+	dom += `<span class="wsSend">${msg}</span>`
+	dom += `</div>`
+	return dom
 }
