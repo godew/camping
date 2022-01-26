@@ -3,17 +3,21 @@ function payReady() {
 	let orderPrice
 	let changedPoint
 	let url
-	
+	let pointFlag = 1
 	if (login) {
 		orderPrice = priceVal - +point.value
 		changedPoint = pointVal - +point.value	
+		if (+point.value == 0) {
+			pointFlag = 0
+		}
 		url = cpath + '/payment/ready?itemRoomId=' + itemRoomId + '&'
 							        +'memberId=' + memberId + '&'
 								    +'itemName=' + itemName + '&'
 								    +'checkIn=' + checkIn + '&'
 								    +'checkOut=' + checkOut + '&'
 								    +'orderPrice=' + orderPrice + '&'				 
-								    +'point=' + changedPoint	
+								    +'pointFlag=' + pointFlag + '&'				 
+								    +'point=' + changedPoint
 	} else {
 		orderPrice = priceVal
 		url = cpath + '/payment/notReady?itemRoomId=' + itemRoomId + '&'

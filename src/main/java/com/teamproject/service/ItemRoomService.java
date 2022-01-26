@@ -38,4 +38,9 @@ public class ItemRoomService {
 	public int modifyCalendar(int itemRoomId, int month, int i) {
 		return dao.updateCalendar(itemRoomId, month, i);
 	}
+
+	// 1로 바꿈
+	public int modifyCalendar1(int itemRoomId, int month, int i) {
+		return dao.updateCalendar1(itemRoomId, month, i);
+	}
 }

@@ -23,6 +23,21 @@ public interface OrderDAO {
 							 		+ "#{tid})")
 	int insert(OrderDTO orderDto);
 
+	@Insert("insert into orders(memberId, "
+			 				 + "itemRoomId, "
+			 				 + "checkIn, "
+			 				 + "checkOut, "
+			 				 + "orderPrice, "
+			 				 + "cancel, "
+			 				 + "tid) "
+			 				 + "values(#{memberId}, "
+			 				 		+ "#{itemRoomId}, "
+			 				 		+ "#{checkIn}, "
+			 				 		+ "#{checkOut}, "
+			 				 		+ "#{orderPrice}, "
+			 				 		+ "2, "
+			 				 		+ "#{tid})")
+	int insert2(OrderDTO orderDto);
 	
 	@Insert("insert into orders(notPhone, "
 			 				 + "itemRoomId, "
@@ -51,4 +66,6 @@ public interface OrderDAO {
 
 	@Select("select * from orders where tid=#{tid}")
 	OrderDTO selectByTid(String tid);
+
+
 }

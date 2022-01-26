@@ -27,4 +27,7 @@ public interface ItemRoomDAO {
 
 	@Update("update calendar set d${i}=0 where itemRoomId=${itemRoomId} and month=${month}")
 	int updateCalendar(@Param("itemRoomId") int itemRoomId, @Param("month") int month, @Param("i") int i);
+
+	@Update("update calendar set d${i}=1 where itemRoomId=${itemRoomId} and month=${month}")
+	int updateCalendar1(@Param("itemRoomId") int itemRoomId, @Param("month") int month, @Param("i") int i);
 }

@@ -17,6 +17,11 @@ public class OrderService {
 		return dao.insert(orderDto);
 	}
 
+	public int add2(OrderDTO orderDto) {
+		return dao.insert2(orderDto);
+		
+	}
+	
 	public int addNot(OrderDTO orderDto) {
 		return dao.insertNot(orderDto);
 	}

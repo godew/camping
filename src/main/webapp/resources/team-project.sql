@@ -144,7 +144,7 @@ create table orders(
     tid varchar2(100) not null,
     notPhone varchar2(50),
     notName varchar2(100),
-    cancel number default 1 check(cancel in(0, 1)),
+    cancel number default 1 check(cancel in(0, 1, 2)), 
     
     CONSTRAINT fk_orders_member
     FOREIGN KEY(memberId)

@@ -34,4 +34,6 @@ public interface MemberDAO {
 	@Select("select count(*) from member where phone=#{phone}")
 	int selectPhone(MemberDTO dto);
 
+	@Select("select point from member where memberId=${memberId}")
+	int selectPointByMemberId(int memberId);
 }

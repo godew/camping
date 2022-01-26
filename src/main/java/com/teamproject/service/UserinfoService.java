@@ -33,6 +33,10 @@ public class UserinfoService {
 		return dao.getName(memberId);
 	}
 
+	public int getPointByMemberId(int memberId) {
+		return dao.selectPointByMemberId(memberId);
+	}
+
 	
 
 //	public String nameUpdate(String username) {

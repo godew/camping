@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.teamproject.order.OrderDTO;
 import com.teamproject.point.PointDTO;
 import com.teamproject.reservation.reservationDTO;
+import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.OrderService;
 import com.teamproject.service.PointService;
 import com.teamproject.service.ReservationeService;
@@ -28,6 +29,7 @@ public class UserInfoController {
 	@Autowired private PointService ps;
 	@Autowired private ReservationeService rs;
 	@Autowired private OrderService os;
+	@Autowired private ItemRoomService itemRoomService;
 	
 	@GetMapping("/userInfo/{memberID}")
 	public String userinfo(@PathVariable String memberID, Model model, HttpSession session) {
@@ -104,8 +106,37 @@ public class UserInfoController {
 	@PostMapping("/reservation/{memberId}")
 	public String orderCancle(@RequestParam("orderId") int orderId, @PathVariable int memberId) {
 		os.orderCancle(orderId);
-//		ps.delete()
+//		int point = us.getPointByMemberId(memberId) - ps.getPointByOrderId(orderId); 
+//		if (point < 0) {
+//			point = 0;
+//		}
+//		ps.delete(orderId);
 //		us.modifyPoint(memberId, point);
+		
+		OrderDTO order = os.getOrder(orderId).get(0);
+		int month1 = Integer.valueOf(order.getCheckIn().substring(0, 2));
+		int month2 = Integer.valueOf(order.getCheckOut().substring(0, 2));
+		int d1 = Integer.valueOf(order.getCheckIn().substring(2, 4));
+		int d2 = Integer.valueOf(order.getCheckOut().substring(2, 4));
+		if (month1 == month2) {
+			for (int i = d1; i < d2+1; i++) {
+				itemRoomService.modifyCalendar1(order.getItemRoomId(), month1, i);
+			}
+		} else {
+			for (int i = d1; i < 32; i++) {
+				itemRoomService.modifyCalendar1(order.getItemRoomId(), month1, i);
+			}
+			
+			for (int i = month1+1; i <= month2-1; i++) {
+				for (int j = 1; j < 32; j++) {
+					itemRoomService.modifyCalendar1(order.getItemRoomId(), i, j);
+				}
+			}
+			
+			for (int i = 1; i < d2 + 1; i++) {
+				itemRoomService.modifyCalendar1(order.getItemRoomId(), month2, i);
+			}
+		}
 		
 		return "redirect:/";
 	}

@@ -20,4 +20,12 @@ public class PointService {
 	public void add(int tmpPoint, int memberId, String title, int orderId) {
 		dao.insert(tmpPoint, memberId, title, orderId);
 	}
+
+	public void delete(int orderId) {
+		dao.delete(orderId);
+	}
+
+	public int getPointByOrderId(int orderId) {
+		return dao.selectPointByOrderId(orderId);
+	}
 }

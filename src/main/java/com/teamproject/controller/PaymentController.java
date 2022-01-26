@@ -51,13 +51,14 @@ public class PaymentController {
 	
 	@GetMapping(value = "/payment/ready", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String ready(HttpSession session, String point, String itemName, OrderDTO order) throws IOException {
+	public String ready(HttpSession session, String point, String itemName, OrderDTO order, String pointFlag) throws IOException {
 
 		String res = paymentService.ready(itemName, order.getOrderPrice());
 
 		order.setTid(res.split("\"")[3]);
 		session.setAttribute("order", order);
 		session.setAttribute("point", point);
+		session.setAttribute("pointFlag", pointFlag);
 		
 		return res;
 	}
@@ -83,25 +84,32 @@ public class PaymentController {
 			orderService.addNot(order);
 			
 		} else {
-			orderService.add(order);
-			// 구매금액의 10%를 point로 전환
-			int point;
-			if (session.getAttribute("point") == null) {
-				point = order.getOrderPrice() / 10;
-			} else {
-				point = Integer.valueOf(session.getAttribute("point").toString()) + (order.getOrderPrice() / 10);			
-				point = (int)Math.round((double)point / 10) * 10;
+			String pointFlag = (String)session.getAttribute("pointFlag");
+			if (pointFlag.equals("0")) { // 포인트 안썻으면
+				orderService.add(order);				
+			} else { // 썻으면
+				orderService.add2(order);	
+				int point;
+				if (session.getAttribute("point") == null) {
+					point = 0;
+				} else {
+					point = Integer.valueOf(session.getAttribute("point").toString());
+				}
+				
+				userinfoService.modifyPoint(order.getMemberId(), point);
+				((MemberDTO)session.getAttribute("login")).setPoint(point);				
 			}
-			userinfoService.modifyPoint(order.getMemberId(), point);
-			((MemberDTO)session.getAttribute("login")).setPoint(point);
 			
+		
 			// point table에 row추가
-			int tmpPoint = point - Integer.valueOf(session.getAttribute("point").toString());
-			String title = itemRoomService.findById(String.valueOf(order.getItemRoomId())).getItemRoomName();
-			OrderDTO orderTmp = orderService.getOrderByTid(order.getTid());
-			pointService.add(tmpPoint, order.getMemberId(), title, orderTmp.getOrderId());
+//			int tmpPoint = point - Integer.valueOf(session.getAttribute("point").toString());
+//			String title = itemRoomService.findById(String.valueOf(order.getItemRoomId())).getItemRoomName();
+//			OrderDTO orderTmp = orderService.getOrderByTid(order.getTid());
+//			pointService.add(tmpPoint, order.getMemberId(), title, orderTmp.getOrderId());
 			
+			session.removeAttribute("pointFlag");
 			session.removeAttribute("point");
+			
 		}
 		
 		
