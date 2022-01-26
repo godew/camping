@@ -28,6 +28,10 @@ public class OrderService {
 	public int reservationDelete(int orderId) {
 		return dao.orderDelete(orderId);
 	}
+
+	public int orderCancle(int orderId) {
+		return dao.orderCancle(orderId);
+	}
 	
 	
 }

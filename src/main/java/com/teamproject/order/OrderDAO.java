@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface OrderDAO {
 
@@ -44,4 +45,7 @@ public interface OrderDAO {
 
 	@Delete("delete from orders where orderId=${orderId}")
 	int orderDelete(int orderId);
+
+	@Update("update orders set cancel='0' where orderId=#{orderId}")
+	int orderCancle(int orderId);
 }

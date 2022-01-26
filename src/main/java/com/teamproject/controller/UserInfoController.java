@@ -99,7 +99,7 @@ public class UserInfoController {
 		model.addAttribute("name", name);
 		model.addAttribute("list", list);
 		model.addAttribute("dto", dto);
-		
+		System.out.println(list);
 		return "/userInfo/reservation";
 	}
 
@@ -117,4 +117,13 @@ public class UserInfoController {
 		
 		return "redirect:/";
 	}
+	
+	@PostMapping("/reservation/{memberId}")
+	public String orderCancle(@RequestParam("orderId") int orderId) {
+		int row = os.orderCancle(orderId);
+		System.out.println(row);
+		return "redirect:/";
+	}
+	
+	
 }

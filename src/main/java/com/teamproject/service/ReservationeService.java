@@ -17,6 +17,9 @@ public class ReservationeService {
 //		reservationDTO dto = new reservationDTO();
 //		SimpleDateFormat sdf = dto.getCheckIn("yyyy-MM-dd E요일 HH:mm");
 		
+//		reservationDTO dto = new reservationDTO();
+//		System.out.println(dto.getCancel());
+		
 		return dao.getReservation(memberId);
 	}
 
