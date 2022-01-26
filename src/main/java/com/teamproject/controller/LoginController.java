@@ -1,13 +1,18 @@
 package com.teamproject.controller;
 
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.member.MemberDTO;
 import com.teamproject.service.LoginService;
@@ -16,6 +21,7 @@ import com.teamproject.service.LoginService;
 public class LoginController {
 
 	@Autowired LoginService ls;
+	@Autowired private JoinController jc;
 	
 	@RequestMapping("/login/terms")
 	public String terms() {
@@ -53,5 +59,19 @@ public class LoginController {
 		return "login/findID";
 	}
 	
+	@GetMapping("/findID/phoneCheck/{phone}")
+	@ResponseBody
+	public HashMap<String, String> findIDsms(@PathVariable String phone, HttpSession session, MemberDTO dto) {
+		int row = ls.checkPhone(dto);
+		HashMap<String, String> res = new HashMap<String, String>();
+		if(row == 1) {
+			res = jc.sms(phone, session);
+		}
+		else {
+			res.put("phoneCheck", "회원정보가 없습니다.");
+			res.put("status", "0");
+		}
+		return res;
+	}
 	
 }

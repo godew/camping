@@ -31,4 +31,7 @@ public interface MemberDAO {
 	@Select("select name from member where memberId=#{memberId}")
 	String getName(int memberId);
 
+	@Select("select count(*) from member where phone=#{phone}")
+	int selectPhone(MemberDTO dto);
+
 }

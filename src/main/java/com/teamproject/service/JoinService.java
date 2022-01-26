@@ -38,7 +38,7 @@ public class JoinService {
 		params.put("to", pnum);
 		params.put("from", "01044154528");
 		params.put("type", "SMS");
-		params.put("text", "AfterCamp 가입 인증 번호 : [ " + authNum + " ]");
+		params.put("text", "AfterCamp 인증 번호 : [ " + authNum + " ]");
 		params.put("app_version", "test app 1.2"); // application name and version
 
 		try {

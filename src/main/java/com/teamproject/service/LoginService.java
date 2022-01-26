@@ -1,6 +1,5 @@
 package com.teamproject.service;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +17,11 @@ public class LoginService {
 		MemberDTO login = dao.selectMember(dto);	// userid, userpw
 		System.out.println("비밀번호로 찾은 계정 : " + login);
 		return login;
+	}
+
+
+	public int checkPhone(MemberDTO dto) {
+		return dao.selectPhone(dto);
 	}
 
 	

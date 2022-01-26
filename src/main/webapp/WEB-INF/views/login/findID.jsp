@@ -16,20 +16,28 @@
 			<a href="${cpath }/login/home"><img src="${cpath }/resources/img/logo.png"></a>
 		</div>
 	</div>
+	<div class="title">
+		아이디 찾기
+	</div>
 	<form method="POST">
 		<div>
+			<div class="phonTitle">
+				휴대폰 번호
+			</div>
 			<div class="findIdform">
 				<div>
-					<input class="phone" type="text" name="phone" placeholder="휴대폰번호">
+					<input class="phone" type="text" name="phone" onkeyup='phoneCheck()' placeholder="휴대폰번호">
+					<input type="button" class="phonNumCheck" value="인증번호">
 				</div>
-				<div class="authNum hidden">
-					<input class="authNumInput" type="text" name="phone" placeholder="인증번호">
+				<div class="phoneNumCheckMsg"></div>
+				<div class="authNum">
+					<input class="authNumInput hidden" type="text" name="authNum" placeholder="인증번호" onkeyup='checkAuthNum()'>
 				</div>
 			</div>
 		</div>
 		<div>
 			<div class="findIdButton">
-				<input type="submit" value="인증하기">
+				<input class="btn hidden" type="submit" value="인증하기">
 			</div>
 		</div>
 	</form>
@@ -39,6 +47,49 @@
 
 	const authNum = document.querySelector('.authNum')
 	const authNumInput = document.querySelector('.authNumInput')
+	const phone = document.querySelector('.phone')
+	const phonNumCheck = document.querySelector('.phonNumCheck')
+	const phoneNumCheckMsg = document.querySelector('.phoneNumCheckMsg')
+	const btn = document.querySelector('.btn')
+	
+	function phoneCheck() {
+		const flag = phone.value
+		if(flag.length == 11) {
+			phonNumCheck.classList.add('on')
+		}
+		else {
+			phonNumCheck.classList.remove('on')
+		}
+	}
+	
+	phonNumCheck.onclick = function(event) {
+		const url = cpath + '/findID/phoneCheck/' + phone.value + '/'
+		const opt = {
+			method: 'GET'
+		}
+		fetch(url, opt)
+		.then(resp => resp.json())
+		.then(json => {
+			console.log(json)
+			if(json.status == 1) {
+				phoneNumCheckMsg.classList.add('blue')
+				phoneNumCheckMsg.innerText = '인증번호를 발송했습니다'
+				authNumInput.classList.remove('hidden')
+			}
+			else {
+				phoneNumCheckMsg.classList.add('red')
+				phoneNumCheckMsg.innerText = '회원정보가 없습니다'
+			}
+		})
+	}
+	
+	function checkAuthNum() {
+		const flag2 = document.querySelector('.authNumInput').value
+		console.log(flag2.length)
+		if(flag2.length == 6) {
+			btn.classList.remove('hidden')
+		}
+	}
 	
 </script>
 </body>

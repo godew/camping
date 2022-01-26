@@ -41,7 +41,7 @@ public class JoinController {
 		HashMap<String, String> res = new HashMap<>();
 		
 		if (js.sendMsg(pnum, authNumber)) {
-			res.put("status", "OK");
+			res.put("status", "1");
 			res.put("msg", "인증번호가 발송되었습니다");
 			session.setAttribute("hashNumber", hashNumber);
 		} else {
