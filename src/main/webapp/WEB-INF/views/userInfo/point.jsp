@@ -4,31 +4,32 @@
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/userinfo.css">
 <script>
 function getpoint(event) {
-	console.log(event.target)
-	url = cpath + '/getRpoint/' + 1
+	const memberId = document.querySelector('.memberId').innerText
+	url = cpath + '/getpoint/' + memberId
 	opt = {
 		method:'GET'
 	}
 	fetch(url, opt)
 	.then(resp => resp.json())
 	.then(json => {
+		console.log(json)
 			let result = 0
 		json.forEach(point => {
+			const memberId = point.memberId
 			let available_points = document.getElementById('available_points')
 			let li = document.createElement('li')
 			let span = document.createElement('span')
 			let p = document.createElement('p')
-			
-			result += point.rpoint
+			result += point.point
 			
 			li.innerText = point.title 
-			span.innerText = point.reviewDate
-			p.innerText = point.rpoint
+			span.innerText = point.pointDate
+			p.innerText = point.point
 			
 			li.appendChild(span)
 			li.appendChild(p)
 			pointList.appendChild(li)
-			console.log(result)
+			console.log(point.point)
 		})
 			available_points.innerText = result
 		
@@ -38,6 +39,9 @@ function getpoint(event) {
 </script>
 
 <div class="content">
+<div class="memberId hidden">
+${dto.memberID }
+</div>
 <div class="leftmenu">
 	<nav>
 		<ul>
@@ -56,7 +60,8 @@ function getpoint(event) {
 </div>
 </div>
 <script>
-const pointList = document.getElementById('pointList')
+	const pointList = document.getElementById('pointList')
+	
 window.onload = getpoint
 </script>
 </body>

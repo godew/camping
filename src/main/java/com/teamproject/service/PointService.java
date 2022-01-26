@@ -5,22 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamproject.point.OrderPointDTO;
 import com.teamproject.point.PointDAO;
-import com.teamproject.point.ReviewPointDTO;
+import com.teamproject.point.PointDTO;
 
 @Service
 public class PointService {
 
 	@Autowired PointDAO dao;
 
-	public List<OrderPointDTO> getOPoint(int memberId) {
-		return dao.getOPoint(memberId);
+	public List<PointDTO> getPoint(int memberId) {
+		return dao.getPoint(memberId);
 	}
 
-	public List<ReviewPointDTO> getRPoint(int memberId) {
-		return dao.getRPoint(memberId);
-	}
+	
 	
 	
 }

@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.order.OrderDTO;
-import com.teamproject.point.OrderPointDTO;
-import com.teamproject.point.ReviewPointDTO;
+import com.teamproject.point.PointDTO;
 import com.teamproject.reservation.reservationDTO;
 import com.teamproject.service.OrderService;
 import com.teamproject.service.PointService;
@@ -40,24 +39,18 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/userInfo/{memberId}")
-	@ResponseBody
-	public String userNameUpdate(@RequestParam("name") String name,@PathVariable String memberId) {
-		System.out.println(name);
+	public String userNameUpdate(@RequestParam(value = "phone", required = false) String phone, @RequestParam(value = "name", required = false) String name, @PathVariable String memberId, HttpSession session) {
 		int row = 0;
+		
 		if(name != null) {
 		row = us.updateName(name, memberId);
 		}
-		else {
-//		row = us.updatePhone(phone, memberId);
+		if(phone != null) {
+		row = us.updatePhone(phone, memberId);
 		}
-		System.out.println(row);
-		return "/userInfo/userinfo" + memberId;
+		session.invalidate();
+		return "redirect:/";
 	}
-//	@PostMapping("/userInfo/{memberId}")
-//	public int phoneUpdate(@PathVariable String phone, @PathVariable String memberId) {
-//		int row = us.updatePhone(phone, memberId);
-//		return row;
-//	}
 	
 
 	@GetMapping("/point/{memberID}")
@@ -68,24 +61,14 @@ public class UserInfoController {
 		model.addAttribute("dto", dto);
 		return "/userInfo/point";
 	}
-	@GetMapping(value = "/getOpoint/{memberId}", produces = "application/json; charset=utf-8")
-	@ResponseBody
-	public List<OrderPointDTO> getOpoint(@PathVariable int memberId){
-		List<OrderPointDTO> list = ps.getOPoint(memberId);
-		return list;
-	}
 	
-	@GetMapping(value = "/getRpoint/{memberId}", produces = "application/json; charset=utf-8")
+	@GetMapping(value = "/getpoint/{memberId}", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public List<ReviewPointDTO> getRpoint(@PathVariable int memberId){
-	List<ReviewPointDTO> list = ps.getRPoint(memberId);
+	public List<PointDTO> getRpoint(@PathVariable int memberId){
+	List<PointDTO> list = ps.getPoint(memberId);
 	return list;
 	}
-//	@PostMapping("/userInfo?name={username}")
-//	public String nameUpdate(@PathVariable String username) {
-//		us.nameUpdate(username);
-//		return null;
-//	}
+	
 	@GetMapping("/reservation/")
 	public String reservation(Model model, HttpSession session) {
 		return reservation(-1, model, session);

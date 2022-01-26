@@ -18,7 +18,7 @@ public class ReviewController {
 	
 	@Autowired private ReivewService rs;
 
-	@GetMapping("/review")
+	@GetMapping("/review/{memberId}/{tid}")
 	public String review() {
 		
 		return "/review/review";

@@ -22,6 +22,7 @@
 	<div>tid 		: ${list.tid }</div>
 	<div>orderPrice	: ${list.orderPrice }</div>
 	
+	<button id="review">리뷰작성</button>
 	<button id="deleteBTN">삭제</button>
 </c:forEach>
 
@@ -30,13 +31,21 @@
 
 
 <script>
+	const memberId = '${list.memberId}'
+	const review = document.getElementById('review')
 	const deleteBTN = document.getElementById('deleteBTN')
+
+
 	const orderId = document.querySelector('.orderId').innerText
 	console.log(orderId)
 	deleteBTN.onclick = function(event) {
 		location.href = cpath + '/reservationDelete/' + orderId
 	}
 		
+	review.onclick = function(event){
+		location.href = cpath + '/review/' + memberId 
+	}
+	
 		
 </script>
 </body>

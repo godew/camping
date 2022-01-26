@@ -25,7 +25,6 @@ public class UserinfoService {
 		return dao.updateName(name, memberId);
 	}
 	public int updatePhone(String phone, String memberId) {
-		System.out.println(phone);
 		return dao.updatePhone(phone, memberId);
 	}
 
