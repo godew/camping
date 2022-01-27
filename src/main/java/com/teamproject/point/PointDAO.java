@@ -13,9 +13,14 @@ public interface PointDAO {
 	@Select("select * from point where memberId = #{memberId} order by pointDate")
 	List<PointDTO> getPoint(int memberId);
 
-	@Insert("insert into point values(point_seq.nextval, ${orderId}, #{title}, ${memberId}, ${tmpPoint}, sysdate, 'p')")
-	void insert(@Param("point") int point, @Param("memberId") int memberId, @Param("title") String title, @Param("orderId") int orderId);
+	// 결제 적립 포인트
+	@Insert("insert into point values(point_seq.nextval, ${orderId}, #{title}, ${memberId}, ${point}, sysdate, 'p')")
+	void insertP(@Param("point") int point, @Param("memberId") int memberId, @Param("title") String title, @Param("orderId") int orderId);
 
+	// 마이너스 포인트
+	@Insert("insert into point values(point_seq.nextval, ${orderId}, #{title}, ${memberId}, ${point}, sysdate, 'r')")
+	void insertR(@Param("point") int point, @Param("memberId") int memberId, @Param("title") String title, @Param("orderId") int orderId);
+	
 	@Update("update orders set cancel=2 where orderId=${orderId}")
 	int takePoint(int orderId);
 
@@ -24,4 +29,5 @@ public interface PointDAO {
 
 	@Select("select point from point where orderId=${orderId}")
 	int selectPointByOrderId(int orderId);
+
 }

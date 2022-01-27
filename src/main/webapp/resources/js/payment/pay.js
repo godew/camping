@@ -1,5 +1,4 @@
 const payBtn = document.querySelector('.pay')
-// 	const cancelBtn = document.querySelector('.cancel')
 
 const form = document.forms[0]
 const sendBtn = document.querySelector('.sendBtn')
@@ -22,7 +21,6 @@ let authFlag = false
 let second
 let interval
 
-// 	cancelBtn.onclick = payCancel
 if (!login) {
 	sendBtn.onclick = sendHandler
 }

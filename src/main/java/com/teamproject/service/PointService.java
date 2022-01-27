@@ -17,8 +17,12 @@ public class PointService {
 		return dao.getPoint(memberId);
 	}
 
-	public void add(int point, int memberId, String title, int orderId) {
-		dao.insert(point, memberId, title, orderId);
+	public void addP(int point, int memberId, String title, int orderId) {
+		dao.insertP(point, memberId, title, orderId);
+	}
+	
+	public void addR(int point, int memberId, String title, int orderId) {
+		dao.insertR(point, memberId, title, orderId);
 	}
 
 	public void delete(int orderId) {
@@ -34,4 +38,5 @@ public class PointService {
 		
 		return dao.takePoint(orderId);
 	}
+
 }

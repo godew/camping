@@ -43,19 +43,6 @@ function payReady() {
 		})
 }
 
-
-function payCancel() {
-	const url = cpath + '/payment/cancel';
-	const opt = {
-			method : 'GET'
-	}
-	fetch(url, opt)
-		.then(resp => resp.json())
-		.then(json => {
-			console.log(json)
-		})
-}
-
 function sendHandler(event) {
 	event.preventDefault()
 	if (sendBtn.innerText == '재전송') {

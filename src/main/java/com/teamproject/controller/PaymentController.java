@@ -88,7 +88,8 @@ public class PaymentController {
 			if (pointFlag.equals("0")) { // 포인트 안썻으면
 				orderService.add(order);				
 			} else { // 썻으면
-				orderService.add2(order);	
+				orderService.add2(order);
+				
 				int point;
 				if (session.getAttribute("point") == null) {
 					point = 0;
@@ -96,16 +97,16 @@ public class PaymentController {
 					point = Integer.valueOf(session.getAttribute("point").toString());
 				}
 				
+				// 쓴 포인트 만큼 point table에 기록
+				int usepoint = userinfoService.getPointByMemberId(order.getMemberId()) - point;
+				String title = itemRoomService.findById(String.valueOf(order.getItemRoomId())).getItemRoomName();
+				OrderDTO orderTmp = orderService.getOrderByTid(order.getTid());
+				pointService.addR(usepoint, order.getMemberId(), "포인트 사용(" + title + ")", orderTmp.getOrderId());
+				
+				// modify member point
 				userinfoService.modifyPoint(order.getMemberId(), point);
 				((MemberDTO)session.getAttribute("login")).setPoint(point);				
 			}
-			
-		
-			// point table에 row추가
-//			int tmpPoint = point - Integer.valueOf(session.getAttribute("point").toString());
-//			String title = itemRoomService.findById(String.valueOf(order.getItemRoomId())).getItemRoomName();
-//			OrderDTO orderTmp = orderService.getOrderByTid(order.getTid());
-//			pointService.add(tmpPoint, order.getMemberId(), title, orderTmp.getOrderId());
 			
 			session.removeAttribute("pointFlag");
 			session.removeAttribute("point");
@@ -142,12 +143,13 @@ public class PaymentController {
 		return "payment/approve";			
 	}
 	
-	@GetMapping("/payment/cancel")
-	@ResponseBody
-	public String cancel(HttpSession session) throws IOException {
-		// db의 tid가져와야 한다 지금은 test용으로 session에서 가져옴
-		return paymentService.cancel(session.getAttribute("tid").toString());
-	}
+//	@GetMapping("/payment/cancel")
+//	public String cancel(HttpSession session) throws IOException {
+//		 db의 tid가져와야 한다 지금은 test용으로 session에서 가져옴
+//		return paymentService.cancel(session.getAttribute("tid").toString());
+//		
+//		return "redirect:/reservation/" + memberId;
+//	}
 	
 	@GetMapping("/payment/close")
 	public String close() {

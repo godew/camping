@@ -1,5 +1,6 @@
 package com.teamproject.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import com.teamproject.point.PointDTO;
 import com.teamproject.reservation.reservationDTO;
 import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.OrderService;
+import com.teamproject.service.PaymentService;
 import com.teamproject.service.PointService;
 import com.teamproject.service.ReservationeService;
 import com.teamproject.service.UserinfoService;
@@ -27,6 +29,7 @@ import com.teamproject.service.UserinfoService;
 @Controller
 public class UserInfoController {
 	
+	@Autowired private PaymentService paymentService;
 	@Autowired private UserinfoService us;
 	@Autowired private PointService ps;
 	@Autowired private ReservationeService rs;
@@ -105,9 +108,7 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/reservation/{memberId}")
-	public String orderCancle(@RequestParam("orderId") int orderId, @PathVariable int memberId) {
-		System.out.println("orderid : " + orderId);
-		System.out.println("memberId : " + memberId);
+	public String orderCancle(@RequestParam("orderId") int orderId, @PathVariable int memberId) throws IOException {
 		os.orderCancle(orderId);
 		
 		OrderDTO order = os.getOrder(orderId).get(0);
@@ -134,7 +135,10 @@ public class UserInfoController {
 				itemRoomService.modifyCalendar1(order.getItemRoomId(), month2, i);
 			}
 		}
-
+		
+		// kakao pay cancel function
+		paymentService.cancel(os.getOrder(orderId).get(0).getTid());
+		
 		return "redirect:/reservation/" + memberId;
 	}
 	

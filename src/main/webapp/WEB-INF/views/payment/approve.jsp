@@ -10,7 +10,7 @@
 <script>
 	const login = '${not empty login}'
 	if (login == 'true') {
-		window.opener.location.href = '${pageContext.request.contextPath}'		
+		window.opener.location.href = '${pageContext.request.contextPath}/reservation/${login.memberID}'		
 	} else {
 		window.opener.location.href = '${pageContext.request.contextPath}/payment/notInfo'
 	}
