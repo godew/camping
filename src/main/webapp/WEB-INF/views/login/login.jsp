@@ -30,6 +30,7 @@
 		<div class="orLine">또는</div>
 	</div>
 	<form method="POST">
+		<input type="hidden" name="url" value="${url }" placeholder="아이디">
 		<div>
 			<div class="loginForm">
 				<div>

@@ -20,6 +20,11 @@
 		
 	})	
 
+	let maWsContent
+	let maWsSendMsgBtn
+	let maContentWrapInput
+	
+	
 	// google chart
   	google.charts.load('current', {'packages':['corechart', 'line']});
   	google.charts.setOnLoadCallback(drawPieChart)

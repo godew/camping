@@ -131,8 +131,20 @@ header .a_tag2 {
 	justify-content: flex-end;
 	padding: 13px;
 }
+#bottom-msg .msglineL {
+	height: 35px;	
+	display: flex;
+	justify-content: flex-start;
+	padding: 13px;
+}
 #bottom-msg .msgline > .wsSend {
 	background-color: skyblue;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 13px;
+}
+#bottom-msg .msglineL > .wsReceive {
+	background-color: #ffff80;
     border-radius: 10px;
     padding: 9px;
     font-size: 13px;

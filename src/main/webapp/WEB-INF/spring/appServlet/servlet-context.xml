@@ -27,7 +27,7 @@
 		<interceptor>
 			<mapping path="/userInfo/reservation" />	 
 			<mapping path="/reservation/" />	 
-
+			
 			
 			<!--  아래에 있는 인터셉터가 작동합니다 -->
 			<beans:bean id="loginIntercepter" class="com.teamproject.intercepter.LoginIntercepter" />			

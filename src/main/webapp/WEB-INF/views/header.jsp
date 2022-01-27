@@ -34,6 +34,9 @@
 		<a href="${cpath }"><img class="headerLogo" src="${cpath }/resources/img/headerLogo.png"></a>
 		<ul>
 			<li><p style="margin: 0"><img src="${cpath }/resources/img/돋보기.png"></p></li>
+			<c:if test="${not empty login and login.email eq 'manager@naver.com'}">
+				<li><a href="${cpath }/manager" class="a_tag1">관리자 페이지</a></li>
+			</c:if>
 			<li><a href="${cpath }/reservation/${login.memberID}" class="a_tag1">예약내역</a></li>
 			<li class="li_seemore">
 				더보기
@@ -53,16 +56,18 @@
 		</ul>
 	</div>
 </header>
-<div id="bottom-msg">
-	<div class="content-wrap hidden">
-		<div class="content"></div>
-		<div>
-			<input type="text" name="msg" autocomplete="off">
-			<button class="ws-send-msg-btn">전송</button>
+<c:if test="${not empty login and login.email ne 'manager@naver.com'}">
+	<div id="bottom-msg">
+		<div class="content-wrap hidden">
+			<div class="content"></div>
+			<div>
+				<input type="text" name="msg" autocomplete="off">
+				<button class="ws-send-msg-btn">전송</button>
+			</div>
 		</div>
+		<button class="bottom-msg-btn">관리자 1대1 대화</button>
 	</div>
-	<button class="bottom-msg-btn">관리자 1대1 대화</button>
-</div>
+</c:if>
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
 	const headerSeemore = document.querySelector('.header_seemore')
@@ -86,28 +91,47 @@
 		headerSeemore.classList.add('hidden')
 	}
 </script>
+<!-- web socket js -->
 <script>
-	const bottomMsgBtn = document.querySelector('.bottom-msg-btn')
-	const contentWrap = document.querySelector('.content-wrap')
-	const wsContent = document.querySelector('.content-wrap > .content')
-	const contentWrapInput = document.querySelector('.content-wrap input')
-	const wsSendMsgBtn = document.querySelector('.ws-send-msg-btn')
-	
-	bottomMsgBtn.onclick = function() {
-		if (contentWrap.classList.contains('hidden')) {
-			contentWrap.classList.remove('hidden')
-			contentWrapInput.focus()
-		} else {
-			contentWrap.classList.add('hidden')
+	if('${not empty login and login.email ne "manager@naver.com"}' == 'true') {
+		const bottomMsgBtn = document.querySelector('.bottom-msg-btn')
+		const contentWrap = document.querySelector('.content-wrap')
+		const wsContent = document.querySelector('.content-wrap > .content')
+		const contentWrapInput = document.querySelector('.content-wrap input')
+		const wsSendMsgBtn = document.querySelector('.ws-send-msg-btn')
+		
+		bottomMsgBtn.onclick = function() {
+			if (contentWrap.classList.contains('hidden')) {
+				contentWrap.classList.remove('hidden')
+				contentWrapInput.focus()
+			} else {
+				contentWrap.classList.add('hidden')
+			}
 		}
-	}
-	
-	wsSendMsgBtn.onclick = function() {
-		if (contentWrapInput.value != '') {
-			wsContent.innerHTML += renderWsMsg(contentWrapInput.value)
-			wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
-			contentWrapInput.value = ''
-			contentWrapInput.focus()
+		
+		
+		wsSendMsgBtn.onclick = wsMsgBtnHandler
+		
+		contentWrapInput.onkeydown = function(event) {
+			if (event.key == 'Enter') {
+				wsMsgBtnHandler()
+			}
+		}
+		
+		function wsMsgBtnHandler() {
+			if (contentWrapInput.value != '') {
+				wsContent.innerHTML += renderWsMsg(contentWrapInput.value)
+				wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+				
+				const payload = {
+					msg : contentWrapInput.value,
+					target : 'manager@naver.com'
+				}
+				ws.send(JSON.stringify(payload))
+				
+				contentWrapInput.value = ''
+				contentWrapInput.focus()
+			}
 		}
 	}
 </script>

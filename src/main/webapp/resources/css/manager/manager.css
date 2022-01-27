@@ -8,3 +8,51 @@
 	width: 900px;
 	height: 500px;
 }
+
+.manager-msg {
+	width: 250px;
+    position: absolute;
+    left: 42%;
+	top: 40%;
+    z-index: 999;
+    box-sizing: border-box;
+}
+.ma-content-wrap {
+	height: 350px;
+	background: rgb(239, 239, 239);
+}
+.ma-content-wrap > .ma-content {
+	height: 93%;
+	border-radius: 5px;
+	overflow-y: scroll; 
+}
+.ma-content-wrap input {
+	width: 77%;
+}
+
+
+.manager-msg .msgline {
+	height: 35px;	
+	display: flex;
+	justify-content: flex-end;
+	padding: 13px;
+}
+.manager-msg .msglineL {
+	height: 35px;	
+	display: flex;
+	justify-content: flex-start;
+	padding: 13px;
+}
+.manager-msg .msgline > .wsSend {
+	background-color: skyblue;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 13px;
+}
+.manager-msg .msglineL > .wsReceive {
+	background-color: #ffff80;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 13px;
+}
+    

@@ -36,7 +36,7 @@ function onClose(event) {
 // handler
 function keyHandler(event) {
 	if(event.key == 'Enter') { 
-		sendHandler(event)
+		send.Handler(event)
 	}	
 }
 

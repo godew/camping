@@ -12,13 +12,13 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class ChatComponent extends TextWebSocketHandler {
     private HashMap<String, WebSocketSession> sessionList = new HashMap<>();
 
-	@Override // 연결이 성립되면(접속이 유지되면) 호출되는 함수
+	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     	String username = session.getUri().toString().split("username=")[1];
         sessionList.put(username, session);
     }
  
-    @Override // 메세지를 받으면 서버가 수행하는 메서드
+    @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	
         for(WebSocketSession wss : sessionList.values()){
@@ -29,7 +29,7 @@ public class ChatComponent extends TextWebSocketHandler {
         }
     }
  
-    @Override // 연결이 종료되면 수행하는 메서드
+    @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	String username = session.getUri().toString().split("username=")[1];
     	sessionList.remove(username);

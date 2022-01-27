@@ -3,9 +3,11 @@ package com.teamproject.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,22 +40,19 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("login");
-		return "home";
+		return "redirect:/";
 	}
 	
 	@PostMapping("/login/login")
-	public String login(MemberDTO dto, HttpSession session, String returnURI) {
+	public String login(MemberDTO dto, HttpSession session, String returnURI, String url) {
 		MemberDTO login = ls.login(dto);	
 		session.setAttribute("login", login);
-		System.out.println(returnURI);
-		System.out.println(login);
-		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
-		if(login != null) {
-			return returnURI == null ? "redirect:/" : "redirect:" + returnURI + "/" + login.getMemberID();
-		}
-		else {
-			return "login/login";
-		}
+
+//		System.out.println(returnURI);
+//		System.out.println(login);
+//		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
+		return returnURI == null ? "redirect:" + url : "redirect:" + returnURI + login.getMemberID();
+
 	}
 	
 	@RequestMapping("/login/nonReservation")
