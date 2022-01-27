@@ -93,12 +93,18 @@
 </script>
 <!-- web socket js -->
 <script>
+	let bottomMsgBtn
+	let contentWrap
+	let wsContent
+	let contentWrapInput
+	let wsSendMsgBtn
+	
 	if('${not empty login and login.email ne "manager@naver.com"}' == 'true') {
-		const bottomMsgBtn = document.querySelector('.bottom-msg-btn')
-		const contentWrap = document.querySelector('.content-wrap')
-		const wsContent = document.querySelector('.content-wrap > .content')
-		const contentWrapInput = document.querySelector('.content-wrap input')
-		const wsSendMsgBtn = document.querySelector('.ws-send-msg-btn')
+		bottomMsgBtn = document.querySelector('.bottom-msg-btn')
+		contentWrap = document.querySelector('.content-wrap')
+		wsContent = document.querySelector('.content-wrap > .content')
+		contentWrapInput = document.querySelector('.content-wrap input')
+		wsSendMsgBtn = document.querySelector('.ws-send-msg-btn')
 		
 		bottomMsgBtn.onclick = function() {
 			if (contentWrap.classList.contains('hidden')) {
@@ -125,7 +131,8 @@
 				
 				const payload = {
 					msg : contentWrapInput.value,
-					target : 'manager@naver.com'
+					target : 'manager@naver.com',
+					me : '${login.email}'
 				}
 				ws.send(JSON.stringify(payload))
 				
