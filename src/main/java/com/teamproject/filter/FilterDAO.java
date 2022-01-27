@@ -32,22 +32,32 @@ public interface FilterDAO {
 	List<MapDTO> selectPlace(String areacode);
 	
 	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
-			"on A.itemId = B.itemId and A.itemId = #{itemId} " + 
+			"on A.itemId = B.itemId and A.itemId = ${itemId} " + 
 			"join calendar C " + 
 			"on B.itemRoomId = C.itemroomId " + 
 			"where month = 1")
 	ArrayList<FilterDTO> submitSearch(int itemId);
 	
+	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode} and #{minPrice} <= itemprice and itemprice <= #{maxPrice}" )
+	List<FilterDTO> selectFirstList(HashMap<String, String> map);
 	
-	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
-			"on A.itemId = B.itemId " + 
-			"join calendar C " + 
-			"on B.itemRoomId = C.itemroomId " + 
-			"where areacode = #{areacode} and #{minPrice} <= itemprice and itemprice < #{maxPrice} or itemprice = #{maxPrice}"
-			+ "and #{people} <= maxpeople and filter like '%${checkLabel}%'"
-			+ "and ${fd} = 1")
-	ArrayList<FilterDTO> submitFilter(HashMap<String, String> hmap);
+//	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
+//			"on A.itemId = B.itemId and A.itemId = ${itemId} " + 
+//			"join calendar C " + 
+//			"on B.itemRoomId = C.itemroomId " + 
+//			"where month = 1")
+//	HashMap<String, String> searchDate(int i);
 	
+	
+//	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
+//			"on A.itemId = B.itemId " + 
+//			"join calendar C " + 
+//			"on B.itemRoomId = C.itemroomId " + 
+//			"where areacode = #{areacode} and #{minPrice} <= itemprice and itemprice < #{maxPrice} or itemprice = #{maxPrice}"
+//			+ "and #{people} <= maxpeople and filter like '%${checkLabel}%'"
+//			+ "and ${fd} = 1")
+//	ArrayList<FilterDTO> submitFilter(HashMap<String, String> hmap);
+//	
 
 	
 	

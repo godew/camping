@@ -51,9 +51,18 @@ public class FilterService {
 		return fd.submitSearch(itemId);
 	}
 
-	public ArrayList<FilterDTO> submitFilter(HashMap<String, String> hmap) {
-		return fd.submitFilter(hmap);
+//	public HashMap<String, String> searchDate(ArrayList<FilterDTO> tmp) {
+//		// TODO Auto-generated method stub
+//		return fd.searchDate(tmp);
+//	}
+	
+	
+	public List<FilterDTO> selectFirstList(HashMap<String, String> map) {
+		return fd.selectFirstList(map);
 	}
+
+
+
 
 
 

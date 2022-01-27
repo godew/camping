@@ -39,11 +39,11 @@ function filterSearch(event){
 	let checkOutMonth = ''
 		
 	if(lt == '' && rt == ''){
-		checkInDay = ('0' + thisMonth).slice(-2) + today
-		checkOutDay = ('0' + thisMonth).slice(-2) + tomorrow
+		checkInDay = String(thisMonth) + today
+		checkOutDay = String(thisMonth) + tomorrow
 	} else {
-		checkInDay = ('0'+lt.dataset.month).slice(-2) + lt.dataset.day
-		checkOutDay = ('0'+rt.dataset.month).slice(-2) + rt.dataset.day 
+		checkInDay = lt.dataset.month + lt.dataset.day
+		checkOutDay = rt.dataset.month + rt.dataset.day 
 	}
 	
 	console.log(checkInDay)
