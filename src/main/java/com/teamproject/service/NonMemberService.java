@@ -15,6 +15,7 @@ public class NonMemberService {
 	@Autowired NonMemberDAO dao;
 
 	public List<NonMemberDTO> selectNonMember(String tid, String notPhone) {
+		System.out.println("service" + tid + ", " + notPhone);
 		return dao.selectTid(tid, notPhone);
 	}
 

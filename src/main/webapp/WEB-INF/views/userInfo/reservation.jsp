@@ -7,7 +7,9 @@
 
 <script>
 function point(event) {
-	location.href = cpath + '/getPoint/' + orderId
+	location.href = cpath + '/getPoint/' + event.target.value
+// 	console.log(cpath + '/getPoint/' + event.target.value)
+
 }
 </script>
 <c:forEach var="list" items="${list }">
@@ -30,7 +32,6 @@ function point(event) {
 		<h3>예약 내역</h3>
 	<div id="reservation">
 	<c:forEach var="list" items="${list }" >
-	<div class="orderId hidden">${list.orderId }</div>
 		<c:if test="${checkIn > today }">
 		<c:if test="${list.cancel != 0}">
 		<ul>
@@ -48,17 +49,10 @@ function point(event) {
 			<form method="POST">
 				<input type="number" name="orderId" value="${list.orderId }" hidden="">
 				<input type="submit" value="예약취소">
-				<button id="getPoint" type="button">
+				<button class="getPoint" value="${list.orderId }" type="button">
 					포인트 받기
 				</button>
 			</form>
-			</c:if>
-			<c:if test="${list.cancel == 2 }">
-			<form method="POST">
-				<input type="number" name="orderId" value="${list.orderId }" hidden="">
-				<input type="submit" value="예약취소">
-			</form>
-			
 			</c:if>
 			</li>
 		</ul>
@@ -105,11 +99,12 @@ function point(event) {
 
 </div>
 <script>
-	const orderId = document.querySelectorAll('.orderId').innerText
-	const getPoint = document.getElementById('getPoint')
 
-	getPoint.onclick = point
-
+	const getPoint = document.querySelectorAll('.getPoint')
+	for(let i in getPoint){
+		getPoint[i].onclick = point
+	}
+	
 </script>
 
 

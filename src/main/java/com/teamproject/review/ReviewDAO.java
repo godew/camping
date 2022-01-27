@@ -8,6 +8,6 @@ public interface ReviewDAO {
 
 	
 	@Insert("insert into review (memberId, starPoint, title, img, itemid) vlaues(#{memberId}, #{starPoint}, #{title},#{img}, #{itemid})")
-	public int writeReview(MultipartFile img, ReviewDTO dto);
+	public int writeReview(int orderId, MultipartFile img, ReviewDTO dto);
 	
 }

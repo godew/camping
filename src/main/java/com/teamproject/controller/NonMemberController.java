@@ -15,9 +15,9 @@ import com.teamproject.service.NonMemberService;
 public class NonMemberController {
 	@Autowired private NonMemberService nms;
 	
-	@GetMapping("/nonMembers?tid={tid}&notPhone={notPhone}")
+	@GetMapping("/nonMembers/{tid}/{notPhone}")
 	public String nonMember(@PathVariable String tid, @PathVariable String notPhone, Model model) {
-		
+		System.out.println("controller" + tid + ", " + notPhone);
 		List<NonMemberDTO> list = nms.selectNonMember(tid, notPhone);
 		model.addAttribute("list", list);
 		return "/nonMembers/nonMembers";

@@ -14,16 +14,14 @@
 </div>
 <div class="mainContent">
 <c:forEach var="list" items="${list }">
-	<div class="orderId" style="display: none;">${list.orderId }</div>
 	<div>예약자 		: ${name }</div>
 	<div>itemRoomId : ${list.itemRoomId }</div>
 	<div>checkIn	: ${list.checkIn }</div>
 	<div>checkOut 	: ${list.checkOut }</div>
 	<div>${list.tid }</div>
 	<div>orderPrice	: ${list.orderPrice }</div>
-
-	<button id="review">리뷰작성</button>
-	<button id="deleteBTN">삭제</button>
+	<button id="review" value="${list.orderId }">리뷰작성</button>
+	<button id="deleteBTN" value="${list.tid }">삭제</button>
 </c:forEach>
 
 </div>
@@ -31,19 +29,17 @@
 
 
 <script>
-// 	const review = document.getElementById('review')
+	const review = document.getElementById('review')
 	const deleteBTN = document.getElementById('deleteBTN')
+	
 
-
-	const orderId = document.querySelector('.orderId').innerText
-	console.log(orderId)
 	deleteBTN.onclick = function(event) {
-		location.href = cpath + '/reservationDelete/' + orderId
+		location.href = cpath + '/reservationDelete/' + event.target.value
 	}
 		
-// 	review.onclick = function(event){
-// 		location.href = cpath + '/review/'
-// 	}
+	review.onclick = function(event){
+		location.href = cpath + '/review/' + event.target.value
+	}
 	
 		
 </script>

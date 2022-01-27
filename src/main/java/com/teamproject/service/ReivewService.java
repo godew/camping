@@ -26,7 +26,7 @@ public class ReivewService {
 		}
 	}
 
-	public int writeReview(MultipartFile img, ReviewDTO dto) {
+	public int writeReview(int orderId, MultipartFile img, ReviewDTO dto) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(new Date());
@@ -40,7 +40,7 @@ public class ReivewService {
 		System.out.println(img.getSize());
 		System.out.println(dto.getStarPoint());
 		System.out.println(dto.getTitle());
-		int row = dao.writeReview(img, dto);
+		int row = dao.writeReview(orderId, img, dto);
 		return row;
 	}
 

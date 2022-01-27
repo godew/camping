@@ -3,12 +3,17 @@ package com.teamproject.nonMember;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class NonMemberDTO {
 
 	
-	private int orderId, itemId,  orderPrice, cancle, standardPeople, maxPeople;
-	private String checkIn, checkOut, tid, notPhone, notName;
+	private int orderId, itemId, orderPrice, cancle, standardPeople, maxPeople;
+	private String checkIn, checkOut, tid, notPhone, notName,itemRoomName;
 	private Date  orderDate;
+	private String itemRoomImage;
+	
+	
 	
 	public int getOrderId() {
 		return orderId;
@@ -81,5 +86,17 @@ public class NonMemberDTO {
 	}
 	public void setMaxPeople(int maxPeople) {
 		this.maxPeople = maxPeople;
+	}
+	public String getItemRoomName() {
+		return itemRoomName;
+	}
+	public void setItemRoomName(String itemRoomName) {
+		this.itemRoomName = itemRoomName;
+	}
+	public String getItemRoomImage() {
+		return itemRoomImage;
+	}
+	public void setItemRoomImage(String itemRoomImage) {
+		this.itemRoomImage = itemRoomImage;
 	}
 }
