@@ -31,7 +31,7 @@
 </script>
 <header>
 	<div class="content">
-		<a href="${cpath }">여기어때</a>
+		<a href="${cpath }"><img class="headerLogo" src="${cpath }/resources/img/headerLogo.png"></a>
 		<ul>
 			<li><p style="margin: 0"><img src="${cpath }/resources/img/돋보기.png"></p></li>
 			<li><a href="${cpath }/reservation/${login.memberID}" class="a_tag1">예약내역</a></li>

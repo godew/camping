@@ -1,75 +1,12 @@
 @charset "utf-8";
-.logo {
-	width: 320px;
-	height: 132px;
-	display: flex;
-	justify-content: center;
-	position: absolute;
-}
-
-.logoBox {
-	display: flex;
-	justify-content: center;
-	margin-top: 0;
-}
-
-.mainTop {
-	display: flex;
-	justify-content: flex-end;
-	width: 1600px;
-}
-
-.mainTopButton {
-	margin-bottom: 30px;
-}
-
-.mainTopButton>ul {
-	display: flex;
-	margin: 10px;
-	list-style: none;
-}
-
-.mainTopButton li {
-	margin-right: 10px;
-}
-
-.mainTopButton a {
-	color: inherit;
-	text-decoration: none;
-}
-
-.main {
-	display: flex;
-	justify-content: center;
-}
-
-.mainMenu {
-	width: 1600px;
-	height: 50px;
-	background-color: #FFD7B4;
-}
-
-.mainMenu ul {
-	list-style: none;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.mainMenu li {
-	margin-right: 10px;
-}
-
-.mainMenu a {
-	color: inherit;
-	text-decoration: none;
-	font-size: 20px;
-	font-weight: bold;
-}
 
 .mainBack {
 	display: flex;
 	justify-content: center;
 	margin-top: -1px;
+}
+.mainBackImg {
+	margin-top: 60px;
 }
 
 .mainMid {
@@ -78,7 +15,6 @@
 }
 
 .mainMidBox {
-	background-color: #FFD7B4;
 	width: 1600px;
 	height: 500px;
 	margin-top: -10px;
@@ -139,7 +75,6 @@
 .footerEnd2 {
 	width: 1600px;
 	height: 40px;
-	background-color: #FFD7B4;
 	text-align: center;
 	display: flex;
 	justify-content: center;
@@ -153,7 +88,7 @@
 	position: absolute;
 	display: flex;
 	justify-content: center;
-	margin-top: 125px;
+	margin-top: 200px;
 }
 
 .mainSearchMenu {
@@ -179,7 +114,7 @@
 	display: flex;
 	justify-content: center;
 	box-sizing: border-box;
-	background-color: #FF3399;
+	background-color: #f7323f;
 	height: 50px;
 }
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.teamproject.hash.Hash;
 import com.teamproject.member.MemberDTO;
 import com.teamproject.service.LoginService;
 
@@ -22,6 +23,7 @@ public class LoginController {
 
 	@Autowired LoginService ls;
 	@Autowired private JoinController jc;
+	@Autowired private Hash hash;
 	
 	@RequestMapping("/login/terms")
 	public String terms() {
@@ -46,7 +48,12 @@ public class LoginController {
 		System.out.println(returnURI);
 		System.out.println(login);
 		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
-		return returnURI == null ? "redirect:/" : "redirect:" + returnURI + "/" + login.getMemberID();
+		if(login != null) {
+			return returnURI == null ? "redirect:/" : "redirect:" + returnURI + "/" + login.getMemberID();
+		}
+		else {
+			return "login/login";
+		}
 	}
 	
 	@RequestMapping("/login/nonReservation")
@@ -74,4 +81,28 @@ public class LoginController {
 		return res;
 	}
 	
+	@GetMapping("/findID/auth/{auth}/")
+	@ResponseBody
+	public HashMap<String, String> auth(@PathVariable String auth, HttpSession session, MemberDTO dto) {
+		String hashNumber = (String)session.getAttribute("hashNumber");
+		String authHash = hash.getHash(auth);
+		boolean result = hashNumber.equals(authHash);
+		HashMap<String, String> resultHash = new HashMap<String, String>();
+		if(result) {
+			resultHash.put("status", "1");
+			resultHash.put("msg", "인증되었습니다.");
+		}
+		else {
+			resultHash.put("status", "0");
+			resultHash.put("msg", "인증번호가 틀립니다.");
+		}
+		return resultHash;
+	}
+	
+	@GetMapping("/findID/phone/{sessionData}/")
+	@ResponseBody
+	public MemberDTO findIDResult(@PathVariable String sessionData, MemberDTO dto) {
+		MemberDTO find = ls.findId(dto);
+		return find;
+	}
 }

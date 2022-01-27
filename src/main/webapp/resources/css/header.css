@@ -27,6 +27,11 @@ header > .content > ul img {
 	padding-top: 4px;
 }
 
+.headerLogo {
+	width: 170px;
+	margin-top: 6px;
+}
+
 header > .content > ul > li {	
 	font-size: 18px;
 	color: rgba(255, 255, 255, 0.8);

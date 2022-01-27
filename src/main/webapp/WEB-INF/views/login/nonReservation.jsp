@@ -21,7 +21,7 @@
 		<div>
 			<div class="lookupForm">
 				<div>
-					<input class="pnum" type="email" name="phone" placeholder="휴대폰번호" autofocus required>
+					<input class="pnum" type="text" name="phone" placeholder="휴대폰번호" autofocus required>
 				</div>
 				<div>
 					<input type="text" name="tid" placeholder="에약번호" required>
