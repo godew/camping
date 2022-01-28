@@ -50,8 +50,13 @@ public class LoginController {
 
 //		System.out.println(returnURI);
 //		System.out.println(login);
-//		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
-		return returnURI == null ? "redirect:" + url : "redirect:" + returnURI + login.getMemberID();
+		System.out.println(login == null ? "실패" : "성공 : " + login.getEmail());
+		if(login != null) {			
+			return returnURI == null ? "redirect:" + url : "redirect:" + returnURI + login.getMemberID();
+		}
+		else {
+			return "login/login";
+		}
 
 	}
 	
