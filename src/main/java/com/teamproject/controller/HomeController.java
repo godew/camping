@@ -2,6 +2,7 @@ package com.teamproject.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +17,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/login/login")
-	public String login(Model model, HttpServletRequest req) { 
-
+	public String login(Model model, HttpServletRequest req, HttpSession session) { 
+		if (session.getAttribute("login") != null) {
+			return "redirect:/";
+		}
 		model.addAttribute("url", req.getHeader("REFERER"));
 		// asdfsadf
 		return "login/login";

@@ -4,8 +4,28 @@
 	box-sizing: border-box;
 	margin: 85px auto;
 }
+#userlist {
+	float: right;
+	margin-right: 160px;
+	margin-top: 50px;
+	width: 250px;
+	height: 300px;
+	overflow-y: scroll;
+	border: 1px solid black;
+	padding: 5px;
+	box-sizing: border-box;
+}
+#userlist .user {
+	border-bottom: 1px solid black;
+	padding: 5px;
+	font-weight: bold;
+}
+#userlist .user:hover {
+	color: red;
+	cursor: pointer;
+}
 #manager > .piechart {
-	width: 900px;
+	width: 500px;
 	height: 400px;
 }
 .lineColumnchart > button {
@@ -19,6 +39,23 @@
 	top: 40%;
     z-index: 999;
     box-sizing: border-box;
+}
+.manager-msg > .msg-header {
+    z-index: 1000;
+    cursor: move;
+    background-color: #2196F3;
+  	color: #fff;
+  	padding: 10px;
+  	display: flex;
+  	justify-content: space-between;
+}
+.manager-msg .close {
+	font-weight: bold;
+}
+.manager-msg .close:hover {
+	cursor: pointer;
+	z-index: 1001;
+	color: red;
 }
 .ma-content-wrap {
 	height: 350px;
