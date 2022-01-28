@@ -177,6 +177,169 @@ header .a_tag2 {
     margin-bottom: 10px;
 }
 
+header {
+	width: 100%;
+	height: 72px;
+	background: #f7323f;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+header > .content {
+	width: 1024px;
+	height: 64px;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+
+header > .content > ul {
+	list-style: none;
+	display: flex;
+}
+
+header > .content > ul img {
+	cursor: pointer;
+	padding-top: 4px;
+}
+
+.headerLogo {
+	width: 170px;
+	margin-top: 6px;
+}
+
+header > .content > ul > li {	
+	font-size: 18px;
+	color: rgba(255, 255, 255, 0.8);
+	letter-spacing: 0;
+	margin-left: 30px;
+	line-height: 39px;
+	height: 40px;
+}
+
+header > .content > ul > li:hover {	
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none !important;
+}
+header .li_seemore {
+	position: relative;
+}
+.header_seemore {
+	width: 184px;
+	position: absolute;
+	right: -68px;
+	top: 38px;
+	border-radius: 5px;
+    padding: 24px;
+    background: #fff;
+    text-align: left;
+    box-shadow: 0px 3px 5px 0px rgb(0 0 0 / 20%);
+    box-sizing: border-box;
+}
+
+.header_seemore > ul {
+	maring: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 16px;
+}
+
+.header_seemore > ul > li {
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+header a {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.8);
+}
+header .a_tag1:hover {
+	color: #ffffff;	
+}
+
+header .a_tag2 {
+	color: rgba(0,0,0,0.87);
+}
+
+#bottom-msg {
+	width: 250px;
+    position: fixed;
+    right: 100px;
+	bottom : 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+#bottom-msg > .bottom-msg-btn {
+	width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+    text-align: center;
+    background: #cccccc;
+    padding: 0;
+    cursor: pointer;
+}
+#bottom-msg > .bottom-msg-btn:hover {
+	background: linear-gradient( to right, rgba(255, 0, 85, 1) 1%, rgba(230, 34, 67, 1) 100% );
+}
+#bottom-msg > .content-wrap {
+	height: 350px;
+	background: rgb(239, 239, 239);
+}
+#bottom-msg > .content-wrap > .content {
+	height: 93%;
+	border-radius: 5px;
+	overflow-y: scroll; 
+}
+#bottom-msg > .content-wrap input {
+	width: 77%;
+}
+#bottom-msg .msgline {
+	height: 35px;	
+	display: flex;
+	justify-content: flex-end;
+	padding: 13px;
+}
+#bottom-msg .msgline > .wsSend {
+	background-color: skyblue;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 13px;
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 
     
     

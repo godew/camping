@@ -86,18 +86,26 @@ public class FilterAjaxController {
 		if(firstDay.length() == 3 && secondDay.length() == 3) {
 			firstMonth = firstDay.substring(0,1);
 			secondMonth = secondDay.substring(0,1);
+			firstDay = firstDay.substring(1,3);
+			secondDay = secondDay.substring(1, 3);
 		}
 		else if(firstDay.length() == 4 && secondDay.length() == 4 ) {
 			firstMonth = firstDay.substring(0,2);
 			secondMonth = secondDay.substring(0,2);
+			firstDay = firstDay.substring(2, 3);
+			secondDay = secondDay.substring(2, 3);
 		}
 		else if(firstDay.length() == 3 && secondDay.length() == 4 ) {
 			firstMonth = firstDay.substring(0,2);
 			secondMonth = secondDay.substring(0,1);
+			firstDay = firstDay.substring(1,3);
+			secondDay = secondDay.substring(2, 3);
 		}
 		else if(firstDay.length() == 4 && secondDay.length() == 3 ) {
 			firstMonth = firstDay.substring(0,1);
 			secondMonth = secondDay.substring(0,2);
+			firstDay = firstDay.substring(2, 3);
+			secondDay = secondDay.substring(1, 3);
 		}
 		
 
@@ -125,7 +133,7 @@ public class FilterAjaxController {
 		
 		
 		if(Integer.parseInt(firstMonth) == Integer.parseInt(secondMonth)) {
-			
+			map.put("firstMonth", firstMonth);
 			List<FilterDTO> list = fs.selectFirstList(map);
 			
 			
@@ -142,16 +150,20 @@ public class FilterAjaxController {
 						result.add(tmp.get(j));
 						break;
 					}
-//				for (int j = 0; j < tmp.size(); j++) {
-					HashMap<Integer, String> calMap = getCalMap(tmp.get(j));
-//					for() {
-//						if(calMap.get(k) == 0) {
-//							false
-//						}
-//					}
-//					}
+					for (int k = 0; k < tmp.size(); k++) {
+						HashMap<Integer, String> calMap = getCalMap(tmp.get(k));
+						for(int l = Integer.parseInt(firstDay); l <= Integer.parseInt(secondDay); l++) {
+							if(calMap.get(l) == "0") {
+								break;
+							}
+							else if(calMap.get(l) == "1") {
+								result.add(tmp.get(j));
+							}
+						}
+					}
 				}
-			}			
+			}
+			return fs.search1(itemId);
 		} // if end 
 
 		
@@ -174,34 +186,34 @@ public class FilterAjaxController {
 		calMap.put(1, dto.getD1());
 		calMap.put(2, dto.getD2());
 		calMap.put(3, dto.getD3());
-		calMap.put(4, dto.getD3());
-		calMap.put(5, dto.getD3());
-		calMap.put(6, dto.getD3());
-		calMap.put(7, dto.getD3());
-		calMap.put(8, dto.getD3());
-		calMap.put(9, dto.getD3());
-		calMap.put(10, dto.getD3());
-		calMap.put(11, dto.getD1());
-		calMap.put(12, dto.getD2());
-		calMap.put(13, dto.getD3());
-		calMap.put(14, dto.getD3());
-		calMap.put(15, dto.getD3());
-		calMap.put(16, dto.getD3());
-		calMap.put(17, dto.getD3());
-		calMap.put(18, dto.getD3());
-		calMap.put(19, dto.getD3());
-		calMap.put(20, dto.getD3());
-		calMap.put(21, dto.getD1());
-		calMap.put(22, dto.getD2());
-		calMap.put(23, dto.getD3());
-		calMap.put(24, dto.getD3());
-		calMap.put(25, dto.getD3());
-		calMap.put(26, dto.getD3());
-		calMap.put(27, dto.getD3());
-		calMap.put(28, dto.getD3());
-		calMap.put(29, dto.getD3());
-		calMap.put(30, dto.getD3());
-		calMap.put(31, dto.getD3());
+		calMap.put(4, dto.getD4());
+		calMap.put(5, dto.getD5());
+		calMap.put(6, dto.getD6());
+		calMap.put(7, dto.getD7());
+		calMap.put(8, dto.getD8());
+		calMap.put(9, dto.getD9());
+		calMap.put(10, dto.getD10());
+		calMap.put(11, dto.getD11());
+		calMap.put(12, dto.getD12());
+		calMap.put(13, dto.getD13());
+		calMap.put(14, dto.getD14());
+		calMap.put(15, dto.getD15());
+		calMap.put(16, dto.getD16());
+		calMap.put(17, dto.getD17());
+		calMap.put(18, dto.getD18());
+		calMap.put(19, dto.getD19());
+		calMap.put(20, dto.getD20());
+		calMap.put(21, dto.getD21());
+		calMap.put(22, dto.getD22());
+		calMap.put(23, dto.getD23());
+		calMap.put(24, dto.getD24());
+		calMap.put(25, dto.getD25());
+		calMap.put(26, dto.getD26());
+		calMap.put(27, dto.getD27());
+		calMap.put(28, dto.getD28());
+		calMap.put(29, dto.getD29());
+		calMap.put(30, dto.getD30());
+		calMap.put(31, dto.getD31());
 		return calMap;
 	}
 }

@@ -61,6 +61,10 @@ public class FilterService {
 		return fd.selectFirstList(map);
 	}
 
+	public ArrayList<FilterDTO> search1(int itemId) {
+		return fd.search1(itemId);
+	}
+
 
 
 

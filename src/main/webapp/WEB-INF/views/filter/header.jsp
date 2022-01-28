@@ -15,15 +15,20 @@
 <body class="headerBody">
 <script>
 	const cpath = '${cpath }'
+	let ws
+	if ('${not empty login}' == 'true') {
+		ws = new SockJS(cpath + '/chat?username=${login.email}')
+		ws.onmessage = onMessage
+	}
 </script>
 
 <div class="filterHeaderWrap">
-<header class="filterHeader">
+<header>
 	<div class="content">
-		<a href="${cpath }">logo</a>
+		<a href="${cpath }"><img class="headerLogo" src="${cpath }/resources/img/headerLogo.png"></a>
 		<ul>
-			<li><img src="${cpath }/resources/img/돋보기.png"></li>
-			<li><a href="" class="a_tag1">예약내역</a></li>
+			<li><p style="margin: 0"><img src="${cpath }/resources/img/돋보기.png"></p></li>
+			<li><a href="${cpath }/reservation/${login.memberID}" class="a_tag1">예약내역</a></li>
 			<li class="li_seemore">
 				더보기
 				<div class="hidden header_seemore">
@@ -33,10 +38,26 @@
 					</ul>
 				</div>
 			</li>
-			<li><a href="" class="a_tag1">로그인</a></li>
+			<c:if test="${empty login }">
+				<li><a href="${cpath }/login/login" class="a_tag1">로그인</a></li>
+			</c:if>
+			<c:if test="${not empty login }">
+				<li><a href="${cpath }/logout" id="socketclose" class="a_tag1">로그아웃</a></li>
+			</c:if>
 		</ul>
 	</div>
 </header>
+	<div id="bottom-msg">
+		<div class="content-wrap hidden">
+			<div class="content"></div>
+			<div>
+				<input type="text" name="msg" autocomplete="off">
+				<button class="ws-send-msg-btn">전송</button>
+			</div>
+		</div>
+		<button class="bottom-msg-btn">관리자 1대1 대화</button>
+	</div>
+
 	<div class="underHeader">
 		<div class="underHeaderDiv">
 			<div class="headerCamping">캠핑</div>
@@ -55,6 +76,13 @@
 <script>
 	const seeMore = document.querySelector('header .li_seemore')
 	const headerSeemore = document.querySelector('.header_seemore')
+	const socketclose = document.querySelector('#socketclose')
+	
+	if (socketclose != null) {
+		socketclose.onclick = function() {
+			ws.close()			
+		}
+	}
 	seeMore.onmouseover = function() {
 		headerSeemore.classList.remove('hidden')
 	}
@@ -66,6 +94,31 @@
 	}
 	headerSeemore.onmouseout = function() {
 		headerSeemore.classList.add('hidden')
+	}
+</script>
+<script>
+	const bottomMsgBtn = document.querySelector('.bottom-msg-btn')
+	const contentWrap = document.querySelector('.content-wrap')
+	const wsContent = document.querySelector('.content-wrap > .content')
+	const contentWrapInput = document.querySelector('.content-wrap input')
+	const wsSendMsgBtn = document.querySelector('.ws-send-msg-btn')
+	
+	bottomMsgBtn.onclick = function() {
+		if (contentWrap.classList.contains('hidden')) {
+			contentWrap.classList.remove('hidden')
+			contentWrapInput.focus()
+		} else {
+			contentWrap.classList.add('hidden')
+		}
+	}
+	
+	wsSendMsgBtn.onclick = function() {
+		if (contentWrapInput.value != '') {
+			wsContent.innerHTML += renderWsMsg(contentWrapInput.value)
+			wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+			contentWrapInput.value = ''
+			contentWrapInput.focus()
+		}
 	}
 </script>
 

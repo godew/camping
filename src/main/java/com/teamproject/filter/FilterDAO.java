@@ -41,6 +41,9 @@ public interface FilterDAO {
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where areacode=#{areacode} and #{minPrice} <= itemprice and itemprice <= #{maxPrice}" )
 	List<FilterDTO> selectFirstList(HashMap<String, String> map);
 	
+	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where itemid=#{itemId}")
+	ArrayList<FilterDTO> search1(int itemId);
+	
 //	@Select("select A.areacode, A.itemPrice, A.filter, B.maxpeople, C.* from item A join item_room B " + 
 //			"on A.itemId = B.itemId and A.itemId = ${itemId} " + 
 //			"join calendar C " + 
