@@ -64,7 +64,6 @@ public class FilterAjaxController {
 		return list;
 	}
 	
-//	@SuppressWarnings("unused")
 	@GetMapping("/submitSearch")
 	public ArrayList<FilterDTO> submitSearch(@RequestParam HashMap<String, String> map){
 		
@@ -109,32 +108,13 @@ public class FilterAjaxController {
 		}
 		
 
-		HashMap<String, String> hmap = new HashMap<String, String>();
-		hmap.put("areacode", areacode);
-		hmap.put("fd", fd);
-		hmap.put("sd", sd);
-		hmap.put("secondDay", secondDay);
-		hmap.put("firstDay", firstDay);
-		hmap.put("people", people);
-		hmap.put("minPrice", minPrice);
-		hmap.put("maxPrice", maxPrice);
-		hmap.put("checkLabel", checkLabel);
-		hmap.put("firstMonth", firstMonth);
-		hmap.put("secondMonth", secondMonth);
-		hmap.put("checkLabel", checkLabel);
-		
-//		System.out.println(map.get("areacode"));
-//			query(price, areacode)
-//			List<ItemDTO> list = select * from item where price<=price and areacode
-//			for(int i = 1; i <= 188; i++) {
-//				
-//				itemId = i;
+
 		
 		
 		
 		if(Integer.parseInt(firstMonth) == Integer.parseInt(secondMonth)) {
 			map.put("firstMonth", firstMonth);
-			List<FilterDTO> list = fs.selectFirstList(map);
+			List<FilterDTO> list = fs.selectFirstList(map); // areacode, price 1차 
 			
 			
 			for(int i = 0; i < list.size(); i++) {
@@ -143,43 +123,35 @@ public class FilterAjaxController {
 				ArrayList<FilterDTO> tmp = fs.submitSearch(itemId);
 				
 				for(int j = 0; j < tmp.size(); j++) {
-					FilterDTO filter = tmp.get(j);
-					
-					if (Integer.parseInt(map.get("people")) <= Integer.parseInt(filter.getMaxpeople())) {
-						
+//					FilterDTO filter = tmp.get(j);
+					if (Integer.parseInt(map.get("people")) <= Integer.parseInt(tmp.get(j).getMaxpeople())) {
 						result.add(tmp.get(j));
 						break;
 					}
 					for (int k = 0; k < tmp.size(); k++) {
 						HashMap<Integer, String> calMap = getCalMap(tmp.get(k));
 						for(int l = Integer.parseInt(firstDay); l <= Integer.parseInt(secondDay); l++) {
-							if(calMap.get(l) == "0") {
+							if(calMap.get(l) == "1") {
+								result.add(tmp.get(j));;
+							}
+							else if(calMap.get(l) == "0") {
 								break;
 							}
-							else if(calMap.get(l) == "1") {
-								result.add(tmp.get(j));
-							}
 						}
+						itemId = result.get(k).getItemid();
 					}
 				}
+				ArrayList<FilterDTO> tmprs = fs.search1(itemId);
+				
+				for(int z = 0; z < tmprs.size(); z++) {
+					result.add(tmprs.get(z));
+				}
 			}
-			return fs.search1(itemId);
+//			return result;
 		} // if end 
-
-		
-
-//		System.out.println(map);
-		
-//		filterDTO -> 
-//		itemDTO -> 개
-//		System.out.println(result.toString());
-		
-		
 		
 		return result;
-	
-	
-}
+}	// submitSearch() end
 
 	public HashMap<Integer, String> getCalMap(FilterDTO dto) {
 		HashMap<Integer, String> calMap = new HashMap<>();
