@@ -4,7 +4,10 @@
 
 <div id="manager">
 	<div class="piechart"></div>
-	<div class="linechart"></div>
+	<div class="lineColumnchart">
+		<button class="changeBtn">Column-chart</button>
+		<div class="chart"></div>
+	</div>
 	<div id="userlist">
 		<c:forEach var="user" items="${users }">
 			<div class="user">${user }</div>
@@ -24,6 +27,7 @@
 <script src="${cpath }/resources/js/manager/function.js"></script>
 <script>
 	const users = document.querySelectorAll('.user')
+	let rows = []
 // 	const maWsContents = document.querySelectorAll('.ma-content-wrap > .ma-content')
 // 	const maWsSendMsgBtns = document.querySelectorAll('.ma-ws-send-msg-btn')
 // 	const maContentWrapInputs = document.querySelectorAll('.ma-content-wrap input')
@@ -45,32 +49,22 @@
 			}
 		}		
 	})	
-
-	function maWsMsgBtnHandler(event) {
-		const tmp = event.target.dataset.name
-		const maContentWrapInput = document.querySelector('input[data-name="' + tmp + '"]')
-		const maWsContent = document.querySelector('div[data-email="' + tmp + '"]')
-		
-		if (maContentWrapInput.value != '') {
-			maWsContent.innerHTML += renderWsMsg(maContentWrapInput.value)
-			maWsContent.scroll({top: maWsContent.scrollHeight, behavior: 'smooth'})
-			
-			const msg = maContentWrapInput.value
-			const payload = {
-				msg : msg,
-				target : tmp
-			}
-			ws.send(JSON.stringify(payload))
-			
-			maContentWrapInput.value = ''
-			maContentWrapInput.focus()
-		}
-	}
 	
 	// google chart
-  	google.charts.load('current', {'packages':['corechart', 'line']});
+  	google.charts.load('current', {'packages':['corechart']});
   	google.charts.setOnLoadCallback(drawPieChart)
   	google.charts.setOnLoadCallback(drawLineChart)
+  	
+  	const changeBtn = document.querySelector('.changeBtn')
+  	changeBtn.onclick = function() {
+  		if (changeBtn.innerText == 'Column-chart') {
+  			changeBtn.innerText = 'line-chart'
+ 			google.charts.setOnLoadCallback(columnChart)
+  		} else {
+  			changeBtn.innerText = 'Column-chart'
+			google.charts.setOnLoadCallback(lineChart)
+  		}
+  	}
 </script>
 </body>
 </html>
