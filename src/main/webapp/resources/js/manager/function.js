@@ -93,34 +93,56 @@ function columnChart() {
 }
 
 function onMessage(event) {
-	if (JSON.parse(event.data).target != 'manager@naver.com') {
-		dom = ``
-		dom += `<div class="msglineL">`
-		dom += `<span class="wsReceive">${JSON.parse(event.data).msg}</span>`
-		dom += `</div>`
-		
-		if (contentWrap.classList.contains('hidden')) {
-			cnt++
-			bottomMsgBtn.innerText = '관리자 1대1 대화 (' + cnt + ')'
+	if (event.data.charAt(0) != '{') {
+		if(event.data.includes('ma-ws-send-msg-btn')) {
+			document.querySelector('#userlist').innerHTML = event.data
+		} else {
+			wsContent.innerHTML = event.data
 		}
-		wsContent.innerHTML += dom
-		wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
 	} else {
-		dom = ``
-		dom += `<div class="msglineL">`
-		dom += `<span class="wsReceive">${JSON.parse(event.data).msg}</span>`
-		dom += `</div>`
-		
-		const managerMsg = document.querySelector('div[data-name="' + JSON.parse(event.data).me + '"]')
-		if (managerMsg.classList.contains('hidden')) {
-			const user = document.querySelector('div[data-user="' + JSON.parse(event.data).me + '"]')
-			user.dataset.cnt = +user.dataset.cnt + 1
-			user.innerText = JSON.parse(event.data).me + ' (' + user.dataset.cnt + ')'
+		if (JSON.parse(event.data).target != 'manager@naver.com') {
+			dom = ``
+			dom += `<div class="msglineL">`
+			dom += `<span class="wsReceive">${JSON.parse(event.data).msg}</span>`
+			dom += `</div>`
+			
+			if (contentWrap.classList.contains('hidden')) {
+				cnt++
+				bottomMsgBtn.innerText = '관리자 1대1 대화 (' + cnt + ')'
+			}
+			wsContent.innerHTML += dom
+			wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+			
+			const payload = {
+				status : 'end',
+				me : '${login.email}',
+				store : wsContent.innerHTML
+			}
+			ws.send(JSON.stringify(payload))
+		} else {
+			dom = ``
+			dom += `<div class="msglineL">`
+			dom += `<span class="wsReceive">${JSON.parse(event.data).msg}</span>`
+			dom += `</div>`
+			
+			const managerMsg = document.querySelector('div[data-name="' + JSON.parse(event.data).me + '"]')
+			if (managerMsg.classList.contains('hidden')) {
+				const user = document.querySelector('div[data-user="' + JSON.parse(event.data).me + '"]')
+				user.dataset.cnt = +user.dataset.cnt + 1
+				user.innerText = JSON.parse(event.data).me + ' (' + user.dataset.cnt + ')'
+			}
+			
+			const maWsContent = document.querySelector('div[data-email="' + JSON.parse(event.data).me + '"]')
+			maWsContent.innerHTML += dom
+			maWsContent.scroll({top: maWsContent.scrollHeight, behavior: 'smooth'})
+			
+			const payload = {
+				status : 'end',
+				me : 'manager@naver.com',
+				store : document.querySelector('#userlist').innerHTML
+			}
+			ws.send(JSON.stringify(payload))
 		}
-		
-		const maWsContent = document.querySelector('div[data-email="' + JSON.parse(event.data).me + '"]')
-		maWsContent.innerHTML += dom
-		maWsContent.scroll({top: maWsContent.scrollHeight, behavior: 'smooth'})
 	}
 }	
 
@@ -144,8 +166,11 @@ function maWsMsgBtnHandler(event) {
 		const msg = maContentWrapInput.value
 		const payload = {
 			msg : msg,
-			target : tmp
+			target : tmp,
+			me : 'manager@naver.com',
+			store : document.querySelector('#userlist').innerHTML
 		}
+
 		ws.send(JSON.stringify(payload))
 		
 		maContentWrapInput.value = ''

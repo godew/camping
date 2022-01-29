@@ -136,7 +136,8 @@
 				const payload = {
 					msg : contentWrapInput.value,
 					target : 'manager@naver.com',
-					me : '${login.email}'
+					me : '${login.email}',
+					store : wsContent.innerHTML
 				}
 				ws.send(JSON.stringify(payload))
 				

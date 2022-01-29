@@ -58,7 +58,7 @@
 			</c:if>
 			<c:if test="${empty login }">
 				<div class="login-div">
-					<a href="">
+					<a href="${cpath }/login/login">
 						<div>로그인 후 예약하시면</div>
 						<div>추가 혜택을 받을수있어요</div>
 						<div>로그인</div>
