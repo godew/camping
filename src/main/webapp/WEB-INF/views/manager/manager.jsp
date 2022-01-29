@@ -5,7 +5,7 @@
 <div id="manager">
 	<div id="userlist">
 		<c:forEach var="user" items="${users }">
-			<div class="user">${user }</div>
+			<div data-user="${user }" data-cnt="0" class="user">${user }</div>
 			<div data-name="${user }" class="manager-msg hidden">
 				<div class="msg-header">
 					<div>${user }</div>
@@ -41,12 +41,15 @@
 	
 	users.forEach((user, idx) => {
 		user.ondblclick = function(event) {
-			const tmp = event.target.innerText
+			const tmp = event.target.dataset.user
 			const managerMsg = document.querySelector('div[data-name="' + tmp + '"]')
 			const maContentWrapInput = document.querySelector('input[data-name="' + tmp + '"]')
 			const maWsSendMsgBtn = document.querySelector('button[data-name="' + tmp + '"]')
+			const user = document.querySelector('div[data-user="' + tmp + '"]')
 			
 			managerMsg.classList.remove('hidden')
+			user.dataset.cnt = 0
+			user.innerText = tmp
 			maContentWrapInput.focus()
 			maWsSendMsgBtn.onclick = maWsMsgBtnHandler
 			maContentWrapInput.onkeydown = function(event) {

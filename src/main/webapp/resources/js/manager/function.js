@@ -98,7 +98,11 @@ function onMessage(event) {
 		dom += `<div class="msglineL">`
 		dom += `<span class="wsReceive">${JSON.parse(event.data).msg}</span>`
 		dom += `</div>`
-			
+		
+		if (contentWrap.classList.contains('hidden')) {
+			cnt++
+			bottomMsgBtn.innerText = '관리자 1대1 대화 (' + cnt + ')'
+		}
 		wsContent.innerHTML += dom
 		wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
 	} else {
@@ -106,7 +110,14 @@ function onMessage(event) {
 		dom += `<div class="msglineL">`
 		dom += `<span class="wsReceive">${JSON.parse(event.data).msg}</span>`
 		dom += `</div>`
-			
+		
+		const managerMsg = document.querySelector('div[data-name="' + JSON.parse(event.data).me + '"]')
+		if (managerMsg.classList.contains('hidden')) {
+			const user = document.querySelector('div[data-user="' + JSON.parse(event.data).me + '"]')
+			user.dataset.cnt = +user.dataset.cnt + 1
+			user.innerText = JSON.parse(event.data).me + ' (' + user.dataset.cnt + ')'
+		}
+		
 		const maWsContent = document.querySelector('div[data-email="' + JSON.parse(event.data).me + '"]')
 		maWsContent.innerHTML += dom
 		maWsContent.scroll({top: maWsContent.scrollHeight, behavior: 'smooth'})

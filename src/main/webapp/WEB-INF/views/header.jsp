@@ -99,6 +99,7 @@
 	let wsContent
 	let contentWrapInput
 	let wsSendMsgBtn
+	let cnt = 0
 	
 	if('${not empty login and login.email ne "manager@naver.com"}' == 'true') {
 		bottomMsgBtn = document.querySelector('.bottom-msg-btn')
@@ -111,6 +112,8 @@
 			if (contentWrap.classList.contains('hidden')) {
 				contentWrap.classList.remove('hidden')
 				contentWrapInput.focus()
+				cnt = 0
+				bottomMsgBtn.innerText = '관리자 1대1 대화'
 			} else {
 				contentWrap.classList.add('hidden')
 			}
