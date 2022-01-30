@@ -44,6 +44,7 @@ function point(event) {
 			<li>예약날짜${list.orderDate }</li>
 			<li>${list.orderId }</li>
 			<li>${list.itemRoomImg }</li>
+			<li>${list.itemRoomName }</li>
 			<li>
 			<c:if test="${list.cancel == 1 }">
 			<form method="POST">
