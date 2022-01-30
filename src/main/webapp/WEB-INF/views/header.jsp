@@ -136,13 +136,58 @@
 				const payload = {
 					msg : contentWrapInput.value,
 					target : 'manager@naver.com',
-					me : '${login.email}',
-					store : wsContent.innerHTML
+					me : '${login.email}'
 				}
 				ws.send(JSON.stringify(payload))
 				
 				contentWrapInput.value = ''
 				contentWrapInput.focus()
+			}
+		}
+	}
+</script>
+<script>
+	window.onbeforeunload = function() {
+		if (ws != null) {
+			if ('${login.email}' == 'manager@naver.com') {
+				if (document.querySelector('#userlist') != null) {
+					const payload = {
+						status : 'end',
+						me : 'manager@naver.com',
+						store : document.querySelector('#userlist').innerHTML
+					}
+					
+					ws.send(JSON.stringify(payload))
+				}
+			} else {
+				const payload = {
+					status : 'end',
+					me : '${login.email}',
+					store : wsContent.innerHTML
+				}
+				ws.send(JSON.stringify(payload))
+			}
+		}
+	}
+	if (document.getElementById('socketclose') != null) {
+		document.getElementById('socketclose').onclick = function() {
+			if ('${login.email}' == 'manager@naver.com') {
+				if (document.querySelector('#userlist') != null) {
+					const payload = {
+						status : 'end',
+						me : 'manager@naver.com',
+						store : document.querySelector('#userlist').innerHTML
+					}
+					
+					ws.send(JSON.stringify(payload))
+				}
+			} else {
+				const payload = {
+					status : 'end',
+					me : '${login.email}',
+					store : wsContent.innerHTML
+				}
+				ws.send(JSON.stringify(payload))
 			}
 		}
 	}

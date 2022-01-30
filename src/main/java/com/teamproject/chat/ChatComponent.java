@@ -24,9 +24,9 @@ public class ChatComponent extends TextWebSocketHandler {
         	session.sendMessage(new TextMessage(store.get(username)));
         }
     }
+	
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    	
     	JSONParser jsonParser = new JSONParser();
         Object obj = jsonParser.parse(message.getPayload());
         JSONObject jsonObj = (JSONObject) obj;
@@ -36,7 +36,6 @@ public class ChatComponent extends TextWebSocketHandler {
     	} else {
 	        for(WebSocketSession wss : sessionList.values()){
 	        	if (sessionList.get(jsonObj.get("target").toString()) == wss) {  
-	        		store.put(jsonObj.get("me").toString(), jsonObj.get("store").toString());
 	        		wss.sendMessage(new TextMessage(message.getPayload()));
 	        		break;
 	        	}
