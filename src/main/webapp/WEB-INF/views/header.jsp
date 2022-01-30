@@ -154,7 +154,7 @@
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : document.querySelector('#userlist').innerHTML
+						store : document.querySelector('#mamsglist').innerHTML
 					}
 					
 					ws.send(JSON.stringify(payload))
@@ -163,7 +163,8 @@
 				const payload = {
 					status : 'end',
 					me : '${login.email}',
-					store : wsContent.innerHTML
+					store : wsContent.innerHTML,
+					bottomMsgBtn : bottomMsgBtn.innerText
 				}
 				ws.send(JSON.stringify(payload))
 			}
@@ -176,7 +177,7 @@
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : document.querySelector('#userlist').innerHTML
+						store : document.querySelector('#mamsglist').innerHTML
 					}
 					
 					ws.send(JSON.stringify(payload))
@@ -185,7 +186,8 @@
 				const payload = {
 					status : 'end',
 					me : '${login.email}',
-					store : wsContent.innerHTML
+					store : wsContent.innerHTML,
+					bottomMsgBtn : bottomMsgBtn.innerText
 				}
 				ws.send(JSON.stringify(payload))
 			}

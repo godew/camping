@@ -6,6 +6,10 @@
 	<div id="userlist">
 		<c:forEach var="user" items="${users }">
 			<div data-user="${user }" data-cnt="0" ondblclick="dbClickHandler(event)" class="user">${user }</div>
+		</c:forEach>
+	</div>
+	<div id="mamsglist">
+		<c:forEach var="user" items="${users }">
 			<div data-name="${user }" class="manager-msg hidden">
 				<div class="msg-header">
 					<div>${user }</div>
@@ -18,7 +22,7 @@
 						<button class="ma-ws-send-msg-btn" data-name="${user }" onclick="maWsMsgBtnHandler(event)">전송</button>
 					</div>
 				</div>
-			</div>
+			</div>		
 		</c:forEach>
 	</div>
 	<div class="piechart"></div>

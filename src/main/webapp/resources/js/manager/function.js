@@ -96,10 +96,14 @@ function onMessage(event) {
 	if (event.data.charAt(0) != '{') { // json type의 데이터가 아니면
 		if(event.data.includes('ma-ws-send-msg-btn')) {
 			if (document.querySelector('#userlist') != null) {
-				document.querySelector('#userlist').innerHTML = event.data
+				document.querySelector('#mamsglist').innerHTML = event.data
 			}
 		} else {
-			wsContent.innerHTML = event.data
+			if (event.data.charAt(0) == '관') {
+				bottomMsgBtn.innerText = event.data
+			} else {				
+				wsContent.innerHTML = event.data
+			}
 		}
 	} else {
 		if (JSON.parse(event.data).target != 'manager@naver.com') {
