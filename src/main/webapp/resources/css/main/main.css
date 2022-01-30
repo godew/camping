@@ -89,16 +89,18 @@
 	display: flex;
 	justify-content: center;
 	margin-top: 200px;
-}
-
-.mainSearchMenu {
-	display: flex;
-	list-style: none;
-	width: 100%;
-	margin: 0;
-	padding: 0;
+	display: block;
 	background-color: #FFD7B4;
 }
+
+/* .mainSearchMenu { */
+/* 	display: flex; */
+/* 	list-style: none; */
+/* 	width: 100%; */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* 	background-color: #FFD7B4; */
+/* } */
 
 .mainSearchMenu a {
 	color: inherit;
@@ -125,4 +127,9 @@
 	height: 50px;
 	padding-left: 20px;
 	border-bottom: 1.5px solid #dadada;
+}
+
+/**/
+.detailSearch {
+	display: flex;
 }

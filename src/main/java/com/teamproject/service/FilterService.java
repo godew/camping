@@ -65,6 +65,10 @@ public class FilterService {
 		return fd.search1(itemId);
 	}
 
+	public List<FilterDTO> selectFirstList2(HashMap<String, String> map) {
+		return fd.selectFirstList2(map);
+	}
+
 
 
 

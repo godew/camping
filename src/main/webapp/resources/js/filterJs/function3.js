@@ -7,22 +7,22 @@ filterSubmit.addEventListener('click', filterSearch)
 filterReset. addEventListener('click', filterRest)
 
 
-function getDom(json) {
+function getDom1(json) {
 	console.log(json)
 	let dom = ''
 	json.forEach(dto => {
-		dom += '<div class="displayWrap" data-id="' + dto[0] +  '">'
-		dom += 		'<div><a href=""><img class="displayImg" src="' + dto[1] + '"></a></div>'
-		dom += 		'<div class="displayText">'
-		dom += 				'<strong>'+ dto[2] + '</strong><br>'
-		dom += 				'<span> 별 점 </span>'
-		dom += 				'<span>' + dto[3] + '</span>'
-		dom += 			'<div class="displayDetail">'
-		dom += 				'<span>' + dto[4] + '</span>'
-		dom += 				'<span class="displayPrice">'+ dto[5] + '원</span>'
-		dom += 			'</div>'
-		dom += 		'</div>'
-		dom += '</div>'
+			dom += '<div class="displayWrap" data-id="' + dto.itemid +  '">'
+			dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
+			dom += 		'<div class="displayText">'
+			dom += 				'<strong>'+ dto.itemname + '</strong><br>'
+			dom += 				'<span> 별 점 </span>'
+			dom += 				'<span>' + dto.distance + '</span>'
+			dom += 			'<div class="displayDetail">'
+			dom += 				'<span>' + dto.locale + '</span>'
+			dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+			dom += 			'</div>'
+			dom += 		'</div>'
+			dom += '</div>'	
 	})
 	return dom
 }
@@ -89,13 +89,8 @@ function filterSearch(event){
 	fetch(url, opt)
 	.then(resp => resp.json())
 	.then(json => {
-		const arr = []
-		for(i = 0; i < json.length; i++){
-			arr.push([json[i].itemid, json[i].itemimage, json[i].itemname, json[i].distance, json[i].locale, json[i].itemprice])
-		}
-		console.log(arr)
-
-		inDisplay.innerHTML = getDom(arr)
+		console.log(json) // 필터 잘 되었는지 확인용 콘솔
+		inDisplay.innerHTML = getDom1(json)
 	
 	})
 }

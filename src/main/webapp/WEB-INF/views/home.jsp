@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/filtercss/filterStyle.css">
+
 <div class="mainBack">
 	<div class="mainSearch">
-		<ul class="mainSearchMenu">
-			<li class="advancedSearch"><a href="">상세검색</a></li>
-			<li class="tagSearch"><a href="">태그로 검색</a></li>
-		</ul>
+		<div class="filterCalendar calendarHidden">
+		<div class="calendarDay">
+			<button class="calendarPrev"></button>
+			<div class="calendarYear"></div>
+			<button class="calendarNext"></button>
+		</div>
+		</div>
+		<div class="detailSearch">
+			<div>지역</div>
+			<div>인원</div>
+		</div>
 	</div>
 	<div class="mainBackImg">
 		<img src="${cpath }/resources/img/mainBack.png">
@@ -42,5 +51,6 @@
 	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+<script src="${cpath }/resources/js/function4.js"></script>
 </body>
 </html>

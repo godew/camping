@@ -115,8 +115,7 @@ public class FilterAjaxController {
 		if(Integer.parseInt(firstMonth) == Integer.parseInt(secondMonth)) {
 			map.put("firstMonth", firstMonth);
 			List<FilterDTO> list = fs.selectFirstList(map); // areacode, price 1차 
-			
-			
+	
 			for(int i = 0; i < list.size(); i++) {
 				itemId = list.get(i).getItemid();
 				
@@ -147,8 +146,55 @@ public class FilterAjaxController {
 					result.add(tmprs.get(z));
 				}
 			}
-//			return result;
+			return result;
 		} // if end 
+		else if(Integer.parseInt(firstMonth) != Integer.parseInt(secondMonth)) {
+			map.put("firstMonth", firstMonth);
+			map.put("secondMonth", secondMonth);
+			
+			List<FilterDTO> list = fs.selectFirstList2(map); // areacode, price 1차 
+	
+			for(int i = 0; i < list.size(); i++) {
+				itemId = list.get(i).getItemid();
+				
+				ArrayList<FilterDTO> tmp = fs.submitSearch(itemId);
+				
+				for(int j = 0; j < tmp.size(); j++) {
+					if (Integer.parseInt(map.get("people")) <= Integer.parseInt(tmp.get(j).getMaxpeople())) {
+						result.add(tmp.get(j));
+						break;
+					}
+					for (int k = 0; k < tmp.size(); k++) {
+						HashMap<Integer, String> calMap = getCalMap(tmp.get(k));
+						for(int l = Integer.parseInt(firstDay); l <= 31; l++) {
+							if(calMap.get(l) == "1") {
+								result.add(tmp.get(j));
+							}
+							
+							else if(calMap.get(l) == "0") {
+								break;
+							}
+						}
+						
+						for(int o = 1; o <= Integer.parseInt(secondDay); o++) {
+							if(calMap.get(o) == "1") {
+								result.add(tmp.get(j));
+							}
+							else if(calMap.get(o) == "1") {
+								break;
+							}
+						}
+						
+						itemId = result.get(k).getItemid();
+					}
+				}
+				ArrayList<FilterDTO> tmprs = fs.search1(itemId);
+				
+				for(int z = 0; z < tmprs.size(); z++) {
+					result.add(tmprs.get(z));
+				}
+			}
+		}
 		
 		return result;
 }	// submitSearch() end
