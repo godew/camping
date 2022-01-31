@@ -17,16 +17,26 @@ public class ChatComponent extends TextWebSocketHandler {
     private HashMap<String, String> store = new HashMap<>();
     private HashMap<String, String> btnMsg = new HashMap<>();
     
+    private HashMap<String, String> maStore = new HashMap<>();
+    
 	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     	String username = session.getUri().toString().split("username=")[1];
-        sessionList.put(username, session);
-        if (store.containsKey(username)) {
-        	session.sendMessage(new TextMessage(store.get(username)));
-        	if (!username.equals("manager@naver.com")) {
-        		session.sendMessage(new TextMessage(btnMsg.get(username)));
+        
+        if (username.equals("manager@naver.com")) {
+        	for (String s : sessionList.keySet()) {
+        		if (maStore.containsKey(s)) {
+    	        	session.sendMessage(new TextMessage(maStore.get(s)));
+        		}
         	}
+        } else {
+	        if (store.containsKey(username)) {
+	        	session.sendMessage(new TextMessage(store.get(username)));
+	    		session.sendMessage(new TextMessage(btnMsg.get(username)));
+	        }
         }
+        
+        sessionList.put(username, session);
     }
 	
     @Override
@@ -34,14 +44,21 @@ public class ChatComponent extends TextWebSocketHandler {
     	JSONParser jsonParser = new JSONParser();
         Object obj = jsonParser.parse(message.getPayload());
         JSONObject jsonObj = (JSONObject) obj;
-        
-    	if (jsonObj.containsKey("status")) {
-    		store.put(jsonObj.get("me").toString(), jsonObj.get("store").toString());
-    		if (jsonObj.containsKey("bottomMsgBtn")) {
+
+    	if (jsonObj.containsKey("status")) { // unload event
+    		if (jsonObj.get("me").toString().equals("manager@naver.com")) { // 관리자는 객체로 옴
+            	JSONObject jsonTmp = (JSONObject) jsonParser.parse(jsonObj.get("store").toString());
+            	for(Object o : jsonTmp.keySet()) {
+            		maStore.put(o.toString(), jsonTmp.get(o.toString()).toString());
+            	}
+    		} else { // user는 String html 그대로 저장
+        		store.put(jsonObj.get("me").toString(), jsonObj.get("store").toString());	
+    		}
+    		if (jsonObj.containsKey("bottomMsgBtn")) { // user btn 이름 저장
     			btnMsg.put(jsonObj.get("me").toString(), jsonObj.get("bottomMsgBtn").toString());
     		}
-    	} else {
-	        for(WebSocketSession wss : sessionList.values()){
+    	} else { // msg send event
+	        for(WebSocketSession wss : sessionList.values()){ // target 찾아서 메시지 전송
 	        	if (sessionList.get(jsonObj.get("target").toString()) == wss) {  
 	        		wss.sendMessage(new TextMessage(message.getPayload()));
 	        		break;

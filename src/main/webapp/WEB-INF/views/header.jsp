@@ -151,10 +151,16 @@
 		if (ws != null) {
 			if ('${login.email}' == 'manager@naver.com') {
 				if (document.querySelector('#userlist') != null) {
+					const obj = {}
+					const managerMsgs = document.querySelectorAll('.manager-msg')
+					managerMsgs.forEach(ms => {
+							obj[ms.dataset.name] = ms.outerHTML
+					})
+					
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : document.querySelector('#mamsglist').innerHTML
+						store : obj
 					}
 					
 					ws.send(JSON.stringify(payload))
@@ -174,10 +180,16 @@
 		document.getElementById('socketclose').onclick = function() {
 			if ('${login.email}' == 'manager@naver.com') {
 				if (document.querySelector('#userlist') != null) {
+					const obj = {}
+					const managerMsgs = document.querySelectorAll('.manager-msg')
+					managerMsgs.forEach(ms => {
+							obj[ms.dataset.name] = ms.outerHTML
+					})
+					
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : document.querySelector('#mamsglist').innerHTML
+						store : obj
 					}
 					
 					ws.send(JSON.stringify(payload))

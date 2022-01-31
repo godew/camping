@@ -96,7 +96,13 @@ function onMessage(event) {
 	if (event.data.charAt(0) != '{') { // json type의 데이터가 아니면
 		if(event.data.includes('ma-ws-send-msg-btn')) {
 			if (document.querySelector('#userlist') != null) {
-				document.querySelector('#mamsglist').innerHTML = event.data
+				const managerMsgs = document.querySelectorAll('.manager-msg')
+				for (let i = 0; i < managerMsgs.length; i++) {
+					if (event.data.includes(managerMsgs[i].dataset.name)) {
+						managerMsgs[i].outerHTML = event.data	
+						break
+					}
+				}
 			}
 		} else {
 			if (event.data.charAt(0) == '관') {
