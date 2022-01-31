@@ -93,11 +93,17 @@ function columnChart() {
 }
 
 function onMessage(event) {
-	if (event.data.charAt(0) != '{') {
+	if (event.data.charAt(0) != '{') { // json type의 데이터가 아니면
 		if(event.data.includes('ma-ws-send-msg-btn')) {
-			document.querySelector('#userlist').innerHTML = event.data
+			if (document.querySelector('#userlist') != null) {
+				document.querySelector('#mamsglist').innerHTML = event.data
+			}
 		} else {
-			wsContent.innerHTML = event.data
+			if (event.data.charAt(0) == '관') {
+				bottomMsgBtn.innerText = event.data
+			} else {				
+				wsContent.innerHTML = event.data
+			}
 		}
 	} else {
 		if (JSON.parse(event.data).target != 'manager@naver.com') {
@@ -112,13 +118,6 @@ function onMessage(event) {
 			}
 			wsContent.innerHTML += dom
 			wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
-			
-			const payload = {
-				status : 'end',
-				me : '${login.email}',
-				store : wsContent.innerHTML
-			}
-			ws.send(JSON.stringify(payload))
 		} else {
 			dom = ``
 			dom += `<div class="msglineL">`
@@ -126,22 +125,18 @@ function onMessage(event) {
 			dom += `</div>`
 			
 			const managerMsg = document.querySelector('div[data-name="' + JSON.parse(event.data).me + '"]')
-			if (managerMsg.classList.contains('hidden')) {
-				const user = document.querySelector('div[data-user="' + JSON.parse(event.data).me + '"]')
-				user.dataset.cnt = +user.dataset.cnt + 1
-				user.innerText = JSON.parse(event.data).me + ' (' + user.dataset.cnt + ')'
+			if (managerMsg != null) {
+				if (managerMsg.classList.contains('hidden')) {
+					const user = document.querySelector('div[data-user="' + JSON.parse(event.data).me + '"]')
+					user.dataset.cnt = +user.dataset.cnt + 1
+					user.innerText = JSON.parse(event.data).me + ' (' + user.dataset.cnt + ')'
+				}
 			}
-			
 			const maWsContent = document.querySelector('div[data-email="' + JSON.parse(event.data).me + '"]')
-			maWsContent.innerHTML += dom
-			maWsContent.scroll({top: maWsContent.scrollHeight, behavior: 'smooth'})
-			
-			const payload = {
-				status : 'end',
-				me : 'manager@naver.com',
-				store : document.querySelector('#userlist').innerHTML
+			if (maWsContent != null) {
+				maWsContent.innerHTML += dom
+				maWsContent.scroll({top: maWsContent.scrollHeight, behavior: 'smooth'})
 			}
-			ws.send(JSON.stringify(payload))
 		}
 	}
 }	
@@ -167,13 +162,43 @@ function maWsMsgBtnHandler(event) {
 		const payload = {
 			msg : msg,
 			target : tmp,
-			me : 'manager@naver.com',
-			store : document.querySelector('#userlist').innerHTML
+			me : 'manager@naver.com'
 		}
 
 		ws.send(JSON.stringify(payload))
 		
 		maContentWrapInput.value = ''
 		maContentWrapInput.focus()
+	}
+}
+
+function dbClickHandler(event) {
+	const tmp = event.target.dataset.user
+	const managerMsg = document.querySelector('div[data-name="' + tmp + '"]')
+	const maContentWrapInput = document.querySelector('input[data-name="' + tmp + '"]')
+	const maWsSendMsgBtn = document.querySelector('button[data-name="' + tmp + '"]')
+	const user = document.querySelector('div[data-user="' + tmp + '"]')
+	
+	managerMsg.classList.remove('hidden')
+	user.dataset.cnt = 0
+	user.innerText = tmp
+	maContentWrapInput.focus()
+//	maWsSendMsgBtn.onclick = maWsMsgBtnHandler
+//	maContentWrapInput.onkeydown = function(event) {
+//		if (event.key == 'Enter') {
+//			maWsMsgBtnHandler(event)
+//		}
+//	}
+}		
+
+function closeClickHandler(event) {
+	const tmp = event.target.dataset.close
+	const managerMsg = document.querySelector('div[data-name="' + tmp + '"]')
+	managerMsg.classList.add('hidden')
+}
+
+function keydownHandler(event) {
+	if (event.key == 'Enter') {
+		maWsMsgBtnHandler(event)
 	}
 }

@@ -15,6 +15,7 @@ public class ChatComponent extends TextWebSocketHandler {
 	
     private HashMap<String, WebSocketSession> sessionList = new HashMap<>();
     private HashMap<String, String> store = new HashMap<>();
+    private HashMap<String, String> btnMsg = new HashMap<>();
     
 	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -22,21 +23,26 @@ public class ChatComponent extends TextWebSocketHandler {
         sessionList.put(username, session);
         if (store.containsKey(username)) {
         	session.sendMessage(new TextMessage(store.get(username)));
+        	if (!username.equals("manager@naver.com")) {
+        		session.sendMessage(new TextMessage(btnMsg.get(username)));
+        	}
         }
     }
+	
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    	
     	JSONParser jsonParser = new JSONParser();
         Object obj = jsonParser.parse(message.getPayload());
         JSONObject jsonObj = (JSONObject) obj;
         
     	if (jsonObj.containsKey("status")) {
     		store.put(jsonObj.get("me").toString(), jsonObj.get("store").toString());
+    		if (jsonObj.containsKey("bottomMsgBtn")) {
+    			btnMsg.put(jsonObj.get("me").toString(), jsonObj.get("bottomMsgBtn").toString());
+    		}
     	} else {
 	        for(WebSocketSession wss : sessionList.values()){
 	        	if (sessionList.get(jsonObj.get("target").toString()) == wss) {  
-	        		store.put(jsonObj.get("me").toString(), jsonObj.get("store").toString());
 	        		wss.sendMessage(new TextMessage(message.getPayload()));
 	        		break;
 	        	}

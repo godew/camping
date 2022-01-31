@@ -50,7 +50,5 @@
 		Copyrightⓒ 2022.AfterCamping.Allright reserved.
 	</div>
 </div>
-<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<script src="${cpath }/resources/js/function4.js"></script>
 </body>
 </html>

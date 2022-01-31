@@ -196,31 +196,31 @@
 		
 		switch (star) {
 		case 1:
-			starImg[i].style.marginTop = '-22.2%'
+			starImg[i].style.marginTop = '-165px'
 			break;
 		case 2:
-			starImg[i].style.marginTop = '-19.8%'
+			starImg[i].style.marginTop = '-147px'
 			break;
 		case 3:
-			starImg[i].style.marginTop = '-17.3%'
+			starImg[i].style.marginTop = '-129px'
 			break;
 		case 4:
-			starImg[i].style.marginTop = '-14.9%'
+			starImg[i].style.marginTop = '-110px'
 			break;
 		case 5:
-			starImg[i].style.marginTop = '-12.4%'
+			starImg[i].style.marginTop = '-91px'
 			break;
 		case 6:
-			starImg[i].style.marginTop = '-9.9%'
+			starImg[i].style.marginTop = '-74px'
 			break;
 		case 7:
-			starImg[i].style.marginTop = '-7.3%'
+			starImg[i].style.marginTop = '-56px'
 			break;
 		case 8:
-			starImg[i].style.marginTop = '-4.9%'
+			starImg[i].style.marginTop = '-39px'
 			break;
 		case 9:
-			starImg[i].style.marginTop = '-2.4%'
+			starImg[i].style.marginTop = '-19px'
 			break;
 		default:
 			break;
@@ -230,48 +230,56 @@
 	switch (starAVG) {
 	case 1:
 		console.log(1)
-		starTotalImg.style.marginTop = '-90%'
+		starTotalImg.style.marginTop = '-450px'
 		startext.innerText = '실망이야'
 		break;
 	case 2:
 		console.log(2)
-		starTotalImg.style.marginTop ='-80%'
-			startext.innerText = '실망이야'
+		starTotalImg.style.marginTop ='-400px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '실망이야'
 		break;
 	case 3:
 		console.log(3)
-		starTotalImg.style.marginTop ='-69%'
-			startext.innerText = '별로'
+		starTotalImg.style.marginTop ='-350px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '별로'
 		break;
 	case 4:
 		console.log(4)
-		starTotalImg.style.marginTop ='-60%'
-			startext.innerText = '별로'
+		starTotalImg.style.marginTop ='-300px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '별로'
 		break;
 	case 5:
 		console.log(5)
-		starTotalImg.style.marginTop ='-50%'
-			startext.innerText = '좋아?'
+		starTotalImg.style.marginTop ='-250px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '좋아?'
 		break;
 	case 6:
 		console.log(6)
-		starTotalImg.style.marginTop ='-40%'
-			startext.innerText = '괜찮아요'
+		starTotalImg.style.marginTop ='-200px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '괜찮아요'
 		break;
 	case 7:
 		console.log(7)
-		starTotalImg.style.marginTop ='-30%'
-			startext.innerText = '추천해요'
+		starTotalImg.style.marginTop ='-150px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '추천해요'
 		break;
 	case 8:
 		console.log(8)
-		starTotalImg.style.marginTop ='-20%'
-			startext.innerText = '만족해요'
+		starTotalImg.style.marginTop ='-100px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '만족해요'
 		break;
 	case 9:
 		console.log(9)
-		starTotalImg.style.marginTop ='-10%'
-			startext.innerText = '만족해요'
+		starTotalImg.style.marginTop ='-50px'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '만족해요'
 		break;
 	default:
 		break;
