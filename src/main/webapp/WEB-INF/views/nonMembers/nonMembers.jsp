@@ -45,8 +45,8 @@
 <script>
 	const checkIn = document.getElementById('checkIn').innerText
 	const checkOut = document.getElementById('checkOut').innerText
-// 	checkInDate = checkIn.substring(0,2) + '월' + checkIn.subString(2,4) + '일'
-// 	checkOutDate = checkOut.substring(0,2) + '월' + checkOut.subString(2,4) + '일'
+	checkInDate = checkIn.substring(0,2) + '월' + checkIn.subString(2,4) + '일'
+	checkOutDate = checkOut.substring(0,2) + '월' + checkOut.subString(2,4) + '일'
 	
 	console.log(checkIn.substring(0, -4))
 </script>

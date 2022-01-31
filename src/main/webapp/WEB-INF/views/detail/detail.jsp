@@ -231,57 +231,67 @@
 	case 1:
 		console.log(1)
 		starTotalImg.style.marginTop = '-450px'
-		startext.innerText = '실망이야'
+		startext.innerText = '실망이야 (' + starAVG + ')'
 		break;
 	case 2:
 		console.log(2)
 		starTotalImg.style.marginTop ='-400px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '실망이야'
+		startext.innerText = '실망이야 (' + starAVG + ')'
 		break;
 	case 3:
 		console.log(3)
 		starTotalImg.style.marginTop ='-350px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '별로'
+		startext.innerText = '별로 (' + starAVG + ')'
 		break;
 	case 4:
 		console.log(4)
 		starTotalImg.style.marginTop ='-300px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '별로'
+		startext.innerText = '별로 (' + starAVG + ')'
 		break;
 	case 5:
 		console.log(5)
 		starTotalImg.style.marginTop ='-250px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '좋아?'
+		startext.innerText = '좋은거같아요 (' + starAVG + ')'
 		break;
 	case 6:
 		console.log(6)
 		starTotalImg.style.marginTop ='-200px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '괜찮아요'
+		startext.innerText = '괜찮아요 (' + starAVG + ')'
 		break;
 	case 7:
 		console.log(7)
 		starTotalImg.style.marginTop ='-150px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '추천해요'
+		startext.innerText = '추천해요 (' + starAVG + ')'
 		break;
 	case 8:
 		console.log(8)
 		starTotalImg.style.marginTop ='-100px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '만족해요'
+		startext.innerText = '만족해요 (' + starAVG + ')'
 		break;
 	case 9:
 		console.log(9)
 		starTotalImg.style.marginTop ='-50px'
 		starTotalImg.style.width ='250px'
-		startext.innerText = '만족해요'
+		startext.innerText = '만족해요 (' + starAVG + ')'
+		break;
+		break;
+	case 10:
+		console.log(10)
+		starTotalImg.style.marginTop ='0'
+		starTotalImg.style.width ='250px'
+		startext.innerText = '최고야 (' + starAVG + ')'
 		break;
 	default:
+		starTotalImg.style.marginTop ='100%'
+		startext.innerText = '리뷰가 없어요ㅠㅠ'
+		startext.style.fontWeight  = 'bolder'
 		break;
 	}
 	

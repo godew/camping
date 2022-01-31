@@ -7,15 +7,13 @@
 
 <script>
 function point(event) {
+	const check = confirm('포인트를 받으면 예약취소를 못합니다. 포인트를 받으시겠습니까?')
+	if(check == true){
 	location.href = cpath + '/getPoint/' + event.target.value
-// 	console.log(cpath + '/getPoint/' + event.target.value)
-
+	}
+	
 }
 </script>
-<c:forEach var="list" items="${list }">
-<fmt:parseDate var="checkIn" value="${list.checkIn }" pattern="MMdd"/>
-<fmt:parseDate var="checkOut" value="${list.checkOut }" pattern="MMdd"/>
-</c:forEach>
 <div class="content">
 <div class="leftmenu">
 	<nav>
@@ -32,31 +30,29 @@ function point(event) {
 		<h3>예약 내역</h3>
 	<div id="reservation">
 	<c:forEach var="list" items="${list }" >
-		<c:if test="${checkIn > today }">
+		<fmt:parseDate var="checkIn" value="${list.checkIn }" pattern="MMdd"/>
+		<fmt:formatDate var="checkInDate" value="${checkIn }" pattern="MM월dd일"/>
+		<fmt:parseDate var="checkOut" value="${list.checkOut }" pattern="MMdd"/>
+		<fmt:formatDate var="checkOutDate" value="${checkOut }" pattern="MM월dd일"/>
+		<c:if test="${list.checkIn > today }">
 		<c:if test="${list.cancel != 0}">
-		<ul>
-		<li><img src="${list.itemRoomImg }" width="100px;"></li>
-			<li>예약자 ${name }</li>
-			<li>방번호${list.itemRoomId }</li>
-			<li>가격${list.orderPrice }원</li>
-			<li>체크인${list.checkIn }</li>
-			<li>체크아웃${list.checkOut }</li>
-			<li>예약날짜${list.orderDate }</li>
-			<li>${list.orderId }</li>
-			<li>${list.itemRoomImg }</li>
-			<li>${list.itemRoomName }</li>
-			<li>
+		<div class="reservationList">
+			<img src="${list.itemRoomImage }" >
+			<div class="reservationText">
+				<div><strong>${list.itemRoomName }</strong></div>
+				<span>${checkInDate } ~ ${checkOutDate }</span>
+			</div>
+			
 			<c:if test="${list.cancel == 1 }">
 			<form method="POST">
-				<input type="number" name="orderId" value="${list.orderId }" hidden="">
-				<input type="submit" value="예약취소">
 				<button class="getPoint" value="${list.orderId }" type="button">
 					포인트 받기
 				</button>
+				<input type="number" name="orderId" value="${list.orderId }" hidden="">
+				<input class="btn" type="submit" value="예약취소">
 			</form>
 			</c:if>
-			</li>
-		</ul>
+		</div>
 		</c:if>
 		</c:if>
 	</c:forEach>
@@ -64,17 +60,22 @@ function point(event) {
 		<h3>이용 내역</h3>
 	<div id="usageHistory">
 		<c:forEach var="list" items="${list }" >
-		<c:if test="${list.checkOut < today }">
+		<fmt:parseDate var="checkIn" value="${list.checkIn }" pattern="MMdd"/>
+		<fmt:formatDate var="checkInDate" value="${checkIn }" pattern="MM월dd일"/>
+		<fmt:parseDate var="checkOut" value="${list.checkOut }" pattern="MMdd"/>
+		<fmt:formatDate var="checkOutDate" value="${checkOut }" pattern="MM월dd일"/>
+		<c:if test="${list.checkIn < today }">
 		<c:if test="${list.cancel != 0}">
+		<div class="usageHistoryList" >
 		<a href="${cpath }/reservationDetail/${list.orderId}/${list.memberId}">
-		<ul>
-			<li>방번호${list.itemRoomId }</li>
-			<li>가격${list.orderPrice }원</li>
-			<li>${list.checkIn } ~ ${list.checkOut }</li>
-			<li>cancel${list.cancel }</li>
-<%-- 			<li><a href="${cpath }/product/detail?itemId=${list.itemRoomId}&checkIn=${today}&checkOut=${today+1}">다시예약</a></li><!-- 예약페이지 --> --%>
-		</ul>
+			<img src="${list.itemRoomImage }" >
+			<div class="reservationText">
+				<div><strong>${list.itemRoomName }</strong></div>
+				<span>${checkInDate } ~ ${checkOutDate }</span>
+				<div><a href="${cpath }/product/detail?itemId=${list.itemRoomId}&checkIn=${today}&checkOut=${today}">다시예약</a></div><!-- 예약페이지 -->
+			</div>
 		</a>
+		</div>
 		</c:if>
 		</c:if>
 		</c:forEach>
@@ -83,16 +84,18 @@ function point(event) {
 		<h3>취소 내역</h3>
 	<div id="cancellationHistory"> 
 		<c:forEach var="list" items="${list }" >
+		<fmt:parseDate var="checkIn" value="${list.checkIn }" pattern="MMdd"/>
+		<fmt:formatDate var="checkInDate" value="${checkIn }" pattern="MM월dd일"/>
+		<fmt:parseDate var="checkOut" value="${list.checkOut }" pattern="MMdd"/>
+		<fmt:formatDate var="checkOutDate" value="${checkOut }" pattern="MM월dd일"/>
 		<c:if test="${list.cancel == 0 }">
-		<ul>
-			<li>예약자 ${name }</li>
-			<li>방번호${list.itemRoomId }</li>
-			<li>가격${list.orderPrice }원</li>
-			<li>체크인${list.checkIn }</li>
-			<li>체크아웃${list.checkOut }</li>
-			<li>예약날짜${list.orderDate }</li>
-			<li>cancel${list.cancel }</li>
-		</ul>
+		<div class="reservationList">
+			<img src="${list.itemRoomImage }" >
+			<div class="reservationText">
+				<div><strong>${list.itemRoomName }</strong></div>
+				<span>${checkInDate } ~ ${checkOutDate }</span>
+			</div>
+		</div>
 		</c:if>
 		</c:forEach>
 	</div>
@@ -102,10 +105,10 @@ function point(event) {
 <script>
 
 	const getPoint = document.querySelectorAll('.getPoint')
+	
 	for(let i in getPoint){
 		getPoint[i].onclick = point
 	}
-	
 </script>
 
 

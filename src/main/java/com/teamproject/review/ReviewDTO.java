@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReviewDTO {
 
 	private int idx, memberId, starPoint;
-	private String title, itemId, itemRoomId, content;
+	private String title, itemId, itemRoomId, content, uploadFilePath;
 	private MultipartFile img;
 	public int getIdx() {
 		return idx;
@@ -54,5 +54,11 @@ public class ReviewDTO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getUploadFilePath() {
+		return uploadFilePath;
+	}
+	public void setUploadFilePath(String uploadFilePath) {
+		this.uploadFilePath = uploadFilePath;
 	}
 }

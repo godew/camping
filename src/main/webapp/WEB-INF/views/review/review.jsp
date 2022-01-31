@@ -8,9 +8,7 @@
 </script>
 
 <div class="contentbox">
-	<div>
-	${dto.memberID }
-		<form method="POST" enctype="multipart/form-data">
+		<form method="POST" action="${cpath }/review/${dto.orderId}" enctype="multipart/form-data">
 			<span class="star"> ★★★★★ <span>★★★★★</span> 
 			<input name="starPoint" type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
 			</span>
@@ -21,7 +19,6 @@
 			<p><textarea style="resize: none; width: 400px; height: 400px;" placeholder="300자 이하로 작상해주세요"></textarea></p>
 			<p><input type="submit" value="작성"></p>
 		</form>
-	</div>
 </div>
 
 

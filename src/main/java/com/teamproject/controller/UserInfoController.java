@@ -94,7 +94,7 @@ public class UserInfoController {
 
 	@GetMapping("/reservationDetail/{orderId}/{memberId}")
 	public String reservationDetail(@PathVariable int memberId,@PathVariable int orderId, Model model){
-		List<OrderDTO> list = os.getOrder(orderId);
+		List<reservationDTO> list = os.getOrder(orderId);
 		String name = us.getName(memberId);
 		model.addAttribute("name", name);
 		model.addAttribute("list", list);
@@ -111,7 +111,7 @@ public class UserInfoController {
 	public String orderCancle(@RequestParam("orderId") int orderId, @PathVariable int memberId) throws IOException {
 		os.orderCancle(orderId);
 		
-		OrderDTO order = os.getOrder(orderId).get(0);
+		reservationDTO order = os.getOrder(orderId).get(0);
 		int month1 = Integer.valueOf(order.getCheckIn().substring(0, 2));
 		int month2 = Integer.valueOf(order.getCheckOut().substring(0, 2));
 		int d1 = Integer.valueOf(order.getCheckIn().substring(2, 4));
