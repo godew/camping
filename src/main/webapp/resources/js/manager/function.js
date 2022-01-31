@@ -93,20 +93,42 @@ function columnChart() {
 }
 
 function onMessage(event) {
+	if (event.data.length == 1) {
+		dom = ``
+		dom += `<div class="msglineN">`
+		dom += `<span class="wsReceiveN"><관리자가 부재중 입니다></span>`
+		dom += `</div>`
+
+		wsContent.innerHTML += dom
+		wsContent.scroll({top: wsContent.scrollHeight, behavior: 'smooth'})
+		return
+	}
+	
 	if (event.data.charAt(0) != '{') { // json type의 데이터가 아니면
 		if(event.data.includes('ma-ws-send-msg-btn')) {
 			if (document.querySelector('#userlist') != null) {
-				const managerMsgs = document.querySelectorAll('.manager-msg')
-				for (let i = 0; i < managerMsgs.length; i++) {
-					if (event.data.includes(managerMsgs[i].dataset.name)) {
-						managerMsgs[i].outerHTML = event.data	
-						break
+				if (event.data.charAt(0) == 'm') { // name
+					const users = document.querySelectorAll('.user')
+					for (let i = 0; i < users.length; i++) {
+						if (event.data.includes(users[i].dataset.user)) {
+							users[i].outerHTML = event.data.split("/:/")[1]
+							break
+						}
+					}
+				} else { // content html
+					const managerMsgs = document.querySelectorAll('.manager-msg')
+					for (let i = 0; i < managerMsgs.length; i++) {
+						if (event.data.includes(managerMsgs[i].dataset.name)) {
+							managerMsgs[i].outerHTML = event.data	
+							break
+						}
 					}
 				}
 			}
 		} else {
 			if (event.data.charAt(0) == '관') {
 				bottomMsgBtn.innerText = event.data
+				cnt = bottomMsgBtn.innerText.includes("(") ? +bottomMsgBtn.innerText.split("(")[1].split(")")[0] : 0
 			} else {				
 				wsContent.innerHTML = event.data
 			}
@@ -137,6 +159,13 @@ function onMessage(event) {
 					user.dataset.cnt = +user.dataset.cnt + 1
 					user.innerText = JSON.parse(event.data).me + ' (' + user.dataset.cnt + ')'
 				}
+			} else { // manager가 다른페이지(부재중)
+				const payload = {
+						target : JSON.parse(event.data).me,
+						no : "N"
+					}
+				ws.send(JSON.stringify(payload))
+				return
 			}
 			const maWsContent = document.querySelector('div[data-email="' + JSON.parse(event.data).me + '"]')
 			if (maWsContent != null) {

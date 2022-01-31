@@ -145,6 +145,7 @@
 			}
 		}
 	}
+	
 </script>
 <script>
 	window.onbeforeunload = function() {
@@ -154,13 +155,20 @@
 					const obj = {}
 					const managerMsgs = document.querySelectorAll('.manager-msg')
 					managerMsgs.forEach(ms => {
-							obj[ms.dataset.name] = ms.outerHTML
+						obj[ms.dataset.name] = ms.outerHTML
+					})
+					
+					const nameObj = {}
+					const users = document.querySelectorAll('.user')
+					users.forEach(user => {
+						nameObj[user.dataset.user] = user.outerHTML
 					})
 					
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : obj
+						store : obj,
+						name : nameObj
 					}
 					
 					ws.send(JSON.stringify(payload))
@@ -183,13 +191,20 @@
 					const obj = {}
 					const managerMsgs = document.querySelectorAll('.manager-msg')
 					managerMsgs.forEach(ms => {
-							obj[ms.dataset.name] = ms.outerHTML
+						obj[ms.dataset.name] = ms.outerHTML
+					})
+					
+					const nameObj = {}
+					const users = document.querySelectorAll('.user')
+					users.forEach(user => {
+						nameObj[user.dataset.user] = user.outerHTML
 					})
 					
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : obj
+						store : obj,
+						name : nameObj
 					}
 					
 					ws.send(JSON.stringify(payload))

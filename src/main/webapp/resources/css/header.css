@@ -149,8 +149,17 @@ header .a_tag2 {
     padding: 9px;
     font-size: 13px;
 }
-    
-    
+#bottom-msg .msglineN {
+	height: 35px;	
+	padding: 13px;
+}
+#bottom-msg .msglineN > .wsReceiveN {
+	background-color: #ffff80;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 13px;
+    color: red;
+}
     
     
     
