@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.teamproject.order.OrderDAO;
 import com.teamproject.order.OrderDTO;
+import com.teamproject.reservation.reservationDTO;
 
 @Service
 public class OrderService {
@@ -26,7 +27,7 @@ public class OrderService {
 		return dao.insertNot(orderDto);
 	}
 
-	public List<OrderDTO> getOrder(int orderId) {
+	public List<reservationDTO> getOrder(int orderId) {
 		return dao.getOrder(orderId);
 	}
 

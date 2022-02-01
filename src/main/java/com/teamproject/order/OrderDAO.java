@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.teamproject.reservation.reservationDTO;
+
 public interface OrderDAO {
 
 	@Insert("insert into orders(memberId, "
@@ -55,8 +57,9 @@ public interface OrderDAO {
 			 		  		 	    + "#{tid})")
 	int insertNot(OrderDTO orderDto);
 
-	@Select("select * from orders where orderId=${orderId}")
-	List<OrderDTO> getOrder(int orderId);
+	@Select("select * from orders A join item_room B " + 
+			"on A.itemRoomId = B.itemRoomId and A.orderId = ${orderId} order by checkIn")
+	List<reservationDTO> getOrder(int orderId);
 
 	@Delete("delete from orders where orderId=${orderId}")
 	int orderDelete(int orderId);

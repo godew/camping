@@ -7,9 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class reservationDTO {
 
 	private int orderId, memberId, itemRoomId, orderPrice, cancel, itemId, satandardPeople, maxPeople;
-	private String tid,checkIn, checkOut, notPhone, notName, itemRoomName;
+	private String tid,checkIn, checkOut, notPhone, notName, itemRoomName, itemRoomImage;
 	private Date orderDate;
-	private MultipartFile itemRoomImg;
 	
 	public int getOrderId() {
 		return orderId;
@@ -95,16 +94,16 @@ public class reservationDTO {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	public MultipartFile getItemRoomImg() {
-		return itemRoomImg;
-	}
-	public void setItemRoomImg(MultipartFile itemRoomImg) {
-		this.itemRoomImg = itemRoomImg;
-	}
 	public String getItemRoomName() {
 		return itemRoomName;
 	}
 	public void setItemRoomName(String itemRoomName) {
 		this.itemRoomName = itemRoomName;
+	}
+	public String getItemRoomImage() {
+		return itemRoomImage;
+	}
+	public void setItemRoomImage(String itemRoomImage) {
+		this.itemRoomImage = itemRoomImage;
 	}
 }

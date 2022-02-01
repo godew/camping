@@ -47,8 +47,8 @@
 				더보기
 				<div class="hidden header_seemore">
 					<ul>
-						<li><a href="" class="a_tag2">공지사항</a></li>
-						<li><a href="" class="a_tag2">약관 및 정책</a></li>
+						<li><a href="${cpath}/more/notice" class="a_tag2">공지사항</a></li>
+						<li><a href="${cpath}/more/terms" class="a_tag2">약관 및 정책</a></li>
 					</ul>
 				</div>
 			</li>
@@ -149,16 +149,30 @@
 			}
 		}
 	}
+	
 </script>
 <script>
 	window.onbeforeunload = function() {
 		if (ws != null) {
 			if ('${login.email}' == 'manager@naver.com') {
 				if (document.querySelector('#userlist') != null) {
+					const obj = {}
+					const managerMsgs = document.querySelectorAll('.manager-msg')
+					managerMsgs.forEach(ms => {
+						obj[ms.dataset.name] = ms.outerHTML
+					})
+					
+					const nameObj = {}
+					const users = document.querySelectorAll('.user')
+					users.forEach(user => {
+						nameObj[user.dataset.user] = user.outerHTML
+					})
+					
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : document.querySelector('#mamsglist').innerHTML
+						store : obj,
+						name : nameObj
 					}
 					
 					ws.send(JSON.stringify(payload))
@@ -178,10 +192,23 @@
 		document.getElementById('socketclose').onclick = function() {
 			if ('${login.email}' == 'manager@naver.com') {
 				if (document.querySelector('#userlist') != null) {
+					const obj = {}
+					const managerMsgs = document.querySelectorAll('.manager-msg')
+					managerMsgs.forEach(ms => {
+						obj[ms.dataset.name] = ms.outerHTML
+					})
+					
+					const nameObj = {}
+					const users = document.querySelectorAll('.user')
+					users.forEach(user => {
+						nameObj[user.dataset.user] = user.outerHTML
+					})
+					
 					const payload = {
 						status : 'end',
 						me : 'manager@naver.com',
-						store : document.querySelector('#mamsglist').innerHTML
+						store : obj,
+						name : nameObj
 					}
 					
 					ws.send(JSON.stringify(payload))
@@ -191,9 +218,10 @@
 					status : 'end',
 					me : '${login.email}',
 					store : wsContent.innerHTML,
-					bottomMsgBtn : bottomMsgBtn.innerText
+					bottomMsgBtn : bottomMsgBtn.innerText,
+					logout : 'logout'
 				}
-				ws.send(JSON.stringify(payload))
+				ws.send(JSON.stringify(payload)) // user info send
 			}
 		}
 	}

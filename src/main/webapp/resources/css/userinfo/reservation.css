@@ -6,8 +6,17 @@ a{
 	text-decoration: none;
 	cursor: pointer;
 }
-button{
-cursor: pointer;
+button, input{
+	cursor: pointer;
+	width: 45%;
+	height: 30px;
+	padding: 0 12px;
+	border: 1px solid rgba(0,0,0,.08);
+	border-radius: 4px;
+	background: #fafafa;
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,.56);
 }
 li{
 	list-style: none;
@@ -42,18 +51,79 @@ box-sizing: border-box;
 width: 100%;
 }
 
-.mainContent div{
+#reservation, #usageHistory, #cancellationHistory{
 	display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.reservationList, .usageHistoryList {
+	display: block;
+	width: 19vw;
+	height: 33vh;
+    margin-right: 1%;
+    border: 1px solid gainsboro;
+
+}
+
+.reservationList > img, .usageHistoryList > a > img{
+	width: inherit;
+}
+.usageHistoryList > a{
+	box-sizing: border-box;
+	width: inherit;
+}
+
+.btn, .getPoint{
+/* 	width: 45%; */
+/* 	background-color: white; */
+/* 	color: black; */
+/* 	border: ridge; */
+}
+.reservationText{
+	display :block;
+	text-align: center;
+}
+.reservationText > div{
+	padding: 5px;
+}
+form{
+	margin: 2% 10%;
+}
+/* detail */
 	
+.reservationContent{
+	width: 100%;
+	text-align: center;
 }
-.mainContent div > ul{
-	border: 1px solid black;
-	display: block;
-	width: 40%;
+.reservationContent > div,.reservationContent p,.reservationContent button {
+	padding: 1%;
+	width: 60vw;
+	font-weight: lighter;
+	font-size: 16px;
 }
-.mainContent div > ul > li{
-	float: left;
-	display: block;
-	padding: 10px;
+.itemRoomImage > img {
+	width: 55%
+}
+.reservationContent p{
+	font-size: 13px;
+	color: gainsboro;
+	margin: 0;
+}
+.reservationContent button{
+	width: auto;
+	height: 45px;
+	padding: 0 12px;
+	border: 1px solid rgba(0,0,0,.08);
+	border-radius: 4px;
+	background: #fafafa;
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(0,0,0,.56);
+}
+.reservationContent b{
+	font-weight: bold;
+}
+.price{
+	color: red;
+	font-size: 18px;
 }

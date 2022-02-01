@@ -13,6 +13,8 @@ import com.teamproject.review.ReviewDTO;
 
 @Service
 public class ReivewService {
+	
+
 	@Autowired private ReviewDAO dao;
 	
 	private String uploadPath = "C:\\upload";
@@ -44,5 +46,6 @@ public class ReivewService {
 		return row;
 	}
 
+	
 	
 }
