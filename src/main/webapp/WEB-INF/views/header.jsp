@@ -43,8 +43,8 @@
 				더보기
 				<div class="hidden header_seemore">
 					<ul>
-						<li><a href="" class="a_tag2">공지사항</a></li>
-						<li><a href="" class="a_tag2">약관 및 정책</a></li>
+						<li><a href="${cpath}/more/notice" class="a_tag2">공지사항</a></li>
+						<li><a href="${cpath}/more/terms" class="a_tag2">약관 및 정책</a></li>
 					</ul>
 				</div>
 			</li>

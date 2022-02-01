@@ -12,5 +12,6 @@
 	
 <typeAliases>
 	<typeAlias type="com.teamproject.member.MemberDTO" alias="member"/>
+	<typeAlias type="com.teamproject.seemore.SeemoreDTO" alias="seemoreDTO"/>
 </typeAliases>
 </configuration>
