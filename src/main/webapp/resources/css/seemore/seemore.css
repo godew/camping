@@ -1,21 +1,21 @@
 @charset "utf-8";
 
-.content{
+.content-more{
 	width: 55%;
 	min-width: 930px;
 	box-sizing: border-box;
 	margin: 25vh auto;
 }
-.content html,body{font-family:"Apple SD Gothic Neo","맑은 고딕","Malgun Gothic",sans-serif;font-size:14px;line-height:1;color:rgba(0,0,0,0.87);-webkit-text-size-adjust:none} /* 폰트크기 자동조절 제거 */
-.content a{text-decoration:none}
-.content ul{list-style:none}
-.content ol{list-style:none}
-.content li{list-style:none}
-.content button{padding:0;cursor:pointer}
-.content button:focus,.content button:active{padding: 0;}
-.content button span{position: relative;}
-.content select::-ms-expand{display:none}
-.content html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;box-sizing: border-box;}
+.content-more html,.content-more body{font-family:"Apple SD Gothic Neo","맑은 고딕","Malgun Gothic",sans-serif;font-size:14px;line-height:1;color:rgba(0,0,0,0.87);-webkit-text-size-adjust:none} /* 폰트크기 자동조절 제거 */
+.content-more a{text-decoration:none}
+.content-more ul{list-style:none}
+.content-more ol{list-style:none}
+.content-more li{list-style:none}
+.content-more button{padding:0;cursor:pointer}
+.content-more button:focus,.content-more button:active{padding: 0;}
+.content-more button span{position: relative;}
+.content-more select::-ms-expand{display:none}
+.content-more html,.content-more body,.content-more div,.content-more span,.content-more object,.content-more iframe,.content-more h1,.content-more h2,.content-more h3,.content-more h4,.content-more h5,.content-more h6,.content-more p,.content-more blockquote,.content-more pre,.content-more abbr,.content-more address,.content-more cite,.content-more code,.content-more del,.content-more dfn,.content-more em,.content-more img,.content-more ins,.content-more kbd,.content-more q,.content-more samp,.content-more small,.content-more strong,.content-more sub,.content-more sup,.content-more var,.content-more b,.content-more i,.content-more dl,.content-more dt,.content-more dd,.content-more ol,.content-more ul,.content-more li,.content-more fieldset,.content-more form,.content-more label,.content-more legend,.content-more table,.content-more caption,.content-more tbody,.content-more tfoot,.content-more thead,.content-more tr,.content-more th,.content-more td,.content-more article,.content-more aside,.content-more canvas,.content-more details,.content-more figcaption,.content-more figure,.content-more footer,.content-more header,.content-more hgroup,.content-more menu,.content-more nav,.content-more section,.content-more summary,.content-more time,.content-more mark,.content-more audio,.content-more video{margin:0;padding:0;border:0;box-sizing: border-box;}
 
 /* Sub nav */
 .sub_wrap{min-height:390px}
