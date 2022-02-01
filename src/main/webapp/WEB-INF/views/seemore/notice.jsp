@@ -8,7 +8,7 @@
 <html>
 <body>
 	
-	<div class="content">
+	<div class="content-more">
 		<div class="sub_wrap more_wrap">
 			<nav>
 				<ul>
