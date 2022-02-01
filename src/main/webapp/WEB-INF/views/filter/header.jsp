@@ -39,6 +39,12 @@
 	const busan = document.querySelector('.busan')
 	const jeju = document.querySelector('.jeju')
 	const gangwon = document.querySelector('.gangwon')
+	let search = location.search
+	let params = new URLSearchParams(search)
+		
+	let maincode = params.get('areacode')
+	console.log(100)
+	console.log(maincode)
 	
 	headerArea.onmouseover = areaOpenHandler
 	
@@ -50,7 +56,21 @@
 	
 	
 	window.addEventListener('load', function() {
-		headerArea.innerText = gyeonggi.dataset.area
+		if(maincode == '5001'){
+			headerArea.innerText = gyeonggi.dataset.area
+		}
+		else if(maincode == '5003'){
+			headerArea.innerText = chungcheong.dataset.area
+		}
+		else if(maincode == '5004'){
+			headerArea.innerText = busan.dataset.area
+		}
+		else if(maincode == '5005'){
+			headerArea.innerText = jeju.dataset.area
+		}
+		else if(maincode == '5002'){
+			headerArea.innerText = gangwon.dataset.area
+		}
 	})
 	
 	busan.onclick = function(event) {

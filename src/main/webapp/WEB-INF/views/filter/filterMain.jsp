@@ -194,6 +194,9 @@
  	function areaCloseHandler(event) {
  		filterAreaModal.classList.add('areaModalHidden')
  	}
+ 	
+ 	window.addEventListener('load', mainAllFilter)
+ 	
 </script>
 
 

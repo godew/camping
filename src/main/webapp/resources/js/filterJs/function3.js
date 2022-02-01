@@ -65,12 +65,13 @@ function filterSearch(event){
 	let checkOutMonth = ''
 		
 	if(lt == '' && rt == ''){
-		checkInDay = String(thisMonth) + today
-		checkOutDay = String(thisMonth) + tomorrow
+		checkInDay = (month+1) + ('0'+today).slice(-2)
+		checkOutDay = (month+1) + ('0'+tomorrow).slice(-2)
 	} else {
 		checkInDay = lt.dataset.month + lt.dataset.day
 		checkOutDay = rt.dataset.month + rt.dataset.day 
 	}
+	
 	
 	console.log(checkInDay)
 	console.log(checkOutDay)

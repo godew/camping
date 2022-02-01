@@ -47,26 +47,33 @@ public class FilterService {
 		return fd.select();
 	}
 
-	public ArrayList<FilterDTO> submitSearch(int itemId) {
+	public ArrayList<FilterDTO> submitSearch(String itemId) {
 		return fd.submitSearch(itemId);
 	}
 
-//	public HashMap<String, String> searchDate(ArrayList<FilterDTO> tmp) {
-//		// TODO Auto-generated method stub
-//		return fd.searchDate(tmp);
-//	}
-	
 	
 	public List<FilterDTO> selectFirstList(HashMap<String, String> map) {
 		return fd.selectFirstList(map);
 	}
 
-	public ArrayList<FilterDTO> search1(int itemId) {
+	public ArrayList<FilterDTO> search1(String itemId) {
 		return fd.search1(itemId);
 	}
 
 	public List<FilterDTO> selectFirstList2(HashMap<String, String> map) {
 		return fd.selectFirstList2(map);
+	}
+
+	public List<FilterDTO> mainSelectArea(HashMap<String, String> map) {
+		return fd.mainSelectArea(map);
+	}
+
+	public ArrayList<FilterDTO> submitSearch3(HashMap<String, String> map) {
+		return fd.submitSearch3(map);
+	}
+
+	public ArrayList<FilterDTO> search2(String itemId) {
+		return fd.search2(itemId);
 	}
 
 

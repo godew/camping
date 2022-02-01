@@ -48,9 +48,16 @@ function clickBtn() {
 			    image : markerImage,
 			    clickable: true
 			})
-			 
+			if(lt != '' && rt != ''){
+				const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
+				const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
+			}
+			else if(lt == '' && rt == ''){
+				checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
+				checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
+			}
 		 	 var infowindow = new kakao.maps.InfoWindow({
-		         content: '<div class="infoContent"><img class="infoItemImage" src="' + dto.itemimage + '">' +
+		         content: '<div class="infoContent"><a href="' + cpath +'/product/detail?itemId=' + dto.itemid + '&checkIn='+ checkIn + '&checkOut='+ checkOut +'"><img class="infoItemImage" src="' + dto.itemimage + '"></a>' +
 		       
 		         '<div class="infoInContent"> <div class="infoItemName">' + dto.itemname + '</div>' + 
 		         '<div class="infoItemPrice">' + dto.itemprice + '원</div></div></div>'

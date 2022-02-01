@@ -7,7 +7,7 @@ public class FilterDTO {
 	private String maxpeople;
 	private String latitude, longitude, itemname, itemimage, locale;
 	private int distance;
-	private int itemid;
+	private String itemid;
 	
 	private String D1, D2, D3, D4, D5, D6, D7, D8, D9, D10,
 	D11, D12, D13, D14, D15, D16, D17, D18, D19, D20,
@@ -230,10 +230,10 @@ public class FilterDTO {
 	public void setLocale(String locale) {
 		this.locale = locale;
 	}
-	public int getItemid() {
+	public String getItemid() {
 		return itemid;
 	}
-	public void setItemid(int itemid) {
+	public void setItemid(String itemid) {
 		this.itemid = itemid;
 	}
 	public int getDistance() {

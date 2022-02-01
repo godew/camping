@@ -17,11 +17,15 @@
 <link href="${cpath }/resources/css/detail/rooms-info.css" rel="stylesheet">
 <link href="${cpath }/resources/css/manager/manager.css" rel="stylesheet">
 <link href="${cpath }/resources/css/filtercss/filterHeader.css" rel="stylesheet"> 
+<link href="${cpath }/resources/css/filtercss/filterStyle.css" rel="stylesheet"> 
+<link href="${cpath }/resources/css/filtercss/filterStyle2.css" rel="stylesheet"> 
+<link href="${cpath }/resources/css/filtercss/filterMain.css" rel="stylesheet"> 
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/main/main.css">
 </head>
 <body class="headerBody">
 <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <script src="${cpath }/resources/js/manager/function.js"></script>
+
 <script>
 	const cpath = '${cpath }'
 	let ws
