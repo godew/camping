@@ -7,6 +7,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${cpath }/resources/js/seemore/seemore.js"></script>
 <html>
+<style>
+	header > .content > ul > li { margin-top:16px !important; }
+</style>
 <body>
 	
 	<div class="content-more">
