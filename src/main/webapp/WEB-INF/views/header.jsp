@@ -214,9 +214,10 @@
 					status : 'end',
 					me : '${login.email}',
 					store : wsContent.innerHTML,
-					bottomMsgBtn : bottomMsgBtn.innerText
+					bottomMsgBtn : bottomMsgBtn.innerText,
+					logout : 'logout'
 				}
-				ws.send(JSON.stringify(payload))
+				ws.send(JSON.stringify(payload)) // user info send
 			}
 		}
 	}

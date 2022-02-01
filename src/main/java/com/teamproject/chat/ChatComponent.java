@@ -14,17 +14,17 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class ChatComponent extends TextWebSocketHandler {
 	
     private HashMap<String, WebSocketSession> sessionList = new HashMap<>();
-    private HashMap<String, String> store = new HashMap<>();
-    private HashMap<String, String> btnMsg = new HashMap<>();
+    private HashMap<String, String> store = new HashMap<>(); //  user page chat info
+    private HashMap<String, String> btnMsg = new HashMap<>(); // user bottom btn msg
     
-    private HashMap<String, String> maStore = new HashMap<>();
-    private HashMap<String, String> name = new HashMap<>();
+    private HashMap<String, String> maStore = new HashMap<>(); // manager page user chat info
+    private HashMap<String, String> name = new HashMap<>(); // manager page name info
     
 	@Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     	String username = session.getUri().toString().split("username=")[1];
         
-        if (username.equals("manager@naver.com")) {
+        if (username.equals("manager@naver.com")) { // manager login 상태로 새로운 페이지 연결
         	for (String s : sessionList.keySet()) {
         		if (maStore.containsKey(s)) {
     	        	session.sendMessage(new TextMessage(maStore.get(s)));
@@ -33,10 +33,19 @@ public class ChatComponent extends TextWebSocketHandler {
     	        	session.sendMessage(new TextMessage("ma-ws-send-msg-btn/:/" + name.get(s)));
         		}
         	}
-        } else {
-	        if (store.containsKey(username)) {
+        } else { // user login 상태로 새로운 페이지 연결
+	        if (store.containsKey(username)) { // user page에 저장된 data 전송
 	        	session.sendMessage(new TextMessage(store.get(username)));
 	    		session.sendMessage(new TextMessage(btnMsg.get(username)));
+	        }
+	        if (sessionList.containsKey("manager@naver.com")) { // manager page에 해당 user data 전송	   
+	        	sessionList.get("manager@naver.com").sendMessage(new TextMessage("ma-ws-send-msg-btn/:/:/" + username));
+	        	if (maStore.containsKey(username)) {
+	        		sessionList.get("manager@naver.com").sendMessage(new TextMessage(maStore.get(username)));
+	        	}
+	        	if (name.containsKey(username)) {
+	        		sessionList.get("manager@naver.com").sendMessage(new TextMessage("ma-ws-send-msg-btn/:/" + name.get(username)));	        		
+	        	}
 	        }
         }
         
@@ -61,6 +70,9 @@ public class ChatComponent extends TextWebSocketHandler {
             	}
     		} else { // user는 String html 그대로 저장
         		store.put(jsonObj.get("me").toString(), jsonObj.get("store").toString());	
+        		if (jsonObj.containsKey("logout") && sessionList.containsKey("manager@naver.com")) { // logout 
+                	sessionList.get("manager@naver.com").sendMessage(new TextMessage("ma-ws-send-msg-btn/:logout:/" + jsonObj.get("me").toString()));
+                }
     		}
     		if (jsonObj.containsKey("bottomMsgBtn")) { // user btn 이름 저장
     			btnMsg.put(jsonObj.get("me").toString(), jsonObj.get("bottomMsgBtn").toString());
@@ -86,6 +98,9 @@ public class ChatComponent extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	String username = session.getUri().toString().split("username=")[1];
+    	if (!username.equals("manager@naver.com") && sessionList.containsKey("manager@naver.com")) {
+    		sessionList.get("manager@naver.com").sendMessage(new TextMessage("ma-ws-send-msg-btn/:logout:/" + username));
+    	}
     	sessionList.remove(username);
     }
 

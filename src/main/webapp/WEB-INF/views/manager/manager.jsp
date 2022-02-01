@@ -41,37 +41,8 @@
 	}
 	
 	// 마우스 드래그 이벤트
-	window.onload = function() {
-	  	let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
-	
-	   	const headers = document.querySelectorAll('.manager-msg > .msg-header')
-	   	const headerWraps = document.querySelectorAll('.manager-msg')
-	   	
-	   	headers.forEach((header, idx) => {
-		   	header.onmousedown = function(e) {
-		   	    e = e || window.event
-		   	    e.preventDefault()
-		   	    pos3 = e.clientX
-		   	    pos4 = e.clientY
-		   	    document.onmousemove = function(e) {
-			   	    e = e || window.event
-			   	    e.preventDefault()
-			   	    pos1 = pos3 - e.clientX
-			   	    pos2 = pos4 - e.clientY
-			   	    pos3 = e.clientX
-			   	    pos4 = e.clientY
-			   	 	headerWraps[idx].style.top = (headerWraps[idx].offsetTop - pos2) + "px"
-			   	 	headerWraps[idx].style.left = (headerWraps[idx].offsetLeft - pos1) + "px"
-		   	    }
-		   	    document.onmouseup = function() {
-		   	     	document.onmouseup = null
-		   	    	document.onmousemove = null
-		   	    }
-		   	}
-	   	})
-	}
+	window.onload = dragHandler
 
- 
 	// google chart
   	google.charts.load('current', {'packages':['corechart']});
   	google.charts.setOnLoadCallback(drawPieChart)

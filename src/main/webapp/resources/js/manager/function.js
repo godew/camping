@@ -105,20 +105,32 @@ function onMessage(event) {
 	}
 	
 	if (event.data.charAt(0) != '{') { // json type의 데이터가 아니면
-		if(event.data.includes('ma-ws-send-msg-btn')) {
-			if (document.querySelector('#userlist') != null) {
-				if (event.data.charAt(0) == 'm') { // name
+		if(event.data.includes('ma-ws-send-msg-btn')) { // manager page 관련 data면
+			if (document.querySelector('#userlist') != null) { // manager가 관리자 페이지에 있으면
+				if (event.data.charAt(0) == 'm') {
+					if (event.data.includes('/:logout:/')) { // manager가 관리자 페이지에 있고 user가 logout함
+						const username = event.data.split('/:logout:/')[1]
+						logoutInfoDelHandler(username)
+					}
+					if (event.data.includes('/:/:/')) { // 새로운 user가 login
+						const username = event.data.split('/:/:/')[1]
+						newUserRender(username)
+						return
+					}
 					const users = document.querySelectorAll('.user')
-					for (let i = 0; i < users.length; i++) {
+					for (let i = 0; i < users.length; i++) { // user html
 						if (event.data.includes(users[i].dataset.user)) {
-							users[i].outerHTML = event.data.split("/:/")[1]
+							if (+users[i].dataset.cnt < +event.data.split('data-cnt="')[1].split('"')[0]) {
+								users[i].outerHTML = event.data.split('/:/')[1] // 덮어쓰기
+							}
+							dragHandler() // 전부 덮어쓰기 후 draghandler 실행
 							break
 						}
 					}
 				} else { // content html
 					const managerMsgs = document.querySelectorAll('.manager-msg')
 					for (let i = 0; i < managerMsgs.length; i++) {
-						if (event.data.includes(managerMsgs[i].dataset.name)) {
+						if (event.data.includes(managerMsgs[i].dataset.name) && managerMsgs[i].outerHTML.length < event.data.length) {
 							managerMsgs[i].outerHTML = event.data	
 							break
 						}
@@ -218,12 +230,6 @@ function dbClickHandler(event) {
 	user.dataset.cnt = 0
 	user.innerText = tmp
 	maContentWrapInput.focus()
-//	maWsSendMsgBtn.onclick = maWsMsgBtnHandler
-//	maContentWrapInput.onkeydown = function(event) {
-//		if (event.key == 'Enter') {
-//			maWsMsgBtnHandler(event)
-//		}
-//	}
 }		
 
 function closeClickHandler(event) {
@@ -235,5 +241,100 @@ function closeClickHandler(event) {
 function keydownHandler(event) {
 	if (event.key == 'Enter') {
 		maWsMsgBtnHandler(event)
+	}
+}
+
+function newUserRender(username) {
+
+	const userlist = document.querySelector('#userlist')
+	if (userlist.innerHTML.includes(username)) {
+		return
+	}
+	userlist.innerHTML += `<div data-user="${username }" data-cnt="0" ondblclick="dbClickHandler(event)" class="user">${username }</div>`
+	
+	const mamsglist = document.querySelector('#mamsglist')
+	dom = `
+			<div data-name="${username }" class="manager-msg hidden">
+				<div class="msg-header">
+					<div>${username }</div>
+					<div data-close="${username }" class="close" onclick="closeClickHandler(event)">X</div>
+				</div>
+				<div class="ma-content-wrap">
+					<div data-email="${username }" class="ma-content"></div>
+					<div>
+						<input data-name="${username }" type="text" name="ma-msg" onkeydown="keydownHandler(event)" autocomplete="off">
+						<button class="ma-ws-send-msg-btn" data-name="${username }" onclick="maWsMsgBtnHandler(event)">전송</button>
+					</div>
+				</div>
+			</div>`
+	mamsglist.innerHTML += dom
+}
+
+function dragHandler() {
+  	let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
+
+   	const headers = document.querySelectorAll('.manager-msg > .msg-header')
+   	const headerWraps = document.querySelectorAll('.manager-msg')
+   	
+   	headers.forEach((header, idx) => {
+	   	header.onmousedown = function(e) {
+	   	    e = e || window.event
+	   	    e.preventDefault()
+	   	    pos3 = e.clientX
+	   	    pos4 = e.clientY
+	   	    document.onmousemove = function(e) {
+		   	    e = e || window.event
+		   	    e.preventDefault()
+		   	    pos1 = pos3 - e.clientX
+		   	    pos2 = pos4 - e.clientY
+		   	    pos3 = e.clientX
+		   	    pos4 = e.clientY
+		   	 	headerWraps[idx].style.top = (headerWraps[idx].offsetTop - pos2) + "px"
+		   	 	headerWraps[idx].style.left = (headerWraps[idx].offsetLeft - pos1) + "px"
+	   	    }
+	   	    document.onmouseup = function() {
+	   	     	document.onmouseup = null
+	   	    	document.onmousemove = null
+	   	    }
+	   	}
+   	})
+}
+
+function logoutInfoDelHandler(username) { // 특정 user가 logout하면 전체 data 저장하고 해당 user list 삭제
+	// 전체 데이터 저장
+	const obj = {}
+	const managerMsgs = document.querySelectorAll('.manager-msg')
+	managerMsgs.forEach(ms => {
+		obj[ms.dataset.name] = ms.outerHTML
+	})
+	
+	const nameObj = {}
+	const users = document.querySelectorAll('.user')
+	users.forEach(user => {
+		nameObj[user.dataset.user] = user.outerHTML
+	})
+	
+	const payload = {
+		status : 'end',
+		me : 'manager@naver.com',
+		store : obj,
+		name : nameObj
+	}
+	
+	ws.send(JSON.stringify(payload))
+	
+	// list 삭제
+	for (let i = 0; i < users.length; i++) {
+		if (users[i].dataset.user == username) {
+			users[i].outerHTML = ''
+			break
+		}
+	}
+	
+	for (let i = 0; i < managerMsgs.length; i++) {
+		if (managerMsgs[i].dataset.name == username) {
+			managerMsgs[i].outerHTML = ''	
+			break
+		}
 	}
 }
