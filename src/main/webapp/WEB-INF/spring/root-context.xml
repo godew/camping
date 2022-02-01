@@ -31,6 +31,7 @@
 		<property name="mapperLocations">
 			<list>
  				<value>classpath:config/sqlmap-member.xml</value>
+				<value>classpath:config/sqlmap-seemore.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -58,4 +59,5 @@
 	<mybatis-spring:scan base-package="com.teamproject.reservation"/>
 	<mybatis-spring:scan base-package="com.teamproject.manager"/>
 	<mybatis-spring:scan base-package="com.teamproject.nonMember"/>
+	<mybatis-spring:scan base-package="com.teamproject.seemore"/>
 </beans>
