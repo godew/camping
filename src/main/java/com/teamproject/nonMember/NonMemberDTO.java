@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class NonMemberDTO {
 
 	
-	private int orderId, itemId, orderPrice, cancle, standardPeople, maxPeople;
+	private int orderId, itemId, orderPrice, cancel, standardPeople, maxPeople;
 	private String checkIn, checkOut, tid, notPhone, notName,itemRoomName;
 	private Date  orderDate;
 	private String itemRoomImage;
@@ -32,12 +32,6 @@ public class NonMemberDTO {
 	}
 	public void setOrderPrice(int orderPrice) {
 		this.orderPrice = orderPrice;
-	}
-	public int getCancle() {
-		return cancle;
-	}
-	public void setCancle(int cancle) {
-		this.cancle = cancle;
 	}
 	public int getStandardPeople() {
 		return standardPeople;
@@ -98,5 +92,11 @@ public class NonMemberDTO {
 	}
 	public void setItemRoomImage(String itemRoomImage) {
 		this.itemRoomImage = itemRoomImage;
+	}
+	public int getCancel() {
+		return cancel;
+	}
+	public void setCancel(int cancel) {
+		this.cancel = cancel;
 	}
 }

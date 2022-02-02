@@ -1,17 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/userinfo.css">
+<link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/reservation.css">
 <style>
 	
 </style>
 
 
 <div class="content">
-	<div>
-	<h2>비회원 예약내역 조회</h2>
+	<div class="reservationContent">
 	<c:forEach var="list" items="${list }">
-	<img src="${list.itemRoomImage }">
+	<h2>비회원 예약내역 조회</h2>
+	<c:if test="${list.cancel == 0 }">
+	<h2 class="cancel">이미 취소된 방입니다</h2>
+	</c:if>
+	<fmt:parseDate var="checkIn" value="${list.checkIn }" pattern="MMdd"/>
+	<fmt:formatDate var="checkInDate" value="${checkIn }" pattern="MM월dd일"/>
+	<fmt:parseDate var="checkOut" value="${list.checkOut }" pattern="MMdd"/>
+	<fmt:formatDate var="checkOutDate" value="${checkOut }" pattern="MM월dd일"/>
+	<div class="itemRoomImage"><img src="${list.itemRoomImage }"></div>
 	<div>
 		방 이름 : ${list.itemRoomName }
 	</div>
@@ -22,10 +29,10 @@
 		전화번호 : ${list.notPhone }
 	</div>
 	<div id="checkIn">
-		체크인 : ${list.checkIn }
+		체크인 : ${checkInDate }
 	</div>
 	<div id="checkOut">
-		체크아웃 : ${list.checkOut }
+		체크아웃 : ${checkOutDate }
 	</div>
 	
 	<div>
@@ -37,18 +44,27 @@
 	<div>
 		최대 인원 : ${list.maxPeople }
 	</div>
-	<button value="${list.tid }">예약취소</button>
+	<c:if test="${list.cancel != 0 }">
+	<form method="POST">
+		<input type="number" name="orderId" value="${list.orderId }" hidden="">
+		<input class="btn" type="submit" value="예약취소">
+	</form>
+	</c:if>
 	</c:forEach>
 	</div>
 </div>
 
 <script>
-	const checkIn = document.getElementById('checkIn').innerText
-	const checkOut = document.getElementById('checkOut').innerText
-	checkInDate = checkIn.substring(0,2) + '월' + checkIn.subString(2,4) + '일'
-	checkOutDate = checkOut.substring(0,2) + '월' + checkOut.subString(2,4) + '일'
+	const btn = document.querySelector('.btn')
 	
-	console.log(checkIn.substring(0, -4))
+	btn.onclick = function(event){
+// 		event.preventDefault()
+	const check = confirm('예약취소하시겠습니까?')
+	if(check == true){
+		btn.onsubmit
+		
+	}
+	}
 </script>
 
 </body>

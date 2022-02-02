@@ -1,6 +1,5 @@
 package com.teamproject.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,12 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.teamproject.member.MemberDTO;
 import com.teamproject.review.ReviewDTO;
 import com.teamproject.service.ReivewService;
  
@@ -35,9 +30,16 @@ public class ReviewController {
 		model.addAttribute("list", list);
 		return "/review/review";
 	}
-	@PostMapping(value="/review/{orderId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String writeReview(@PathVariable int orderId,@RequestParam(value ="hm", required = false)HashMap<String, String> hm) {
-		int row = rs.writeReview(orderId, hm);
+	@PostMapping("/review/{orderId}")
+	public String writeReview(@PathVariable int orderId,
+			@RequestParam(value ="starPoint", required = false) int starPoint,
+			@RequestParam(value = "memberId", required = false)int memberId,
+			@RequestParam(value = "itemId", required = false)int itemId,
+			@RequestParam(value = "itemRoomId", required = false)int itemRoomId,
+			@RequestParam(value = "title", required = false)String title,
+			@RequestParam(value = "content", required = false)String content) {
+		int row = rs.writeReview(orderId, starPoint, memberId, itemId, itemRoomId, title, content);
+		
 		return "redirect:/";
 	}
 }

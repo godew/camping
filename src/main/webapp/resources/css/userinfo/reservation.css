@@ -127,3 +127,8 @@ form{
 	color: red;
 	font-size: 18px;
 }
+.cancel{
+	color: red;
+	font-weight: bolder;
+	font-size: 25px;
+}
