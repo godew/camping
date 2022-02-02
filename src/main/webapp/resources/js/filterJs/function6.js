@@ -56,7 +56,7 @@ function clickBtn() {
 		         content: '<div class="infoContent"><a href="' + cpath +'/product/detail?itemId=' + dto.itemid + '&checkIn='+ checkIn + '&checkOut='+ checkOut +'"><img class="infoItemImage" src="' + dto.itemimage + '"></a>' +
 		       
 		         '<div class="infoInContent"> <div class="infoItemName">' + dto.itemname + '</div>' + 
-		         '<div class="infoItemPrice">' + dto.itemprice + '원</div></div></div>'
+		         '<div class="infoItemPrice">' + dto.itemprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원</div></div></div>'
 		         			, // 윈도우에 표시할 내용
 		         clickable: true
 		     })

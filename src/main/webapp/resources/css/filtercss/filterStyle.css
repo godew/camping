@@ -152,6 +152,7 @@
 	 
 	 .filterUL > li {
 	 	width: 143px;
+	 	margin-left: 7px;
 	 }
 	 
 	 .filterUl > li > input > label {
@@ -443,7 +444,7 @@
 	
 	.infoContent {
 		display: flex;
-		width: 350px;
+		width: 400px;
 		height: 240px;
 	}
 	
@@ -459,7 +460,7 @@
 	
 	.infoItemPrice {
 /* 		text-align: right; */
-		margin-top: 187px;
+		margin-top: 194px;
 /* 		margin-left: 92%; */
     	width: 100px;
     	height: 45px;

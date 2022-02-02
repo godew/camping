@@ -19,7 +19,7 @@ function getDom1(json) {
 			dom += 				'<span>' + dto.distance + '</span>'
 			dom += 			'<div class="displayDetail">'
 			dom += 				'<span>' + dto.locale + '</span>'
-			dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+			dom += 				'<span class="displayPrice">'+ dto.itemprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원</span>'
 			dom += 			'</div>'
 			dom += 		'</div>'
 			dom += '</div>'	
@@ -59,19 +59,8 @@ function filterSearch(event){
 	let minPrice = +inputLeft.value + '0000'
 	let maxPrice = +inputRight.value + '0000'
 	
-	let checkInDay = ''
-	let checkOutDay = ''
-	let checkInMonth = ''
-	let checkOutMonth = ''
-		
-	if(lt == '' && rt == ''){
-		checkInDay = (month+1) + ('0'+today).slice(-2)
-		checkOutDay = (month+1) + ('0'+tomorrow).slice(-2)
-	} else {
-		checkInDay = lt.dataset.month + lt.dataset.day
-		checkOutDay = rt.dataset.month + rt.dataset.day 
-	}
-	
+	let checkInDay = lt
+	let checkOutDay = rt
 	
 	console.log(checkInDay)
 	console.log(checkOutDay)
@@ -91,7 +80,20 @@ function filterSearch(event){
 	.then(resp => resp.json())
 	.then(json => {
 		console.log(json) // 필터 잘 되었는지 확인용 콘솔
-		inDisplay.innerHTML = getDom1(json)
+		render(inDisplay, getDom1(json))
+		
+		const images = document.querySelectorAll('.displayWrap')
+		images.forEach(image => {
+			image.onclick = function() {
+				console.log(1)
+				const itemId = this.dataset.id
+				
+				const checkIn = '0'+lt
+				const checkOut = '0'+rt
+				location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
+			}
+		})
+	
 	
 	})
 }

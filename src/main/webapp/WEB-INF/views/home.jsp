@@ -37,7 +37,7 @@
 								<tr></tr>
 							</tbody>
 						</table>
-						<div><button class="calendarSubmitIn" value="선택완료">선택완료</button></div>
+						<div><button class="calendarSubmitIn" value="선택완료">검색</button></div>
 					</div>
 				</section>
 				<section class="mainCheckOut">
@@ -90,7 +90,7 @@
 			
 				
 				<div>
-					<button type="submit" class="filterSubmit">적용</button>
+					<button type="submit" class="mainFilterSubmit">캠핑장 검색</button>
 				</div>
 			</div>	
 		</div>
@@ -141,7 +141,7 @@
 		filterCalendarIn.classList.add('calendarHidden')
 	}
 	
-	
+	mainFilterSubmit.addEventListener('click', mainFilter)
 	
 	
 </script>

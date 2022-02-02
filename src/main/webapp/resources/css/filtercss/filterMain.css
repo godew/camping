@@ -1,7 +1,12 @@
 	.mainAreaSelect {
-		width: 248px;
+		width: 450px;
 		height: 42px;
 		margin-left: 41px;
+		border: 1px solid rgba(0,0,0,0.08);
+		border-radius: 5px;
+		color: #0000008F;
+ 		font-size: 18px;
+ 		font-weight: normal;
 	}
 
 	.detailSearch{
@@ -119,5 +124,43 @@
 	.filterCalendarIn, .filterCalendarOut {
 		margin-top: 84px;
 	}
+	
+	.mainFilterSubmit {
+	 	background-color: #F2074C;
+	 	border: 0.5px solid #F2074C;
+	 	color: white;
+	 	width: 227px;
+	 	height: 40px;
+	 	border-radius: 5px;
+	 	cursor: pointer;
+	 }
+	 
+	 .todayAndTomorrowIn, .todayAndTomorrowOut {
+	 	color: #0000008F;
+ 		font-size: 18px;
+ 		font-weight: normal;
+ 
+		margin-top: 7px;
+	
+	 }
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	
  	

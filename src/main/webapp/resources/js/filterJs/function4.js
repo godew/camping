@@ -4,7 +4,7 @@
 	let nextMonthDiv = date.getMonth() +1
 	let today = date.getDate()
 	let tomorrow = today + 1
-//	let night = tomorrow - today
+	let night = tomorrow - today
 	const todayAndTomorrow = document.querySelector('.todayAndTomorrow')
 	const filterCalendar = document.querySelector('.filterCalendar')
 	const todayCalendar = document.querySelector('.todayCalendar')
@@ -21,11 +21,11 @@
 	let first_day = new Date(year,month,1).getDay() // 달의 첫번째 요일 
 	const mapModal = document.querySelector('.mapModal')
 	const calendarSubmit = document.querySelector('.calendarSubmit')
-	const inDisplay = document.querySelector('.inDisplay')
+//	const inDisplay = document.querySelector('.inDisplay')
 	let first = ''
 	let second = ''
-	let lt = ''
-	let rt = ''
+	lt = ''
+	rt = ''
 //	let search = location.search
 //	let params = new URLSearchParams(search)
 		
@@ -44,23 +44,12 @@
 		ltDay = lt.slice(-1)
 	}
 	
-	let night = +rtDay - +ltDay
+	night = +rtDay - +ltDay
 	
-	
-	console.log(rtDay)
-	console.log(ltDay)	
-	console.log(rtMonth)	
-	console.log(ltMonth)	
-	
-		
+
 	if(month == 1){
 		last_date = 28
 	}	
-	
-	 
-
-	
-	
 	
 	if(+tomorrow > +last_date){
 		tomorrow = 1
@@ -72,8 +61,12 @@
 		todayAndTomorrow.innerHTML = '<div>' + ltMonth + '.' + ltDay + ' ~ ' + rtMonth + '.' + rtDay + ' · ' + night + '박' + '</div>'			
 	}
 	
+	
+	
+	
 	calendarSubmit.addEventListener('click', checkIO)
 	calendarSubmit.addEventListener('click', closeCalendarHandler)
+	
 	
 	function checkIO(event) {
 		let checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
@@ -107,7 +100,7 @@
 				dom += 				'<span>' + dto.distance + '</span>'
 				dom += 			'<div class="displayDetail">'
 				dom += 				'<span>' + dto.locale + '</span>'
-				dom += 				'<span class="displayPrice">'+ dto.itemprice + '원</span>'
+				dom += 				'<div class="displayPrice">'+ dto.itemprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') +'원</div>'
 				dom += 			'</div>'
 				dom += 		'</div>'
 				dom += '</div>'	
@@ -128,13 +121,8 @@
 //	})
 		
 	function mainAllFilter(){
-//		filterBtnOnClick1.classList.add('btnOnClick')
-//		filterBtnOnClick2.classList.remove('btnOnClick')
-//		filterBtnOnClick3.classList.remove('btnOnClick')
-//		filterBtnOnClick4.classList.remove('btnOnClick')
-		
-		
 		areacode = params.get('areacode')
+		console.log(areacode)
 		const checkInDay = lt
 		const checkOutDay = rt
 		console.log(areacode)
@@ -147,13 +135,15 @@
 		fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
+			console.log(100)
+			console.log(json)
 			render(inDisplay, getDom(json))
 			const images = document.querySelectorAll('.displayWrap')
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						const checkIn = '0'+lt
-						const checkOut = '0'+rt
+						checkIn = '0'+lt
+						checkOut = '0'+rt
 						console.log(checkIn)
 						console.log(checkOut)
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
@@ -167,7 +157,6 @@
 
 	todayCalendar.addEventListener('click', openCalendarHandler)
 	todayCalendar.addEventListener('click', calendarTodayHandler)
-//	filterwrap1. addEventListener('click', closeCalendarHandler)
 	
 	
 	function openCalendarHandler(event){
@@ -184,7 +173,6 @@
 	}
 	
 	function makeCalendar() {
-		console.log(1)
 		row = calendarTable.insertRow()	
 		
 		for(i = 0; i < first_day; i++){
@@ -239,9 +227,9 @@
 		}
 	}
 	
-	
+	// 날짜 클릭
 	function dayOnclick1(event){
-		
+
 		if(first == ''){
 			// 전체 for문돌면서 background 흰색으로 변경
 			for(let i = 1; i <= last_date; i++){

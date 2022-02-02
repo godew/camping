@@ -38,7 +38,9 @@
 	<div class="content">
 		<a href="${cpath }"><img class="headerLogo" src="${cpath }/resources/img/headerLogo.png"></a>
 		<ul>
-			<li><p style="margin: 0"><img src="${cpath }/resources/img/돋보기.png"></p></li>
+			<li>
+				<p style="margin: 0"><img class="headerReading" src="${cpath }/resources/img/돋보기.png"></p>
+			</li>
 			<c:if test="${not empty login and login.email eq 'manager@naver.com'}">
 				<li><a href="${cpath }/manager" class="a_tag1">관리자 페이지</a></li>
 			</c:if>
