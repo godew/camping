@@ -99,7 +99,7 @@ public class PaymentService {
 		return s;
 	}
 
-	public String cancel(String tid) throws IOException {
+	public String cancel(String tid, int orderPrice) throws IOException {
 		URL url = new URL("https://kapi.kakao.com/v1/payment/cancel");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
@@ -109,7 +109,7 @@ public class PaymentService {
 		
 		String param = "cid=TC0ONETIME&"
 					 + "tid=" + tid + "&"
-					 + "cancel_amount=110&"
+					 + "cancel_amount="+ orderPrice + "&"
 					 + "cancel_tax_free_amount=0";
 				
 		OutputStream os = conn.getOutputStream();

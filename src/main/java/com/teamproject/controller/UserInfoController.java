@@ -137,7 +137,7 @@ public class UserInfoController {
 		}
 		
 		// kakao pay cancel function
-		paymentService.cancel(os.getOrder(orderId).get(0).getTid());
+		paymentService.cancel(order.getTid(), order.getOrderPrice());
 		
 		return "redirect:/reservation/" + memberId;
 	}
