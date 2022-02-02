@@ -170,14 +170,8 @@ function originalSelect(){
 				let checkIn = ''
 				let checkOut = ''
 					
-				if(lt != '' && rt != ''){
-					checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-					checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
-				}
-				else if(lt == '' && rt == ''){
-					checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-					checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-				}
+				const checkIn = '0'+lt
+				const checkOut = '0'+rt
 				location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 			}
 		})
@@ -187,7 +181,7 @@ function originalSelect(){
 
 // 추천 순
 function btn1OC(event) {
-//	console.log(1)
+	console.log('btn')
 	filterBtnOnClick1.classList.add('btnOnClick')
 	filterBtnOnClick2.classList.remove('btnOnClick')
 	filterBtnOnClick3.classList.remove('btnOnClick')
@@ -209,14 +203,8 @@ function btn1OC(event) {
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						if(lt != '' && rt != ''){
-							const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-							const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
-						}
-						else if(lt == '' && rt == ''){
-							checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-							checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-						}
+						const checkIn = '0'+lt
+						const checkOut = '0'+rt
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})
@@ -252,14 +240,8 @@ function btn2OC(event){
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						if(lt != '' && rt != ''){
-							const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-							const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
-						}
-						else if(lt == '' && rt == ''){
-							checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-							checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-						}
+						const checkIn = '0'+lt
+						const checkOut = '0'+rt
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})
@@ -302,14 +284,8 @@ function btn3OC(event){
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						if(lt != '' && rt != ''){
-							const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-							const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
-						}
-						else if(lt == '' && rt == ''){
-							checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-							checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-						}
+						const checkIn = '0'+lt
+						const checkOut = '0'+rt
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})
@@ -345,14 +321,8 @@ function btn4OC(event) {
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						if(lt != '' && rt != ''){
-							const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-							const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
-						}
-						else if(lt == '' && rt == ''){
-							checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-							checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-						}
+						const checkIn = '0'+lt
+						const checkOut = '0'+rt
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})

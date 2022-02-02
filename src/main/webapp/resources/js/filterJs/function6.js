@@ -48,14 +48,10 @@ function clickBtn() {
 			    image : markerImage,
 			    clickable: true
 			})
-			if(lt != '' && rt != ''){
-				const checkIn = ('0' + lt.dataset.month).slice(-2) + ('0' + lt.dataset.day).slice(-2)
-				const checkOut = ('0' + rt.dataset.month).slice(-2) + ('0' + rt.dataset.day).slice(-2)
-			}
-			else if(lt == '' && rt == ''){
-				checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-				checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-			}
+			
+			const checkIn = '0'+lt
+			const checkOut = '0'+rt
+			
 		 	 var infowindow = new kakao.maps.InfoWindow({
 		         content: '<div class="infoContent"><a href="' + cpath +'/product/detail?itemId=' + dto.itemid + '&checkIn='+ checkIn + '&checkOut='+ checkOut +'"><img class="infoItemImage" src="' + dto.itemimage + '"></a>' +
 		       
@@ -90,8 +86,8 @@ function clickBtn() {
 	
 	var mapContainer = document.querySelector('.map'),
 	mapOption = { 
-	    center: new kakao.maps.LatLng(35.17990661408864, 129.07495686070138),
-	    level: 7, 
+	    center: new kakao.maps.LatLng(35.17537781054425, 129.081683231146),
+	    level: 6, 
 	    clickable: true
 	};
 

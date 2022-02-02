@@ -189,13 +189,62 @@
 
 
 <script>
+	const filterBtnOnClick1 = document.querySelector('.filterBtnOnClick1')
+	const filterBtnOnClick2 = document.querySelector('.filterBtnOnClick2')
+	const filterBtnOnClick3 = document.querySelector('.filterBtnOnClick3')
+	const filterBtnOnClick4 = document.querySelector('.filterBtnOnClick4')
+
  	headerBody.addEventListener('click', areaCloseHandler)
  	
  	function areaCloseHandler(event) {
  		filterAreaModal.classList.add('areaModalHidden')
  	}
  	
+	window.addEventListener('load', function(){
+		filterBtnOnClick1.classList.add('btnOnClick')
+		filterBtnOnClick2.classList.remove('btnOnClick')
+		filterBtnOnClick3.classList.remove('btnOnClick')
+		filterBtnOnClick4.classList.remove('btnOnClick')
+	})
  	window.addEventListener('load', mainAllFilter)
+ 	
+ 	filterBtnOnClick2.addEventListener('click', btn2OC)
+
+ 	function btn2OC(event){
+	filterBtnOnClick2.classList.add('btnOnClick')
+	filterBtnOnClick1.classList.remove('btnOnClick')
+	filterBtnOnClick3.classList.remove('btnOnClick')
+	filterBtnOnClick4.classList.remove('btnOnClick')
+	
+	const area = document.querySelectorAll('.area')
+	
+	area.forEach(areas => {
+		if(headerArea.innerHTML == areas.dataset.area){
+//			console.log(headerArea.innerHTML == areas.dataset.area)
+			const url = cpath + '/place/' + areas.dataset.areacode
+			const opt = {
+				method: 'GET'
+			}
+			
+			fetch(url, opt)
+			.then(resp => resp.json())
+			.then(json => {
+				render(inDisplay, getDom(json))
+				
+				const images = document.querySelectorAll('.displayWrap')
+				images.forEach(image => {
+					image.onclick = function() {
+						const itemId = this.dataset.id
+						const checkIn = '0'+lt
+						const checkOut = '0'+rt
+						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
+					}
+				})
+			})
+		}
+	})
+}
+ 	
  	
 </script>
 

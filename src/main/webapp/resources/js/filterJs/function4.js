@@ -21,7 +21,7 @@
 	let first_day = new Date(year,month,1).getDay() // 달의 첫번째 요일 
 	const mapModal = document.querySelector('.mapModal')
 	const calendarSubmit = document.querySelector('.calendarSubmit')
-	
+	const inDisplay = document.querySelector('.inDisplay')
 	let first = ''
 	let second = ''
 	let lt = ''
@@ -120,9 +120,20 @@
 		inDisplay.innerHTML += dom
 	}
 
-	
+//	window.addEventListener('load', function(){
+//		filterBtnOnClick1.classList.add('btnOnClick')
+//		filterBtnOnClick2.classList.remove('btnOnClick')
+//		filterBtnOnClick3.classList.remove('btnOnClick')
+//		filterBtnOnClick4.classList.remove('btnOnClick')
+//	})
 		
 	function mainAllFilter(){
+//		filterBtnOnClick1.classList.add('btnOnClick')
+//		filterBtnOnClick2.classList.remove('btnOnClick')
+//		filterBtnOnClick3.classList.remove('btnOnClick')
+//		filterBtnOnClick4.classList.remove('btnOnClick')
+		
+		
 		areacode = params.get('areacode')
 		const checkInDay = lt
 		const checkOutDay = rt
@@ -141,14 +152,8 @@
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						if(lt != '' && rt != ''){
-							const checkIn = ('0' + ltMonth).slice(-2) + ('0' + ltDay).slice(-2)
-							const checkOut = ('0' + rtMonth).slice(-2) + ('0' + rtDay).slice(-2)
-						}
-						else if(lt == '' && rt == ''){
-							checkIn = ('0' + thisMonth).slice(-2) + ('0' + today).slice(-2)
-							checkOut = ('0' + nextMonthDiv).slice(-2) + ('0' + tomorrow).slice(-2)
-						}
+						const checkIn = '0'+lt
+						const checkOut = '0'+rt
 						console.log(checkIn)
 						console.log(checkOut)
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
