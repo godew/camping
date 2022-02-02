@@ -8,7 +8,7 @@
 </script>
 
 <div class="contentbox">
-		<form method="POST" action="${cpath }/review/${dto.orderId}" enctype="multipart/form-data">
+		<form method="POST" id="review"  enctype="multipart/form-data">
 			<span class="star"> ★★★★★ <span>★★★★★</span> 
 			<input name="starPoint" type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
 			</span>
@@ -23,8 +23,12 @@
 
 
 <script type="text/javascript">
-const starPoint = document.getElementsByName('memberId')
-console.log(starPoint.value)
+const link = document.location.href
+const orderId = link.split('/')
+const form = document.getElementById('review')
+
+form.action = cpath + '/review/' + orderId[5]
+console.log(form)
 </script>
 
 

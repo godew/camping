@@ -1,5 +1,7 @@
 package com.teamproject.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,8 @@ public class ReviewController {
 		return "/review/review";
 	}
 	@PostMapping(value="/review/{orderId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String writeReview(@PathVariable int orderId,@RequestParam("img")MultipartFile img,@RequestParam ReviewDTO dto) {
-		int row = rs.writeReview(orderId, img, dto);
+	public String writeReview(@PathVariable int orderId,@RequestParam HashMap<String, String> hMap) {
+		int row = rs.writeReview(orderId, hMap);
 		
 		return "redirect:/";
 	}

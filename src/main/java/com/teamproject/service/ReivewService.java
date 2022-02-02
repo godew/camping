@@ -3,6 +3,7 @@ package com.teamproject.service;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,11 @@ public class ReivewService {
 		System.out.println(dto.getStarPoint());
 		System.out.println(dto.getTitle());
 		int row = dao.writeReview(orderId, img, dto);
+		return row;
+	}
+
+	public int writeReview(int orderId, HashMap<String, String> hMap) {
+		int row = dao.writeReview(orderId, hMap);
 		return row;
 	}
 
