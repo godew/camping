@@ -96,8 +96,6 @@
 				dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
 				dom += 		'<div class="displayText">'
 				dom += 				'<strong>'+ dto.itemname + '</strong><br>'
-				dom += 				'<span> 별 점 </span>'
-				dom += 				'<span>' + dto.distance + '</span>'
 				dom += 			'<div class="displayDetail">'
 				dom += 				'<span>' + dto.locale + '</span>'
 				dom += 				'<div class="displayPrice">'+ dto.itemprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') +'원</div>'

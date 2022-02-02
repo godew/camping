@@ -104,7 +104,7 @@
 			<ul class="filterUL">
 				<li><input type="checkbox" class="label_chk" value="전기사용가능">전기사용가능</li>
 				<li><input type="checkbox" class="label_chk" value="BBQ">BBQ</li>
-				<li><input type="checkbox" class="label_chk" value="개수대"> 개수대 </li>
+				<li><input type="checkbox" class="label_chk" value="개수대">개수대 </li>
 				<li><input type="checkbox" class="label_chk" value="공용샤워실">공용샤워실</li>
 				<li><input type="checkbox" class="label_chk" value="인터넷">인터넷</li>
 				<li><input type="checkbox" class="label_chk" value="매점">매점</li>

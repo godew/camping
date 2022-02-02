@@ -70,14 +70,12 @@
 	
 	
 	function checkIO(event) {
-		
-		todayAndTomorrowIn.innerHTML = '<div>' + mainlt.dataset.month + '월' + '\u00A0' + mainlt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'
-//		todayAndTomorrowout.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'
-//		
-//		if( )
+		todayAndTomorrowIn.innerHTML = '<div>' + mainlt.dataset.month + '월' + '\u00A0' +
+		mainlt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'
 		
 		if(+mainlt.dataset.month <= +mainrt.dataset.month){
-			todayAndTomorrowOut.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'			
+			todayAndTomorrowOut.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + 
+			mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'			
 		}
 		else if((+mainlt.dataset.month == +mainrt.dataset.month && +lt.dataset.day >= +mainrt.dataset.day) ||
 				+mainlt.dataset.month > +mainrt.dataset.month || 
@@ -121,9 +119,9 @@
 	
 	
 	todayCalendarIn.addEventListener('click', openCalendarHandlerIn)
-	todayCalendarIn.addEventListener('click', calendarTodayHandler)
+	todayCalendarIn.addEventListener('click', calendarTodayHandler1)
 	todayCalendarOut.addEventListener('click', openCalendarHandlerOut)
-	todayCalendarOut.addEventListener('click', calendarTodayHandler)
+	todayCalendarOut.addEventListener('click', calendarTodayHandler2)
 
 	function openCalendarHandlerOut(event){
 		filterCalendarOut.classList.remove('calendarHidden')
@@ -132,7 +130,6 @@
 	}
 	
 	function openCalendarHandlerIn(event){
-		console.log(1)
 		filterCalendarIn.classList.remove('calendarHidden')
 		calendarYearIn.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
 		const tds = document.querySelectorAll('td')
@@ -163,7 +160,7 @@
 				cell.setAttribute('data-day', [i]) 	 
 				cell.setAttribute('data-month', mainmonth+1) 	
 				cell.addEventListener('click', dayOnclick2)
-				cell.addEventListener('click', calendarTodayHandler)
+				cell.addEventListener('click', calendarTodayHandler2)
 				cell.innerHTML = [i] 			
 				mainfirst_day += 1 					
 			}
@@ -175,13 +172,14 @@
 				cell.setAttribute('data-day', [i])
 				cell.setAttribute('data-month', mainmonth+1)
 				cell.addEventListener('click', dayOnclick2)
-				cell.addEventListener('click', calendarTodayHandler)
+				cell.addEventListener('click', calendarTodayHandler2)
 				cell.innerHTML = [i]
 				mainfirst_day = mainfirst_day -6;
 			}
 		} // for end
 	}
 	
+	// 달력 그리기
 	function makeCalendarIn() {
 		row = calendarTableIn.insertRow()	
 		
@@ -197,7 +195,7 @@
 				cell.setAttribute('data-day', [i]) 	 
 				cell.setAttribute('data-month', mainmonth+1) 	
 				cell.addEventListener('click', dayOnclick1)
-				cell.addEventListener('click', calendarTodayHandler)
+				cell.addEventListener('click', calendarTodayHandler1)
 				cell.innerHTML = [i] 			
 				mainfirst_day += 1 					
 			}
@@ -209,19 +207,18 @@
 				cell.setAttribute('data-day', [i])
 				cell.setAttribute('data-month', mainmonth+1)
 				cell.addEventListener('click', dayOnclick1)
-				cell.addEventListener('click', calendarTodayHandler)
+				cell.addEventListener('click', calendarTodayHandler1)
 				cell.innerHTML = [i]
 				mainfirst_day = mainfirst_day -6;
 			}
-		} // for end
-		
-		
+		}
 	}
 	
 	window.addEventListener('load',makeCalendarOut)
 	window.addEventListener('load',makeCalendarIn)
 	
-	function calendarTodayHandler(){
+	function calendarTodayHandler1(){
+		console.log(11)
 		let mainthisToday = 'D'+ maintoday
 		let mainthisTomorrow = 'D' + (maintoday+1)
 		for(i = 1; i <= mainlast_date; i++) {
@@ -237,12 +234,28 @@
 		}
 	}
 	
+	function calendarTodayHandler2(){
+		console.log(22)
+		let mainthisToday2 = 'D'+ maintoday
+		for(i = 1; i <= mainlast_date; i++) {
+			set_date2 = document.getElementById('D'+[i]) 
+			if(mainmonth < mainthisMonth && mainthisToday2 == set_date2.getAttribute('id')){
+				console.log(mainmonth < mainthisMonth && mainthisToday2 == set_date2.getAttribute('id'))
+				set_date2.style.color = "#FF2B5C"
+			}
+			else if (mainmonth < mainthisMonth && set_date2.getAttribute('data-day') < maintoday) {
+				console.log(mainmonth < mainthisMonth && set_date2.dataset.day < maintoday)
+//				day = set_date.dataset.day
+				console.log(set_date2)
+				set_date2.style.color = '#DEE2E6'
+				set_date2.style.pointerEvents = 'none'
+			}
+		}
+	}
+	
 	// 날짜 클릭
 	function dayOnclick1(event){
 		let getDate = event.target
-		console.log(getDate)
-		console.log(getDate.dataset.month)
-		console.log(getDate.dataset.day)
 		if(getDate != ''){
 			for(let i = 1; i <= mainlast_date; i++){
 				set_date = document.getElementById('D'+[i])
@@ -258,17 +271,16 @@
 	// 날짜 클릭
 	function dayOnclick2(event){
 		let getDate2 = event.target
-		console.log(getDate2.dataset.month)
+		console.log(getDate2)
+		
 		if(getDate2 != ''){
 			for(let i = 1; i <= mainlast_date; i++){
 				set_date2 = document.getElementById('D'+[i])
-				set_date2.style.backgroundColor = 'white'
-				set_date2.style.color = 'black'
+				set_date2.style.backgroundColor = 'pink'
+				set_date2.style.color = 'white'
 			}
-
 			getDate2.style.backgroundColor = 'pink'
-			getDate2.style.color = 'white'				
-
+			getDate2.style.color = 'white'
 		}
 		mainrt = getDate2
 	}
@@ -309,7 +321,7 @@
 			makeCalendarOut()
 			
 			if(mainthisMonth == mainmonth+1){
-				calendarTodayHandler()
+				calendarTodayHandler2()
 			}
 		}
 		
@@ -360,7 +372,7 @@
 			makeCalendarIn()
 			
 			if(mainthisMonth == mainmonth+1){
-				calendarTodayHandler()
+				calendarTodayHandler1()
 			}
 		}
 		
