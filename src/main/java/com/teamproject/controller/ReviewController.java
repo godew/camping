@@ -1,6 +1,7 @@
 package com.teamproject.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.teamproject.member.MemberDTO;
 import com.teamproject.review.ReviewDTO;
 import com.teamproject.service.ReivewService;
-
+ 
 
 @Controller
 public class ReviewController {
@@ -27,15 +28,16 @@ public class ReviewController {
 	@Autowired private ReivewService rs;
 
 	@GetMapping("/review/{orderId}")
-	public String review(HttpSession session, Model model) {
+	public String review(@PathVariable int orderId,HttpSession session, Model model) {
 		Object login = session.getAttribute("login");
+		List<ReviewDTO>list = rs.selectOrder(orderId);
 		model.addAttribute("dto", login);
+		model.addAttribute("list", list);
 		return "/review/review";
 	}
 	@PostMapping(value="/review/{orderId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String writeReview(@PathVariable int orderId,@RequestParam HashMap<String, String> hMap) {
-		int row = rs.writeReview(orderId, hMap);
-		
+	public String writeReview(@PathVariable int orderId,@RequestParam(value ="hm", required = false)HashMap<String, String> hm) {
+		int row = rs.writeReview(orderId, hm);
 		return "redirect:/";
 	}
 }

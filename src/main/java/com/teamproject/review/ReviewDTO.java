@@ -4,15 +4,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewDTO {
 
-	private int idx, memberId, starPoint;
+	private int  memberId, starPoint;
 	private String title, itemId, itemRoomId, content, uploadFilePath;
 	private MultipartFile img;
-	public int getIdx() {
-		return idx;
-	}
-	public void setIdx(int idx) {
-		this.idx = idx;
-	}
+
 	public int getMemberId() {
 		return memberId;
 	}
