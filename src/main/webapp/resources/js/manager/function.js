@@ -115,6 +115,7 @@ function onMessage(event) {
 					if (event.data.includes('/:/:/')) { // 새로운 user가 login
 						const username = event.data.split('/:/:/')[1]
 						newUserRender(username)
+						dragHandler()
 						return
 					}
 					const users = document.querySelectorAll('.user')
