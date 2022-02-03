@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 public interface PointDAO {
 	
 	// memberPoint
-	@Select("select * from point where memberId = #{memberId} order by pointDate")
+	@Select("select * from point where memberId = #{memberId} order by pointDate desc")
 	List<PointDTO> getPoint(int memberId);
 
 	// 결제 적립 포인트

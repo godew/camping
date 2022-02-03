@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.member.MemberDTO;
-import com.teamproject.order.OrderDTO;
 import com.teamproject.point.PointDTO;
 import com.teamproject.reservation.reservationDTO;
-import com.teamproject.review.ReviewDTO;
 import com.teamproject.service.ItemRoomService;
 import com.teamproject.service.OrderService;
 import com.teamproject.service.PaymentService;
@@ -142,20 +139,20 @@ public class UserInfoController {
 	}
 	
 	@GetMapping("/getPoint/{orderId}")
-	public String getPoint(@PathVariable int orderId, HttpSession session,
-			int orderPrice, String itemRoomName) {
-		Object name = session.getAttribute("name");
+	public String getPoint(@PathVariable int orderId, HttpSession session, int orderPrice, String itemRoomName) {
 		 
-		int point = orderPrice;
+		int point = (orderPrice / 10);
 		String title = itemRoomName + orderId +"예약 포인트 적립 ("+ point+")";
 		
-		System.out.println(name);
-		point = (point / 10);
-		System.out.println("point" + point);
 		int memberId = ((MemberDTO)session.getAttribute("login")).getMemberID();
 		ps.addP(point, memberId, title, orderId);
+		
+		MemberDTO member = (MemberDTO) session.getAttribute("login");
+		member.setPoint(member.getPoint() + point);
+		us.modifyPoint(member.getMemberID(), member.getPoint() + point);
+		
 		int row = ps.takePoint(orderId,point, memberId, title); 
-		System.out.println(memberId);
+		
 		return "redirect:/reservation/" + memberId;
 	}
 	

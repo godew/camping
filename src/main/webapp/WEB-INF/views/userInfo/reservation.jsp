@@ -113,7 +113,7 @@
 			if(check == true){
 				console.log(orderPrice[i].value)
 				
-			location.href = cpath + '/getPoint/' + event.target.value + '?orderPrice=' + orderPrice[i].value + '&itemRoomName='+ itemRoomName[i].value
+				location.href = cpath + '/getPoint/' + event.target.value + '?orderPrice=' + orderPrice[i].value + '&itemRoomName='+ itemRoomName[i].value
 			
 			}
 		}

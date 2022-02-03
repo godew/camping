@@ -12,15 +12,8 @@ function getpoint(event) {
 	fetch(url, opt)
 	.then(resp => resp.json())
 	.then(json => {
-			let totalPoint = 0 
 		json.forEach(point => {
 			const member = point.memberId
-			if(point.status == 'p'){
-			totalPoint += point.point
-			}
-			if(point.status == 'r'){
-				totalPoint -= point.point 
-			}
 			let li = document.createElement('li')
 			let span = document.createElement('span')
 			let p = document.createElement('p')
@@ -34,7 +27,6 @@ function getpoint(event) {
 			pointList.appendChild(li)
 			console.log(point.point)
 		})
-			available_points.innerText = totalPoint
 	})
 	
 }
@@ -55,7 +47,7 @@ ${dto.memberID }
 	</nav>
 </div>
 <div class="point">
-	<h4 class="availablePoints">사용가능한 포인트<span id="available_points"></span></h4>
+	<h4 class="availablePoints">사용가능한 포인트<span id="available_points">&nbsp;${login.point}</span></h4>
 	<div>
 	<ul id="pointList"></ul>
 	</div>
