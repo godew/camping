@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,9 @@ public class PaymentController {
 	
 	@GetMapping(value = "/payment/ready", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String ready(HttpSession session, String point, String itemName, OrderDTO order, String pointFlag) throws IOException {
+	public String ready(HttpSession session, String point, String itemName, OrderDTO order, String pointFlag, HttpServletRequest hsr) throws IOException {
 
-		String res = paymentService.ready(itemName, order.getOrderPrice());
+		String res = paymentService.ready(itemName, order.getOrderPrice(), hsr.getServerName());
 
 		order.setTid(res.split("\"")[3]);
 		session.setAttribute("order", order);
@@ -65,9 +66,9 @@ public class PaymentController {
 	
 	@GetMapping(value = "/payment/notReady", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String notReady(HttpSession session, String itemName, OrderDTO order) throws IOException {
+	public String notReady(HttpSession session, String itemName, OrderDTO order, HttpServletRequest hsr) throws IOException {
 
-		String res = paymentService.ready(itemName, order.getOrderPrice());
+		String res = paymentService.ready(itemName, order.getOrderPrice(), hsr.getServerName());
 
 		order.setTid(res.split("\"")[3]);
 		session.setAttribute("order", order);

@@ -11,12 +11,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentService {
 
-	public String ready(String itemName, int orderPrice) throws IOException {
+	public String ready(String itemName, int orderPrice, String serverName) throws IOException {
 		URL url = new URL("https://kapi.kakao.com/v1/payment/ready");
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
@@ -31,6 +33,11 @@ public class PaymentService {
             e.printStackTrace();
         }
 
+        if (serverName.equals("localhost")) {
+        	serverName = "http://localhost:8080/camping";
+        } else {
+        	serverName = "http://" + serverName;
+        }
 		String param = "cid=TC0ONETIME&"
 					 + "partner_order_id=partner_order_id&"
 					 + "partner_user_id=partner_user_id&"
@@ -39,9 +46,9 @@ public class PaymentService {
 					 + "total_amount=" + orderPrice + "&"
 					 + "vat_amount=10&"
 					 + "tax_free_amount=0&"
-					 + "approval_url=http://localhost:8080/camping/payment/approve&"
-					 + "fail_url=http://localhost:8080/camping/payment/close&"
-					 + "cancel_url=http://localhost:8080/camping/payment/close";
+					 + "approval_url=" + serverName + "/payment/approve&"
+					 + "fail_url=" + serverName +"/payment/close&"
+					 + "cancel_url=" + serverName + "/payment/close";
 				
 		OutputStream os = conn.getOutputStream();
 		DataOutputStream dos = new DataOutputStream(os);
