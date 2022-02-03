@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 public interface PointDAO {
 	
+	// memberPoint
 	@Select("select * from point where memberId = #{memberId} order by pointDate")
 	List<PointDTO> getPoint(int memberId);
 

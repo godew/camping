@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/reservation.css">
-<div class="content">
+<div class="contentAA">
 <div class="leftmenu">
 	<nav>
 		<ul>
