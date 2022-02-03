@@ -97,7 +97,7 @@ public class JoinController {
 		int row = js.join(dto);
 		System.out.println(row == 1 ? "가입 성공" : "가입 실패");
 		session.invalidate();
-		return "redirect:/login/login";
+		return "redirect:/";
 	}
 	
 }
