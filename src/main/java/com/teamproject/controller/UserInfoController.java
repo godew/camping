@@ -148,8 +148,8 @@ public class UserInfoController {
 		ps.addP(point, memberId, title, orderId);
 		
 		MemberDTO member = (MemberDTO) session.getAttribute("login");
-		member.setPoint(member.getPoint() + point);
 		us.modifyPoint(member.getMemberID(), member.getPoint() + point);
+		member.setPoint(member.getPoint() + point);
 		
 		int row = ps.takePoint(orderId,point, memberId, title); 
 		
