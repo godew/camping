@@ -30,6 +30,18 @@ public class LoginService {
 		return find;
 	}
 
+
+	public int emailCheck(MemberDTO dto) {
+		return dao.selectPassword(dto);
+	}
+
+
+	public int changePassword(MemberDTO dto) {
+		return dao.updatePassword(dto);
+	}
+
+
+
 	
 	
 

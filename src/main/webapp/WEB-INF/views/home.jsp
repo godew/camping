@@ -101,6 +101,42 @@
 </div>
 <div class="mainMid">
 	<div class="mainMidBox">
+		<div class="midDiv">
+			<div class="midMain">
+				<div class="midMainDiv">
+					<div class="midMainTitle">공지사항</div>
+					<div class="midMainContents">
+						<div>
+							<img src="${cpath }/resources/img/seemore.png">
+						</div>
+						<div>
+							<div class="midMainText1">
+								<a href="${cpath }/more/notice">[발표] 랜덤여행 럭키백 16탄</a>
+							</div>
+							<div class="midMainText2">
+								<a href="${cpath }/more/notice">2천명 한정 수량 내 구매를 성공하신 고객님께 축하와 감사의 인사드리며, 럭키백 경품 추첨 결과 안내드립니다.</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="midMainDiv">
+					<div class="midMainTitle">공지사항</div>
+					<div class="midMainContents">
+						<div>
+							<img src="${cpath }/resources/img/seemore.png">
+						</div>
+						<div>
+							<div class="midMainText1">
+								<a href="${cpath }/more/notice">[발표] 공간대여 서비스 오픈 사전 이벤트</a>
+							</div>
+							<div class="midMainText2">
+								<a href="${cpath }/more/notice">안녕하세요 대한민국 1등 종합숙박앱 여기어때입니다. [공간대여 서비스 오픈 사전 이벤트] 당첨자를 발표합니다</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="footer">

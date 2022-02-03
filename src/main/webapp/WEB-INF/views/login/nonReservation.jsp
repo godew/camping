@@ -24,7 +24,7 @@
 					<input class="pnum" type="text" name="phone" placeholder="휴대폰번호" autofocus required>
 				</div>
 				<div>
-					<input type="text" name="tid" placeholder="에약번호" required>
+					<input type="text" name="tid" placeholder="예약번호" required>
 				</div>
 			</div>
 		</div>

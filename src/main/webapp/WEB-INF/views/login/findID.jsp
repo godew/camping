@@ -28,21 +28,25 @@
 						type="button" class="phonNumCheck" value="인증번호">
 				</div>
 				<div class="phoneNumCheckMsg"></div>
-				<div class="authNum">
-					<input class="authNumInput hidden" type="text" name="authNum"
-						placeholder="인증번호" onkeyup='checkAuthNum()'>
+				<div class="dlswmd">
+					<div class="authNum">
+						<input class="authNumInput hidden" type="text" name="authNum" placeholder="인증번호" onkeyup='checkAuthNum()'>
+					</div>
+					<div class="findIdButton">
+						<input class="btn hidden" type="submit" value="인증하기">
+					</div>
 				</div>
 			</div>
 		</div>
 		<div>
 			<div>
-				<input class="findIdResult hidden" type="text" value="" readonly>
+				<input class="findIdResult hidden" type="text" readonly>
+			</div>
+			<div class="loginButton">
+				<botton class="loginBtn hidden" type="botton">로그인</botton>
 			</div>
 		</div>
 		<div>
-			<div class="findIdButton">
-				<input class="btn hidden" type="submit" value="인증하기">
-			</div>
 		</div>
 	</div>
 	<script>
@@ -54,6 +58,7 @@
 	const phonNumCheck = document.querySelector('.phonNumCheck')
 	const phoneNumCheckMsg = document.querySelector('.phoneNumCheckMsg')
 	const btn = document.querySelector('.btn')
+	const loginBtn = document.querySelector('.loginBtn')
 	
 	function phoneCheck() {
 		const flag = phone.value
@@ -90,6 +95,7 @@
 		const flag2 = document.querySelector('.authNumInput').value
 		console.log(flag2.length)
 		if(flag2.length == 6) {
+			btn.classList.add('on')
 			btn.classList.remove('hidden')
 		}
 	}
@@ -106,24 +112,24 @@
 		.then(json => {
 			if(json.status == 1) {				
 				alert(json.msg)
-				var sessionData=phone.value
-				console.log(sessionData)
-				const url = cpath + '/findID/phone/' + sessionData + '/'
-				const opt = {
-					method: 'GET'
-				}
-				fetch(url, opt)
+				console.log(phone)
+				const url2 = cpath + '/findID/phone/' + phone.value + '/'
+				fetch(url2)
 				.then(resp => resp.json())
-				.then(json => {
+				.then(json2 => {
 					const findIdResult = document.querySelector('.findIdResult')
 					findIdResult.classList.remove('hidden')
-					findIdResult.value = find.email
+					findIdResult.value = json2.email
+					loginBtn.classList.remove('hidden')
 				})
 			}
 			else {
 				alert(json.msg)
 			}
 		})
+	}
+	loginBtn.onclick = function(event) {
+		location.href=cpath + "/login/login"
 	}
 	
 </script>

@@ -39,4 +39,11 @@ public interface MemberDAO {
 
 	@Select("select * from member where phone=#{phone}")
 	MemberDTO findID(MemberDTO dto);
+
+	@Select("select count(*) from member where email=#{email}")
+	int selectPassword(MemberDTO dto);
+
+	@Update("update member set memberPW=#{memberPW} where email=#{email}")
+	int updatePassword(MemberDTO dto);
+
 }

@@ -22,31 +22,31 @@
 		</div>
 		<div>
 			<span>	
-				<input class="agree" type="checkbox" name="agree"><a href="">이용약관 동의</a>
+				<input class="agree" type="checkbox" name="agree"><a href="${cpath}/more/terms/terms">이용약관 동의</a>
 			</span>
 			<span class="necessary">(필수)</span>
 		</div>
 		<div>
 			<span>	
-				<input class="agree" type="checkbox" name="agree"><a href="">만 14세 이상 확인</a>
+				<input class="agree" type="checkbox" name="agree"><a href="${cpath}/more/over14yearsOldAgree">만 14세 이상 확인</a>
 			</span>
 			<span class="necessary">(필수)</span>
 		</div>
 		<div>
 			<span>	
-				<input class="agree" type="checkbox" name="agree"><a href="">개인정보 수집 및 이용 동의</a>
+				<input class="agree" type="checkbox" name="agree"><a href="${cpath}/more/privacyRequire">개인정보 수집 및 이용 동의</a>
 			</span>
 			<span class="necessary">(필수)</span>
 		</div>
 		<div>
 			<span>	
-				<input class="agree" type="checkbox" name="agree"><a href="">개인정보 수집 및 이용 동의 </a>
+				<input class="agree" type="checkbox" name="agree"><a href="${cpath}/more/privacySelect">개인정보 수집 및 이용 동의 </a>
 			</span>
 			<span>(선택)</span>
 		</div>
 		<div>
 			<span>	
-				<input class="agree" type="checkbox" name="agree"><a href="">위치기반 서비스 이용약관 동의</a>
+				<input class="agree" type="checkbox" name="agree"><a href="${cpath}/more/terms/location">위치기반 서비스 이용약관 동의</a>
 			</span>
 			<span>(선택)</span>
 		</div>

@@ -55,7 +55,7 @@ public class LoginController {
 			return returnURI == null ? "redirect:" + url : "redirect:" + returnURI + login.getMemberID();
 		}
 		else {
-			return "login/login";
+			return "home";
 		}
 
 	}
@@ -68,6 +68,11 @@ public class LoginController {
 	@RequestMapping("/findID")
 	public String findID() {
 		return "login/findID";
+	}
+	
+	@RequestMapping("/findPassword")
+	public String findPassword() {
+		return "login/findPassword";
 	}
 	
 	@GetMapping("/findID/phoneCheck/{phone}")
@@ -103,10 +108,34 @@ public class LoginController {
 		return resultHash;
 	}
 	
-	@GetMapping("/findID/phone/{sessionData}/")
+	@GetMapping("/findID/phone/{phone}/")
 	@ResponseBody
-	public MemberDTO findIDResult(@PathVariable String sessionData, MemberDTO dto) {
+	public MemberDTO findIDResult(@PathVariable String phone, MemberDTO dto) {
 		MemberDTO find = ls.findId(dto);
 		return find;
 	}
+	
+	@GetMapping("/findPassword/email/{email}")
+	@ResponseBody
+	public HashMap<String, String> findPassword(@PathVariable String email, MemberDTO dto) {
+		int row = ls.emailCheck(dto);
+		HashMap<String, String> result = new HashMap<String, String>();
+		if(row == 1) {
+			result.put("status", "1");
+			result.put("msg", "인증되었습니다.");
+		}
+		else {
+			result.put("status", "0");
+			result.put("msg", "존재하지 않는 이메일 입니다.");
+			
+		}
+		return result;
+	}
+	@PostMapping("/findPassword")
+	public String changePassword(MemberDTO dto) {
+		int row = ls.changePassword(dto);
+		System.out.println(row == 1 ? "변경 성공" : "변경 실패");
+		return "redirect:login/login";
+	}
+
 }

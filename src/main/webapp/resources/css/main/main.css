@@ -16,13 +16,63 @@
 
 .mainMidBox {
 	width: 1600px;
-	height: 500px;
-	margin-top: -10px;
+	height: 250px;
+	margin: 50px 0;
+	display: flex;
+	justify-content: center;
+}
+
+.midDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.midMain {
+	margin: 100px 200px;
+	display: flex;
+	justify-content: center;
+}
+
+.midMainDiv {
+	margin: 0 150px;
+}
+
+.midMainTitle {
+	margin-bottom: 15px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.midMainContents {
+	display: flex;
+	justify-content: center;
+}
+.midMainText1 {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	display: block;
+	width: 350px;
+}
+
+.midMainText1 > a {
+	text-decoration: none;
+	color: inherit;
+}
+.midMainText2 {
+	margin-left: 20px;
+	display: block;
+	width: 350px;
+}
+.midMainText2 > a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .footer {
 	display: flex;
 	justify-content: center;
+	margin-top: 100px;
 }
 
 .footerTop>img {
