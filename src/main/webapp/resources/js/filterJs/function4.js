@@ -110,13 +110,9 @@
 		
 	function mainAllFilter(){
 		areacode = params.get('areacode')
-		console.log(areacode)
 		
 		const checkInDay = lt
 		const checkOutDay = rt
-		console.log(areacode)
-		console.log(lt)
-		console.log(rt)
 		const url = cpath + '/mainAllFilter?areacode='+areacode + '&checkInDay=' + checkInDay + '&checkOutDay='+checkOutDay
 		const opt = {
 			method: 'GET'
@@ -137,8 +133,6 @@
 							checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
 							checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
 						}
-						console.log(checkIn)
-						console.log(checkOut)
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})

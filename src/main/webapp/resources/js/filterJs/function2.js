@@ -15,8 +15,6 @@ else {
 	console.log(11)
 }
 
-console.log(lt)
-console.log(rt)
 
 // getDom(json)
 function getDom(json) {
@@ -72,8 +70,14 @@ function originalSelect(){
 		images.forEach(image => {
 			image.onclick = function() {
 				const itemId = this.dataset.id
-				let checkIn = '0'+lt
-				let checkOut = '0'+rt
+				if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+					checkIn = '0'+lt
+					checkOut = '0' + rt
+				}
+				else {
+					checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+					checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+				}
 	 
 				location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 			}
@@ -105,8 +109,14 @@ function btn1OC(event) {
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						checkIn = '0'+lt
-						checkOut = '0'+rt
+						if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+							checkIn = '0'+lt
+							checkOut = '0' + rt
+						}
+						else {
+							checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+							checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+						}
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})

@@ -95,13 +95,13 @@ function filterSearch(event){
 				const itemId = this.dataset.id
 				console.log(ltMonth)
 				
-				if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt) {
-					checkIn = lt.substring(0,1) + lt.slice(-2)
-					checkOut = rt.substring(0,1) + rt.slice(-2)
+				if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+					checkIn = '0'+lt
+					checkOut = '0' + rt
 				}
 				else {
-					checkIn = ltMonth + ('0'+ltDay).slice(-2)
-					checkOut = rtMonth + ('0'+rtDay).slice(-2)
+					checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+					checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
 				}
 				
 //				const checkIn = '0'+lt
