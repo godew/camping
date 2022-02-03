@@ -40,6 +40,6 @@ public class ReviewController {
 			@RequestParam(value = "content", required = false)String content) {
 		int row = rs.writeReview(orderId, starPoint, memberId, itemId, itemRoomId, title, content);
 		
-		return "redirect:/";
+		return "redirect:/reservation/" + memberId;
 	}
 }

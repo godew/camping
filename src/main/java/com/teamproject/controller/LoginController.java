@@ -144,7 +144,7 @@ public class LoginController {
 	public String changePassword(MemberDTO dto) {
 		int row = ls.changePassword(dto);
 		System.out.println(row == 1 ? "변경 성공" : "변경 실패");
-		return "redirect:login/login";
+		return "redirect:/";
 	}
 
 }

@@ -71,7 +71,7 @@
 			<div class="reservationText">
 				<div><strong>${list.itemRoomName }</strong></div>
 				<span>${checkInDate } ~ ${checkOutDate }</span>
-				<div><a href="${cpath }/product/detail?itemId=${list.itemRoomId}&checkIn=${today}&checkOut=${today}">다시예약</a></div><!-- 예약페이지 -->
+				<div><a href="${cpath }/product/detail?itemId=${list.itemId}&checkIn=${today}&checkOut=${today}">다시예약</a></div><!-- 예약페이지 -->
 			</div>
 		</a>
 		</div>

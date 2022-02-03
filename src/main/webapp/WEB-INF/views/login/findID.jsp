@@ -129,7 +129,7 @@
 		})
 	}
 	loginBtn.onclick = function(event) {
-		location.href=cpath + "/login/login"
+		location.href=cpath
 	}
 	
 </script>

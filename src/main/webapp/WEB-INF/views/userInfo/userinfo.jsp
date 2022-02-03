@@ -114,7 +114,7 @@ function hideModify(event) {
 		
 		<div id="modify3" class="modify hidden"><!-- 수정버튼 누르면 나타나는 태그 -->
 			<form method="POST">
-				<p><input type="text" value="${dto.phone }" name="phone" placeholder="체크인시 필요한 정보입니다" required></p>
+				<p><input type="text" value="${dto.phone }" name="phone" placeholder="체크인시 필요한 정보입니다" readonly="readonly" required></p>
 				<p>
 				<button id="change3" type="submit">수정 완료</button>
 				<button id="cancelBTN3" type="button" value="3">수정 취소</button>
