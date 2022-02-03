@@ -36,7 +36,7 @@
 </script>
 <header>
 	<div class="content">
-		<a href="${cpath }"><img class="headerLogo" src="${cpath }/resources/img/headerLogo.png"></a>
+		<a href="${cpath }/"><img class="headerLogo" src="${cpath }/resources/img/headerLogo.png"></a>
 		<ul>
 			
 			<c:if test="${not empty login and login.email eq 'manager@naver.com'}">
