@@ -73,16 +73,6 @@ function filterSearch(event){
 		checkInDay = ltMonth + ('0'+ltDay).slice(-2)
 		checkOutDay = rtMonth + ('0'+rtDay).slice(-2)
 	}
-		
-	console.log(checkInDay)
-	console.log(checkOutDay)
-		
-
-	
-
-
-	
-	console.log(areacode)
 	
 	const url = cpath + '/submitSearch?areacode='+areacode+'&people='+people+'&checkInDay='+ checkInDay + '&checkOutDay='+checkOutDay 
 	+ '&minPrice='+minPrice+'&maxPrice='+ maxPrice +'&checkLabel='+checkLabel
@@ -103,9 +93,19 @@ function filterSearch(event){
 			image.onclick = function() {
 				console.log(1)
 				const itemId = this.dataset.id
+				console.log(ltMonth)
 				
-				const checkIn = '0'+lt
-				const checkOut = '0'+rt
+				if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt) {
+					checkIn = lt.substring(0,1) + lt.slice(-2)
+					checkOut = rt.substring(0,1) + rt.slice(-2)
+				}
+				else {
+					checkIn = ltMonth + ('0'+ltDay).slice(-2)
+					checkOut = rtMonth + ('0'+rtDay).slice(-2)
+				}
+				
+//				const checkIn = '0'+lt
+//				const checkOut = '0'+rt
 				location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 			}
 		})

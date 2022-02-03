@@ -39,7 +39,16 @@ function clickBtn() {
 	.then(json => position(mapContainer, json))
 	
 	function position(mapCotainer, json) {
+		
 		json.forEach(dto =>{
+			if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+				checkIn = '0'+lt
+				checkOut = '0' + rt
+			}
+			else {
+				checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+				checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+			}
 			
 			const marker = new kakao.maps.Marker({
 			    map: map,
@@ -49,10 +58,9 @@ function clickBtn() {
 			    clickable: true
 			})
 			
-			const checkIn = '0'+lt
-			const checkOut = '0'+rt
-			
 		 	 var infowindow = new kakao.maps.InfoWindow({
+		 		
+		 		 
 		         content: '<div class="infoContent"><a href="' + cpath +'/product/detail?itemId=' + dto.itemid + 
 		         '&checkIn='+ checkIn + '&checkOut='+ checkOut +'"><img class="infoItemImage" src="' + dto.itemimage + '"></a>' +
 		       

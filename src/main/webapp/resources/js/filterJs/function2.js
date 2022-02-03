@@ -4,8 +4,16 @@ const filterBtnOnClick3 = document.querySelector('.filterBtnOnClick3') // 낮은
 const filterBtnOnClick4 = document.querySelector('.filterBtnOnClick4') // 높은 가격 순
 const inDisplay = document.querySelector('.inDisplay')
 
-let lt = params.get('checkInDay')
-let rt = params.get('checkOutDay')
+let lt = ''
+let rt = ''
+
+if(params.get('checkInDay') != '' && params.get('checkOutDay') != ''){
+	lt = params.get('checkInDay')
+	rt = params.get('checkOutDay')
+}
+else {
+	console.log(11)
+}
 
 console.log(lt)
 console.log(rt)
@@ -48,7 +56,6 @@ chungcheong.addEventListener('click', btn1OC)
 jeju.addEventListener('click', btn1OC)
 gangwon.addEventListener('click', btn1OC)
 
-//window.addEventListener('load', originalSelect)
 
 function originalSelect(){
 	const url = cpath + '/select'
@@ -120,7 +127,6 @@ function btn2OC(event){
 	
 	area.forEach(areas => {
 		if(headerArea.innerHTML == areas.dataset.area){
-//			console.log(headerArea.innerHTML == areas.dataset.area)
 			const url = cpath + '/place/' + areas.dataset.areacode
 			const opt = {
 				method: 'GET'
@@ -135,8 +141,14 @@ function btn2OC(event){
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						checkIn = '0'+lt
-						checkOut = '0'+rt
+						if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+							checkIn = '0'+lt
+							checkOut = '0' + rt
+						}
+						else {
+							checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+							checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+						}
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})
@@ -179,8 +191,14 @@ function btn3OC(event){
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						checkIn = '0'+lt
-						checkOut = '0'+rt
+						if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+							checkIn = '0'+lt
+							checkOut = '0' + rt
+						}
+						else {
+							checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+							checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+						}
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})
@@ -216,8 +234,14 @@ function btn4OC(event) {
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						checkIn = '0'+lt
-						checkOut = '0'+rt
+						if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+							checkIn = '0'+lt
+							checkOut = '0' + rt
+						}
+						else {
+							checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+							checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+						}
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
 					}
 				})

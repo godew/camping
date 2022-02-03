@@ -109,33 +109,43 @@ public class FilterAjaxController {
 			map.put("firstMonth", firstMonth);
 			System.out.println(map);
 			List<FilterDTO> list = fs.selectFirstList(map); // areacode, price 1차 
-			
-			
-//			List<HashMap<String, Object>> checkHash = new List<HashMap<String, Object>>();
+			ArrayList<FilterDTO> list2 = new ArrayList<FilterDTO>();
+					
 			
 			String test1 = map.get("checkLabel");
 			String[] strArr = test1.split(":");
-			System.out.println(strArr.length);
+			
 			for(String s : strArr) {
+				System.out.println(s);
 				for(int i = 0; i < list.size(); i++) {
 					String filterTest = list.get(i).getFilter();
 					if(filterTest.contains(s)) {
-						list.get(i);
+						System.out.println("itemid :" + list.get(i).getItemid());
+						list2.add(list.get(i));
 					}
+					
 				}
-				System.out.println(list);
 			}
 			
-			System.out.println(list);
 			
-//			if(s.contains("erd")) {
-//				System.out.println("==================");
+			
+//			for(int i = 0; i < list.size(); i++) {
+//				String filterTest = list.get(i).getFilter();
+//				for(String s : strArr) {
+//					if(filterTest.contains(s)) {
+//						list2.add(list.get(i));
+//					}
+//				}
 //			}
+			
+			System.out.println(list2);
+			System.out.println(list2.size());
+			
 
 			
 			
-			for(int i = 0; i < list.size(); i++) {
-				itemId = list.get(i).getItemid(); // areacode와 price로 걸러진 list 숫자만큼 itemid로
+			for(int i = 0; i < list2.size(); i++) {
+				itemId = list2.get(i).getItemid(); // areacode와 price로 걸러진 list 숫자만큼 itemid로
 				
 				ArrayList<FilterDTO> tmp = fs.submitSearch(itemId); // 한 번 더 검색 (list들을 tmp에 저장)
 				
@@ -176,9 +186,31 @@ public class FilterAjaxController {
 			
 			
 			List<FilterDTO> list = fs.selectFirstList2(map); // areacode, price 1차 
-	
-			for(int i = 0; i < list.size(); i++) {
-				itemId = list.get(i).getItemid();
+			ArrayList<FilterDTO> list2 = new ArrayList<FilterDTO>();
+			
+			String test1 = map.get("checkLabel");
+			String[] strArr = test1.split(":");
+			for(String s : strArr) {
+				System.out.println(s);
+				for(int i = 0; i < list.size(); i++) {
+					String filterTest = list.get(i).getFilter();
+					
+					if(filterTest.contains(s)) {
+						if(list.get(i).getItemid() == list.get(i).getItemid()) {
+							System.out.println("list 동일 : " + list.get(i).getItemid());
+						}
+						list2.add(list.get(i));
+					}
+					
+				}
+			}
+			
+			System.out.println("list2.size : " + list2.size());
+			
+			
+			
+			for(int i = 0; i < list2.size(); i++) {
+				itemId = list2.get(i).getItemid();
 				
 				ArrayList<FilterDTO> tmp = fs.submitSearch(itemId);
 				
@@ -222,11 +254,7 @@ public class FilterAjaxController {
 		return result;
 }	// submitSearch() end
 	
-	
-	private String[] String(String[] split) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@GetMapping("/mainAllFilter")
 	public List<FilterDTO> mainAllFilter(@RequestParam HashMap<String, String> map){

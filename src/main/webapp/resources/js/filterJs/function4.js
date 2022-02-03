@@ -21,20 +21,19 @@
 	let first_day = new Date(year,month,1).getDay() // 달의 첫번째 요일 
 	const mapModal = document.querySelector('.mapModal')
 	const calendarSubmit = document.querySelector('.calendarSubmit')
-//	const inDisplay = document.querySelector('.inDisplay')
 	let first = ''
 	let second = ''
 	lt = ''
 	rt = ''
-//	let search = location.search
-//	let params = new URLSearchParams(search)
-		
+	
+
 	rt = params.get('checkOutDay')
 	lt = params.get('checkInDay');
 	let rtDay = rt.slice(-2)
 	let ltDay = lt.slice(-2)
 	let rtMonth = rt.substring(0,1)
 	let ltMonth = lt.substring(0,1)
+
 		
 	if(+rtDay < 10){
 		rtDay = rt.slice(-1)
@@ -83,8 +82,6 @@
 		else if(lt.dataset.month == rt.dataset.month){			
 			todayAndTomorrow.innerHTML = '<div>' + lt.dataset.month + '.' + lt.dataset.day + ' ~ ' + rt.dataset.month + '.' + rt.dataset.day + ' · ' + (+rt.dataset.day - +lt.dataset.day) + '박' + '</div>'		
 		}
-		console.log(checkIn)
-		console.log(checkOut)
 		
 	}
 	
@@ -110,17 +107,11 @@
 		inDisplay.innerHTML = ''
 		inDisplay.innerHTML += dom
 	}
-
-//	window.addEventListener('load', function(){
-//		filterBtnOnClick1.classList.add('btnOnClick')
-//		filterBtnOnClick2.classList.remove('btnOnClick')
-//		filterBtnOnClick3.classList.remove('btnOnClick')
-//		filterBtnOnClick4.classList.remove('btnOnClick')
-//	})
 		
 	function mainAllFilter(){
 		areacode = params.get('areacode')
 		console.log(areacode)
+		
 		const checkInDay = lt
 		const checkOutDay = rt
 		console.log(areacode)
@@ -133,15 +124,19 @@
 		fetch(url, opt)
 		.then(resp => resp.json())
 		.then(json => {
-			console.log(100)
-			console.log(json)
 			render(inDisplay, getDom(json))
 			const images = document.querySelectorAll('.displayWrap')
 				images.forEach(image => {
 					image.onclick = function() {
 						const itemId = this.dataset.id
-						checkIn = '0'+lt
-						checkOut = '0'+rt
+						if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt){
+							checkIn = '0'+lt
+							checkOut = '0' + rt
+						}
+						else {
+							checkIn = ('0'+lt.dataset.month).slice(-2) + ('0'+lt.dataset.day).slice(-2)
+							checkOut = ('0'+rt.dataset.month).slice(-2) + ('0'+rt.dataset.day).slice(-2)
+						}
 						console.log(checkIn)
 						console.log(checkOut)
 						location.href = cpath + '/product/detail?itemId=' + itemId + '&checkIn='+checkIn + '&checkOut='+checkOut
@@ -214,7 +209,6 @@
 		for(i = 1; i <= last_date; i++) {
 			set_date = document.getElementById('D'+[i]) 
 			if(month < thisMonth && thisToday == set_date.getAttribute('id')){
-				console.log(set_date)
 				set_date.style.color = "#FF2B5C"
 			}
 			
