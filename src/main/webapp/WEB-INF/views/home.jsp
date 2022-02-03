@@ -37,7 +37,7 @@
 								<tr></tr>
 							</tbody>
 						</table>
-						<div><button class="calendarSubmitIn" value="선택완료">검색</button></div>
+						<div><button class="calendarSubmitIn" value="선택완료">선택완료</button></div>
 					</div>
 				</section>
 				<section class="mainCheckOut">

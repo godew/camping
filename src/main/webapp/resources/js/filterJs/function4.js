@@ -214,14 +214,16 @@
 		for(i = 1; i <= last_date; i++) {
 			set_date = document.getElementById('D'+[i]) 
 			if(month < thisMonth && thisToday == set_date.getAttribute('id')){
+				console.log(set_date)
 				set_date.style.color = "#FF2B5C"
-//				set_date.style.color = 'white'
 			}
 			
 			else if (month < thisMonth && set_date.dataset.day < today) {
 				set_date.style.color = '#DEE2E6'
 				set_date.style.pointerEvents = 'none'
 			}
+			
+
 		}
 	}
 	
@@ -287,32 +289,6 @@
 			first = ''
 			second = ''
 		}		
-//			else {
-//				if(first_month != second_month){
-//					lt = first
-//					rt = second
-//					console.log('넘어가는 달 first', first)
-//					console.log('넘어가는 달 second', second)
-//					
-//					for(i = lt; i = last_date; i++){
-//						set_date = document.getElementById('D'+[i])
-//						set_date.style.backgroundColor = 'pink'
-//						set_date.style.color = 'white'
-//					}
-//					
-//					for(i = rt; i = first_date; i++){
-//						set_date = document.getElementById('D'+[i])
-//						set_date.style.backgroundColor = 'pink'
-//						set_date.style.color = 'white'
-//					}
-//				}
-//			}
-
-			
-//		console.log('first', first)
-//		console.log('second', second)
-//		console.log('lt', lt)
-//		console.log('rt', rt)
 	}
 	
 
@@ -356,13 +332,13 @@
 		
 		
 		if (lt != '' && rt != '') {
-			if (+lt.dataset.month < (month+1) && (month+1) < +rt.dataset.month) {
+			if (+lt.substring(0,1) < (month+1) && (month+1) < +rt.substring(0,1)) {
 				for(i = 1; i <= last_date; i++) {
 					set_date = document.getElementById('D'+[i])
 					set_date.style.backgroundColor = 'pink'
 					set_date.style.color = 'white'
 				}
-			} else if (+lt.dataset.month == (month+1)) {
+			} else if (+lt.substring(0,1) == (month+1)) {
 				for(i = +lt.dataset.day; i <= last_date; i++){
 					set_date = document.getElementById('D'+[i])
 					set_date.style.backgroundColor = 'pink'
@@ -399,15 +375,16 @@
 		
 		makeCalendar()
 		
+
 		
 		if (lt != '' && rt != '') {
-			if (+lt.dataset.month < (month+1) && (month+1) < +rt.dataset.month) {
+			if (+lt.substring(0,1) < (month+1) && (month+1) < +rt.substring(0,1)) {
 				for(i = 1; i <= last_date; i++) {
 					set_date = document.getElementById('D'+[i])
 					set_date.style.backgroundColor = 'pink'
 					set_date.style.color = 'white'
 				}
-			} else if (+rt.dataset.month == (month+1)) {
+			} else if (+rt.substring(0,1) == (month+1)) {
 				for(i = first_date; i <= +rt.dataset.day; i++){
 					set_date = document.getElementById('D'+[i])
 					set_date.style.backgroundColor = 'pink'

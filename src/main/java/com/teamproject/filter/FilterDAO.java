@@ -60,11 +60,19 @@ public interface FilterDAO {
 			"on A.itemId = B.itemId and A.itemId = ${itemId} " + 
 			"join calendar C " + 
 			"on B.itemRoomId = C.itemroomId " + 
-			"where month = 2")
+			"where month = #{firstMonth}")
 	ArrayList<FilterDTO> submitSearch3(HashMap<String, String> map);
 	
 	@Select("select itemid, itemname, locale, itemprice, itemimage, filter, distance from item where itemid=#{itemid}")
 	ArrayList<FilterDTO> search2(String itemId);
+	
+
+	@Select("select A.areacode, A.itemPrice, A.filter, A.itemid, B.maxpeople, C.* from item A join item_room B " + 
+			"on A.itemId = B.itemId and A.itemId = ${itemId} " + 
+			"join calendar C " + 
+			"on B.itemRoomId = C.itemroomId " + 
+			"where month between #{firstMonth} and #{secondMonth}")
+	ArrayList<FilterDTO> mainSelectArea2(HashMap<String, String> map);
 	
 
 

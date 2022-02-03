@@ -1,10 +1,18 @@
 const filterSubmit = document.querySelector('.filterSubmit')
 const filterReset = document.querySelector('.filterReset')
 const label_chk = document.querySelectorAll('.label_chk')
-//const label_chk = document.querySelectorAll('.label_chk')
 
 filterSubmit.addEventListener('click', filterSearch)
 filterReset. addEventListener('click', filterRest)
+
+
+
+function filterRest(event){
+	let checkInDay = thisMonth + ('0'+today).slice(-2)
+	let checkOutDay = thisMonth + ('0'+tomorrow).slice(-2)
+
+	location.href = cpath + '/product/search?areacode=5001&checkInDay=' + checkInDay + '&checkOutDay='+checkOutDay
+}
 
 
 function getDom1(json) {
@@ -15,8 +23,6 @@ function getDom1(json) {
 			dom += 		'<div><a href=""><img class="displayImg" src="' + dto.itemimage + '"></a></div>'
 			dom += 		'<div class="displayText">'
 			dom += 				'<strong>'+ dto.itemname + '</strong><br>'
-			dom += 				'<span> 별 점 </span>'
-			dom += 				'<span>' + dto.distance + '</span>'
 			dom += 			'<div class="displayDetail">'
 			dom += 				'<span>' + dto.locale + '</span>'
 			dom += 				'<span class="displayPrice">'+ dto.itemprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원</span>'
@@ -32,10 +38,7 @@ function render(inDisplay, dom){
 	inDisplay.innerHTML += dom
 }
 
-function filterRest(event){
-	console.log(event.target)
-	
-}
+
 
 function filterSearch(event){
 	const area = document.querySelectorAll('.area')
@@ -58,12 +61,24 @@ function filterSearch(event){
 	
 	let minPrice = +inputLeft.value + '0000'
 	let maxPrice = +inputRight.value + '0000'
-	
-	let checkInDay = lt
-	let checkOutDay = rt
-	
+
+	let checkInDay = ''
+	let checkOutDay = ''
+		
+	if(params.get('checkInDay') == lt && params.get('checkOutDay') == rt) {
+		checkInDay = lt.substring(0,1) + lt.slice(-2)
+		checkOutDay = rt.substring(0,1) + rt.slice(-2)
+	}
+	else {
+		checkInDay = ltMonth + ('0'+ltDay).slice(-2)
+		checkOutDay = rtMonth + ('0'+rtDay).slice(-2)
+	}
+		
 	console.log(checkInDay)
 	console.log(checkOutDay)
+		
+
+	
 
 
 	

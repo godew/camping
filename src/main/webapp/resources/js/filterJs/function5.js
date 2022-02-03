@@ -32,15 +32,6 @@
 	const mainAreaSelect = document.querySelector('.mainAreaSelect')
 	
 	
-	
-//	function test1(event) {
-//		console.log(10)
-//		location.href = cpath + '/product/search?'
-//		console.log(20)
-//	}
-	
-	
-	
 	// 2월 달 last_date가 31로 나옴(2월달만 그럼)
 	if(mainmonth == 1){
 		mainlast_date = 28
@@ -51,7 +42,8 @@
 	
 	let checkIn = ''
 	let checkOut = ''
-		
+	let mainFirst = ''
+	let mainSecond = ''
 	if(+maintomorrow > +mainlast_date){
 		maintomorrow = 1
 		mainnextMonthDiv = mainthisMonth + 1
@@ -77,10 +69,14 @@
 			todayAndTomorrowOut.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + 
 			mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'			
 		}
-		else if((+mainlt.dataset.month == +mainrt.dataset.month && +lt.dataset.day >= +mainrt.dataset.day) ||
-				+mainlt.dataset.month > +mainrt.dataset.month || 
-				(+mainlt.dataset.month == +mainrt.dataset.month && +lt.dataset.day == +mainrt.dataset.day)){
-			todayAndTomorrowOut.innerHTML = ''
+		else if(+mainlt.dataset.month > +mainrt.dataset.month){
+			todayAndTomorrowIn.innerHTML = ''
+			todayAndTomorrowOut.innerHTML = ''			
+			todayAndTomorrowOut.innerHTML = '<div>' + mainlt.dataset.month + '월' + '\u00A0' +
+			mainlt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'
+			todayAndTomorrowIn.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + 
+			mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'		
+			
 		}
 		
 		checkIn = ('0'+mainlt.dataset.month).slice(-2) + ('0'+mainlt.dataset.day).slice(-2)
@@ -105,11 +101,20 @@
 
 			
 		if(mainlt == '' && mainrt == ''){
-			checkInDay = mainthisMonth + ('0'+maintoday).slice(-2)
-			checkOutDay = mainnextMonthDiv + ('0'+maintomorrow).slice(-2)
-		} else {
-			checkInDay = mainlt.dataset.month + mainlt.dataset.day
-			checkOutDay = mainrt.dataset.month + mainrt.dataset.day 
+			checkInDay = mainthisMonth + ('0' + maintoday).slice(-2)
+			checkOutDay = mainnextMonthDiv + ('0' + maintomorrow).slice(-2)
+		}  
+		else if(+mainlt.dataset.month > +mainrt.dataset.month){
+			checkOutDay = mainlt.dataset.month + ('0'+mainlt.dataset.day).slice(-2)
+			checkInDay = mainrt.dataset.month + ('0'+mainrt.dataset.day).slice(-2)
+		} else if(+mainlt.dataset.month == +mainrt.dataset.month && 
+				+mainlt.dataset.day > +mainrt.dataset.day){
+			checkOutDay = mainlt.dataset.month + ('0'+mainlt.dataset.day).slice(-2)
+			checkInDay = mainrt.dataset.month + ('0'+mainrt.dataset.day).slice(-2)
+		} else if(+mainlt.dataset.month <= +mainrt.dataset.month && 
+				+mainlt.dataset.day < +mainrt.dataset.day){
+			checkInDay = mainlt.dataset.month + ('0'+mainlt.dataset.day).slice(-2)
+			checkOutDay = mainrt.dataset.month + ('0'+mainrt.dataset.day).slice(-2)
 		}
 
 		location.href = cpath + '/product/search?areacode='+areacode + '&checkInDay=' + checkInDay + '&checkOutDay='+checkOutDay
@@ -126,13 +131,11 @@
 	function openCalendarHandlerOut(event){
 		filterCalendarOut.classList.remove('calendarHidden')
 		calendarYearOut.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
-		const tds = document.querySelectorAll('td')
 	}
 	
 	function openCalendarHandlerIn(event){
 		filterCalendarIn.classList.remove('calendarHidden')
 		calendarYearIn.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
-		const tds = document.querySelectorAll('td')
 	}
 	
 	
@@ -156,7 +159,7 @@
 			if(mainfirst_day != 7){
 				cell = row.insertCell() 		
 				cell.setAttribute('class', 'calendarTd') 	
-				cell.setAttribute('id', 'D'+[i]) 	
+				cell.setAttribute('id', [i]) 	
 				cell.setAttribute('data-day', [i]) 	 
 				cell.setAttribute('data-month', mainmonth+1) 	
 				cell.addEventListener('click', dayOnclick2)
@@ -168,7 +171,7 @@
 				row = calendarTableOut.insertRow()
 				cell = row.insertCell()
 				cell.setAttribute('class', 'calendarTd')
-				cell.setAttribute('id', 'D'+[i])
+				cell.setAttribute('id', [i])
 				cell.setAttribute('data-day', [i])
 				cell.setAttribute('data-month', mainmonth+1)
 				cell.addEventListener('click', dayOnclick2)
@@ -218,9 +221,7 @@
 	window.addEventListener('load',makeCalendarIn)
 	
 	function calendarTodayHandler1(){
-		console.log(11)
 		let mainthisToday = 'D'+ maintoday
-		let mainthisTomorrow = 'D' + (maintoday+1)
 		for(i = 1; i <= mainlast_date; i++) {
 			set_date = document.getElementById('D'+[i]) 
 			if(mainmonth < mainthisMonth && mainthisToday == set_date.getAttribute('id')){
@@ -235,18 +236,16 @@
 	}
 	
 	function calendarTodayHandler2(){
-		console.log(22)
-		let mainthisToday2 = 'D'+ maintoday
+		let mainthisToday2 = maintoday
+			
 		for(i = 1; i <= mainlast_date; i++) {
-			set_date2 = document.getElementById('D'+[i]) 
+			set_date2 = document.getElementById([i]) 
 			if(mainmonth < mainthisMonth && mainthisToday2 == set_date2.getAttribute('id')){
-				console.log(mainmonth < mainthisMonth && mainthisToday2 == set_date2.getAttribute('id'))
 				set_date2.style.color = "#FF2B5C"
+//				console.log(set_date2)
 			}
 			else if (mainmonth < mainthisMonth && set_date2.getAttribute('data-day') < maintoday) {
-				console.log(mainmonth < mainthisMonth && set_date2.dataset.day < maintoday)
-//				day = set_date.dataset.day
-				console.log(set_date2)
+
 				set_date2.style.color = '#DEE2E6'
 				set_date2.style.pointerEvents = 'none'
 			}
@@ -256,33 +255,35 @@
 	// 날짜 클릭
 	function dayOnclick1(event){
 		let getDate = event.target
-		if(getDate != ''){
-			for(let i = 1; i <= mainlast_date; i++){
-				set_date = document.getElementById('D'+[i])
-				set_date.style.backgroundColor = 'white'
-				set_date.style.color = 'black'
+		
+			if(getDate != ''){
+				for(let i = 1; i <= mainlast_date; i++){
+					set_date = document.getElementById('D'+[i])
+					set_date.style.backgroundColor = 'white'
+					set_date.style.color = 'black'
+				}
+				getDate.style.backgroundColor = 'pink'
+				getDate.style.color = 'white'
 			}
-			getDate.style.backgroundColor = 'pink'
-			getDate.style.color = 'white'
-		}
 		mainlt = getDate
-	}
+		
+		}
 	
 	// 날짜 클릭
 	function dayOnclick2(event){
-		let getDate2 = event.target
-		console.log(getDate2)
+		let getDate = event.target
 		
-		if(getDate2 != ''){
+		if(getDate != ''){
 			for(let i = 1; i <= mainlast_date; i++){
-				set_date2 = document.getElementById('D'+[i])
-				set_date2.style.backgroundColor = 'pink'
-				set_date2.style.color = 'white'
+				set_date = document.getElementById([i])
+				console.log(set_date)
+				set_date.style.backgroundColor = 'white'
+				set_date.style.color = 'black'
 			}
-			getDate2.style.backgroundColor = 'pink'
-			getDate2.style.color = 'white'
+			event.target.style.backgroundColor = 'pink'
+			event.target.style.color = 'white'
 		}
-		mainrt = getDate2
+		mainrt = getDate
 	}
 	
 	
@@ -307,11 +308,11 @@
 			
 			mainmonth = mainmonth - 1
 			
-			if(month === -1){
+			if(mainmonth === -1){
 				mainyear = mainyear - 1
 				mainmonth = mainmonth + 12
 			}
-			calendarYearOut.innerText = year+'년'+ '\u00A0' +  (mainmonth+1) +'월'
+			calendarYearOut.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
 			
 			mainfirst_date = new Date(mainyear,mainmonth,1).getDate();
 			mainlast_date = new Date(mainyear,mainmonth+1,0).getDate();
@@ -324,25 +325,6 @@
 				calendarTodayHandler2()
 			}
 		}
-		
-		
-		if (mainlt != '' && mainrt != '') {
-			if (+mainlt.dataset.month < (mainmonth+1) && (mainmonth+1) < +mainrt.dataset.month) {
-				for(i = 1; i <= mainlast_date; i++) {
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			} else if (+mainlt.dataset.month == (month+1)) {
-				for(i = +mainlt.dataset.day; i <= mainlast_date; i++){
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			}
-		}
-		
-	
 	}
 	
 	// in 이전달
@@ -362,7 +344,7 @@
 				mainyear = mainyear - 1
 				mainmonth = mainmonth + 12
 			}
-			calendarYearIn.innerText = year+'년'+ '\u00A0' +  (mainmonth+1) +'월'
+			calendarYearIn.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
 			
 			mainfirst_date = new Date(mainyear,mainmonth,1).getDate();
 			mainlast_date = new Date(mainyear,mainmonth+1,0).getDate();
@@ -375,25 +357,6 @@
 				calendarTodayHandler1()
 			}
 		}
-		
-		
-		if (mainlt != '' && mainrt != '') {
-			if (+mainlt.dataset.month < (mainmonth+1) && (mainmonth+1) < +mainrt.dataset.month) {
-				for(i = 1; i <= mainlast_date; i++) {
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			} else if (+mainlt.dataset.month == (mainmonth+1)) {
-				for(i = +mainlt.dataset.day; i <= mainlast_date; i++){
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			}
-		}
-		
-	
 	}
 	
 	
@@ -413,31 +376,15 @@
 			mainmonth = mainmonth - 12
 		}
 		
-		calendarYearOut.innerText = year+'년'+ '\u00A0' +  (mainmonth+1) +'월'
+		calendarYearOut.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
 		
 		mainfirst_date = new Date(mainyear,mainmonth,1).getDate();
 		mainlast_date = new Date(mainyear,mainmonth+1,0).getDate()
 		mainfirst_day = new Date(mainyear,mainmonth,1).getDay();
 		
 		makeCalendarOut()
-		
-		
-		if (mainlt != '' && mainrt != '') {
-			if (+mainlt.dataset.month < (mainmonth+1) && (mainmonth+1) < +mainrt.dataset.month) {
-				for(i = 1; i <= mainlast_date; i++) {
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			} else if (+mainrt.dataset.month == (mainmonth+1)) {
-				for(i = mainfirst_date; i <= +rt.dataset.day; i++){
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			}
-		}
 	}
+	
 	
 	// in 다음 달 
 	function nextMonthIn(event){
@@ -455,28 +402,11 @@
 			month = month - 12
 		}
 		
-		calendarYearIn.innerText = year+'년'+ '\u00A0' +  (mainmonth+1) +'월'
+		calendarYearIn.innerText = mainyear+'년'+ '\u00A0' +  (mainmonth+1) +'월'
 		
 		mainfirst_date = new Date(mainyear,mainmonth,1).getDate();
 		mainlast_date = new Date(mainyear,mainmonth+1,0).getDate()
 		mainfirst_day = new Date(mainyear,mainmonth,1).getDay();
 		
 		makeCalendarIn()
-		
-		
-		if (mainlt != '' && mainrt != '') {
-			if (+mainlt.dataset.month < (mainmonth+1) && (mainmonth+1) < +mainrt.dataset.mainmonth) {
-				for(i = 1; i <= mainlast_date; i++) {
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			} else if (+rt.dataset.month == (mainmonth+1)) {
-				for(i = mainfirst_date; i <= +mainrt.dataset.day; i++){
-					set_date = document.getElementById('D'+[i])
-					set_date.style.backgroundColor = 'pink'
-					set_date.style.color = 'white'
-				}
-			}
-		}
 	}

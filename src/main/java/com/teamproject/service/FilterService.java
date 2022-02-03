@@ -76,6 +76,10 @@ public class FilterService {
 		return fd.search2(itemId);
 	}
 
+	public ArrayList<FilterDTO> mainSelectArea2(HashMap<String, String> map) {
+		return fd.mainSelectArea2(map);
+	}
+
 
 
 

@@ -63,7 +63,7 @@
 		<section class="filterSection">
 			<h3 class=" filterDetaile">상세조건</h3>
 			<div class="detailBtn">
-				<button type="button" class="filterReset">초기화</button>	
+				<button type="reset" class="filterReset">초기화</button>	
 				<button type="submit" class="filterSubmit">적용</button>	
 			</div>
 		</section>

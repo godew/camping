@@ -71,17 +71,10 @@ public class FilterAjaxController {
 		ArrayList<FilterDTO> result = new ArrayList<FilterDTO>();
 		String itemId = "";
 		
-		String areacode = map.get("areacode");
 		String firstMonth = "";
 		String secondMonth = "";
 		String firstDay = map.get("checkInDay");
 		String secondDay = map.get("checkOutDay");
-		String people = map.get("people");
-		String minPrice = map.get("minPrice");
-		String maxPrice = map.get("maxPrice");
-		String checkLabel = map.get("checkLabel");
-		String fd = "D"+firstDay;
-		String sd = "D"+secondDay;
 		
 		if(firstDay.length() == 3 && secondDay.length() == 3) {
 			firstMonth = firstDay.substring(0,1);
@@ -155,6 +148,7 @@ public class FilterAjaxController {
 		else if(Integer.parseInt(firstMonth) != Integer.parseInt(secondMonth)) {
 			map.put("firstMonth", firstMonth);
 			map.put("secondMonth", secondMonth);
+			System.out.println(map);
 			
 			List<FilterDTO> list = fs.selectFirstList2(map); // areacode, price 1차 
 	
@@ -282,62 +276,56 @@ public class FilterAjaxController {
 					result.add(tmprs.get(z));
 				}
 			}			
+			return result;
 		}
-	return result;
-} // if end
-	
-	
-//		else if(Integer.parseInt(firstMonth) != Integer.parseInt(secondMonth)) {
-//			map.put("firstMonth", firstMonth);
-//			map.put("secondMonth", secondMonth);
-//			
-//			List<FilterDTO> list = fs.selectFirstList2(map); // areacode, price 1차 
-//	
-//			for(int i = 0; i < list.size(); i++) {
-//				itemId = list.get(i).getItemid();
-//				
-//				ArrayList<FilterDTO> tmp = fs.submitSearch(itemId);
-//				
-//				for(int j = 0; j < tmp.size(); j++) {
-//					if (Integer.parseInt(map.get("people")) <= Integer.parseInt(tmp.get(j).getMaxpeople())) {
-//						result.add(tmp.get(j));
-//						break;
-//					}
-//					for (int k = 0; k < tmp.size(); k++) {
-//						HashMap<Integer, String> calMap = getCalMap(tmp.get(k));
-//						for(int l = Integer.parseInt(firstDay); l <= 31; l++) {
-//							if(calMap.get(l) == "1") {
-//								result.add(tmp.get(j));
-//							}
-//							
-//							else if(calMap.get(l) == "0") {
-//								break;
-//							}
-//						}
-//						
-//						for(int o = 1; o <= Integer.parseInt(secondDay); o++) {
-//							if(calMap.get(o) == "1") {
-//								result.add(tmp.get(j));
-//							}
-//							else if(calMap.get(o) == "1") {
-//								break;
-//							}
-//						}
-//						
-//						itemId = result.get(k).getItemid();
-//					}
-//				}
-//				ArrayList<FilterDTO> tmprs = fs.search1(itemId);
-//				
-//				for(int z = 0; z < tmprs.size(); z++) {
-//					result.add(tmprs.get(z));
-//				}
-//			}
-//		}
-//		
-//		return result;
-//		
-//	}
+		else if(Integer.parseInt(firstMonth) != Integer.parseInt(secondMonth)) {
+			System.out.println(firstMonth);
+			System.out.println(secondMonth);
+			System.out.println(map);
+			map.put("firstMonth", firstMonth);
+			map.put("secondMonth", secondMonth);
+			
+			List<FilterDTO> list = fs.mainSelectArea(map);
+			for(int i = 0; i < list.size(); i++) {
+				itemId = list.get(i).getItemid();
+				map.put("itemId", itemId);
+				ArrayList<FilterDTO> tmp = fs.mainSelectArea2(map);
+				for(int j = 0; j < tmp.size(); j++) {
+					HashMap<Integer, String> calMap = getCalMap(tmp.get(j));
+					for(int l = Integer.parseInt(firstDay); l <= 31; l++) {
+						if(calMap.get(l) == "1") {
+							result.add(tmp.get(j));
+							itemId = result.get(l).getItemid();
+						}
+						
+						else if(calMap.get(l) == "0") {
+							break;
+						}
+					}
+					
+					for(int o = 1; o <= Integer.parseInt(secondDay); o++) {
+						if(calMap.get(o) == "1") {
+							result.add(tmp.get(j));
+							itemId = result.get(o).getItemid();
+						}
+						else if(calMap.get(o) == "0") {
+							break;
+						}
+					}
+					
+				}
+				ArrayList<FilterDTO> tmprs = fs.search2(itemId);
+				
+				for(int z = 0; z < tmprs.size(); z++) {
+					result.add(tmprs.get(z));
+				}
+			}			
+			return result;
+			
+		}
+		return result;
+} // function end
+
 
 	public HashMap<Integer, String> getCalMap(FilterDTO dto) {
 		HashMap<Integer, String> calMap = new HashMap<>();
