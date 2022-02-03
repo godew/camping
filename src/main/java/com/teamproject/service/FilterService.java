@@ -80,6 +80,10 @@ public class FilterService {
 		return fd.mainSelectArea2(map);
 	}
 
+	public List<HashMap<String, Object>> filterLabel(String string) {
+		return fd.filterLavel(string);
+	}
+
 
 
 

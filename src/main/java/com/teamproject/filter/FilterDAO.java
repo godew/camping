@@ -74,6 +74,9 @@ public interface FilterDAO {
 			"where month between #{firstMonth} and #{secondMonth}")
 	ArrayList<FilterDTO> mainSelectArea2(HashMap<String, String> map);
 	
+	
+	List<HashMap<String, Object>> filterLavel(String string);
+	
 
 
 

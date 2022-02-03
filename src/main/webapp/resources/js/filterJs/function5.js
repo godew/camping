@@ -55,6 +55,7 @@
 		todayAndTomorrowOut.innerHTML = '<div>' + mainnextMonthDiv + '월' + '\u00A0'+ maintomorrow + '일' +'\u00A0' + '\u00A0' + '</div>'
 	}
 	
+	
 	calendarSubmitIn.addEventListener('click', checkIO)
 	calendarSubmitIn.addEventListener('click', closeCalendarHandler2)
 	calendarSubmitOut.addEventListener('click', checkIO)
@@ -62,9 +63,10 @@
 	
 	
 	function checkIO(event) {
+	
 		todayAndTomorrowIn.innerHTML = '<div>' + mainlt.dataset.month + '월' + '\u00A0' +
 		mainlt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'
-		
+	
 		if(+mainlt.dataset.month <= +mainrt.dataset.month){
 			todayAndTomorrowOut.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + 
 			mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'			
@@ -78,6 +80,20 @@
 			mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'		
 			
 		}
+		
+		
+		if(+mainlt.dataset.month == +mainrt.dataset.month && 
+				+mainlt.dataset.day > +mainrt.dataset.day){
+			console.log(1)
+			todayAndTomorrowIn.innerHTML = ''
+			todayAndTomorrowOut.innerHTML = ''			
+			todayAndTomorrowOut.innerHTML = '<div>' + mainlt.dataset.month + '월' + '\u00A0' +
+			mainlt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'
+			todayAndTomorrowIn.innerHTML = '<div>' + mainrt.dataset.month + '월' + '\u00A0' + 
+			mainrt.dataset.day + '일' +'\u00A0' + '\u00A0' + '</div>'	
+		}
+		
+		
 		
 		checkIn = ('0'+mainlt.dataset.month).slice(-2) + ('0'+mainlt.dataset.day).slice(-2)
 		checkOut = ('0'+mainrt.dataset.month).slice(-2) + ('0'+mainrt.dataset.day).slice(-2)
@@ -276,7 +292,6 @@
 		if(getDate != ''){
 			for(let i = 1; i <= mainlast_date; i++){
 				set_date = document.getElementById([i])
-				console.log(set_date)
 				set_date.style.backgroundColor = 'white'
 				set_date.style.color = 'black'
 			}

@@ -1,6 +1,7 @@
 package com.teamproject.controller;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +68,6 @@ public class FilterAjaxController {
 	
 	@GetMapping("/submitSearch")
 	public ArrayList<FilterDTO> submitSearch(@RequestParam HashMap<String, String> map){
-		
 		ArrayList<FilterDTO> result = new ArrayList<FilterDTO>();
 		String itemId = "";
 		
@@ -107,8 +107,33 @@ public class FilterAjaxController {
 		
 		if(Integer.parseInt(firstMonth) == Integer.parseInt(secondMonth)) {
 			map.put("firstMonth", firstMonth);
+			System.out.println(map);
 			List<FilterDTO> list = fs.selectFirstList(map); // areacode, price 1차 
-	
+			
+			
+//			List<HashMap<String, Object>> checkHash = new List<HashMap<String, Object>>();
+			
+			String test1 = map.get("checkLabel");
+			String[] strArr = test1.split(":");
+			System.out.println(strArr.length);
+			for(String s : strArr) {
+				for(int i = 0; i < list.size(); i++) {
+					String filterTest = list.get(i).getFilter();
+					if(filterTest.contains(s)) {
+						list.get(i);
+					}
+				}
+				System.out.println(list);
+			}
+			
+			System.out.println(list);
+			
+//			if(s.contains("erd")) {
+//				System.out.println("==================");
+//			}
+
+			
+			
 			for(int i = 0; i < list.size(); i++) {
 				itemId = list.get(i).getItemid(); // areacode와 price로 걸러진 list 숫자만큼 itemid로
 				
@@ -148,7 +173,7 @@ public class FilterAjaxController {
 		else if(Integer.parseInt(firstMonth) != Integer.parseInt(secondMonth)) {
 			map.put("firstMonth", firstMonth);
 			map.put("secondMonth", secondMonth);
-			System.out.println(map);
+			
 			
 			List<FilterDTO> list = fs.selectFirstList2(map); // areacode, price 1차 
 	
@@ -198,6 +223,11 @@ public class FilterAjaxController {
 }	// submitSearch() end
 	
 	
+	private String[] String(String[] split) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@GetMapping("/mainAllFilter")
 	public List<FilterDTO> mainAllFilter(@RequestParam HashMap<String, String> map){
 		ArrayList<FilterDTO> result = new ArrayList<FilterDTO>();

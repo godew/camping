@@ -55,7 +55,7 @@ function filterSearch(event){
 	let checkLabel = ''
 	label_chk.forEach(e => {
 		if(e.checked == true){
-			checkLabel += e.value + '\u00A0'
+			checkLabel += e.value + ':'
 		}
 	})
 	
@@ -86,6 +86,7 @@ function filterSearch(event){
 	
 	const url = cpath + '/submitSearch?areacode='+areacode+'&people='+people+'&checkInDay='+ checkInDay + '&checkOutDay='+checkOutDay 
 	+ '&minPrice='+minPrice+'&maxPrice='+ maxPrice +'&checkLabel='+checkLabel
+	
 	console.log(url)
 	const opt = {
 		method: 'GET'
