@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.teamproject.hash.Hash;
@@ -60,9 +61,17 @@ public class LoginController {
 
 	}
 	
-	@RequestMapping("/login/nonReservation")
+	@GetMapping("/login/nonReservation")
 	public String nonReservation() {
 		return "login/nonReservation";
+	}
+	@PostMapping("/login/nonReservation")
+	public String nonReservation(@RequestParam("tid") String tid,@RequestParam("notPhone") String notPhone) {
+		System.out.println(tid);
+		System.out.println(notPhone);
+		String url = "nonMembers/" + tid + "/" + notPhone;
+		System.out.println(url);
+		return "redirect:/"+url;
 	}
 	
 	@RequestMapping("/findID")

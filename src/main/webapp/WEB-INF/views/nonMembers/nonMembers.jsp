@@ -56,13 +56,15 @@
 
 <script>
 	const btn = document.querySelector('.btn')
+	const reservationContent = document.querySelector('.reservationContent')
 	
 	btn.onclick = function(event){
-// 		event.preventDefault()
 	const check = confirm('예약취소하시겠습니까?')
 	if(check == true){
 		btn.onsubmit
-		
+	}
+	if(check == false){
+		event.preventDefault()
 	}
 	}
 </script>
