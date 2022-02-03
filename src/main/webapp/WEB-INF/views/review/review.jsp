@@ -28,8 +28,6 @@ const link = document.location.href
 const orderId = link.split('/')
 const form = document.getElementById('review')
 
-form.action = cpath + '/review/' + orderId[5]
-console.log(form)
 </script>
 
 

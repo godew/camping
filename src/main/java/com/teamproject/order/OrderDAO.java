@@ -61,9 +61,6 @@ public interface OrderDAO {
 			"on A.itemRoomId = B.itemRoomId and A.orderId = ${orderId} order by checkIn")
 	List<reservationDTO> getOrder(int orderId);
 
-	@Delete("delete from orders where orderId=${orderId}")
-	int orderDelete(int orderId);
-
 	@Update("update orders set cancel=0 where orderId=${orderId}")
 	int orderCancle(int orderId);
 

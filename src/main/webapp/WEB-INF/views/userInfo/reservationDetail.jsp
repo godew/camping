@@ -29,8 +29,7 @@
 	<p>입실 및 퇴실 시간은 숙소에 문의 해주세요</p>
 	<div>예약 번호 		: <b>${list.tid }</b></div>
 	<div>결제 금액 		: <b class="price">${list.orderPrice }</b></div>
-	<button id="review" value="${list.orderId }">리뷰작성</button>
-	<button id="deleteBTN" value="${list.tid }">삭제</button>
+	<div><button id="review" value="${list.orderId }">리뷰작성</button></div>
 </c:forEach>
 
 </div>
@@ -39,12 +38,6 @@
 
 <script>
 	const review = document.getElementById('review')
-	const deleteBTN = document.getElementById('deleteBTN')
-	
-
-	deleteBTN.onclick = function(event) {
-		location.href = cpath + '/reservationDelete/' + event.target.value
-	}
 		
 	review.onclick = function(event){
 		location.href = cpath + '/review/' + event.target.value

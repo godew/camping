@@ -89,18 +89,13 @@ public class UserInfoController {
 	}
 
 	@GetMapping("/reservationDetail/{orderId}/{memberId}")
-	public String reservationDetail(@PathVariable int memberId,@PathVariable int orderId, Model model){
+	public String reservationDetail(HttpSession session, @PathVariable int memberId,@PathVariable int orderId, Model model){
 		List<reservationDTO> list = os.getOrder(orderId);
 		String name = us.getName(memberId);
 		model.addAttribute("name", name);
 		model.addAttribute("list", list);
+		model.addAttribute("dto", session.getAttribute("login"));
 		return "/userInfo/reservationDetail";
-	}
-	@GetMapping("/reservationDelete/{orderId}")
-	public String reservationDelete(@PathVariable int orderId) {
-		int row = os.reservationDelete(orderId);
-		
-		return "redirect:/reservationDelete/" + orderId;
 	}
 	
 	@PostMapping("/reservation/{memberId}")
