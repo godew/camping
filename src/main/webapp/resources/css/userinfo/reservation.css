@@ -59,10 +59,15 @@ width: 100%;
 .reservationList, .usageHistoryList {
 	display: block;
 	width: 19vw;
-	height: 33vh;
+/* 	height: 35vh; */
     margin-right: 1%;
     border: 1px solid gainsboro;
 
+}
+.reservationList form:nth-child(1){
+	float: left;
+    margin-left: 11px;
+    margin-right: 9px;
 }
 
 .reservationList > img, .usageHistoryList > a > img{

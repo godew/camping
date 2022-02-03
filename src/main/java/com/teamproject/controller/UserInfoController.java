@@ -63,8 +63,6 @@ public class UserInfoController {
 	@GetMapping("/point/{memberID}")
 	public String point(@PathVariable int memberID, Model model, HttpSession session) {
 		Object dto = session.getAttribute("login");
-		System.out.println("dto :" + dto);
-		System.out.println("session :" + session);
 		model.addAttribute("dto", dto);
 		return "/userInfo/point";
 	}
@@ -144,10 +142,22 @@ public class UserInfoController {
 	}
 	
 	@GetMapping("/getPoint/{orderId}")
-	public String getPoint(@PathVariable int orderId, HttpSession session) {
-		int row = ps.takePoint(orderId); 
+	public String getPoint(@PathVariable int orderId, HttpSession session,
+			int orderPrice, String itemRoomName) {
+		Object name = session.getAttribute("name");
+		 
+		int point = orderPrice;
+		String title = itemRoomName + orderId +"예약 포인트 적립 ("+ point+")";
+		
+		System.out.println(name);
+		point = (point / 10);
+		System.out.println("point" + point);
 		int memberId = ((MemberDTO)session.getAttribute("login")).getMemberID();
+		ps.addP(point, memberId, title, orderId);
+		int row = ps.takePoint(orderId,point, memberId, title); 
 		System.out.println(memberId);
 		return "redirect:/reservation/" + memberId;
 	}
+	
+	
 }

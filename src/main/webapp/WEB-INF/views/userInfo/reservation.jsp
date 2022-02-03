@@ -6,13 +6,8 @@
 <link rel="stylesheet" type="text/css" href="${cpath }/resources/css/userinfo/reservation.css">
 
 <script>
-function point(event) {
-	const check = confirm('포인트를 받으면 예약취소를 못합니다. 포인트를 받으시겠습니까?')
-	if(check == true){
-	location.href = cpath + '/getPoint/' + event.target.value
-	}
+
 	
-}
 </script>
 <div class="content">
 <div class="leftmenu">
@@ -22,7 +17,6 @@ function point(event) {
 			<li><a href="${cpath }/reservation/${dto.memberID}">예약 내역</a></li>
 			<li><a href="${cpath }/userInfo/${dto.memberID}">내 정보 관리</a></li>
 		</ul>
-		
 	</nav>
 </div>
 <div class="mainContent">
@@ -44,10 +38,15 @@ function point(event) {
 			</div>
 			
 			<c:if test="${list.cancel == 1 }">
-			<form method="POST">
+			
+			<form method="GET">
+				<input type="text" class="orderPrice" name="orderPrice" value="${list.orderPrice }" hidden="">
+				<input type="text" class="itemRoomName" name="itemRoomName" value="${list.itemRoomName }" hidden="">
 				<button class="getPoint" value="${list.orderId }" type="button">
 					포인트 받기
 				</button>
+			</form>			
+			<form method="POST">
 				<input type="number" name="orderId" value="${list.orderId }" hidden="">
 				<input class="btn" type="submit" value="예약취소">
 			</form>
@@ -106,8 +105,21 @@ function point(event) {
 
 	const getPoint = document.querySelectorAll('.getPoint')
 	
+	const orderPrice = document.querySelectorAll('.orderPrice')
+	const itemRoomName = document.querySelectorAll('.itemRoomName')
 	for(let i in getPoint){
-		getPoint[i].onclick = point
+		getPoint[i].onclick = function(event) {
+			const check = confirm('포인트를 받으면 예약취소를 못합니다. 포인트를 받으시겠습니까?')
+			if(check == true){
+				console.log(orderPrice[i].value)
+				
+			location.href = cpath + '/getPoint/' + event.target.value + '?orderPrice=' + orderPrice[i].value + '&itemRoomName='+ itemRoomName[i].value
+			
+			}
+		}
+		
+		
+				
 	}
 </script>
 

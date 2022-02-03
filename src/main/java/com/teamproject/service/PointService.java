@@ -33,10 +33,10 @@ public class PointService {
 		return dao.selectPointByOrderId(orderId);
 	}
 
-	public int takePoint(int orderId) {
+	public int takePoint(int orderId, int point, int memberId, String title) {
 		System.out.println(orderId);
-		
-		return dao.takePoint(orderId);
+		int row = 0;
+		return row = dao.takePoint(orderId);
 	}
 
 }

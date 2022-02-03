@@ -23,7 +23,7 @@ public class ReviewController {
 	@Autowired private ReivewService rs;
 
 	@GetMapping("/review/{orderId}")
-	public String review(@PathVariable int orderId,HttpSession session, Model model) {
+	public String review(@PathVariable int orderId, HttpSession session, Model model) {
 		Object login = session.getAttribute("login");
 		List<ReviewDTO>list = rs.selectOrder(orderId);
 		model.addAttribute("dto", login);

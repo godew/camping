@@ -122,11 +122,6 @@ function hideModify(event) {
 			</form>
 		</div>
 	</div>
-	<div class="secession">
-	<p>이용하고 싶지 않으신가요?</p>
-	<button>로그아웃</button>
-	<button>회원탈퇴</button>
-	</div>
 </div>
 </div>
 <script>

@@ -12,11 +12,10 @@ function getpoint(event) {
 	fetch(url, opt)
 	.then(resp => resp.json())
 	.then(json => {
-		console.log(json)
 			let result = 0
 		json.forEach(point => {
-			const memberId = point.memberId
-			let available_points = document.getElementById('available_points')
+			const member = point.memberId
+			console.log(member)
 			let li = document.createElement('li')
 			let span = document.createElement('span')
 			let p = document.createElement('p')
@@ -62,7 +61,7 @@ ${dto.memberID }
 <script>
 	const pointList = document.getElementById('pointList')
 	
-window.onload = getpoint
+	window.onload = getpoint
 </script>
 </body>
 </html>
