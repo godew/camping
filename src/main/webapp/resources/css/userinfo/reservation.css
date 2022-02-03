@@ -64,7 +64,7 @@ width: 100%;
     border: 1px solid gainsboro;
 
 }
-.reservationList form:nth-child(1){
+.getPoint{
 	float: left;
     margin-left: 11px;
     margin-right: 9px;
